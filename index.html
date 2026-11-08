@@ -259,11 +259,11 @@ table.cmp tr:last-child td{border-bottom:none}
 
   <div class="sechead"><h2>Positioning options</h2><span class="note">pick one, test it</span></div>
   <div class="grid g2">
-    <div class="panel"><h3>Primary candidate</h3><p><b>"I build and run the systems local businesses keep meaning to fix."</b> Plain, outcome-first, no AI worship, no consulting jargon. The word "run" quietly carries the care plan.</p></div>
+    <div class="panel"><h3>Current draft · trades first</h3><p><b>"Keep quotes moving when the day gets busy."</b> For Jacksonville HVAC, plumbing and electrical owners: find the quote/follow-up handoff that stalls, use existing tools when possible, and give the result a named owner and acceptance test.</p></div>
     <div class="panel"><h3>Supporting lines</h3><ul class="tight">
-      <li>"Fixed price. Live in your business in under a month. I stay on to keep it working."</li>
-      <li>"You don't need another software demo. You need Monday morning to go differently."</li>
-      <li>"Your competitor quotes in 3 minutes. Let's make that you."</li>
+      <li>"Start with the quote that got stuck."</li>
+      <li>"Use the tools you already own before building another."</li>
+      <li>"One measurable handoff. Fixed scope. A named owner and fallback."</li>
     </ul></div>
   </div>
   <div class="rule" style="margin-top:14px">Customer-facing language: <b>lead with the problem and the outcome</b>, not “workflow,” automation, or a technical job title. For example: “Respond to inquiries faster and more precisely so you can win more business.” Explain AI transparently when it is relevant.</div>
@@ -459,9 +459,77 @@ table.cmp tr:last-child td{border-bottom:none}
 <!-- ============ RESEARCH & NAMES ============ -->
 <main class="page" id="page-resources">
 <div class="wrap">
-  <div class="kicker">Research · 7 November 2026</div>
+  <div class="kicker">Research · 8 November 2026</div>
   <h1>Research first. Build what matters.</h1>
   <p class="lede">Evidence-led GTM hypotheses, a portfolio of reusable client systems, and references for running Jax Systems. Desk research is not customer validation; templates are not delivered products.</p>
+
+<!-- MARKET-RESEARCH:START -->
+  <section id="market-inventory-research" aria-labelledby="market-delivery-title" style="overflow-wrap:anywhere">
+  <div class="sechead"><h2 id="market-delivery-title">Local market inventory → TAM → starting segment</h2><span class="note">8 Nov 2026 · available-source delivery complete</span></div>
+  <p class="lede"><b>Verdict: start validation with Duval HVAC, plumbing and electrical owners.</b> The private inventory supplies 571 channel-available research candidates. Property management is the second test; selected professional services is third. These are research priorities, not hot leads or proven demand.</p>
+  <div class="grid g3" id="market-headline-metrics">
+    <div class="panel"><h3>119,174 source records</h3><p>98,742 Overture places plus 20,432 St. Johns tax records, including 223 October 2026 additions and 90 tax-account closure records.</p></div>
+    <div class="panel"><h3>94,246 observed prospect locations</h3><p>Duval and St. Johns business/location rows after category cleanup. Not unique active companies or buyer organizations.</p></div>
+    <div class="panel"><h3>1,072 cross-source locations</h3><p>Exact normalized name + physical street + ZIP reconciliation. A 30-row sample was reviewed; no parent or buyer merge is implied.</p></div>
+  </div>
+  <p class="warn" style="margin-top:14px"><b>Coverage boundary:</b> this is a comprehensive available-source inventory, not a verified census. The official Duval master-tax report remains blocked by Cloudflare security verification. Current operating verification and verified size indicators are 0. Independence, revenue-band fit, buying authority and willingness to pay remain unknown.</p>
+
+  <div class="sechead"><h2>Geographic and official coverage</h2><span class="note">observed rows ≠ official counting units</span></div>
+  <div class="grid g2">
+    <div class="panel"><h3>Requested inventory scope</h3><div style="overflow-x:auto"><table class="cmp" style="min-width:420px"><thead><tr><th>Scope</th><th>Observed locations</th></tr></thead><tbody><tr><td>Duval</td><td>59,794</td></tr><tr><td>St. Johns</td><td>15,916</td></tr><tr><td>St. Johns tax jurisdiction (physical county unresolved)</td><td>18,536</td></tr></tbody></table></div></div>
+    <div class="panel"><h3>Official 2023 guardrails</h3><div style="overflow-x:auto"><table class="cmp" style="min-width:600px"><thead><tr><th>County</th><th>CBP employer establishments</th><th>NES nonemployer firms</th><th>CBP 5–49 subtotal</th></tr></thead><tbody><tr><td>St. Johns</td><td>8,633</td><td>32,619</td><td>2,713</td></tr><tr><td>Duval</td><td>28,342</td><td>100,757</td><td>10,589</td></tr></tbody></table></div></div>
+  </div>
+  <p>CBP employer establishments are locations and exclude nonemployers; NES counts nonemployer firms. The sources are complementary guardrails, not a one-for-one denominator for the prospect inventory.</p>
+
+  <div class="sechead"><h2>Basic enrichment and source coverage</h2><span class="note">public channels unvalidated · no outreach-ready rows</span></div>
+  <div class="grid g3" id="market-enrichment-metrics">
+    <div class="panel"><h3>59,622 websites</h3><p>Source-published website candidates with source URL and checked date.</p></div>
+    <div class="panel"><h3>72,962 phones · 32,814 emails</h3><p>Public business channels; no deliverability or decision-owner claim.</p></div>
+    <div class="panel"><h3>14,971 corporate · 7,017 DBA</h3><p>Accepted matches at prospect-location level. Corporate legal entities and fictitious names stay separate.</p></div>
+  </div>
+  <p>The legal pipeline scanned 789,954 fictitious-name records and 12,988,522 corporate records. At source-record level it accepted 18,262 corporate and 8,595 geographically supported DBA matches. No FEI, owner, officer, registered-agent or mailing-address fields were imported.</p>
+
+  <details class="panel" id="market-category-breakdown" style="margin-top:14px"><summary><b>All 19 observed categories · locations and field coverage</b></summary>
+    <p>Counts are observed locations, not unique companies. “Other / unknown commercial” is retained for review rather than silently discarded. Percentages show populated source fields, not independent verification.</p>
+    <div style="overflow-x:auto"><table class="cmp" style="min-width:900px"><thead><tr><th>Category</th><th>Locations</th><th>Website</th><th>Phone</th><th>Email</th><th>Corporate</th><th>DBA</th></tr></thead><tbody><tr><td>Other / unknown commercial</td><td>25,365</td><td>52.1%</td><td>64.8%</td><td>28.6%</td><td>17.4%</td><td>5.8%</td></tr><tr><td>Retail / consumer services</td><td>14,045</td><td>67.0%</td><td>85.5%</td><td>38.0%</td><td>12.0%</td><td>9.2%</td></tr><tr><td>Healthcare</td><td>9,500</td><td>72.7%</td><td>83.8%</td><td>24.5%</td><td>9.2%</td><td>7.3%</td></tr><tr><td>Food / hospitality</td><td>7,765</td><td>69.7%</td><td>82.6%</td><td>39.6%</td><td>7.4%</td><td>13.2%</td></tr><tr><td>Trades / field services</td><td>6,909</td><td>49.9%</td><td>75.0%</td><td>37.3%</td><td>38.4%</td><td>6.3%</td></tr><tr><td>Professional services</td><td>6,197</td><td>55.5%</td><td>70.5%</td><td>32.4%</td><td>28.5%</td><td>7.1%</td></tr><tr><td>Beauty / wellness</td><td>5,516</td><td>67.5%</td><td>87.4%</td><td>48.4%</td><td>8.5%</td><td>10.3%</td></tr><tr><td>Real estate brokerage</td><td>4,414</td><td>78.2%</td><td>84.7%</td><td>54.1%</td><td>11.3%</td><td>3.1%</td></tr><tr><td>Finance / insurance</td><td>4,337</td><td>82.0%</td><td>80.1%</td><td>23.0%</td><td>8.6%</td><td>2.7%</td></tr><tr><td>Education / childcare</td><td>1,755</td><td>73.4%</td><td>87.7%</td><td>55.3%</td><td>12.6%</td><td>10.3%</td></tr><tr><td>Automotive</td><td>1,737</td><td>70.6%</td><td>95.2%</td><td>44.7%</td><td>12.6%</td><td>7.6%</td></tr><tr><td>Logistics / transport / warehousing</td><td>1,322</td><td>78.4%</td><td>92.1%</td><td>22.6%</td><td>13.5%</td><td>4.1%</td></tr><tr><td>Manufacturing / industrial</td><td>1,322</td><td>68.2%</td><td>79.8%</td><td>37.4%</td><td>26.9%</td><td>7.9%</td></tr><tr><td>Technology / IT</td><td>1,232</td><td>72.5%</td><td>74.8%</td><td>18.6%</td><td>15.8%</td><td>6.5%</td></tr><tr><td>Lodging / travel</td><td>1,174</td><td>66.5%</td><td>71.3%</td><td>45.6%</td><td>6.9%</td><td>10.3%</td></tr><tr><td>Cleaning / facilities services</td><td>679</td><td>33.3%</td><td>69.1%</td><td>61.9%</td><td>28.9%</td><td>9.3%</td></tr><tr><td>Marine</td><td>456</td><td>57.0%</td><td>75.9%</td><td>50.9%</td><td>27.2%</td><td>11.2%</td></tr><tr><td>Property management / real estate operations</td><td>364</td><td>84.3%</td><td>98.1%</td><td>32.1%</td><td>16.5%</td><td>5.8%</td></tr><tr><td>Recreation / events</td><td>157</td><td>89.8%</td><td>94.9%</td><td>68.2%</td><td>12.1%</td><td>12.7%</td></tr></tbody></table></div>
+  </details>
+
+  <section id="market-tam-scenarios" aria-labelledby="market-tam-title">
+  <div class="sechead"><h2 id="market-tam-title">TAM scenarios and corrected unit economics</h2><span class="note">scenario arithmetic · not demand or break-even</span></div>
+  <p><b>Formula:</b> official category baseline × full-year equivalent Jax Systems package spend. SUSB supplies company-oriented firm counts for trades, logistics and professional services; property management and marine use narrow/partial CBP establishment proxies. Mixed units are not summed into one company total.</p>
+  <div style="overflow-x:auto"><table class="cmp" style="min-width:980px"><thead><tr><th>Category</th><th>Baseline</th><th>Unit</th><th>Year</th><th>Low · $6,100</th><th>Base · $11,600</th><th>High · $17,100</th></tr></thead><tbody><tr><td>Trades</td><td>3,715</td><td>firms</td><td>2022</td><td>$22,661,500</td><td>$43,094,000</td><td>$63,526,500</td></tr><tr><td>Property management</td><td>366</td><td>employer establishments</td><td>2023</td><td>$2,232,600</td><td>$4,245,600</td><td>$6,258,600</td></tr><tr><td>Professional services</td><td>4,495</td><td>firms</td><td>2022</td><td>$27,419,500</td><td>$52,142,000</td><td>$76,864,500</td></tr><tr><td>Logistics</td><td>1,333</td><td>firms</td><td>2022</td><td>$8,131,300</td><td>$15,462,800</td><td>$22,794,300</td></tr><tr><td>Marine</td><td>64</td><td>employer establishments</td><td>2023</td><td>$390,400</td><td>$742,400</td><td>$1,094,400</td></tr></tbody></table></div>
+  <p>These category-scope spending surfaces do not incorporate current operations, independence, size fit, need, native-software substitution or willingness to buy.</p>
+  <h3>Explicit 5% annual-buyer sensitivity</h3>
+  <p>The 5% share is an arbitrary sensitivity input, not a measured conversion rate. The underlying analysis also includes 1% and 10% cases.</p>
+  <div style="overflow-x:auto"><table class="cmp" style="min-width:650px"><thead><tr><th>Category</th><th>Scenario annual buyers</th><th>Scenario annual spend at $11,600</th></tr></thead><tbody><tr><td>Trades</td><td>185</td><td>$2,154,700</td></tr><tr><td>Property management</td><td>18</td><td>$212,280</td></tr><tr><td>Professional services</td><td>224</td><td>$2,607,100</td></tr><tr><td>Logistics</td><td>66</td><td>$773,140</td></tr><tr><td>Marine</td><td>3</td><td>$37,120</td></tr></tbody></table></div>
+
+  <h3>First-year revenue and capacity</h3>
+  <p>The X-ray is fully <b>credited toward deployment</b>, so it is not added twice. Full-year package = deployment + 12 months of care. First-year revenue assumes evenly timed wins (6.5 average paid care months) and 50% / 75% / 100% care attach rates. Capacity assumptions are unproved.</p>
+  <div style="overflow-x:auto"><table class="cmp" style="min-width:1000px"><thead><tr><th>Scenario</th><th>Full-year package</th><th>First-year revenue / customer</th><th>Care attach</th><th>Capacity</th><th>Revenue at capacity</th><th>Customers for $140k</th><th>Customers for $210k</th></tr></thead><tbody><tr><td>low</td><td>$6,100</td><td>$3,475</td><td>50%</td><td>6</td><td>$20,850</td><td>41</td><td>61</td></tr><tr><td>base</td><td>$11,600</td><td>$7,681</td><td>75%</td><td>10</td><td>$76,812</td><td>19</td><td>28</td></tr><tr><td>high</td><td>$17,100</td><td>$12,700</td><td>100%</td><td>14</td><td>$177,800</td><td>12</td><td>17</td></tr></tbody></table></div>
+  <p class="warn"><b>Base case:</b> 19 customers for a $140k revenue target versus a hypothetical capacity of 10. This is not break-even: fixed costs, variable delivery costs, retention, throughput and profit are unmeasured.</p>
+  </section>
+
+  <section id="market-segment-ranking" aria-labelledby="market-ranking-title">
+  <div class="sechead"><h2 id="market-ranking-title">Ranked starting segments</h2><span class="note">validation order · not lead scores</span></div>
+  <div style="overflow-x:auto"><table class="cmp" style="min-width:1100px"><thead><tr><th>Priority</th><th>Segment</th><th>Initial target</th><th>Observed locations</th><th>Website</th><th>Phone</th><th>Recommendation and limit</th></tr></thead><tbody><tr><td>1</td><td>Trades</td><td>Duval HVAC / plumbing / electrical</td><td>6,909</td><td>49.9%</td><td>75.0%</td><td>Start here. Existing-tool configuration may beat custom builds; no local willingness-to-pay evidence.</td></tr><tr><td>2</td><td>Property management</td><td>Owner/principal-led property managers</td><td>364</td><td>84.3%</td><td>98.1%</td><td>Second test. Narrower market, strong channel coverage; standard reports/permissions may solve the problem.</td></tr><tr><td>3</td><td>Professional services</td><td>Selected legal / accounting / engineering / consulting</td><td>6,197</td><td>55.5%</td><td>70.5%</td><td>Third. Large surface, but confidentiality and unclear demand require narrower discovery.</td></tr><tr><td>4</td><td>Logistics</td><td>Owner-led brokers / 3PLs / warehouses</td><td>1,322</td><td>78.4%</td><td>92.1%</td><td>Good channels; separate independent operators from branches and large networks.</td></tr><tr><td>5</td><td>Marine</td><td>Independent marine service / repair operators</td><td>456</td><td>57.0%</td><td>75.9%</td><td>Specialty lane only. Parent ownership and a partial official proxy constrain the case.</td></tr></tbody></table></div>
+  <p>Ability-to-pay judgments in the research are hypotheses. Public channel coverage indicates research reachability only. No named business is asserted to have the target problem.</p>
+  </section>
+
+  <section id="market-current-positioning" aria-labelledby="market-positioning-title">
+  <div class="sechead"><h2 id="market-positioning-title">Current website positioning draft</h2><span class="note">owner validation before hardening</span></div>
+  <div class="panel" style="background:#e8ecd9"><span class="mono">For Jacksonville HVAC, plumbing &amp; electrical owners</span><h3 style="font-size:1.6rem;margin-top:8px">Keep quotes moving when the day gets busy.</h3><p>Find where inquiries, estimates and follow-ups stall. Fix the handoff with existing tools when possible. Give the result a baseline, acceptance test, named owner, fallback and exception route.</p><p><b>Lead service:</b> Ops X-ray → one fixed-scope quote/follow-up improvement → optional care for the running system.</p><p><b>Primary action:</b> Book a 30-minute owner qualification call.</p></div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="panel"><h3>Message order</h3><ul class="tight"><li>Keep quotes moving—not “AI transformation.”</li><li>Check configuration, plan changes, templates and staff process before custom work.</li><li>Protect expert judgment; do not make AI reception the default.</li><li>Measure response time, follow-up coverage, admin time and exceptions. Track accepted quotes separately.</li></ul></div>
+    <div class="panel"><h3>Claims held back</h3><ul class="tight"><li>No guaranteed revenue, conversion lift or hours saved.</li><li>No “proven playbook,” “local moat” or invented client proof.</li><li>No named business is claimed to have the problem.</li><li>Owner conversations and paid commitments come before outcome copy.</li></ul></div>
+  </div>
+  </section>
+
+  <div class="sechead"><h2>Method, sources and publication boundary</h2><span class="note">aggregate public synthesis only</span></div>
+  <p>Public sources: <a href="https://docs.overturemaps.org/guides/places/" target="_blank" rel="noopener noreferrer">Overture Places</a>; <a href="https://sjctax.us/download-data-files/" target="_blank" rel="noopener noreferrer">St. Johns business-tax files</a>; <a href="https://dos.fl.gov/sunbiz/other-services/data-downloads/quarterly-data/" target="_blank" rel="noopener noreferrer">Florida Sunbiz quarterly data</a>; <a href="https://www.census.gov/programs-surveys/cbp/data.html" target="_blank" rel="noopener noreferrer">Census CBP</a>; <a href="https://www.census.gov/data/datasets/2023/econ/nonemployer-statistics/2023-ns.html" target="_blank" rel="noopener noreferrer">Census NES</a>; and <a href="https://www.census.gov/data/tables/2022/econ/susb/2022-susb-annual.html" target="_blank" rel="noopener noreferrer">Census SUSB</a>.</p>
+  <p><b>Verification:</b> 46 automated tests passed; SQLite integrity and foreign keys passed; snapshot restoration and hashes were verified; both 30-row identity and legal-match audit samples were reviewed. Paid-data spend was $0. No outreach was sent.</p>
+  <p class="warn">Company-level inventory, contact channels, raw registry records and evidence extracts remain in the private research repository and Obsidian. They are deliberately not embedded in this public artifact. The complete aggregate analysis is represented here; the next gate is owner/customer validation.</p>
+  </section>
+<!-- MARKET-RESEARCH:END -->
 
   <section id="gtm-research-sprint" aria-labelledby="gtm-sprint-title" style="overflow-wrap:anywhere">
   <div class="sechead"><h2 id="gtm-sprint-title">GTM research: evidence before the pitch</h2><span class="note">7 Nov 2026 · desk-research pilot complete</span></div>
@@ -500,7 +568,7 @@ table.cmp tr:last-child td{border-bottom:none}
     <p><b>Implication:</b> avoid building a commodity feature that the customer’s core software can supply. The service may be selection, configuration, integration, adoption and exception ownership instead.</p>
   </details>
 
-  <div class="sechead"><h2>Three angles worth trying to disprove</h2><span class="note">portfolio preserved · no vertical chosen</span></div>
+  <div class="sechead"><h2>Three angles worth trying to disprove</h2><span class="note">initial segment selected for validation · not demand proof</span></div>
   <div class="grid g3">
     <div class="panel"><h3>Fewer inquiries and quotes lost</h3><p>Ask to see a recent request → response → quote → follow-up trail. Measure response time and follow-up coverage; track bookings separately.</p><p><b>Stop if:</b> no spare capacity, too little volume, or the existing tool solves it cheaply. Faster replies are not guaranteed revenue.</p></div>
     <div class="panel"><h3>Less report / document chasing</h3><p>Ask for one redacted report, order or document handoff. Measure human preparation time, missing items and exceptions.</p><p><b>Stop if:</b> a standard template or permission change fixes it, or the source data cannot be trusted.</p></div>
