@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Jax Systems — Open Water concept</title>
+  <style>
+    :root {
+      --ocean:#175f93;
+      --ocean-2:#2f82bd;
+      --foam:#f8fcff;
+      --ink:#10263a;
+      --mist:#d7e9f5;
+      --line:#b7d2e4;
+      --quiet:#557285;
+      --shadow:0 22px 56px rgba(14,45,72,.1);
+      --container:min(1200px, calc(100vw - 2rem));
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif; color:var(--ink); background:linear-gradient(180deg,#ffffff 0%,#fbfeff 46%,#f1f8fd 100%); }
+    body.modal-open { overflow:hidden; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; cursor:pointer; }
+    :focus-visible { outline:3px solid var(--ocean-2); outline-offset:4px; }
+    .shell { width:var(--container); margin:0 auto; }
+    .eyebrow { display:inline-flex; gap:.55rem; align-items:center; font-size:.76rem; text-transform:uppercase; letter-spacing:.15em; font-weight:800; color:var(--quiet); }
+    .eyebrow::before { content:""; width:.7rem; height:.7rem; border-radius:50%; background:linear-gradient(180deg,#8fd0f8,var(--ocean-2)); box-shadow:0 0 0 .36rem rgba(47,130,189,.14); }
+    .site-header { position:sticky; top:0; z-index:20; background:rgba(255,255,255,.86); backdrop-filter:blur(14px); border-bottom:1px solid rgba(183,210,228,.75); }
+    .site-header__bar { display:flex; align-items:center; justify-content:space-between; gap:1rem; min-height:76px; }
+    .brand { display:flex; gap:.85rem; align-items:center; font-weight:800; letter-spacing:-.03em; }
+    .brand-mark { width:2.45rem; height:2.45rem; border-radius:50%; border:2px solid var(--ocean); position:relative; overflow:hidden; }
+    .brand-mark::before { content:""; position:absolute; inset:46% 0 0 0; background:linear-gradient(180deg,#7dc5f2,#2b7fb9); }
+    .brand-mark::after { content:""; position:absolute; left:14%; right:14%; top:28%; height:2px; background:var(--ocean); border-radius:999px; box-shadow:0 8px 0 0 rgba(23,95,147,.3); }
+    .brand small { display:block; font-size:.78rem; color:var(--quiet); font-weight:600; letter-spacing:.03em; }
+    .nav-toggle { display:none; border:1px solid var(--line); background:#fff; padding:.72rem .95rem; border-radius:999px; color:var(--ocean); font-weight:700; }
+    .main-nav { display:flex; gap:1rem; align-items:center; }
+    .main-nav a { color:var(--quiet); font-weight:700; }
+    .main-nav a:hover { color:var(--ocean); }
+    .btn { border-radius:999px; padding:.98rem 1.38rem; border:1px solid transparent; display:inline-flex; align-items:center; justify-content:center; gap:.5rem; font-weight:800; transition:transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .btn:hover { transform:translateY(-1px); }
+    .btn-solid { background:var(--ocean); color:#fff; box-shadow:0 14px 28px rgba(23,95,147,.18); }
+    .btn-ghost { background:#fff; color:var(--ocean); border-color:var(--line); }
+    .hero { padding:4.8rem 0 2.2rem; }
+    .hero-copy { max-width:920px; }
+    .hero-copy h1 { margin:.85rem 0 1rem; font-size:clamp(3.7rem,10vw,7.4rem); line-height:.86; letter-spacing:-.08em; max-width:9.2ch; color:#0f2940; }
+    .hero-copy p { max-width:58ch; color:var(--quiet); font-size:1.08rem; margin:0; }
+    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; margin:2rem 0 2.2rem; }
+    .horizon { position:relative; margin-top:1.8rem; border-radius:36px; overflow:hidden; border:1px solid var(--line); background:linear-gradient(180deg,#f6fbfe 0%,#eef8fd 100%); box-shadow:var(--shadow); }
+    .horizon svg { width:100%; height:auto; display:block; }
+    .horizon-note { position:absolute; right:1.4rem; bottom:1.4rem; max-width:18rem; padding:1rem; background:rgba(255,255,255,.82); backdrop-filter:blur(10px); border:1px solid rgba(183,210,228,.9); border-radius:22px; color:var(--quiet); }
+    .meta-strip { display:grid; gap:1rem; grid-template-columns:repeat(3,1fr); margin-top:1.8rem; }
+    .meta-strip article { padding:1rem 0; border-top:1px solid var(--line); }
+    .meta-strip strong { display:block; font-size:1.36rem; color:var(--ocean); }
+    .section { padding:2.6rem 0; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:1rem; margin-bottom:1.35rem; }
+    .section-head h2 { margin:.5rem 0 0; font-size:clamp(2rem,4vw,3.4rem); line-height:.9; letter-spacing:-.06em; }
+    .section-head p { margin:0; max-width:46ch; color:var(--quiet); }
+    .chooser { display:flex; gap:.75rem; flex-wrap:wrap; margin-bottom:1rem; }
+    .chooser button { border:1px solid var(--line); border-radius:999px; background:#fff; color:var(--ocean); padding:.85rem 1.05rem; font-weight:800; }
+    .chooser button[data-active="true"] { background:var(--ocean); border-color:var(--ocean); color:#fff; box-shadow:0 12px 24px rgba(23,95,147,.16); }
+    .stories-wrap { display:grid; grid-template-columns:320px 1fr; gap:2rem; align-items:start; }
+    .stories-panel { background:#fff; border:1px solid var(--line); border-radius:30px; padding:1.2rem; box-shadow:var(--shadow); }
+    .stories-intro { margin:0; color:var(--quiet); }
+    .story-grid { display:grid; gap:1rem; grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .story-card { min-height:100%; background:linear-gradient(180deg,#ffffff 0%,#f6fbfe 100%); border:1px solid var(--line); border-radius:30px; padding:1.35rem; box-shadow:var(--shadow); }
+    .story-card__tag { margin:0 0 .7rem; font-size:.75rem; letter-spacing:.14em; text-transform:uppercase; color:#607f94; font-weight:800; }
+    .story-card h3 { margin:0 0 .78rem; font-size:1.22rem; line-height:1.05; color:#123658; }
+    .story-card p { margin:.7rem 0 0; color:#48697d; }
+    .process-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .flow-card,.price-card,.fit-card { background:#fff; border:1px solid var(--line); border-radius:32px; box-shadow:var(--shadow); padding:1.35rem; }
+    .flow-line { display:grid; grid-template-columns:72px 1fr; gap:1rem; padding:1rem 0; border-top:1px solid var(--line); }
+    .flow-line:first-child { border-top:0; padding-top:0; }
+    .flow-line b { width:72px; height:72px; border-radius:50%; background:linear-gradient(180deg,#d5eefc,#7dbdea); color:var(--ocean); display:grid; place-items:center; font-size:1.25rem; }
+    .flow-line h3 { margin:0 0 .25rem; font-size:1.08rem; color:#153556; }
+    .flow-line p { margin:0; color:#4a697d; }
+    .price-row { display:grid; grid-template-columns:1fr auto; gap:1rem; padding:1rem 0; border-top:1px solid var(--line); }
+    .price-row:first-child { border-top:0; padding-top:0; }
+    .price-row h3 { margin:0 0 .22rem; font-size:1.04rem; color:#153556; }
+    .price-row p { margin:0; color:#4a697d; }
+    .price-row strong { align-self:start; color:var(--ocean); }
+    .fit-card { display:grid; grid-template-columns:1.2fr .8fr; gap:1rem; background:linear-gradient(180deg,#ffffff 0%,#f5fbff 100%); }
+    .fit-card h2 { margin:.5rem 0 .75rem; font-size:clamp(2rem,4vw,3.5rem); line-height:.9; letter-spacing:-.06em; }
+    .fit-card p { margin:0; max-width:46ch; color:#4b6c80; }
+    .fit-card aside { border-left:1px solid var(--line); padding-left:1rem; display:flex; flex-direction:column; justify-content:space-between; gap:1rem; }
+    .fit-modal { position:fixed; inset:0; display:grid; place-items:center; z-index:40; padding:1rem; }
+    .fit-modal[hidden] { display:none !important; }
+    .fit-modal__backdrop { position:absolute; inset:0; background:rgba(17,43,66,.42); backdrop-filter:blur(5px); }
+    .fit-modal__card { position:relative; width:min(100%,430px); background:#fff; border-radius:28px; padding:1.45rem; border:1px solid var(--line); box-shadow:0 28px 80px rgba(17,43,66,.22); }
+    .fit-modal__eyebrow { margin:0 0 .35rem; font-size:.76rem; letter-spacing:.14em; text-transform:uppercase; font-weight:800; color:#5c7a8e; }
+    .fit-modal__card h2 { margin:0 0 .6rem; font-size:1.8rem; color:#153556; }
+    .fit-modal__actions { display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1rem; }
+    .site-footer { padding:0 0 3rem; color:#567387; }
+    .site-footer .shell { display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; align-items:center; border-top:1px solid var(--line); padding-top:1rem; }
+    @media (max-width: 980px) {
+      .stories-wrap,.process-grid,.fit-card,.story-grid { grid-template-columns:1fr; }
+      .fit-card aside { border-left:0; padding-left:0; border-top:1px solid var(--line); padding-top:1rem; }
+      .meta-strip { grid-template-columns:1fr; }
+    }
+    @media (max-width: 760px) {
+      .site-header__bar { flex-wrap:wrap; padding:.9rem 0; }
+      .nav-toggle { display:inline-flex; }
+      .main-nav { width:100%; flex-direction:column; align-items:flex-start; }
+      .main-nav[hidden] { display:none; }
+      .main-nav a, .main-nav .btn { width:100%; justify-content:center; }
+      .hero { padding-top:3rem; }
+      .hero-copy h1 { max-width:10ch; }
+      .section-head { flex-direction:column; align-items:flex-start; }
+      .flow-line,.price-row { grid-template-columns:1fr; }
+      .flow-line b { width:56px; height:56px; }
+      .horizon-note { position:static; max-width:none; margin:1rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { animation:none !important; transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell site-header__bar">
+      <a class="brand" href="../../index.html" aria-label="Back to gallery">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Jax Systems<small>Open Water concept</small></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="water-nav">Menu</button>
+      <nav class="main-nav" id="water-nav" data-mobile-nav data-open="false">
+        <a href="#stories">Problem stories</a>
+        <a href="#process">Process & pricing</a>
+        <a href="#fit">Fit call</a>
+        <a class="btn btn-ghost" href="../../index.html">Back to gallery</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell">
+        <div class="hero-copy">
+          <span class="eyebrow">Design concept — illustrative examples, not client results</span>
+          <h1>Keep business moving. Get your day back.</h1>
+          <p>Give the calls, quotes and loose ends a clear next step. Jax Systems helps local businesses improve how everyday work gets done, starting with the people and tools already in place.</p>
+          <div class="hero-actions">
+            <button class="btn btn-solid" type="button" data-open-fit-call>Book a fit call</button>
+            <a class="btn btn-ghost" href="#stories">See where the day leaks</a>
+          </div>
+        </div>
+        <div class="horizon" aria-label="Coastal horizon illustration">
+          <svg viewBox="0 0 1280 560" role="img" aria-label="Illustrated shoreline horizon">
+            <defs>
+              <linearGradient id="sky-open" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="52%" stop-color="#ebf6fd"/>
+                <stop offset="100%" stop-color="#e3f2fb"/>
+              </linearGradient>
+              <linearGradient id="water-open" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#8ed0f5"/>
+                <stop offset="100%" stop-color="#2f82bd"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="1280" height="560" fill="url(#sky-open)"/>
+            <circle cx="948" cy="152" r="56" fill="#d9eefb" opacity=".9"/>
+            <path d="M0 304c121 16 206 23 324 22 132-2 230-20 330-20 82 0 170 12 264 30 130 24 234 31 362 14v210H0Z" fill="url(#water-open)"/>
+            <path d="M0,298c86,14,167,21,255,21,142,0,233-18,356-18,106,0,202,14,302,30,123,19,236,24,367,6" stroke="#9fd8f6" stroke-width="7" fill="none" opacity=".75"/>
+            <path d="M0,334c88,16,188,24,304,24,130,0,252-10,366-10,92,0,195,12,310,32,113,20,218,28,300,20" stroke="#ffffff" stroke-width="3" fill="none" opacity=".8"/>
+            <path d="M66 372c44-20 88-30 122-30 54 0 78 26 136 26 32 0 70-10 120-34 52-24 98-34 150-34 55 0 116 14 183 41 65 26 118 39 170 39 42 0 88-9 145-30" stroke="#175f93" stroke-width="5" stroke-linecap="round" fill="none" opacity=".78"/>
+            <path d="M1140,196c-35,34-77,57-131,70" stroke="#b3ddf5" stroke-width="4" stroke-linecap="round" fill="none" opacity=".9"/>
+          </svg>
+          <div class="horizon-note">
+            <strong>Minimal, but not empty.</strong>
+            <p>More negative space, fewer visual containers, and a stronger sense of calm.</p>
+          </div>
+        </div>
+        <div class="meta-strip" aria-label="Offer points">
+          <article><strong>$999 discovery</strong><span>Credited once toward the first deployment.</span></article>
+          <article><strong>$2,499 total</strong><span>Standard first deployment total, with $1,500 remaining after discovery.</span></article>
+          <article><strong>From $499/month care</strong><span>Plus additional deployments from $999 + $249/month care, subject to scope.</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="stories">
+      <div class="shell stories-wrap">
+        <div class="stories-panel">
+          <span class="eyebrow">Industry chooser</span>
+          <div class="section-head">
+            <div><h2>Pick the kind of day you are trying to steady.</h2></div>
+          </div>
+          <div class="chooser" role="group" aria-label="Choose an industry">
+            <button type="button" data-industry="trades" aria-pressed="true">Trades</button>
+            <button type="button" data-industry="property" aria-pressed="false">Property management</button>
+            <button type="button" data-industry="marine" aria-pressed="false">Marine services</button>
+          </div>
+          <p class="stories-intro" data-story-intro></p>
+        </div>
+        
+<div class="story-grid">
+  <article class="story-card" data-story-card>
+    <p class="story-card__tag">Problem story 01</p>
+    <h3 data-story-title></h3>
+    <p><strong>Everyday situation:</strong> <span data-story-problem></span></p>
+    <p><strong>Potential fix:</strong> <span data-story-fix></span></p>
+    <p><strong>Human boundary:</strong> <span data-story-boundary></span></p>
+  </article>
+  <article class="story-card" data-story-card>
+    <p class="story-card__tag">Problem story 02</p>
+    <h3 data-story-title></h3>
+    <p><strong>Everyday situation:</strong> <span data-story-problem></span></p>
+    <p><strong>Potential fix:</strong> <span data-story-fix></span></p>
+    <p><strong>Human boundary:</strong> <span data-story-boundary></span></p>
+  </article>
+  <article class="story-card" data-story-card>
+    <p class="story-card__tag">Problem story 03</p>
+    <h3 data-story-title></h3>
+    <p><strong>Everyday situation:</strong> <span data-story-problem></span></p>
+    <p><strong>Potential fix:</strong> <span data-story-fix></span></p>
+    <p><strong>Human boundary:</strong> <span data-story-boundary></span></p>
+  </article>
+</div>
+
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="shell process-grid">
+        <section class="flow-card">
+          <span class="eyebrow">Process</span>
+          <div class="section-head"><div><h2>Start with one real choke point.</h2></div></div>
+          <div class="flow-line"><b>1</b><div><h3>Discovery</h3><p>$999 for a focused look at how the work actually moves. Credited once toward the first deployment.</p></div></div>
+          <div class="flow-line"><b>2</b><div><h3>First deployment</h3><p>$2,499 total in the standard case. Larger first projects start at $4,999 total, subject to scope.</p></div></div>
+          <div class="flow-line"><b>3</b><div><h3>Care</h3><p>From $499/month once the system is live. Additional deployments start at $999 + $249/month care, subject to scope.</p></div></div>
+        </section>
+        <aside class="price-card">
+          <span class="eyebrow">Packaging</span>
+          <div class="section-head"><div><h2>Same offer, calmer frame.</h2></div></div>
+          <div class="price-row"><div><h3>Discovery</h3><p>Map the day, choose the best first fix, keep the result usable.</p></div><strong>$999</strong></div>
+          <div class="price-row"><div><h3>First deployment</h3><p>Typical total with discovery credit already counted in.</p></div><strong>$2,499 total</strong></div>
+          <div class="price-row"><div><h3>Larger first project</h3><p>When the first improvement is broader.</p></div><strong>$4,999 total+</strong></div>
+          <div class="price-row"><div><h3>Care</h3><p>Support, tuning, and continuity after launch.</p></div><strong>From $499/mo</strong></div>
+          <div class="price-row"><div><h3>Additional deployments</h3><p>Keep improving one useful lane at a time.</p></div><strong>From $999 + $249/mo</strong></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="fit">
+      <div class="shell fit-card">
+        <div>
+          <span class="eyebrow">Best fit</span>
+          <h2>For a brand that wants space, confidence, and restraint.</h2>
+          <p>Open Water keeps the page breathable while still earning the offer. It is polished and coastal, but intentionally avoids faux luxury, yacht clichés, or vague “future of AI” language.</p>
+        </div>
+        <aside>
+          <p><strong>Why it works:</strong> strong typography, one original illustration, and very few competing elements.</p>
+          <button class="btn btn-solid" type="button" data-open-fit-call>Book a fit call</button>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <p>Open Water · spare, typographic, and quietly coastal.</p>
+      <p>© <span data-year></span> Jax Systems concept study</p>
+    </div>
+  </footer>
+
+  
+<div class="fit-modal" data-fit-modal hidden aria-hidden="false">
+  <div class="fit-modal__backdrop" data-modal-backdrop></div>
+  <div class="fit-modal__card" role="dialog" aria-modal="true" aria-labelledby="fit-call-title">
+    <p class="fit-modal__eyebrow">Book a fit call</p>
+    <h2 id="fit-call-title">Preview only</h2>
+    <p>Booking is not connected. On the live site this will let you choose a time.</p>
+    <div class="fit-modal__actions">
+      <button type="button" class="btn btn-solid" data-modal-primary data-close-fit-call>Got it</button>
+      <button type="button" class="btn btn-quiet" data-close-fit-call>Close</button>
+    </div>
+  </div>
+</div>
+
+  
+<script>
+const storyData = {
+  trades: {
+    label: 'Trades',
+    intro: 'For crews in the field: fewer dropped handoffs when everyone is moving.',
+    stories: [
+      {
+        title: 'Missed calls while the owner is on a roof',
+        problem: 'The phone rings while someone is in an attic or on a ladder. By the time they listen to voicemail that lead already called the next shop.',
+        fix: 'Catch the call, log the job type and zip, and put the callback in one plain queue before the truck rolls again.',
+        boundary: 'The owner still decides which calls are worth squeezing in today.'
+      },
+      {
+        title: 'Quote follow-up falls between jobs',
+        problem: 'A rough quote goes out fast, then nobody follows up because the same person is dispatching, ordering parts, and answering texts.',
+        fix: 'Stage follow-up reminders, pull job notes together, and tee up the next message without changing the crew\'s normal tools.',
+        boundary: 'Final pricing and any scope judgment stay with the person who owns the work.'
+      },
+      {
+        title: 'Crew handoff lives in texts and memory',
+        problem: 'The install crew leaves notes in a text thread, the office has another version, and tomorrow starts with avoidable confusion.',
+        fix: 'Turn scattered notes, photos, and next steps into one ready-for-morning handoff card.',
+        boundary: 'Nobody gets forced into a new app before the handoff itself is trustworthy.'
+      }
+    ]
+  },
+  property: {
+    label: 'Property management',
+    intro: 'For busy offices juggling residents, owners, and vendors: less chasing, cleaner follow-through.',
+    stories: [
+      {
+        title: 'Maintenance requests arrive incomplete',
+        problem: 'A tenant submits “sink leaking” with no unit detail, no urgency, and no photo. The office loses time chasing basics before work even starts.',
+        fix: 'Prompt for the missing pieces, route the request with context, and give staff a cleaner first pass.',
+        boundary: 'Escalation, resident tone, and habitability calls still need a human.'
+      },
+      {
+        title: 'Owner reports are scattered across the month',
+        problem: 'Notes live in inboxes, repair updates live in the PM system, and month-end turns into manual report assembly.',
+        fix: 'Pull the routine updates into one draft owner summary with the backup already attached.',
+        boundary: 'The property manager reviews the story before anything goes to an owner.'
+      },
+      {
+        title: 'Vendors get chased from too many places',
+        problem: 'Text one vendor, call another, email a third, then wonder who confirmed what and when.',
+        fix: 'Keep the status trail in one place so follow-up starts from facts instead of memory.',
+        boundary: 'Relationship management stays with the manager who knows which vendor to trust.'
+      }
+    ]
+  },
+  marine: {
+    label: 'Marine services',
+    intro: 'For boat detailers, service yards, and recurring clean crews: less back-and-forth before the work starts.',
+    stories: [
+      {
+        title: 'Quotes need boat details and photos first',
+        problem: 'A customer wants a price but forgets the length, marina, and condition photos. The team starts every quote by asking the same questions again.',
+        fix: 'Collect the basics up front and stage the quote request with the pictures attached.',
+        boundary: 'Anything unusual still gets reviewed by someone who knows the boat and the dock realities.'
+      },
+      {
+        title: 'Recurring cleans get forgotten between storms',
+        problem: 'A weekly or monthly customer slips because the crew is handling one-off rush jobs and the reminder system is loose.',
+        fix: 'Keep the repeat schedule visible and surface who is due before the week fills up.',
+        boundary: 'The owner still decides when to reshuffle premium customers or weather makeups.'
+      },
+      {
+        title: 'Weather changes the day in minutes',
+        problem: 'Wind, rain, and marina access turn a clean route upside down. Customers need updates, but the office is piecing them together live.',
+        fix: 'Draft the reschedule list and message order fast so the team spends less time rebuilding the day from scratch.',
+        boundary: 'Go/no-go calls remain human because the water never follows the script.'
+      }
+    ]
+  }
+};
+
+function setupSharedInteractions() {
+  const buttons = [...document.querySelectorAll('[data-industry]')];
+  const cards = [...document.querySelectorAll('[data-story-card]')];
+  const intro = document.querySelector('[data-story-intro]');
+  const storySection = document.querySelector('#stories');
+
+  function renderStories(key) {
+    const group = storyData[key];
+    if (!group) return;
+    buttons.forEach((button) => {
+      const active = button.dataset.industry === key;
+      button.setAttribute('aria-pressed', String(active));
+      button.dataset.active = String(active);
+    });
+    if (intro) intro.textContent = group.intro;
+    cards.forEach((card, index) => {
+      const story = group.stories[index];
+      if (!story) return;
+      const title = card.querySelector('[data-story-title]');
+      const problem = card.querySelector('[data-story-problem]');
+      const fix = card.querySelector('[data-story-fix]');
+      const boundary = card.querySelector('[data-story-boundary]');
+      if (title) title.textContent = story.title;
+      if (problem) problem.textContent = story.problem;
+      if (fix) fix.textContent = story.fix;
+      if (boundary) boundary.textContent = story.boundary;
+    });
+    if (storySection) storySection.setAttribute('data-current-industry', key);
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => renderStories(button.dataset.industry));
+  });
+  renderStories('trades');
+
+  const navToggle = document.querySelector('[data-nav-toggle]');
+  const navMenu = document.querySelector('[data-mobile-nav]');
+  if (navToggle && navMenu) {
+    const mobileQuery = window.matchMedia('(max-width: 760px)');
+    const syncNav = () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navMenu.hidden = mobileQuery.matches && !expanded;
+    };
+    syncNav();
+    mobileQuery.addEventListener('change', syncNav);
+    navToggle.addEventListener('click', () => {
+      const open = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!open));
+      navMenu.hidden = open;
+      navMenu.dataset.open = String(!open);
+    });
+    navMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navToggle.setAttribute('aria-expanded', 'false');
+        navMenu.hidden = true;
+        navMenu.dataset.open = 'false';
+      });
+    });
+  }
+
+  const modal = document.querySelector('[data-fit-modal]');
+  const openers = [...document.querySelectorAll('[data-open-fit-call]')];
+  const closers = [...document.querySelectorAll('[data-close-fit-call]')];
+  let lastFocus = null;
+
+  function trapTab(e) {
+    if (e.key !== 'Tab') return;
+    const focusable = [...modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')]
+      .filter((node) => !node.hasAttribute('disabled') && !node.getAttribute('aria-hidden'));
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  function closeModal() {
+    if (!modal || modal.hidden) return;
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    document.removeEventListener('keydown', handleModalKeydown);
+    if (lastFocus) lastFocus.focus();
+  }
+
+  function handleModalKeydown(e) {
+    if (e.key === 'Escape') closeModal();
+    trapTab(e);
+  }
+
+  function openModal() {
+    if (!modal) return;
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    document.addEventListener('keydown', handleModalKeydown);
+    const firstFocus = modal.querySelector('[data-modal-primary]') || modal.querySelector('button');
+    if (firstFocus) firstFocus.focus();
+  }
+
+  openers.forEach((button) => button.addEventListener('click', openModal));
+  closers.forEach((button) => button.addEventListener('click', closeModal));
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal || e.target.hasAttribute('data-modal-backdrop')) closeModal();
+    });
+  }
+
+  const yearNode = document.querySelector('[data-year]');
+  if (yearNode) yearNode.textContent = String(new Date().getFullYear());
+}
+
+document.addEventListener('DOMContentLoaded', setupSharedInteractions);
+</script>
+
+</body>
+</html>

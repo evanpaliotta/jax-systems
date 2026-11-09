@@ -1,0 +1,456 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Jax Systems — Coastal Fieldnotes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand: #efe5d6;
+      --paper: #f8f3ea;
+      --olive: #687459;
+      --olive-soft: #dfe4d7;
+      --ink: #202826;
+      --muted: #59615c;
+      --line: rgba(32,40,38,.14);
+      --shadow: 0 20px 46px rgba(32,40,38,.08);
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *,*::before,*::after { animation: none !important; transition: none !important; } }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.65 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; -webkit-font-smoothing: antialiased; }
+    body.modal-open { overflow: hidden; }
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .16em; }
+    button { font: inherit; }
+    :focus-visible { outline: 3px solid var(--olive); outline-offset: 3px; }
+    .page { width: min(1160px, calc(100% - 26px)); margin: 0 auto; }
+    .site-header { position: sticky; top: 0; z-index: 20; background: rgba(248,243,234,.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .site-header .page { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; min-height: 74px; }
+    .brand { display: grid; gap: 4px; text-decoration: none; padding: 14px 0; }
+    .brand small { color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-size: .74rem; }
+    .brand strong { font-family: Literata, Georgia, serif; font-size: 1.5rem; font-weight: 500; letter-spacing: -.03em; }
+    .nav-toggle { display: none; border: 1px solid var(--line); background: #fff; border-radius: 999px; padding: 10px 14px; }
+    .site-nav ul { display: flex; gap: 8px; list-style: none; padding: 0; margin: 0; }
+    .site-nav a { display: block; padding: 10px 12px; color: var(--muted); text-decoration: none; border-radius: 999px; }
+    .site-nav a:hover { background: rgba(104,116,89,.08); color: var(--ink); }
+
+    .hero { display: grid; grid-template-columns: 1fr 360px; gap: 24px; padding: 28px 0 22px; }
+    .note-sheet { background: #fffdfa; border: 1px solid var(--line); box-shadow: var(--shadow); padding: 26px; position: relative; }
+    .note-sheet::before { content: ""; position: absolute; inset: 14px; border: 1px dashed rgba(104,116,89,.2); pointer-events: none; }
+    .hero-label { display: inline-block; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-size: .74rem; padding-bottom: 12px; border-bottom: 1px solid var(--line); position: relative; z-index: 1; }
+    h1,h2,h3 { font-family: Literata, Georgia, serif; margin: 0; font-weight: 500; letter-spacing: -.04em; }
+    h1 { font-size: clamp(3rem, 6vw, 5.2rem); line-height: .95; margin: 18px 0 18px; max-width: 9ch; position: relative; z-index: 1; }
+    .note-sheet p { color: var(--muted); max-width: 58ch; margin: 0 0 20px; position: relative; z-index: 1; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .button { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: 14px 20px; border: 1px solid transparent; text-decoration: none; cursor: pointer; }
+    .button.primary { background: var(--ink); color: var(--paper); }
+    .button.secondary { background: transparent; border-color: var(--line); color: var(--ink); }
+    .field-sidebar { display: grid; gap: 18px; }
+    .field-card { background: var(--sand); border: 1px solid var(--line); padding: 20px; box-shadow: var(--shadow); }
+    .field-card small { display: block; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; margin-bottom: 10px; }
+    .field-card p { margin: 0; color: var(--ink); }
+    .contour { background: #fffdfa; border: 1px solid var(--line); padding: 14px; box-shadow: var(--shadow); }
+
+    section { padding: 24px 0; }
+    .section-head { display: grid; grid-template-columns: 180px 1fr; gap: 24px; align-items: start; margin-bottom: 18px; }
+    .section-head .count { font-family: ui-monospace,SFMono-Regular,Menlo,monospace; color: var(--olive); font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; padding-top: 10px; }
+    .section-head p { margin: 0; color: var(--muted); max-width: 64ch; }
+    h2 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: .95; margin-bottom: 10px; }
+
+    .field-panel { background: #fffdfa; border: 1px solid var(--line); box-shadow: var(--shadow); padding: 20px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+    .filters button { border: 1px solid var(--line); background: #fff; color: var(--ink); padding: 11px 14px; cursor: pointer; border-radius: 999px; }
+    .filters button[aria-pressed="true"] { background: var(--olive); color: #fff; border-color: var(--olive); }
+    .story-intro { margin: 0 0 16px; color: var(--muted); }
+    .story-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .story-card { background: var(--paper); border: 1px solid var(--line); padding: 18px; position: relative; min-height: 100%; }
+    .story-index { font-family: ui-monospace,SFMono-Regular,Menlo,monospace; font-size: .82rem; color: var(--olive); margin-bottom: 14px; }
+    .story-card h3 { font-size: 1.24rem; margin-bottom: 8px; }
+    .story-card p { margin: 0 0 12px; color: var(--muted); }
+
+    .delivery-list, .pricing-list { display: grid; gap: 14px; }
+    .entry { display: grid; grid-template-columns: 72px 1fr 220px; gap: 18px; background: #fffdfa; border: 1px solid var(--line); box-shadow: var(--shadow); padding: 18px; }
+    .entry .num { font-family: ui-monospace,SFMono-Regular,Menlo,monospace; color: var(--olive); font-size: .9rem; padding-top: 6px; }
+    .entry p { margin: 8px 0 0; color: var(--muted); }
+    .entry aside { color: var(--muted); font-size: .94rem; border-left: 1px solid var(--line); padding-left: 16px; }
+    .entry aside strong { display: block; font-family: Literata, Georgia, serif; color: var(--ink); font-size: 1.2rem; margin-bottom: 8px; }
+
+    .cta { display: grid; grid-template-columns: 1fr 320px; gap: 18px; }
+    .cta .field-panel { padding: 24px; }
+    .checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+    .checklist li { padding-left: 18px; position: relative; color: var(--muted); }
+    .checklist li::before { content: "•"; position: absolute; left: 0; color: var(--olive); }
+
+    .site-footer { display: flex; justify-content: space-between; gap: 16px; padding: 24px 0 56px; color: var(--muted); font-size: .92rem; }
+    .modal-shell { position: fixed; inset: 0; background: rgba(32,40,38,.36); display: grid; place-items: center; padding: 20px; z-index: 50; }
+    .modal-panel { width: min(520px,100%); background: #fffdfa; border: 1px solid var(--line); padding: 24px; box-shadow: 0 28px 70px rgba(32,40,38,.24); }
+    .modal-kicker { margin: 0 0 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .12em; font-size: .74rem; }
+    .modal-panel h2 { font-size: 2rem; margin-bottom: 10px; }
+    .modal-panel p { margin: 0; color: var(--muted); }
+    .modal-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .button.linklike { background: var(--olive-soft); color: var(--ink); }
+
+    @media (max-width: 980px) {
+      .hero, .cta, .section-head { grid-template-columns: 1fr; }
+      .story-grid { grid-template-columns: 1fr; }
+      .entry { grid-template-columns: 72px 1fr; }
+      .entry aside { border-left: none; padding-left: 0; }
+    }
+    @media (max-width: 860px) {
+      .site-header .page { grid-template-columns: 1fr auto; padding: 10px 0; }
+      .nav-toggle { display: inline-flex; }
+      .site-nav { grid-column: 1 / -1; }
+      .site-nav ul { flex-direction: column; align-items: stretch; }
+      .site-nav a { background: #fff; border: 1px solid var(--line); }
+      .site-footer { flex-direction: column; align-items: start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="page">
+      <a class="brand" href="#top">
+        <small>Coastal fieldnotes</small>
+        <strong>Jax Systems</strong>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="fieldnotes-menu" data-nav-toggle>Menu</button>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul id="fieldnotes-menu" data-nav-menu hidden>
+          <li><a href="#problems">Problem stories</a></li>
+          <li><a href="#delivery">Delivery</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#fit-call">Fit call</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page" id="top">
+    <section class="hero">
+      <div class="note-sheet">
+        <span class="hero-label">Design concept — illustrative examples, not client results</span>
+        <h1>Keep business moving. Get your day back.</h1>
+        <p>A missed call. An unanswered estimate. A job waiting on one small detail. We help local owners find where work gets stuck, fix one worthwhile problem, and keep the fix working.</p>
+        <p>Calls, requests, dispatch details, owner updates, recurring service notes—whatever keeps getting reassembled by hand—can be turned into a steadier workflow while keeping decisions in human hands.</p>
+        <div class="hero-actions">
+          <button class="button primary" type="button" data-open-modal>Book a fit call</button>
+          <a class="button secondary" href="#delivery">Read the operating notes</a>
+        </div>
+      </div>
+      <aside class="field-sidebar">
+        <div class="field-card">
+          <small>Field note 01</small>
+          <p>Document-like structure makes the brand feel careful, local, and grounded without needing fake authority signals.</p>
+        </div>
+        <div class="contour" aria-hidden="true">
+          <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
+            <path d="M26 64c38-28 90-34 136-22 54 14 88 8 132-20" fill="none" stroke="#687459" stroke-width="2"/>
+            <path d="M22 94c40-26 98-30 146-18 58 14 90 8 138-18" fill="none" stroke="#687459" stroke-opacity=".68" stroke-width="1.8"/>
+            <path d="M18 126c46-22 104-24 154-10 60 16 92 12 138-12" fill="none" stroke="#687459" stroke-opacity=".54" stroke-width="1.6"/>
+            <path d="M20 160c56-18 116-18 170-2 50 14 84 12 120-6" fill="none" stroke="#687459" stroke-opacity=".44" stroke-width="1.4"/>
+            <path d="M58 38c8 14 20 24 38 26 20 2 30-6 38-20" fill="none" stroke="#202826" stroke-width="2" stroke-linecap="round"/>
+            <path d="M198 178c8-10 16-14 28-14 10 0 18 4 28 14" fill="none" stroke="#202826" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="field-card">
+          <small>Field note 02</small>
+          <p>Delivery language stays plain: discovery, one deployment, care, then the next deployment when the work earns it.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="problems">
+      <div class="section-head">
+        <div class="count">Section 01</div>
+        <div>
+          <h2 data-story-title>Trades problem stories</h2>
+          <p data-story-intro>For owner-operators and small crews where missed calls, slow quotes, and fuzzy handoffs steal the evening.</p>
+        </div>
+      </div>
+      <div class="field-panel">
+        <div class="filters" role="toolbar" aria-label="Choose an industry">
+          <button type="button" data-industry="trades" aria-pressed="true">Trades</button>
+          <button type="button" data-industry="property" aria-pressed="false">Property management</button>
+          <button type="button" data-industry="marine" aria-pressed="false">Marine services</button>
+        </div>
+        <p class="story-intro">Each set switches the field notes below to a different operating context while keeping the same three-part structure: scenario, change, boundary.</p>
+        <div class="story-grid" data-story-deck></div>
+      </div>
+    </section>
+
+    <section id="delivery">
+      <div class="section-head">
+        <div class="count">Section 02</div>
+        <div>
+          <h2>Operating notes for the first deployment</h2>
+          <p>The layout reads more like a briefing memo than a splash page. That helps the offer land as practical guidance rather than an ad for software in the abstract.</p>
+        </div>
+      </div>
+      <div class="delivery-list">
+        <article class="entry"><div class="num">01</div><div><h3>Observe before naming</h3><p>Watch how the work enters, who touches it next, and where details go missing. The first answer is usually smaller than the owner expects and more useful because of it.</p></div><aside><strong>Discovery</strong>Find the handoff that keeps getting rebuilt by memory.</aside></article>
+        <article class="entry"><div class="num">02</div><div><h3>Package one change</h3><p>Scope the first deployment around a specific intake, routing, reminder, or update flow so the system has a clear edge and a clear owner.</p></div><aside><strong>Deployment</strong>One fixed package, not a vague service bucket.</aside></article>
+        <article class="entry"><div class="num">03</div><div><h3>Care for the live version</h3><p>Once the workflow is live, maintain it, refine the rough edges, and keep the next deployment separate so the offer stays understandable.</p></div><aside><strong>Care</strong>Protect the live workflow before expanding.</aside></article>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="section-head">
+        <div class="count">Section 03</div>
+        <div>
+          <h2>Service package, written like a record</h2>
+          <p>The pricing presentation is intentionally matter-of-fact. It reads like notes an owner can screenshot, not fine print hidden under a hero.</p>
+        </div>
+      </div>
+      <div class="pricing-list">
+        <article class="entry"><div class="num">A</div><div><h3>Discovery</h3><p>$999, credited once toward the first deployment so the diagnosis stands on its own and still helps the buyer move forward.</p></div><aside><strong>$999</strong>Credited once</aside></article>
+        <article class="entry"><div class="num">B</div><div><h3>First deployment</h3><p>$2,499 total, with $1,500 remainder after discovery. Larger first projects are $4,999 total, subject to scope.</p></div><aside><strong>$2,499 total</strong>$1,500 remainder</aside></article>
+        <article class="entry"><div class="num">C</div><div><h3>Care</h3><p>From $499/month for maintenance, small adjustments, and owner-side clarity once the system is live.</p></div><aside><strong>From $499/mo</strong>Live support</aside></article>
+        <article class="entry"><div class="num">D</div><div><h3>Additional deployments</h3><p>From $999 plus $249/month care, subject to scope, when the next workflow is ready to be packaged separately.</p></div><aside><strong>From $999</strong>+$249/mo care</aside></article>
+      </div>
+    </section>
+
+    <section id="fit-call">
+      <div class="section-head">
+        <div class="count">Section 04</div>
+        <div>
+          <h2>Bring the handoff that feels ordinary but keeps wasting your attention.</h2>
+          <p>That could be a missed call, an incomplete maintenance request, a dockside quote missing photos, or an update loop that keeps getting rebuilt. The fit call is there to decide whether that is a good first deployment.</p>
+        </div>
+      </div>
+      <div class="cta">
+        <div class="field-panel">
+          <div class="hero-actions">
+            <button class="button primary" type="button" data-open-modal>Book a fit call</button>
+            <a class="button secondary" href="#problems">Review problem stories</a>
+          </div>
+        </div>
+        <aside class="field-panel">
+          <h3>Good fit checklist</h3>
+          <ul class="checklist">
+            <li>Owner-run team with repeating service work.</li>
+            <li>Needs clearer flow, not a full software department.</li>
+            <li>Comfortable starting with one practical deployment.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+
+<footer class="site-footer">
+  <p>Simple systems for owner-run local businesses. Clear handoff. Human in the loop where it counts.</p>
+  <a href="../../index.html">Back to comparison gallery</a>
+</footer>
+
+  </main>
+
+
+<div class="modal-shell" data-modal hidden>
+  <div class="modal-panel" data-modal-panel role="dialog" aria-modal="true" aria-labelledby="fit-call-title">
+    <p class="modal-kicker">Book a fit call</p>
+    <h2 id="fit-call-title">Preview only</h2>
+    <p>Preview only — booking is not connected. On the live site this will let you choose a time.</p>
+    <div class="modal-actions">
+      <button type="button" class="button secondary" data-close-modal>Close</button>
+      <a class="button linklike" href="#pricing">See the package</a>
+    </div>
+  </div>
+</div>
+
+
+<script>
+const storyData = {
+  trades: {
+    label: 'Trades',
+    intro: 'For owner-operators and small crews where missed calls, slow quotes, and fuzzy handoffs steal the evening.',
+    stories: [
+      {
+        title: 'On the job, a new call comes in',
+        scenario: 'You are on a ladder or under a sink. A new enquiry hits voicemail and the note is too thin to use later.',
+        change: 'The system catches the caller details, asks for the job basics, and tees up a clean callback list for the office or the truck at the end of the stop.',
+        boundary: 'You still decide whether it is a fit and how to price the work.'
+      },
+      {
+        title: 'A quote sits unanswered',
+        scenario: 'The customer says they want to move ahead, but the reply is buried in a text thread and nobody nudges it forward.',
+        change: 'The job gets a simple follow-up rhythm, a clearer approval path, and one place to see what is waiting on the customer.',
+        boundary: 'The system nudges and organizes; it does not haggle or make promises for you.'
+      },
+      {
+        title: 'Job details are missing at dispatch',
+        scenario: 'The crew arrives without the gate code, product choice, or the note about the dog in the yard.',
+        change: 'Before a visit is confirmed, the intake asks for the details the crew actually needs and keeps them attached to the work order.',
+        boundary: 'Crew leads still sanity-check odd jobs before wheels roll.'
+      }
+    ]
+  },
+  property: {
+    label: 'Property management',
+    intro: 'For lean teams juggling tenants, owners, and vendors where every missing detail turns into another chase.',
+    stories: [
+      {
+        title: 'A maintenance request arrives half-complete',
+        scenario: 'A tenant reports “sink broken” with no unit number, no access notes, and no photo.',
+        change: 'The request flow gathers unit, urgency, access, and photos before it becomes a live ticket.',
+        boundary: 'Your team still decides what counts as an emergency and who gets sent first.'
+      },
+      {
+        title: 'Owner updates are scattered',
+        scenario: 'Status lives in vendor emails, text threads, and memory, so reporting back to the owner becomes its own job.',
+        change: 'Updates roll into one running log and can be turned into an owner-ready summary without rebuilding the story from scratch.',
+        boundary: 'A human still approves the final owner communication.'
+      },
+      {
+        title: 'Vendor status becomes a daily chase',
+        scenario: 'Your coordinator spends the afternoon asking vendors if they have scheduled, confirmed, or finished.',
+        change: 'Simple check-ins and a shared status board make the next step visible before someone has to ask.',
+        boundary: 'Escalations and vendor relationship calls stay human.'
+      }
+    ]
+  },
+  marine: {
+    label: 'Marine services',
+    intro: 'For dockside operators where boat details, recurring work, and weather changes all need clean handling.',
+    stories: [
+      {
+        title: 'A quote needs the boat details first',
+        scenario: 'Someone asks for service with no photos, no length, and no dock information, so the estimate stalls.',
+        change: 'The intake asks for boat length, marina, access, and photos before the quote starts.',
+        boundary: 'You still set the final quote and call out special handling.'
+      },
+      {
+        title: 'Recurring cleans are remembered by memory',
+        scenario: 'The repeat work list lives in texts and heads, so a recurring clean gets noticed late or not at all.',
+        change: 'A simple route-based list keeps recurring work visible with proof prompts for the crew.',
+        boundary: 'The crew can still flag dock-access or serviceability exceptions in the field.'
+      },
+      {
+        title: 'Weather blows up the day plan',
+        scenario: 'Wind, rain, or lightning shifts the schedule and the update chain becomes frantic.',
+        change: 'A reschedule queue and ready-to-send notices keep the shuffle orderly when the plan changes.',
+        boundary: 'Go/no-go calls still belong to the operator on the ground.'
+      }
+    ]
+  }
+};
+
+function setupExperience() {
+  const navToggle = document.querySelector('[data-nav-toggle]');
+  const navMenu = document.querySelector('[data-nav-menu]');
+  if (navToggle && navMenu) {
+    const syncNav = () => {
+      if (window.innerWidth >= 860) {
+        navMenu.removeAttribute('hidden');
+        navToggle.setAttribute('aria-expanded', 'false');
+      } else {
+        navMenu.setAttribute('hidden', '');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    };
+    syncNav();
+    window.addEventListener('resize', syncNav);
+    navToggle.addEventListener('click', () => {
+      if (window.innerWidth >= 860) return;
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      navMenu.toggleAttribute('hidden');
+    });
+    document.querySelectorAll('[data-nav-menu] a').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 860) {
+          navMenu.setAttribute('hidden', '');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  }
+
+  const modal = document.querySelector('[data-modal]');
+  const modalPanel = modal?.querySelector('[data-modal-panel]');
+  const openers = document.querySelectorAll('[data-open-modal]');
+  const closers = document.querySelectorAll('[data-close-modal]');
+  let lastFocus = null;
+
+  const getFocusable = () => modal ? [...modal.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')].filter((el) => !el.hasAttribute('disabled')) : [];
+
+  function openModal() {
+    if (!modal) return;
+    lastFocus = document.activeElement;
+    modal.removeAttribute('hidden');
+    document.body.classList.add('modal-open');
+    const focusable = getFocusable();
+    if (focusable.length) focusable[0].focus();
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.setAttribute('hidden', '');
+    document.body.classList.remove('modal-open');
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  openers.forEach((button) => button.addEventListener('click', openModal));
+  closers.forEach((button) => button.addEventListener('click', closeModal));
+  modal?.addEventListener('click', (event) => {
+    if (!modalPanel.contains(event.target)) closeModal();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (!modal || modal.hasAttribute('hidden')) return;
+    if (event.key === 'Escape') closeModal();
+    if (event.key === 'Tab') {
+      const focusable = getFocusable();
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  const storyDeck = document.querySelector('[data-story-deck]');
+  const storyTitle = document.querySelector('[data-story-title]');
+  const storyIntro = document.querySelector('[data-story-intro]');
+  const storyButtons = document.querySelectorAll('[data-industry]');
+
+  function renderStories(key) {
+    const set = storyData[key];
+    if (!set || !storyDeck) return;
+    if (storyTitle) storyTitle.textContent = set.label + ' problem stories';
+    if (storyIntro) storyIntro.textContent = set.intro;
+    storyDeck.innerHTML = set.stories.map((story, index) => `
+      <article class="story-card">
+        <div class="story-index">0${index + 1}</div>
+        <h3>${story.title}</h3>
+        <p><strong>Everyday scenario:</strong> ${story.scenario}</p>
+        <p><strong>What changes:</strong> ${story.change}</p>
+        <p><strong>Human boundary:</strong> ${story.boundary}</p>
+      </article>
+    `).join('');
+    storyButtons.forEach((button) => {
+      const active = button.dataset.industry === key;
+      button.setAttribute('aria-pressed', String(active));
+    });
+  }
+
+  storyButtons.forEach((button) => {
+    button.addEventListener('click', () => renderStories(button.dataset.industry));
+  });
+  if (storyButtons.length) renderStories(document.querySelector('[data-industry][aria-pressed="true"]')?.dataset.industry || 'trades');
+}
+
+document.addEventListener('DOMContentLoaded', setupExperience);
+</script>
+
+</body>
+</html>

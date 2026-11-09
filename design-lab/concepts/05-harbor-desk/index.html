@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Jax Systems — Harbor Desk concept</title>
+  <style>
+    :root {
+      --navy:#0f2742;
+      --navy-2:#163454;
+      --ink:#102033;
+      --paper:#ffffff;
+      --mist:#eef3f8;
+      --line:#c9d4df;
+      --signal:#f7c948;
+      --signal-2:#ffe7a4;
+      --quiet:#617489;
+      --shadow:0 22px 52px rgba(12,29,51,.12);
+      --radius:22px;
+      --container:min(1180px, calc(100vw - 2rem));
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif; color:var(--ink); background:linear-gradient(180deg,#f8fbff 0%,#ffffff 48%,#eef5fb 100%); }
+    body.modal-open { overflow:hidden; }
+    img,svg { max-width:100%; display:block; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; cursor:pointer; }
+    :focus-visible { outline:3px solid var(--signal); outline-offset:3px; }
+    .shell { width:var(--container); margin:0 auto; }
+    .notice { display:inline-flex; gap:.6rem; align-items:center; border:1px solid var(--line); padding:.45rem .8rem; border-radius:999px; background:#fff; color:var(--quiet); font-size:.78rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; }
+    .notice::before { content:""; width:.65rem; height:.65rem; border-radius:50%; background:var(--signal); box-shadow:0 0 0 .35rem rgba(247,201,72,.22); }
+    .site-header { position:sticky; top:0; z-index:20; backdrop-filter:blur(14px); background:rgba(255,255,255,.88); border-bottom:1px solid rgba(201,212,223,.9); }
+    .site-header__bar { min-height:74px; display:flex; gap:1rem; align-items:center; justify-content:space-between; }
+    .brand { display:flex; align-items:center; gap:.8rem; font-weight:800; letter-spacing:-.03em; }
+    .brand-mark { width:2.3rem; height:2.3rem; border-radius:16px; background:linear-gradient(135deg,var(--navy),#28598a); position:relative; box-shadow:inset 0 0 0 1px rgba(255,255,255,.15); }
+    .brand-mark::after { content:""; position:absolute; inset:.45rem; border:2px solid rgba(255,255,255,.92); border-top-color:transparent; border-right-color:transparent; transform:rotate(45deg); border-radius:6px; }
+    .brand small { display:block; color:var(--quiet); font-size:.78rem; font-weight:600; letter-spacing:.02em; }
+    .nav-toggle { display:none; border:1px solid var(--line); background:#fff; padding:.7rem .9rem; border-radius:999px; color:var(--navy); font-weight:700; }
+    .main-nav { display:flex; gap:1rem; align-items:center; }
+    .main-nav a { color:var(--quiet); font-weight:700; font-size:.94rem; }
+    .main-nav a:hover { color:var(--navy); }
+    .btn { border-radius:999px; padding:.95rem 1.35rem; border:1px solid transparent; font-weight:800; display:inline-flex; align-items:center; gap:.55rem; transition:transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .btn:hover { transform:translateY(-1px); }
+    .btn-solid { background:var(--navy); color:#fff; box-shadow:0 14px 30px rgba(15,39,66,.17); }
+    .btn-accent { background:var(--signal); color:var(--navy); box-shadow:0 14px 30px rgba(247,201,72,.28); }
+    .btn-quiet { background:#fff; border-color:var(--line); color:var(--navy); }
+    .hero { padding:4.4rem 0 2.8rem; }
+    .hero-grid { display:grid; grid-template-columns:1.08fr .92fr; gap:2rem; align-items:start; }
+    .hero-copy h1 { margin:.9rem 0 1rem; font-size:clamp(3rem, 7vw, 5.7rem); line-height:.92; letter-spacing:-.06em; color:var(--navy); max-width:10ch; }
+    .hero-copy p { max-width:58ch; font-size:1.08rem; color:#2d445d; }
+    .hero-actions { display:flex; gap:1rem; flex-wrap:wrap; margin:1.8rem 0 1.2rem; }
+    .hero-meta { display:grid; gap:1rem; grid-template-columns:repeat(3, minmax(0,1fr)); margin-top:1.6rem; }
+    .hero-meta article { border:1px solid var(--line); border-radius:18px; background:#fff; padding:1rem 1.05rem; box-shadow:var(--shadow); }
+    .hero-meta strong { display:block; font-size:1.35rem; color:var(--navy); }
+    .hero-meta span { color:var(--quiet); font-size:.92rem; }
+    .board { background:#fff; border:1px solid var(--line); border-radius:30px; box-shadow:var(--shadow); padding:1.3rem; position:relative; overflow:hidden; }
+    .board::before { content:"Desk board"; position:absolute; top:1rem; right:1rem; font-size:.78rem; letter-spacing:.12em; color:#6b7d90; text-transform:uppercase; font-weight:800; }
+    .board-grid { display:grid; gap:1rem; grid-template-columns:1fr 1fr; }
+    .board-panel { border:1px solid var(--line); border-radius:22px; padding:1rem; background:linear-gradient(180deg,#fff 0%,#f8fbff 100%); min-height:190px; }
+    .board-panel h2,.board-panel h3 { margin:0 0 .6rem; font-size:1.02rem; color:var(--navy); }
+    .board-panel p, .board-panel li { margin:0; color:#39506a; font-size:.92rem; }
+    .checklist { display:grid; gap:.55rem; margin-top:.8rem; }
+    .checklist div { display:flex; gap:.7rem; align-items:flex-start; padding:.6rem .7rem; background:#fff; border:1px solid var(--line); border-radius:14px; }
+    .checklist b { width:1.1rem; height:1.1rem; border-radius:999px; background:var(--signal); display:inline-grid; place-items:center; color:var(--navy); font-size:.72rem; flex:0 0 auto; }
+    .sticky-note { background:var(--signal-2); border-radius:18px; padding:1rem; border:1px solid #f0d681; box-shadow:0 14px 30px rgba(247,201,72,.18); }
+    .section { padding:2.4rem 0; }
+    .section-head { display:flex; justify-content:space-between; gap:1rem; align-items:end; margin-bottom:1.35rem; }
+    .section-head h2 { margin:0; font-size:clamp(1.8rem,4vw,3rem); letter-spacing:-.05em; color:var(--navy); }
+    .section-head p { margin:0; max-width:42ch; color:#4f6275; }
+    .chooser { display:flex; gap:.75rem; flex-wrap:wrap; margin-bottom:1rem; }
+    .chooser button { border:1px solid var(--line); border-radius:999px; padding:.8rem 1rem; background:#fff; color:var(--navy); font-weight:800; }
+    .chooser button[data-active="true"] { background:var(--navy); color:#fff; border-color:var(--navy); box-shadow:0 12px 24px rgba(15,39,66,.16); }
+    .stories-intro { color:#4f6275; margin:0 0 1rem; font-size:1rem; }
+    .story-grid { display:grid; gap:1rem; grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .story-card { background:#fff; border:1px solid var(--line); border-radius:24px; padding:1.35rem; box-shadow:var(--shadow); }
+    .story-card__tag { margin:0 0 .7rem; font-size:.76rem; font-weight:800; color:#607386; letter-spacing:.12em; text-transform:uppercase; }
+    .story-card h3 { margin:0 0 .75rem; font-size:1.2rem; color:var(--navy); line-height:1.1; }
+    .story-card p { margin:.68rem 0 0; color:#385068; }
+    .process-grid { display:grid; gap:1rem; grid-template-columns:1.1fr .9fr; }
+    .process-board { background:#fff; border:1px solid var(--line); border-radius:28px; padding:1.25rem; box-shadow:var(--shadow); }
+    .lane { display:grid; grid-template-columns:90px 1fr; gap:1rem; padding:1rem 0; border-top:1px dashed var(--line); }
+    .lane:first-child { border-top:0; }
+    .lane strong { color:var(--navy); font-size:1.1rem; }
+    .lane p { margin:.3rem 0 0; color:#466079; }
+    .pricing-table { background:linear-gradient(180deg,#ffffff 0%,#f7fbff 100%); border:1px solid var(--line); border-radius:28px; padding:1.25rem; box-shadow:var(--shadow); }
+    .price-row { display:grid; grid-template-columns:1fr auto; gap:1rem; padding:1rem 0; border-top:1px solid var(--line); }
+    .price-row:first-child { border-top:0; padding-top:0; }
+    .price-row h3 { margin:0 0 .25rem; color:var(--navy); font-size:1.08rem; }
+    .price-row p { margin:0; color:#496178; }
+    .price-row strong { align-self:start; color:var(--navy); font-size:1.15rem; }
+    .fit-panel { display:grid; grid-template-columns:1.2fr .8fr; gap:1rem; background:linear-gradient(135deg,#0f2742 0%,#153b61 100%); color:#fff; border-radius:30px; padding:1.5rem; box-shadow:var(--shadow); }
+    .fit-panel h2 { margin:.4rem 0 .8rem; font-size:clamp(1.9rem,3.4vw,3rem); line-height:.95; letter-spacing:-.05em; }
+    .fit-panel p { margin:0; color:rgba(255,255,255,.84); max-width:46ch; }
+    .fit-panel .stamp { align-self:stretch; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); border-radius:24px; padding:1rem; display:flex; flex-direction:column; justify-content:space-between; }
+    .fit-modal { position:fixed; inset:0; display:grid; place-items:center; z-index:40; padding:1rem; }
+    .fit-modal[hidden] { display:none !important; }
+    .fit-modal__backdrop { position:absolute; inset:0; background:rgba(4,18,31,.55); }
+    .fit-modal__card { position:relative; max-width:420px; width:min(100%,420px); background:#fff; border-radius:24px; padding:1.4rem; box-shadow:0 28px 70px rgba(4,18,31,.28); border:1px solid var(--line); }
+    .fit-modal__eyebrow { margin:0 0 .4rem; font-size:.75rem; text-transform:uppercase; letter-spacing:.12em; color:#5a7084; font-weight:800; }
+    .fit-modal__card h2 { margin:0 0 .6rem; font-size:1.7rem; color:var(--navy); }
+    .fit-modal__actions { display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1rem; }
+    .site-footer { padding:0 0 3rem; color:#52677b; }
+    .site-footer .shell { display:flex; justify-content:space-between; gap:1rem; align-items:center; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:1rem; }
+    @media (max-width: 920px) {
+      .hero-grid,.process-grid,.fit-panel,.story-grid { grid-template-columns:1fr; }
+      .hero-copy h1 { max-width:12ch; }
+      .board-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width: 760px) {
+      .site-header__bar { flex-wrap:wrap; align-items:center; padding:.85rem 0; }
+      .nav-toggle { display:inline-flex; }
+      .main-nav { width:100%; flex-direction:column; align-items:flex-start; padding:.5rem 0 .2rem; }
+      .main-nav[hidden] { display:none; }
+      .main-nav a, .main-nav .btn { width:100%; justify-content:center; }
+      .hero { padding-top:2.8rem; }
+      .section-head { flex-direction:column; align-items:flex-start; }
+      .hero-meta { grid-template-columns:1fr; }
+      .price-row, .lane { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { animation:none !important; transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell site-header__bar">
+      <a class="brand" href="../../index.html" aria-label="Back to gallery">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Jax Systems<small>Harbor Desk concept</small></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="harbor-nav">Menu</button>
+      <nav class="main-nav" id="harbor-nav" data-mobile-nav data-open="false">
+        <a href="#stories">Problem stories</a>
+        <a href="#process">Process & pricing</a>
+        <a href="#fit">Fit call</a>
+        <a class="btn btn-accent" href="../../index.html">Back to gallery</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <span class="notice">Design concept — illustrative examples, not client results</span>
+          <h1>Keep business moving. Get your day back.</h1>
+          <p>Calls, quotes and job details should not depend on you remembering everything. We help Jacksonville businesses put the next step in the right hands, using the tools they already have.</p>
+          <div class="hero-actions">
+            <button class="btn btn-solid" type="button" data-open-fit-call>Book a fit call</button>
+            <a class="btn btn-quiet" href="#stories">See common stuck points</a>
+          </div>
+          <div class="hero-meta" aria-label="Quick offer summary">
+            <article><strong>$999</strong><span>Discovery credited toward the first deployment.</span></article>
+            <article><strong>$2,499</strong><span>Typical first deployment total; $1,500 after discovery.</span></article>
+            <article><strong>From $499/mo</strong><span>Care plan once something real is live.</span></article>
+          </div>
+        </div>
+        <aside class="board" aria-label="Practical desk board preview">
+          <div class="board-grid">
+            <section class="board-panel">
+              <h2>Today’s owner question</h2>
+              <p>What keeps getting stuck when the day gets busy?</p>
+              <div class="checklist">
+                <div><b>1</b><span>Find the handoff people already repeat every day.</span></div>
+                <div><b>2</b><span>Fix one working path before adding anything extra.</span></div>
+                <div><b>3</b><span>Leave a simple owner-ready playbook behind.</span></div>
+              </div>
+            </section>
+            <section class="board-panel sticky-note">
+              <h3>What the offer looks like</h3>
+              <p><strong>Discovery:</strong> $999 credited once toward the first deployment.</p>
+              <p><strong>First deployment:</strong> $2,499 total in the standard case. Larger first projects start at $4,999, subject to scope.</p>
+              <p><strong>Care:</strong> from $499/month. Additional deployments from $999 + $249/month care, subject to scope.</p>
+            </section>
+            <section class="board-panel">
+              <h3>What makes this feel safe</h3>
+              <ul>
+                <li>No fake dashboards.</li>
+                <li>No invented proof.</li>
+                <li>No “full transformation” promises.</li>
+              </ul>
+            </section>
+            <section class="board-panel">
+              <svg viewBox="0 0 320 180" role="img" aria-label="Simple harbor desk illustration">
+                <rect x="8" y="8" width="304" height="164" rx="22" fill="#f3f8fd" stroke="#c9d4df"/>
+                <rect x="26" y="34" width="126" height="112" rx="16" fill="#fff" stroke="#c9d4df"/>
+                <rect x="168" y="34" width="126" height="48" rx="14" fill="#0f2742" opacity=".96"/>
+                <rect x="168" y="96" width="126" height="50" rx="14" fill="#fff0c6" stroke="#f0d681"/>
+                <path d="M42,122c18-24,31-38,44-38,18,0,19,30,39,30,14,0,24-12,33-25" stroke="#1f4e7d" stroke-width="6" stroke-linecap="round" fill="none"/>
+                <circle cx="212" cy="58" r="8" fill="#f7c948"/>
+                <circle cx="236" cy="58" r="8" fill="#f7c948" opacity=".72"/>
+                <circle cx="260" cy="58" r="8" fill="#f7c948" opacity=".45"/>
+                <path d="M188 118h84" stroke="#163454" stroke-width="8" stroke-linecap="round"/>
+                <path d="M188 136h58" stroke="#163454" stroke-width="8" stroke-linecap="round" opacity=".6"/>
+              </svg>
+            </section>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="stories">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="notice">Industry chooser</span>
+            <h2>Three kinds of days that get jammed up</h2>
+          </div>
+          <p>Switch the stories. The structure stays the same: real daily friction, one practical fix, and a clear human boundary.</p>
+        </div>
+        <div class="chooser" role="group" aria-label="Choose an industry">
+          <button type="button" data-industry="trades" aria-pressed="true">Trades</button>
+          <button type="button" data-industry="property" aria-pressed="false">Property management</button>
+          <button type="button" data-industry="marine" aria-pressed="false">Marine services</button>
+        </div>
+        <p class="stories-intro" data-story-intro></p>
+        
+<div class="story-grid">
+  <article class="story-card" data-story-card>
+    <p class="story-card__tag">Problem story 01</p>
+    <h3 data-story-title></h3>
+    <p><strong>Everyday situation:</strong> <span data-story-problem></span></p>
+    <p><strong>Potential fix:</strong> <span data-story-fix></span></p>
+    <p><strong>Human boundary:</strong> <span data-story-boundary></span></p>
+  </article>
+  <article class="story-card" data-story-card>
+    <p class="story-card__tag">Problem story 02</p>
+    <h3 data-story-title></h3>
+    <p><strong>Everyday situation:</strong> <span data-story-problem></span></p>
+    <p><strong>Potential fix:</strong> <span data-story-fix></span></p>
+    <p><strong>Human boundary:</strong> <span data-story-boundary></span></p>
+  </article>
+  <article class="story-card" data-story-card>
+    <p class="story-card__tag">Problem story 03</p>
+    <h3 data-story-title></h3>
+    <p><strong>Everyday situation:</strong> <span data-story-problem></span></p>
+    <p><strong>Potential fix:</strong> <span data-story-fix></span></p>
+    <p><strong>Human boundary:</strong> <span data-story-boundary></span></p>
+  </article>
+</div>
+
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="shell process-grid">
+        <div class="process-board">
+          <div class="section-head">
+            <div>
+              <span class="notice">Transparent process</span>
+              <h2>No black box. No bloated “phase zero.”</h2>
+            </div>
+          </div>
+          <div class="lane"><strong>Discovery</strong><div><p>One paid look at how the work actually moves. You leave with a short map, the best first target, and a grounded next step.</p></div></div>
+          <div class="lane"><strong>Deployment</strong><div><p>One working system at a time. Typical first deployment is $2,499 total, including the credited discovery. Larger first projects start at $4,999, subject to scope.</p></div></div>
+          <div class="lane"><strong>Care</strong><div><p>Once something is live, care starts from $499/month. Additional deployments start at $999 + $249/month care, subject to scope.</p></div></div>
+        </div>
+        <aside class="pricing-table" aria-label="Pricing summary">
+          <div class="section-head">
+            <div>
+              <span class="notice">Practical pricing</span>
+              <h2>Easy to scan.</h2>
+            </div>
+          </div>
+          <div class="price-row">
+            <div>
+              <h3>Discovery</h3>
+              <p>$999. Credited once toward the first deployment.</p>
+            </div>
+            <strong>$999</strong>
+          </div>
+          <div class="price-row">
+            <div>
+              <h3>First deployment</h3>
+              <p>$2,499 total in the standard case. The remaining balance after discovery is $1,500.</p>
+            </div>
+            <strong>$2,499</strong>
+          </div>
+          <div class="price-row">
+            <div>
+              <h3>Larger first projects</h3>
+              <p>$4,999 total, subject to scope.</p>
+            </div>
+            <strong>$4,999+</strong>
+          </div>
+          <div class="price-row">
+            <div>
+              <h3>Care</h3>
+              <p>From $499/month after launch.</p>
+            </div>
+            <strong>$499/mo</strong>
+          </div>
+          <div class="price-row">
+            <div>
+              <h3>Additional deployments</h3>
+              <p>From $999 plus $249/month care, subject to scope.</p>
+            </div>
+            <strong>$999 + $249/mo</strong>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="fit">
+      <div class="shell fit-panel">
+        <div>
+          <span class="notice">Owner-run businesses</span>
+          <h2>If the work is real but the day keeps fragmenting, start there.</h2>
+          <p>This concept is built for service businesses that do not need another vague transformation pitch. They need one cleaner handoff, one clearer queue, and a way to stop rebuilding the same day over and over.</p>
+        </div>
+        <div class="stamp">
+          <div>
+            <strong>Best fit</strong>
+            <p>Someone can point to a repeat problem in five minutes and show the current workaround.</p>
+          </div>
+          <button class="btn btn-accent" type="button" data-open-fit-call>Book a fit call</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <p>Harbor Desk · built as a disposable concept for comparison.</p>
+      <p>© <span data-year></span> Jax Systems concept study</p>
+    </div>
+  </footer>
+
+  
+<div class="fit-modal" data-fit-modal hidden aria-hidden="false">
+  <div class="fit-modal__backdrop" data-modal-backdrop></div>
+  <div class="fit-modal__card" role="dialog" aria-modal="true" aria-labelledby="fit-call-title">
+    <p class="fit-modal__eyebrow">Book a fit call</p>
+    <h2 id="fit-call-title">Preview only</h2>
+    <p>Booking is not connected. On the live site this will let you choose a time.</p>
+    <div class="fit-modal__actions">
+      <button type="button" class="btn btn-solid" data-modal-primary data-close-fit-call>Got it</button>
+      <button type="button" class="btn btn-quiet" data-close-fit-call>Close</button>
+    </div>
+  </div>
+</div>
+
+  
+<script>
+const storyData = {
+  trades: {
+    label: 'Trades',
+    intro: 'For crews in the field: fewer dropped handoffs when everyone is moving.',
+    stories: [
+      {
+        title: 'Missed calls while the owner is on a roof',
+        problem: 'The phone rings while someone is in an attic or on a ladder. By the time they listen to voicemail that lead already called the next shop.',
+        fix: 'Catch the call, log the job type and zip, and put the callback in one plain queue before the truck rolls again.',
+        boundary: 'The owner still decides which calls are worth squeezing in today.'
+      },
+      {
+        title: 'Quote follow-up falls between jobs',
+        problem: 'A rough quote goes out fast, then nobody follows up because the same person is dispatching, ordering parts, and answering texts.',
+        fix: 'Stage follow-up reminders, pull job notes together, and tee up the next message without changing the crew\'s normal tools.',
+        boundary: 'Final pricing and any scope judgment stay with the person who owns the work.'
+      },
+      {
+        title: 'Crew handoff lives in texts and memory',
+        problem: 'The install crew leaves notes in a text thread, the office has another version, and tomorrow starts with avoidable confusion.',
+        fix: 'Turn scattered notes, photos, and next steps into one ready-for-morning handoff card.',
+        boundary: 'Nobody gets forced into a new app before the handoff itself is trustworthy.'
+      }
+    ]
+  },
+  property: {
+    label: 'Property management',
+    intro: 'For busy offices juggling residents, owners, and vendors: less chasing, cleaner follow-through.',
+    stories: [
+      {
+        title: 'Maintenance requests arrive incomplete',
+        problem: 'A tenant submits “sink leaking” with no unit detail, no urgency, and no photo. The office loses time chasing basics before work even starts.',
+        fix: 'Prompt for the missing pieces, route the request with context, and give staff a cleaner first pass.',
+        boundary: 'Escalation, resident tone, and habitability calls still need a human.'
+      },
+      {
+        title: 'Owner reports are scattered across the month',
+        problem: 'Notes live in inboxes, repair updates live in the PM system, and month-end turns into manual report assembly.',
+        fix: 'Pull the routine updates into one draft owner summary with the backup already attached.',
+        boundary: 'The property manager reviews the story before anything goes to an owner.'
+      },
+      {
+        title: 'Vendors get chased from too many places',
+        problem: 'Text one vendor, call another, email a third, then wonder who confirmed what and when.',
+        fix: 'Keep the status trail in one place so follow-up starts from facts instead of memory.',
+        boundary: 'Relationship management stays with the manager who knows which vendor to trust.'
+      }
+    ]
+  },
+  marine: {
+    label: 'Marine services',
+    intro: 'For boat detailers, service yards, and recurring clean crews: less back-and-forth before the work starts.',
+    stories: [
+      {
+        title: 'Quotes need boat details and photos first',
+        problem: 'A customer wants a price but forgets the length, marina, and condition photos. The team starts every quote by asking the same questions again.',
+        fix: 'Collect the basics up front and stage the quote request with the pictures attached.',
+        boundary: 'Anything unusual still gets reviewed by someone who knows the boat and the dock realities.'
+      },
+      {
+        title: 'Recurring cleans get forgotten between storms',
+        problem: 'A weekly or monthly customer slips because the crew is handling one-off rush jobs and the reminder system is loose.',
+        fix: 'Keep the repeat schedule visible and surface who is due before the week fills up.',
+        boundary: 'The owner still decides when to reshuffle premium customers or weather makeups.'
+      },
+      {
+        title: 'Weather changes the day in minutes',
+        problem: 'Wind, rain, and marina access turn a clean route upside down. Customers need updates, but the office is piecing them together live.',
+        fix: 'Draft the reschedule list and message order fast so the team spends less time rebuilding the day from scratch.',
+        boundary: 'Go/no-go calls remain human because the water never follows the script.'
+      }
+    ]
+  }
+};
+
+function setupSharedInteractions() {
+  const buttons = [...document.querySelectorAll('[data-industry]')];
+  const cards = [...document.querySelectorAll('[data-story-card]')];
+  const intro = document.querySelector('[data-story-intro]');
+  const storySection = document.querySelector('#stories');
+
+  function renderStories(key) {
+    const group = storyData[key];
+    if (!group) return;
+    buttons.forEach((button) => {
+      const active = button.dataset.industry === key;
+      button.setAttribute('aria-pressed', String(active));
+      button.dataset.active = String(active);
+    });
+    if (intro) intro.textContent = group.intro;
+    cards.forEach((card, index) => {
+      const story = group.stories[index];
+      if (!story) return;
+      const title = card.querySelector('[data-story-title]');
+      const problem = card.querySelector('[data-story-problem]');
+      const fix = card.querySelector('[data-story-fix]');
+      const boundary = card.querySelector('[data-story-boundary]');
+      if (title) title.textContent = story.title;
+      if (problem) problem.textContent = story.problem;
+      if (fix) fix.textContent = story.fix;
+      if (boundary) boundary.textContent = story.boundary;
+    });
+    if (storySection) storySection.setAttribute('data-current-industry', key);
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => renderStories(button.dataset.industry));
+  });
+  renderStories('trades');
+
+  const navToggle = document.querySelector('[data-nav-toggle]');
+  const navMenu = document.querySelector('[data-mobile-nav]');
+  if (navToggle && navMenu) {
+    const mobileQuery = window.matchMedia('(max-width: 760px)');
+    const syncNav = () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navMenu.hidden = mobileQuery.matches && !expanded;
+    };
+    syncNav();
+    mobileQuery.addEventListener('change', syncNav);
+    navToggle.addEventListener('click', () => {
+      const open = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!open));
+      navMenu.hidden = open;
+      navMenu.dataset.open = String(!open);
+    });
+    navMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navToggle.setAttribute('aria-expanded', 'false');
+        navMenu.hidden = true;
+        navMenu.dataset.open = 'false';
+      });
+    });
+  }
+
+  const modal = document.querySelector('[data-fit-modal]');
+  const openers = [...document.querySelectorAll('[data-open-fit-call]')];
+  const closers = [...document.querySelectorAll('[data-close-fit-call]')];
+  let lastFocus = null;
+
+  function trapTab(e) {
+    if (e.key !== 'Tab') return;
+    const focusable = [...modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')]
+      .filter((node) => !node.hasAttribute('disabled') && !node.getAttribute('aria-hidden'));
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
+
+  function closeModal() {
+    if (!modal || modal.hidden) return;
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    document.removeEventListener('keydown', handleModalKeydown);
+    if (lastFocus) lastFocus.focus();
+  }
+
+  function handleModalKeydown(e) {
+    if (e.key === 'Escape') closeModal();
+    trapTab(e);
+  }
+
+  function openModal() {
+    if (!modal) return;
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('modal-open');
+    document.addEventListener('keydown', handleModalKeydown);
+    const firstFocus = modal.querySelector('[data-modal-primary]') || modal.querySelector('button');
+    if (firstFocus) firstFocus.focus();
+  }
+
+  openers.forEach((button) => button.addEventListener('click', openModal));
+  closers.forEach((button) => button.addEventListener('click', closeModal));
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal || e.target.hasAttribute('data-modal-backdrop')) closeModal();
+    });
+  }
+
+  const yearNode = document.querySelector('[data-year]');
+  if (yearNode) yearNode.textContent = String(new Date().getFullYear());
+}
+
+document.addEventListener('DOMContentLoaded', setupSharedInteractions);
+</script>
+
+</body>
+</html>

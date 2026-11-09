@@ -1,0 +1,511 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Jax Systems — Tidepool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5efe3;
+      --panel: rgba(255,255,255,0.72);
+      --panel-strong: #fffdf8;
+      --ink: #14343b;
+      --muted: #49666c;
+      --line: rgba(20,52,59,0.12);
+      --sea: #8ed7cf;
+      --deep: #24626c;
+      --foam: #dff6f1;
+      --sand: #eadfce;
+      --accent: #2f7b84;
+      --shadow: 0 22px 60px rgba(35, 73, 78, 0.12);
+      --radius: 28px;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(142,215,207,0.34), transparent 35%),
+        radial-gradient(circle at 100% 10%, rgba(191,225,219,0.4), transparent 32%),
+        linear-gradient(180deg, #f6f1e8 0%, #f2ebdf 100%);
+      color: var(--ink);
+      font: 16px/1.6 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.modal-open { overflow: hidden; }
+    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.16em; }
+    img, svg { max-width: 100%; display: block; }
+    button { font: inherit; }
+    :focus-visible { outline: 3px solid #0a5b66; outline-offset: 3px; }
+    .shell { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
+    .site-header { position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px); background: rgba(245,239,227,0.82); border-bottom: 1px solid var(--line); }
+    .site-header .shell { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 76px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand-mark { width: 42px; height: 42px; border-radius: 18px; background: linear-gradient(145deg, #d6f0ea, #8ed7cf); box-shadow: inset 0 0 0 1px rgba(36,98,108,.12); position: relative; overflow: hidden; }
+    .brand-mark::before, .brand-mark::after { content: ""; position: absolute; border-radius: 999px; inset: auto 6px 8px; height: 10px; background: rgba(36,98,108,.2); }
+    .brand-mark::after { inset: auto 10px 16px; height: 8px; width: 18px; background: rgba(255,255,255,.8); }
+    .brand strong { display: block; font-size: 1rem; letter-spacing: -0.02em; }
+    .brand span { display: block; font-size: 0.82rem; color: var(--muted); }
+    .nav-toggle { display: none; border: 1px solid var(--line); background: rgba(255,255,255,.8); border-radius: 999px; padding: 10px 14px; color: var(--ink); }
+    .site-nav ul { list-style: none; display: flex; gap: 10px; margin: 0; padding: 0; align-items: center; }
+    .site-nav a { text-decoration: none; padding: 10px 14px; border-radius: 999px; color: var(--muted); }
+    .site-nav a:hover { background: rgba(255,255,255,.74); color: var(--ink); }
+
+    .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 34px; padding: 56px 0 34px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,.74); border: 1px solid rgba(36,98,108,.12); color: var(--muted); font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    h1, h2, h3 { font-family: Fraunces, Georgia, serif; letter-spacing: -0.03em; margin: 0; }
+    h1 { font-size: clamp(3rem, 6vw, 5.8rem); line-height: 0.92; margin: 18px 0 18px; max-width: 10ch; }
+    .hero-copy > p { margin: 0 0 20px; font-size: 1.05rem; color: var(--muted); max-width: 58ch; }
+    .hero-notes { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 28px; }
+    .hero-note { background: rgba(255,255,255,.7); border: 1px solid var(--line); border-radius: 18px; padding: 12px 14px; min-width: 180px; box-shadow: var(--shadow); }
+    .hero-note strong { display: block; font-size: 0.92rem; }
+    .hero-note span { display: block; font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 999px; padding: 14px 20px; border: 1px solid transparent; cursor: pointer; text-decoration: none; }
+    .button.primary { background: var(--deep); color: #f4fbfb; box-shadow: 0 14px 30px rgba(36,98,108,.22); }
+    .button.secondary { background: rgba(255,255,255,.68); color: var(--ink); border-color: var(--line); }
+    .hero-art { position: relative; min-height: 540px; border-radius: 38px; background: linear-gradient(180deg, rgba(255,255,255,.76), rgba(222,246,240,.82)); border: 1px solid rgba(36,98,108,.12); box-shadow: var(--shadow); overflow: hidden; padding: 28px; }
+    .hero-art .card { position: absolute; background: rgba(255,255,255,.8); border: 1px solid rgba(36,98,108,.12); border-radius: 20px; padding: 16px 18px; max-width: 230px; box-shadow: 0 20px 44px rgba(40,94,88,.14); }
+    .hero-art .card small { display: block; color: var(--muted); font-size: 0.74rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+    .hero-art .card p { margin: 0; font-size: 0.92rem; line-height: 1.5; color: var(--ink); }
+    .hero-art .card.one { top: 30px; right: 28px; }
+    .hero-art .card.two { left: 28px; bottom: 34px; }
+    .coast-ribbon { position: absolute; inset: auto 16px 18px auto; width: min(90%, 480px); opacity: .95; }
+    .tide-lines { position: absolute; inset: 18px 10px 68px; }
+
+    main section { padding: 34px 0; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 20px; }
+    .section-head p { margin: 0; max-width: 52ch; color: var(--muted); }
+    h2 { font-size: clamp(2rem, 3vw, 3rem); line-height: 0.98; }
+    .split { display: grid; grid-template-columns: 1fr 320px; gap: 24px; }
+    .surface { background: var(--panel); border: 1px solid rgba(36,98,108,.1); border-radius: 30px; box-shadow: var(--shadow); backdrop-filter: blur(14px); }
+    .surface.pad { padding: 24px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+    .filters button { border-radius: 999px; border: 1px solid var(--line); padding: 12px 16px; background: rgba(255,255,255,.74); color: var(--muted); cursor: pointer; }
+    .filters button[aria-pressed="true"] { background: var(--deep); color: #f5fbfb; border-color: var(--deep); }
+    .story-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+    .story-card { background: var(--panel-strong); border: 1px solid rgba(36,98,108,.1); border-radius: 24px; padding: 20px; min-height: 100%; }
+    .story-card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+    .story-card p { margin: 0 0 12px; color: var(--muted); font-size: 0.95rem; }
+    .story-index { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 14px; background: var(--foam); color: var(--deep); margin-bottom: 14px; font-weight: 700; }
+    .industry-sidebar { padding: 24px; display: grid; gap: 14px; align-content: start; }
+    .industry-sidebar .mini { padding: 14px 16px; border-radius: 20px; background: rgba(255,255,255,.72); border: 1px solid var(--line); }
+    .industry-sidebar h3 { font-size: 1.2rem; }
+    .industry-sidebar p { margin: 6px 0 0; color: var(--muted); font-size: 0.92rem; }
+
+    .flow-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; }
+    .flow-card { padding: 22px; border-radius: 26px; background: rgba(255,255,255,.76); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .flow-card span { display: inline-block; padding: 6px 10px; border-radius: 999px; background: var(--foam); color: var(--deep); font-size: 0.78rem; margin-bottom: 14px; }
+    .flow-card p { margin: 10px 0 0; color: var(--muted); }
+
+    .pricing-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; }
+    .price-card { padding: 24px; border-radius: 28px; background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(228,247,243,.82)); border: 1px solid rgba(36,98,108,.12); box-shadow: var(--shadow); }
+    .price-card strong { display: block; font-size: 2rem; line-height: 1; margin: 10px 0 12px; font-family: Fraunces, Georgia, serif; }
+    .price-card p { margin: 0; color: var(--muted); }
+
+    .cta { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: stretch; }
+    .cta-copy { padding: 28px; }
+    .cta-copy p { color: var(--muted); max-width: 48ch; }
+    .boundaries { padding: 28px; background: rgba(223,246,241,.75); border-left: 1px solid rgba(36,98,108,.12); }
+    .boundaries ul { margin: 0; padding-left: 18px; color: var(--ink); }
+    .boundaries li + li { margin-top: 10px; }
+
+    .site-footer { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 28px 0 60px; color: var(--muted); font-size: 0.92rem; }
+    .site-footer a { color: var(--deep); }
+
+    .modal-shell { position: fixed; inset: 0; background: rgba(19,40,46,.36); display: grid; place-items: center; padding: 20px; z-index: 50; }
+    .modal-panel { width: min(520px, 100%); background: #fffdf8; border-radius: 26px; padding: 28px; border: 1px solid rgba(36,98,108,.12); box-shadow: 0 32px 80px rgba(18,50,55,.24); }
+    .modal-kicker { margin: 0 0 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: .75rem; }
+    .modal-panel h2 { font-size: 2rem; margin-bottom: 10px; }
+    .modal-panel p { color: var(--muted); margin: 0; }
+    .modal-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+    .button.linklike { background: rgba(223,246,241,.9); color: var(--deep); }
+
+    @media (max-width: 1100px) {
+      .hero, .cta, .split { grid-template-columns: 1fr; }
+      .story-grid, .pricing-grid, .flow-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .hero-art { min-height: 460px; }
+    }
+    @media (max-width: 860px) {
+      .site-header .shell { flex-wrap: wrap; padding: 14px 0; }
+      .nav-toggle { display: inline-flex; }
+      .site-nav { width: 100%; }
+      .site-nav ul { width: 100%; flex-direction: column; align-items: stretch; padding-top: 6px; }
+      .site-nav a { display: block; background: rgba(255,255,255,.7); }
+      .section-head { flex-direction: column; align-items: start; }
+      h1 { max-width: 12ch; }
+    }
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 20px, 1160px); }
+      .hero { padding-top: 30px; }
+      .story-grid, .pricing-grid, .flow-grid { grid-template-columns: 1fr; }
+      .site-footer { flex-direction: column; align-items: start; }
+      .hero-art { min-height: 390px; padding: 16px; }
+      .hero-art .card.one { right: 16px; top: 16px; }
+      .hero-art .card.two { left: 16px; bottom: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="#top">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span><strong>Jax Systems</strong><span>Jacksonville systems, done in plain language</span></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="tidepool-menu" data-nav-toggle>Menu</button>
+      <nav class="site-nav" aria-label="Main navigation">
+        <ul id="tidepool-menu" data-nav-menu hidden>
+          <li><a href="#problems">Problem stories</a></li>
+          <li><a href="#delivery">Delivery</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#fit-call">Fit call</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Design concept — illustrative examples, not client results</span>
+          <h1>Keep business moving. Get your day back.</h1>
+          <p>For owner-run local businesses, the work rarely breaks because the team does not care. It breaks because calls, details, approvals, and follow-ups live in too many places. Jax Systems tightens the handoff without turning the business into software theater.</p>
+          <div class="hero-notes">
+            <div class="hero-note"><strong>Built for the field</strong><span>Trades, property management, and marine services where phones ring mid-job and details matter.</span></div>
+            <div class="hero-note"><strong>Human where it counts</strong><span>The system gathers, routes, reminds, and documents. People still make judgment calls.</span></div>
+          </div>
+          <div class="actions">
+            <button class="button primary" type="button" data-open-modal>Book a fit call</button>
+            <a class="button secondary" href="#problems">See the problem stories</a>
+          </div>
+        </div>
+        <div class="hero-art surface" aria-hidden="true">
+          <svg class="tide-lines" viewBox="0 0 560 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 160C130 98 209 110 274 146C345 186 409 199 514 135" stroke="#c3ece6" stroke-width="84" stroke-linecap="round"/>
+            <path d="M72 258C160 202 236 216 314 252C393 289 442 292 514 256" stroke="#86d2c9" stroke-width="106" stroke-linecap="round"/>
+            <path d="M52 382C160 327 234 336 310 370C381 401 440 401 518 357" stroke="#2f7b84" stroke-opacity="0.18" stroke-width="118" stroke-linecap="round"/>
+            <path d="M84 94C145 64 227 66 306 93C383 120 443 121 492 100" stroke="#1f5961" stroke-opacity="0.18" stroke-width="3" stroke-linecap="round"/>
+            <path d="M54 440C130 408 196 415 286 456C364 492 439 486 510 446" stroke="#1f5961" stroke-opacity="0.14" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          <div class="card one"><small>What changes</small><p>Instead of chasing scattered details at the end of the day, the next step is visible while the work is still moving.</p></div>
+          <div class="card two"><small>Delivery stance</small><p>Small, clear deployments with a named owner, plain-language runbook, and room for the business to stay human.</p></div>
+          <svg class="coast-ribbon" viewBox="0 0 460 180" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 134C62 90 74 42 112 32C160 20 168 102 214 110C262 118 266 54 312 50C360 46 380 92 448 62" fill="none" stroke="#215e67" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 10"/>
+            <path d="M12,134C58,108,89,114,118,95C145,78,155,44,192,43C226,42,244,72,276,88C310,104,349,109,447,64" fill="none" stroke="#8ed7cf" stroke-width="22" stroke-linecap="round" opacity=".92"/>
+            <path d="M362 124c9-8 18-11 27-11 18 0 29 13 45 13" fill="none" stroke="#14343b" stroke-width="4" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </section>
+
+      <section id="problems">
+        <div class="section-head">
+          <div>
+            <h2 data-story-title>Trades problem stories</h2>
+            <p data-story-intro>For owner-operators and small crews where missed calls, slow quotes, and fuzzy handoffs steal the evening.</p>
+          </div>
+          <p>Choose a lane and the stories below switch to the everyday breakdowns Jax Systems is built to steady.</p>
+        </div>
+        <div class="split">
+          <div class="surface pad">
+            <div class="filters" role="toolbar" aria-label="Choose an industry">
+              <button type="button" data-industry="trades" aria-pressed="true">Trades</button>
+              <button type="button" data-industry="property" aria-pressed="false">Property management</button>
+              <button type="button" data-industry="marine" aria-pressed="false">Marine services</button>
+            </div>
+            <div class="story-grid" data-story-deck></div>
+          </div>
+          <aside class="surface industry-sidebar">
+            <div class="mini">
+              <h3>Functions-first</h3>
+              <p>Start with the calls, requests, approvals, and follow-ups that keep slipping through. Fancy labels can come later.</p>
+            </div>
+            <div class="mini">
+              <h3>Plain packaging</h3>
+              <p>Discovery, one deployment, care. Enough structure to buy. Not enough jargon to hide behind.</p>
+            </div>
+            <div class="mini">
+              <h3>What stays human</h3>
+              <p>Quotes, edge cases, escalation, and relationship calls stay with the operator. The system does the setup work.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="delivery">
+        <div class="section-head">
+          <div>
+            <h2>Delivery with a clean shoreline</h2>
+            <p>The pace is calm on purpose: learn the real workflow, ship one useful improvement, leave a runbook behind, then care for what is live.</p>
+          </div>
+        </div>
+        <div class="flow-grid">
+          <article class="flow-card"><span>01 · Discovery</span><h3>Watch the work</h3><p>See where the calls, notes, photos, approvals, and next steps actually get dropped.</p></article>
+          <article class="flow-card"><span>02 · Scope</span><h3>Pick one handoff</h3><p>Choose the first deployment around a real bottleneck with a boundary everyone understands.</p></article>
+          <article class="flow-card"><span>03 · Deploy</span><h3>Make the next step obvious</h3><p>Ship the intake, routing, reminders, or update loop that keeps the business moving with less chasing.</p></article>
+          <article class="flow-card"><span>04 · Care</span><h3>Stay close after go-live</h3><p>Adjust the live system, keep the runbook current, and quote the next deployment only when it earns its own scope.</p></article>
+        </div>
+      </section>
+
+      <section id="pricing">
+        <div class="section-head">
+          <div>
+            <h2>Clear package, no performance theater</h2>
+            <p>Same offer every time: paid discovery, a first deployment with the discovery credit applied once, room for larger first projects, then care and additional deployments as the relationship grows.</p>
+          </div>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card"><h3>Discovery</h3><strong>$999</strong><p>Credited once toward the first deployment so the work starts with a real map, not a vague maybe.</p></article>
+          <article class="price-card"><h3>First deployment</h3><strong>$2,499 total</strong><p>$1,500 remainder after discovery. Larger first projects are $4,999 total, subject to scope.</p></article>
+          <article class="price-card"><h3>Care</h3><strong>From $499/mo</strong><p>Keep the live system steady, make small adjustments, and maintain a clear owner-side handoff.</p></article>
+          <article class="price-card"><h3>Additional deployments</h3><strong>From $999</strong><p>Plus $249/month care, subject to scope, when the next workflow is ready for its own fixed package.</p></article>
+        </div>
+      </section>
+
+      <section id="fit-call">
+        <div class="surface cta">
+          <div class="cta-copy">
+            <span class="eyebrow">Fit before force</span>
+            <h2>Start with the part of the day that keeps bleeding into the evening.</h2>
+            <p>If the business runs on calls, quotes, requests, photos, dispatch notes, or owner follow-ups, there is usually one handoff worth cleaning up first. That is enough for a fit call.</p>
+            <div class="actions">
+              <button class="button primary" type="button" data-open-modal>Book a fit call</button>
+              <a class="button secondary" href="#delivery">See how delivery works</a>
+            </div>
+          </div>
+          <div class="boundaries">
+            <h3>Good fit</h3>
+            <ul>
+              <li>Owner-run business with a handful of repeating service workflows.</li>
+              <li>Team already doing the work, but handoffs are loose or invisible.</li>
+              <li>Wants a practical system, not a big agency relationship.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
+<footer class="site-footer">
+  <p>Simple systems for owner-run local businesses. Clear handoff. Human in the loop where it counts.</p>
+  <a href="../../index.html">Back to comparison gallery</a>
+</footer>
+
+    </div>
+  </main>
+
+
+<div class="modal-shell" data-modal hidden>
+  <div class="modal-panel" data-modal-panel role="dialog" aria-modal="true" aria-labelledby="fit-call-title">
+    <p class="modal-kicker">Book a fit call</p>
+    <h2 id="fit-call-title">Preview only</h2>
+    <p>Preview only — booking is not connected. On the live site this will let you choose a time.</p>
+    <div class="modal-actions">
+      <button type="button" class="button secondary" data-close-modal>Close</button>
+      <a class="button linklike" href="#pricing">See the package</a>
+    </div>
+  </div>
+</div>
+
+
+<script>
+const storyData = {
+  trades: {
+    label: 'Trades',
+    intro: 'For owner-operators and small crews where missed calls, slow quotes, and fuzzy handoffs steal the evening.',
+    stories: [
+      {
+        title: 'On the job, a new call comes in',
+        scenario: 'You are on a ladder or under a sink. A new enquiry hits voicemail and the note is too thin to use later.',
+        change: 'The system catches the caller details, asks for the job basics, and tees up a clean callback list for the office or the truck at the end of the stop.',
+        boundary: 'You still decide whether it is a fit and how to price the work.'
+      },
+      {
+        title: 'A quote sits unanswered',
+        scenario: 'The customer says they want to move ahead, but the reply is buried in a text thread and nobody nudges it forward.',
+        change: 'The job gets a simple follow-up rhythm, a clearer approval path, and one place to see what is waiting on the customer.',
+        boundary: 'The system nudges and organizes; it does not haggle or make promises for you.'
+      },
+      {
+        title: 'Job details are missing at dispatch',
+        scenario: 'The crew arrives without the gate code, product choice, or the note about the dog in the yard.',
+        change: 'Before a visit is confirmed, the intake asks for the details the crew actually needs and keeps them attached to the work order.',
+        boundary: 'Crew leads still sanity-check odd jobs before wheels roll.'
+      }
+    ]
+  },
+  property: {
+    label: 'Property management',
+    intro: 'For lean teams juggling tenants, owners, and vendors where every missing detail turns into another chase.',
+    stories: [
+      {
+        title: 'A maintenance request arrives half-complete',
+        scenario: 'A tenant reports “sink broken” with no unit number, no access notes, and no photo.',
+        change: 'The request flow gathers unit, urgency, access, and photos before it becomes a live ticket.',
+        boundary: 'Your team still decides what counts as an emergency and who gets sent first.'
+      },
+      {
+        title: 'Owner updates are scattered',
+        scenario: 'Status lives in vendor emails, text threads, and memory, so reporting back to the owner becomes its own job.',
+        change: 'Updates roll into one running log and can be turned into an owner-ready summary without rebuilding the story from scratch.',
+        boundary: 'A human still approves the final owner communication.'
+      },
+      {
+        title: 'Vendor status becomes a daily chase',
+        scenario: 'Your coordinator spends the afternoon asking vendors if they have scheduled, confirmed, or finished.',
+        change: 'Simple check-ins and a shared status board make the next step visible before someone has to ask.',
+        boundary: 'Escalations and vendor relationship calls stay human.'
+      }
+    ]
+  },
+  marine: {
+    label: 'Marine services',
+    intro: 'For dockside operators where boat details, recurring work, and weather changes all need clean handling.',
+    stories: [
+      {
+        title: 'A quote needs the boat details first',
+        scenario: 'Someone asks for service with no photos, no length, and no dock information, so the estimate stalls.',
+        change: 'The intake asks for boat length, marina, access, and photos before the quote starts.',
+        boundary: 'You still set the final quote and call out special handling.'
+      },
+      {
+        title: 'Recurring cleans are remembered by memory',
+        scenario: 'The repeat work list lives in texts and heads, so a recurring clean gets noticed late or not at all.',
+        change: 'A simple route-based list keeps recurring work visible with proof prompts for the crew.',
+        boundary: 'The crew can still flag dock-access or serviceability exceptions in the field.'
+      },
+      {
+        title: 'Weather blows up the day plan',
+        scenario: 'Wind, rain, or lightning shifts the schedule and the update chain becomes frantic.',
+        change: 'A reschedule queue and ready-to-send notices keep the shuffle orderly when the plan changes.',
+        boundary: 'Go/no-go calls still belong to the operator on the ground.'
+      }
+    ]
+  }
+};
+
+function setupExperience() {
+  const navToggle = document.querySelector('[data-nav-toggle]');
+  const navMenu = document.querySelector('[data-nav-menu]');
+  if (navToggle && navMenu) {
+    const syncNav = () => {
+      if (window.innerWidth >= 860) {
+        navMenu.removeAttribute('hidden');
+        navToggle.setAttribute('aria-expanded', 'false');
+      } else {
+        navMenu.setAttribute('hidden', '');
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    };
+    syncNav();
+    window.addEventListener('resize', syncNav);
+    navToggle.addEventListener('click', () => {
+      if (window.innerWidth >= 860) return;
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      navMenu.toggleAttribute('hidden');
+    });
+    document.querySelectorAll('[data-nav-menu] a').forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 860) {
+          navMenu.setAttribute('hidden', '');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  }
+
+  const modal = document.querySelector('[data-modal]');
+  const modalPanel = modal?.querySelector('[data-modal-panel]');
+  const openers = document.querySelectorAll('[data-open-modal]');
+  const closers = document.querySelectorAll('[data-close-modal]');
+  let lastFocus = null;
+
+  const getFocusable = () => modal ? [...modal.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')].filter((el) => !el.hasAttribute('disabled')) : [];
+
+  function openModal() {
+    if (!modal) return;
+    lastFocus = document.activeElement;
+    modal.removeAttribute('hidden');
+    document.body.classList.add('modal-open');
+    const focusable = getFocusable();
+    if (focusable.length) focusable[0].focus();
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.setAttribute('hidden', '');
+    document.body.classList.remove('modal-open');
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+  }
+
+  openers.forEach((button) => button.addEventListener('click', openModal));
+  closers.forEach((button) => button.addEventListener('click', closeModal));
+  modal?.addEventListener('click', (event) => {
+    if (!modalPanel.contains(event.target)) closeModal();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (!modal || modal.hasAttribute('hidden')) return;
+    if (event.key === 'Escape') closeModal();
+    if (event.key === 'Tab') {
+      const focusable = getFocusable();
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  const storyDeck = document.querySelector('[data-story-deck]');
+  const storyTitle = document.querySelector('[data-story-title]');
+  const storyIntro = document.querySelector('[data-story-intro]');
+  const storyButtons = document.querySelectorAll('[data-industry]');
+
+  function renderStories(key) {
+    const set = storyData[key];
+    if (!set || !storyDeck) return;
+    if (storyTitle) storyTitle.textContent = set.label + ' problem stories';
+    if (storyIntro) storyIntro.textContent = set.intro;
+    storyDeck.innerHTML = set.stories.map((story, index) => `
+      <article class="story-card">
+        <div class="story-index">0${index + 1}</div>
+        <h3>${story.title}</h3>
+        <p><strong>Everyday scenario:</strong> ${story.scenario}</p>
+        <p><strong>What changes:</strong> ${story.change}</p>
+        <p><strong>Human boundary:</strong> ${story.boundary}</p>
+      </article>
+    `).join('');
+    storyButtons.forEach((button) => {
+      const active = button.dataset.industry === key;
+      button.setAttribute('aria-pressed', String(active));
+    });
+  }
+
+  storyButtons.forEach((button) => {
+    button.addEventListener('click', () => renderStories(button.dataset.industry));
+  });
+  if (storyButtons.length) renderStories(document.querySelector('[data-industry][aria-pressed="true"]')?.dataset.industry || 'trades');
+}
+
+document.addEventListener('DOMContentLoaded', setupExperience);
+</script>
+
+</body>
+</html>
