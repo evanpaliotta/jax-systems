@@ -1,0 +1,1090 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Jax design lab — Straight Answers</title>
+  <style>
+    :root {
+      --bg:#f5fbfc;
+      --paper:#ffffff;
+      --ink:#143247;
+      --muted:#547185;
+      --line:#bfd9df;
+      --sea:#8fd8d7;
+      --sea-deep:#1b6c8c;
+      --sea-dark:#0f4e68;
+      --foam:#edf9fa;
+      --warm:#f3a06b;
+      --warm-deep:#cc6f3b;
+      --shadow:0 22px 60px rgba(18, 55, 75, 0.10);
+      --radius-xl:34px;
+      --radius-lg:24px;
+      --radius-md:18px;
+      --container:min(1200px, calc(100vw - 2rem));
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      font:16px/1.6 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(143,216,215,.28), transparent 32%),
+        linear-gradient(180deg, #f8fdfe 0%, #f1fafb 45%, #f7fcfd 100%);
+    }
+    body.dialog-open { overflow:hidden; }
+    a { color:inherit; text-decoration:none; }
+    button, input, textarea, select { font:inherit; }
+    button { cursor:pointer; }
+    img, svg { display:block; max-width:100%; }
+    :focus-visible { outline:3px solid var(--warm); outline-offset:4px; }
+    .shell { width:var(--container); margin:0 auto; }
+    .skip-link {
+      position:absolute; left:1rem; top:-3rem; padding:.75rem 1rem; background:#fff; color:var(--ink);
+      border-radius:999px; box-shadow:var(--shadow); z-index:100;
+    }
+    .skip-link:focus { top:1rem; }
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:.6rem; margin:0; font-size:.75rem;
+      font-weight:800; text-transform:uppercase; letter-spacing:.15em; color:var(--sea-dark);
+    }
+    .eyebrow::before {
+      content:""; width:.72rem; height:.72rem; border-radius:50%; background:var(--warm);
+      box-shadow:0 0 0 .38rem rgba(243,160,107,.18);
+    }
+    .site-header {
+      position:sticky; top:0; z-index:30; background:rgba(245,251,252,.88);
+      backdrop-filter:blur(14px); border-bottom:1px solid rgba(191,217,223,.8);
+    }
+    .site-header__bar {
+      position:relative; display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      min-height:78px;
+    }
+    .brand { display:flex; align-items:center; gap:.95rem; font-weight:800; letter-spacing:-.03em; }
+    .brand-mark {
+      width:2.7rem; height:2.7rem; border-radius:999px; background:linear-gradient(180deg, #ffffff 8%, #e2f5f6 100%);
+      border:1px solid rgba(27,108,140,.2); position:relative; overflow:hidden; box-shadow:inset 0 -8px 18px rgba(143,216,215,.3);
+    }
+    .brand-mark::before {
+      content:""; position:absolute; inset:50% 0 0 0; background:linear-gradient(180deg, #8fd8d7 0%, #1b6c8c 100%);
+    }
+    .brand-mark::after {
+      content:""; position:absolute; left:18%; right:18%; top:32%; height:2px; border-radius:999px; background:var(--sea-dark);
+      box-shadow:0 9px 0 rgba(15,78,104,.16), 0 18px 0 rgba(15,78,104,.10);
+    }
+    .brand span { display:block; }
+    .brand small { display:block; color:var(--muted); font-size:.78rem; font-weight:700; letter-spacing:.02em; }
+    .nav-toggle {
+      display:none; align-items:center; justify-content:center; gap:.45rem; min-height:48px; padding:.7rem 1rem;
+      border-radius:999px; border:1px solid var(--line); background:#fff; color:var(--sea-dark); font-weight:800;
+    }
+    .site-nav { display:flex; align-items:center; gap:1rem; }
+    .site-nav a { color:var(--muted); font-weight:700; }
+    .site-nav a:hover, .site-nav a[aria-current="page"] { color:var(--sea-dark); }
+    .btn {
+      display:inline-flex; align-items:center; justify-content:center; gap:.55rem; min-height:50px; padding:.95rem 1.35rem;
+      border-radius:999px; border:1px solid transparent; font-weight:800; transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover { transform:translateY(-1px); }
+    .btn-solid { background:var(--warm); color:#173346; box-shadow:0 14px 32px rgba(204,111,59,.18); }
+    .btn-solid:hover { background:#ef945a; }
+    .btn-ghost { background:#fff; color:var(--sea-dark); border-color:var(--line); }
+    main section[id] { scroll-margin-top:6rem; }
+
+    .hero {
+      padding:3.3rem 0 2rem;
+    }
+    .hero-grid {
+      display:grid; grid-template-columns:minmax(0, 1.15fr) minmax(320px, .85fr); gap:1.2rem; align-items:stretch;
+    }
+    .hero-copy, .hero-rail {
+      background:rgba(255,255,255,.82); border:1px solid rgba(191,217,223,.82); border-radius:var(--radius-xl);
+      box-shadow:var(--shadow);
+    }
+    .hero-copy {
+      position:relative; overflow:hidden; padding:2rem;
+      background:linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(238,249,250,.96) 100%);
+    }
+    .hero-copy::after {
+      content:""; position:absolute; right:-8%; bottom:-12%; width:320px; height:320px; border-radius:50%;
+      background:radial-gradient(circle, rgba(143,216,215,.30) 0%, rgba(143,216,215,0) 70%);
+      pointer-events:none;
+    }
+    h1 {
+      margin:.9rem 0 1rem; max-width:10ch; font-size:clamp(3.35rem, 8vw, 6.8rem); line-height:.88; letter-spacing:-.075em;
+      color:#123349;
+    }
+    .hero-copy > p {
+      margin:0; max-width:58ch; color:var(--muted); font-size:1.06rem;
+    }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:.85rem; margin:1.75rem 0 1.25rem; }
+    .hero-notes {
+      display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:.8rem; margin-top:1.2rem;
+    }
+    .hero-notes article {
+      padding:.95rem 1rem; border-radius:20px; background:rgba(255,255,255,.75); border:1px solid rgba(191,217,223,.76);
+    }
+    .hero-notes strong { display:block; margin-bottom:.2rem; color:var(--sea-dark); }
+    .hero-rail {
+      display:grid; gap:1rem; padding:1rem; background:linear-gradient(180deg, rgba(236,249,250,.96) 0%, rgba(255,255,255,.96) 100%);
+    }
+    .situation-card, .price-card, .proof-card {
+      background:var(--paper); border:1px solid rgba(191,217,223,.84); border-radius:28px; padding:1.15rem; box-shadow:0 14px 32px rgba(18,55,75,.07);
+    }
+    .situation-card h2, .price-card h2, .proof-card h2, .section-head h2 {
+      margin:.45rem 0 .8rem; font-size:clamp(1.8rem, 4vw, 3.2rem); line-height:.96; letter-spacing:-.06em;
+    }
+    .kicker {
+      display:inline-flex; align-items:center; gap:.45rem; padding:.45rem .7rem; border-radius:999px;
+      background:rgba(143,216,215,.16); color:var(--sea-dark); font-size:.78rem; font-weight:800;
+    }
+    .situation-list, .plain-list, .ownership-list, .scope-list { margin:.9rem 0 0; padding:0; list-style:none; }
+    .situation-list li, .plain-list li, .ownership-list li, .scope-list li {
+      position:relative; padding-left:1.3rem; margin:.65rem 0; color:var(--muted);
+    }
+    .situation-list li::before, .plain-list li::before, .ownership-list li::before, .scope-list li::before {
+      content:""; position:absolute; left:0; top:.68rem; width:.55rem; height:.55rem; border-radius:50%; background:var(--sea);
+    }
+    .price-stack {
+      display:grid; gap:.85rem;
+    }
+    .price-line {
+      display:grid; grid-template-columns:auto 1fr; gap:.9rem; align-items:start; padding:.95rem 0; border-top:1px solid rgba(191,217,223,.78);
+    }
+    .price-line:first-child { border-top:0; padding-top:0; }
+    .price-figure {
+      min-width:5.4rem; font-size:clamp(1.7rem, 4vw, 2.5rem); line-height:.9; letter-spacing:-.06em; font-weight:900; color:var(--sea-dark);
+    }
+    .price-line p { margin:.15rem 0 0; color:var(--muted); }
+    .credit-chip {
+      display:inline-flex; align-items:center; gap:.45rem; margin-left:.35rem; padding:.25rem .55rem; border-radius:999px;
+      background:rgba(243,160,107,.18); color:var(--warm-deep); font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em;
+    }
+    .proof-card p { margin:.55rem 0 0; color:var(--muted); }
+
+    .section { padding:1.6rem 0 0; }
+    .section-head {
+      display:flex; justify-content:space-between; align-items:end; gap:1rem; margin-bottom:1rem;
+    }
+    .section-head p { margin:0; max-width:46ch; color:var(--muted); }
+
+    .narrative-grid {
+      display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(280px, .8fr); gap:1rem;
+    }
+    .narrative-card, .ownership-card, .explorer-panel, .process-card, .faq-card, .cta-band, .use-card, .package-card, .detail-card {
+      background:var(--paper); border:1px solid rgba(191,217,223,.84); border-radius:var(--radius-xl); box-shadow:var(--shadow);
+    }
+    .narrative-card, .ownership-card, .process-card, .faq-card, .package-card, .detail-card, .cta-band { padding:1.35rem; }
+    .narrative-row {
+      display:grid; grid-template-columns:minmax(0, .9fr) minmax(0, 1.1fr); gap:1rem; padding:1rem 0; border-top:1px solid rgba(191,217,223,.78);
+    }
+    .narrative-row:first-of-type { border-top:0; padding-top:0; }
+    .label {
+      display:inline-flex; align-items:center; gap:.45rem; padding:.35rem .65rem; border-radius:999px;
+      background:var(--foam); color:var(--sea-dark); font-size:.74rem; font-weight:800; text-transform:uppercase; letter-spacing:.12em;
+    }
+    .narrative-row h3, .use-card h3, .story-card h3, .process-step h3, .faq-item h3, .package-card h3, .detail-card h3 {
+      margin:.65rem 0 .45rem; font-size:1.22rem; line-height:1.1; color:#123349;
+    }
+    .narrative-row p, .use-card p, .story-card p, .process-step p, .faq-item p, .package-card p, .detail-card p { margin:.35rem 0 0; color:var(--muted); }
+
+    .use-grid {
+      display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:1rem;
+    }
+    .use-card { padding:1.1rem; }
+    .use-card strong { color:var(--sea-dark); }
+
+    .pricing-grid {
+      display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem;
+    }
+    .package-card header, .detail-card header { display:flex; justify-content:space-between; align-items:start; gap:1rem; }
+    .money {
+      white-space:nowrap; font-size:clamp(1.55rem, 3vw, 2.4rem); line-height:.9; font-weight:900; letter-spacing:-.05em; color:var(--sea-dark);
+    }
+    .detail-grid {
+      display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem; margin-top:1rem;
+    }
+
+    .explorer-shell {
+      display:grid; grid-template-columns:300px 1fr; gap:1rem; align-items:start;
+    }
+    .explorer-panel { padding:1.15rem; }
+    .explorer-buttons { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }
+    .explorer-buttons button {
+      min-height:46px; padding:.7rem 1rem; border-radius:999px; border:1px solid var(--line); background:#fff; color:var(--sea-dark); font-weight:800;
+    }
+    .explorer-buttons button[data-active="true"] { background:var(--sea-dark); color:#fff; border-color:var(--sea-dark); box-shadow:0 12px 26px rgba(15,78,104,.18); }
+    .explorer-intro { margin:1rem 0 0; color:var(--muted); }
+    .story-grid { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:1rem; }
+    .story-card { padding:1.15rem; }
+    .story-meta { color:var(--sea-dark); font-size:.78rem; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+
+    .process-grid {
+      display:grid; grid-template-columns:minmax(0, 1.15fr) minmax(0, .85fr); gap:1rem;
+    }
+    .process-step {
+      padding:1rem 0; border-top:1px solid rgba(191,217,223,.78); display:grid; grid-template-columns:68px 1fr; gap:1rem;
+    }
+    .process-step:first-of-type { border-top:0; padding-top:0; }
+    .step-num {
+      width:68px; height:68px; border-radius:50%; display:grid; place-items:center; background:linear-gradient(180deg, #dcf5f4 0%, #9ddfdc 100%);
+      color:var(--sea-dark); font-size:1.2rem; font-weight:900;
+    }
+    .detail-card { background:linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(237,249,250,.98) 100%); }
+
+    .faq-list { display:grid; gap:.8rem; }
+    .faq-item {
+      border:1px solid rgba(191,217,223,.8); border-radius:22px; background:rgba(255,255,255,.8); overflow:hidden;
+    }
+    .faq-trigger {
+      width:100%; display:flex; justify-content:space-between; gap:1rem; align-items:center; text-align:left;
+      padding:1rem 1.1rem; border:0; background:transparent; color:var(--ink); font-weight:800;
+    }
+    .faq-trigger span:last-child { color:var(--sea-dark); font-size:1.4rem; line-height:1; }
+    .faq-panel { padding:0 1.1rem 1rem; }
+    .faq-panel[hidden] { display:none; }
+
+    .cta-band {
+      display:grid; grid-template-columns:minmax(0, 1.2fr) minmax(240px, .8fr); gap:1rem; margin:1.6rem 0 2rem;
+      background:linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(227,245,247,.98) 100%);
+    }
+    .cta-band h2 { margin:.45rem 0 .8rem; font-size:clamp(2rem, 5vw, 3.9rem); line-height:.92; letter-spacing:-.06em; }
+    .cta-band p { margin:0; color:var(--muted); max-width:54ch; }
+    .cta-meta {
+      display:grid; gap:.75rem; align-content:start;
+    }
+    .cta-meta article {
+      padding:.95rem 1rem; border-radius:20px; background:rgba(255,255,255,.86); border:1px solid rgba(191,217,223,.8);
+    }
+
+    .site-footer { padding:0 0 2.6rem; color:var(--muted); }
+    .site-footer .shell {
+      display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; padding-top:1.1rem; border-top:1px solid rgba(191,217,223,.8);
+    }
+    .site-footer a { color:var(--sea-dark); text-decoration:underline; text-underline-offset:.18em; }
+
+    dialog.preview-dialog {
+      width:min(100%, 560px); padding:0; border:0; border-radius:28px; background:#fff; color:var(--ink); box-shadow:0 30px 90px rgba(11,36,49,.22);
+    }
+    dialog.preview-dialog::backdrop { background:rgba(18,43,59,.42); backdrop-filter:blur(5px); }
+    .dialog-card { padding:1.25rem; }
+    .dialog-head { display:flex; justify-content:space-between; gap:1rem; align-items:start; }
+    .dialog-close {
+      min-width:44px; min-height:44px; border-radius:999px; border:1px solid var(--line); background:#fff; color:var(--sea-dark); font-weight:900;
+    }
+    .dialog-note {
+      margin:.85rem 0 1rem; padding:.85rem 1rem; border-radius:18px; background:rgba(243,160,107,.14); color:#74492f; border:1px solid rgba(243,160,107,.34);
+    }
+    .preview-form {
+      display:grid; gap:.85rem;
+    }
+    .preview-form label { display:grid; gap:.35rem; font-weight:700; color:var(--sea-dark); }
+    .preview-form input, .preview-form textarea, .preview-form select {
+      width:100%; border:1px solid var(--line); border-radius:16px; padding:.85rem .95rem; background:#fbfefe; color:var(--ink);
+    }
+    .preview-form textarea { min-height:120px; resize:vertical; }
+    .dialog-actions { display:flex; gap:.75rem; flex-wrap:wrap; margin-top:.35rem; }
+    .preview-status { margin:.15rem 0 0; color:var(--sea-dark); font-weight:700; }
+
+    @media (max-width: 1080px) {
+      .hero-grid, .narrative-grid, .process-grid, .cta-band, .explorer-shell, .pricing-grid, .detail-grid, .use-grid { grid-template-columns:1fr 1fr; }
+      .hero-grid, .narrative-grid, .process-grid, .cta-band, .explorer-shell { grid-template-columns:1fr; }
+      .story-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 860px) {
+      .site-header__bar { flex-wrap:wrap; padding:.9rem 0; }
+      .nav-toggle { display:inline-flex; }
+      .site-nav {
+        position:absolute; left:0; right:0; top:calc(100% + .65rem); z-index:10; padding:.85rem; border-radius:24px;
+        background:rgba(255,255,255,.98); border:1px solid rgba(191,217,223,.9); box-shadow:var(--shadow); flex-direction:column; align-items:stretch;
+      }
+      .site-nav[hidden] { display:none; }
+      .site-nav a, .site-nav .btn { width:100%; justify-content:center; }
+      .hero { padding-top:2.5rem; }
+      .hero-notes, .detail-grid, .pricing-grid, .use-grid, .story-grid { grid-template-columns:1fr; }
+      .narrative-row { grid-template-columns:1fr; }
+    }
+    @media (max-width: 520px) {
+      h1 { max-width:11ch; }
+      .hero-copy, .hero-rail, .narrative-card, .ownership-card, .process-card, .faq-card, .package-card, .detail-card, .cta-band, .explorer-panel { padding:1rem; }
+      .process-step { grid-template-columns:1fr; }
+      .step-num { width:54px; height:54px; }
+      .price-line { grid-template-columns:1fr; }
+      .section-head { flex-direction:column; align-items:flex-start; }
+      .dialog-card { padding:1rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { animation:none !important; transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="shell site-header__bar">
+      <a class="brand" href="../../index.html" aria-label="Back to gallery">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Jax Systems<small>11 — Straight Answers</small></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="site-nav" id="site-nav" data-mobile-nav>
+        <a href="#offer">Offer</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#explorer">Industry explorer</a>
+        <a href="#faq">FAQ</a>
+        <button class="btn btn-solid" type="button" data-open-preview>Preview the intake</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Design concept — examples are illustrative</p>
+          <h1>Straight answers for where the workday gets stuck.</h1>
+          <p>Jax helps local business teams spot where work gets stuck, choose a practical fix, and understand the price before making a commitment. We start with the software you already use wherever possible.</p>
+          <div class="hero-actions">
+            <button class="btn btn-solid" type="button" data-open-preview>Preview the intake</button>
+            <a class="btn btn-ghost" href="#pricing">See the pricing in plain language</a>
+          </div>
+          <div class="hero-notes" aria-label="Quick principles">
+            <article>
+              <strong>Who it is for</strong>
+              <span>Busy owners, office managers, coordinators, and operators who need clarity fast.</span>
+            </article>
+            <article>
+              <strong>What it is not</strong>
+              <span>Not an overhaul of your entire business or an obligation to buy new software.</span>
+            </article>
+            <article>
+              <strong>How it starts</strong>
+              <span>With one discovery, one recommendation, and one first deployment worth keeping.</span>
+            </article>
+          </div>
+        </div>
+
+        <aside class="hero-rail" aria-label="Practical example and pricing">
+          <section class="situation-card">
+            <span class="kicker">One practical first situation</span>
+            <h2>A dispatcher gets back from the yard to three voicemails, two texted quote requests, and a service tech waiting on the next stop.</h2>
+            <p>A simple place to start: bring incoming requests together so the right person can decide what happens next.</p>
+            <ul class="situation-list">
+              <li><strong>Specific first fix:</strong> capture the new requests, summarize them into one morning-ready queue, and prepare the next human action.</li>
+              <li><strong>Human stays in control:</strong> pricing, approvals, exceptions, and sensitive conversations still belong to your team.</li>
+              <li><strong>Existing software first:</strong> phone, inbox, calendar, CRM, property system, job management, or spreadsheets if that is the current stack.</li>
+            </ul>
+          </section>
+
+          <section class="price-card" id="pricing-top">
+            <span class="kicker">Visible pricing</span>
+            <h2>The first numbers should be easy to find.</h2>
+            <div class="price-stack">
+              <div class="price-line">
+                <div class="price-figure">$999</div>
+                <div>
+                  <strong>Discovery <span class="credit-chip">credited once</span></strong>
+                  <p>A focused look at the work, the people involved, the current tools, and the best first system to build.</p>
+                </div>
+              </div>
+              <div class="price-line">
+                <div class="price-figure">$1,500</div>
+                <div>
+                  <strong>Remaining after credit</strong>
+                  <p>The standard first deployment is <strong>$2,499 total</strong>, with the $999 discovery credited once toward it.</p>
+                </div>
+              </div>
+              <div class="price-line">
+                <div class="price-figure">$4,999</div>
+                <div>
+                  <strong>Larger first deployments</strong>
+                  <p>A larger first project could be <strong>$4,999 total</strong>, subject to scope.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="proof-card">
+            <span class="kicker">Trust through transparency</span>
+            <h2>A clear plan, not a mystery project.</h2>
+            <p>You will know what we propose to fix, how we will test it, what it costs, and who is responsible when something needs attention.</p>
+          </section>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="offer">
+      <div class="shell narrative-grid">
+        <section class="narrative-card">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Problem to specific fix</p>
+              <h2>See the problem. See a possible fix.</h2>
+            </div>
+            <p>Here are three everyday situations and practical ways to make the next step easier.</p>
+          </div>
+
+          <article class="narrative-row">
+            <div>
+              <span class="label">Problem</span>
+              <h3>New work arrives in too many places.</h3>
+              <p>Calls, emails, website forms, resident messages, and text threads all ask for attention first. The team then has to reconstruct the request before any real work begins.</p>
+            </div>
+            <div>
+              <span class="label">Specific fix</span>
+              <h3>Create one intake layer that cleans and routes the request.</h3>
+              <p>Jax can turn those mixed inputs into one consistent internal summary with the important fields already pulled out: who it is, what happened, what needs to be approved, and who should touch it next.</p>
+            </div>
+          </article>
+
+          <article class="narrative-row">
+            <div>
+              <span class="label">Problem</span>
+              <h3>Follow-up slips between the field and the office.</h3>
+              <p>A tech finishes the work, a resident is waiting on an update, or a vendor needs a next step. The team knows it matters, but the reminder lives in someone's head or on a whiteboard.</p>
+            </div>
+            <div>
+              <span class="label">Specific fix</span>
+              <h3>Use one handoff flow that prepares the message before the day moves on.</h3>
+              <p>The system drafts the right update, assembles the job notes, and leaves the actual send or approval to the human who owns the relationship.</p>
+            </div>
+          </article>
+
+          <article class="narrative-row">
+            <div>
+              <span class="label">Problem</span>
+              <h3>People retype the same details into multiple tools.</h3>
+              <p>One request becomes five small admin jobs. That is expensive, boring, and usually where details go missing.</p>
+            </div>
+            <div>
+              <span class="label">Specific fix</span>
+              <h3>Let the first action set up the next actions.</h3>
+              <p>Instead of asking the team to copy information between tools, Jax starts with the records you already keep and only automates the handoff points that save real time.</p>
+            </div>
+          </article>
+        </section>
+
+        <aside class="ownership-card">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">What stays yours</p>
+              <h2>You keep the useful parts.</h2>
+            </div>
+          </div>
+          <ul class="ownership-list">
+            <li>Your business information and existing accounts remain under your control.</li>
+            <li>The proposal will specify which newly created materials you can use and retain.</li>
+            <li>Your domain, accounts, and existing software relationships.</li>
+            <li>Your operating decisions: who approves what, where humans step in, and what should never be automated.</li>
+            <li>Your records and exports from the tools you already pay for, subject to those tools' own limits.</li>
+          </ul>
+          <p><strong>Your business knowledge belongs to you.</strong> The point of the first deployment is to leave you with a system and documentation that still make sense when viewed in plain language.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="use-cases">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Function use cases</p>
+            <h2>Useful across more than one type of business.</h2>
+          </div>
+          <p>These are function-level examples, not industry promises. The same logic can be adapted to the real shape of the team and the current tools.</p>
+        </div>
+        <div class="use-grid">
+          <article class="use-card">
+            <h3>Missed-call capture</h3>
+            <p>Turn after-hours calls and voicemail into a clean next-day queue with the caller reason already summarized.</p>
+          </article>
+          <article class="use-card">
+            <h3>Estimate intake</h3>
+            <p>Collect the important details once, then prep the office or estimator with the right context.</p>
+          </article>
+          <article class="use-card">
+            <h3>Scheduling prep</h3>
+            <p>Package the work order, contact details, and known constraints before a dispatch decision is made.</p>
+          </article>
+          <article class="use-card">
+            <h3>Resident or customer updates</h3>
+            <p>Draft consistent status messages while leaving the actual send and exceptions to the team.</p>
+          </article>
+          <article class="use-card">
+            <h3>Vendor coordination</h3>
+            <p>Pull the relevant notes, missing items, and next questions into one vendor-ready handoff.</p>
+          </article>
+          <article class="use-card">
+            <h3>Internal summaries</h3>
+            <p>Condense long call notes, threads, or inbox chains into a short brief another teammate can act on.</p>
+          </article>
+          <article class="use-card">
+            <h3>Service history lookup</h3>
+            <p>Prepare quick reference context from the records you already keep before someone returns the call.</p>
+          </article>
+          <article class="use-card">
+            <h3>Repeat admin steps</h3>
+            <p>Take a recurring handoff between tools and remove the retyping without forcing a whole new stack.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pricing">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Pricing in plain language</p>
+            <h2>Enough detail to decide whether it is worth the call.</h2>
+          </div>
+          <p>No giant pricing matrix. Just the first setup, ongoing care, extra deployments, and the main scope boundaries.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="package-card">
+            <header>
+              <div>
+                <p class="eyebrow">First setup</p>
+                <h3>Discovery, then the first standard deployment.</h3>
+              </div>
+              <div class="money">$999 + $1,500</div>
+            </header>
+            <p><strong>$999 discovery</strong> is credited once toward the first standard deployment, making the standard first deployment <strong>$2,499 total</strong> and <strong>$1,500 remaining after credit</strong>.</p>
+            <ul class="plain-list">
+              <li>Discovery covers the current workflow, software, decision points, and recommendation for the best first system.</li>
+              <li>The first standard deployment covers one clearly scoped system, basic documentation, and handoff guidance.</li>
+              <li>A larger first deployment could cost <strong>$4,999 total</strong>, subject to scope.</li>
+            </ul>
+          </article>
+
+          <article class="package-card">
+            <header>
+              <div>
+                <p class="eyebrow">Ongoing</p>
+                <h3>Care, tuning, and additional deployments.</h3>
+              </div>
+              <div class="money">$499/mo first</div>
+            </header>
+            <p>The first live system starts at <strong>$499/month care</strong>. Further deployments start at <strong>$999</strong> plus <strong>$249/month</strong> additional care, subject to scope.</p>
+            <ul class="plain-list">
+              <li>Care is for upkeep, review, small adjustments, and continuity once the system is live.</li>
+              <li>Additional deployments are for the next useful lane after the first one is working.</li>
+              <li>Scope is judged by the number of people, tools, exceptions, and approval points involved.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <header>
+              <div>
+                <p class="eyebrow">Included</p>
+                <h3>What the first engagement is meant to include.</h3>
+              </div>
+            </header>
+            <ul class="scope-list">
+              <li>Workflow review in plain language.</li>
+              <li>Recommendation for one first system worth implementing.</li>
+              <li>Setup of that first scoped system using existing software first where possible.</li>
+              <li>Basic operating notes so the team understands what it does and where humans stay involved.</li>
+            </ul>
+          </article>
+
+          <article class="detail-card">
+            <header>
+              <div>
+                <p class="eyebrow">Not included unless scoped</p>
+                <h3>What should not be assumed from the base numbers.</h3>
+              </div>
+            </header>
+            <ul class="scope-list">
+              <li>Paid vendor subscriptions, telephony charges, or software seats.</li>
+              <li>Full re-platforming of the business onto new core software.</li>
+              <li>Custom compliance, legal review, or policy drafting.</li>
+              <li>Hardware, ad spend, content production, or a broad website rebuild.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="explorer">
+      <div class="shell explorer-shell">
+        <aside class="explorer-panel">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Interactive industry explorer</p>
+              <h2>Same posture, different day-to-day realities.</h2>
+            </div>
+          </div>
+          <div class="explorer-buttons" role="group" aria-label="Choose an industry view">
+            <button type="button" data-industry="trades" data-active="true" aria-pressed="true">Trades</button>
+            <button type="button" data-industry="property" data-active="false" aria-pressed="false">Property management</button>
+            <button type="button" data-industry="marine" data-active="false" aria-pressed="false">Marine services</button>
+          </div>
+          <p class="explorer-intro" data-explorer-intro></p>
+        </aside>
+
+        <div class="story-grid" aria-live="polite">
+          <article class="story-card" data-story-card>
+            <div class="story-meta">Story 01</div>
+            <h3 data-story-title></h3>
+            <p><strong>Person:</strong> <span data-story-person></span></p>
+            <p><strong>What keeps happening:</strong> <span data-story-problem></span></p>
+            <p><strong>Specific fix:</strong> <span data-story-fix></span></p>
+          </article>
+          <article class="story-card" data-story-card>
+            <div class="story-meta">Story 02</div>
+            <h3 data-story-title></h3>
+            <p><strong>Person:</strong> <span data-story-person></span></p>
+            <p><strong>What keeps happening:</strong> <span data-story-problem></span></p>
+            <p><strong>Specific fix:</strong> <span data-story-fix></span></p>
+          </article>
+          <article class="story-card" data-story-card>
+            <div class="story-meta">Story 03</div>
+            <h3 data-story-title></h3>
+            <p><strong>Person:</strong> <span data-story-person></span></p>
+            <p><strong>What keeps happening:</strong> <span data-story-problem></span></p>
+            <p><strong>Specific fix:</strong> <span data-story-fix></span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="shell process-grid">
+        <section class="process-card">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Detailed process</p>
+              <h2>Simple to understand, without pretending every job takes the same shape.</h2>
+            </div>
+          </div>
+
+          <article class="process-step">
+            <div class="step-num">1</div>
+            <div>
+              <h3>Discovery</h3>
+              <p>Review the real workflow, the current software, who approves what, where the work actually backs up, and what should stay manual.</p>
+            </div>
+          </article>
+          <article class="process-step">
+            <div class="step-num">2</div>
+            <div>
+              <h3>Recommendation</h3>
+              <p>Pick one first system with the clearest payoff. Not the biggest vision. The one that is easiest to understand and most likely to stick.</p>
+            </div>
+          </article>
+          <article class="process-step">
+            <div class="step-num">3</div>
+            <div>
+              <h3>First deployment</h3>
+              <p>Build the scoped intake, routing, summary, handoff, or follow-up system using existing software first wherever that makes sense.</p>
+            </div>
+          </article>
+          <article class="process-step">
+            <div class="step-num">4</div>
+            <div>
+              <h3>Care and next deployment</h3>
+              <p>Review how it is being used, tune what is unclear, then decide if there is a second lane worth building from the same foundation.</p>
+            </div>
+          </article>
+        </section>
+
+        <aside class="detail-card">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Buying experience</p>
+              <h2>Good-fit questions answered up front.</h2>
+            </div>
+          </div>
+          <ul class="plain-list">
+            <li><strong>Existing software first:</strong> the default is to work with the tools already in place before suggesting replacements.</li>
+            <li><strong>Clear boundaries:</strong> humans keep approvals, sensitive edge cases, and relationship-heavy conversations.</li>
+            <li><strong>Agreed timing:</strong> we discuss timing once the work and access are understood.</li>
+            <li><strong>Illustrative stories:</strong> these examples show possible approaches, not client results.</li>
+          </ul>
+          The booking button in this design preview is not connected.
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="shell faq-card">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">FAQ</p>
+            <h2>The scope questions most small teams ask before they book.</h2>
+          </div>
+          <p>Written to reduce uncertainty, not to dodge it.</p>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <h3>
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-1" id="faq-trigger-1">
+                <span>What do I get from the $999 discovery?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-1" role="region" aria-labelledby="faq-trigger-1" hidden>
+              <p>You get a focused review of the current workflow, the main friction points, the existing tools, and a recommendation for the best first system to build. That $999 is credited once toward the initial standard $2,499 total deployment.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <h3>
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-2" id="faq-trigger-2">
+                <span>Does the first deployment mean a full business overhaul?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-2" role="region" aria-labelledby="faq-trigger-2" hidden>
+              <p>No. The first deployment is one clearly scoped system. The goal is to solve one meaningful operating problem without assuming the whole business should change software or process overnight.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <h3>
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-3" id="faq-trigger-3">
+                <span>Can this work with the software we already have?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-3" role="region" aria-labelledby="faq-trigger-3" hidden>
+              <p>That is the default posture. Existing software first. If the current stack can support the workflow, the concept favors improving the handoffs around it before recommending a replacement.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <h3>
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-4" id="faq-trigger-4">
+                <span>What is not included in the base prices?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-4" role="region" aria-labelledby="faq-trigger-4" hidden>
+              <p>Vendor fees, telephony usage, software subscriptions, hardware, legal or compliance work, large custom integrations, and broad operational redesigns are not implied by the base numbers unless they are explicitly scoped.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <h3>
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-5" id="faq-trigger-5">
+                <span>Who owns the materials and process notes?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-5" role="region" aria-labelledby="faq-trigger-5" hidden>
+              <p>Your business data and operating decisions remain yours. Rights to new materials and any third-party tools will be spelled out in the proposal.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <h3>
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-6" id="faq-trigger-6">
+                <span>What does “larger first deployment” usually mean?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-6" role="region" aria-labelledby="faq-trigger-6" hidden>
+              <p>Usually more people, more tools, more exception handling, or more approval points than a straightforward first system. A larger first deployment might cost $4,999 total; the proposal will set the price based on scope.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <h3>
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-7" id="faq-trigger-7">
+                <span>Why show pricing this early?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-7" role="region" aria-labelledby="faq-trigger-7" hidden>
+              <p>Because small business buyers should not have to guess whether the first step is in range. Price clarity filters better than mystery.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <h3>
+              <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-8" id="faq-trigger-8">
+                <span>Is the call preview on this page a real booking flow?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="faq-panel" id="faq-8" role="region" aria-labelledby="faq-trigger-8" hidden>
+              <p>No. It is intentionally a preview-only dialog with no backend, no calendar, and no CRM connection. The page says that inside the dialog itself so visitors are never misled.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell cta-band" id="preview">
+        <div>
+          <p class="eyebrow">Primary CTA</p>
+          <h2>Open the preview-only intake and see how the first question could feel.</h2>
+          <p>The CTA is direct, accessible, and honest about its limits. It does not pretend to be connected. It simply shows a calmer, more transparent first interaction.</p>
+          <div class="hero-actions">
+            <button class="btn btn-solid" type="button" data-open-preview>Open preview dialog</button>
+            <a class="btn btn-ghost" href="../../index.html">Back to gallery</a>
+          </div>
+        </div>
+        <div class="cta-meta">
+          <article>
+            <strong>Not connected</strong>
+            <p>No backend, no email send, no CRM, no calendar booking.</p>
+          </article>
+          <article>
+            <strong>Accessible by keyboard</strong>
+            <p>Visible focus, escape to close, and close buttons that do what they say.</p>
+          </article>
+          <article>
+            <strong>Built as one file</strong>
+            <p>Self-contained HTML with inline CSS, JS, and SVG only.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <span>Illustrative concept for Jax design lab. Scenarios are examples, not testimonials or performance claims.</span>
+      <span><a href="https://www.youtube.com/watch?v=ENPN-KutYJc">Source reference: Liam Ottley interview with Arthur</a></span>
+    </div>
+  </footer>
+
+  <dialog class="preview-dialog" id="preview-dialog" aria-labelledby="preview-title">
+    <div class="dialog-card">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">Preview only</p>
+          <h2 id="preview-title">This intake is not connected.</h2>
+        </div>
+        <button class="dialog-close" type="button" data-close-preview aria-label="Close preview">×</button>
+      </div>
+      <p class="dialog-note">No backend is attached here. Nothing sends, books, syncs, or saves. This dialog exists only to preview the tone and structure of a first-contact experience.</p>
+      <form class="preview-form" id="preview-form">
+        <label>
+          What kind of team is asking?
+          <select>
+            <option>Trades</option>
+            <option>Property management</option>
+            <option>Marine services</option>
+            <option>Other service business</option>
+          </select>
+        </label>
+        <label>
+          Where does work get messy first?
+          <input type="text" placeholder="Example: missed calls, resident updates, vendor follow-up">
+        </label>
+        <label>
+          What do you already use?
+          <textarea placeholder="Example: Gmail, ServiceTitan, AppFolio, QuickBooks, spreadsheets, shared inbox"></textarea>
+        </label>
+        <div class="dialog-actions">
+          <button class="btn btn-solid" type="submit">Try preview submit</button>
+          <button class="btn btn-ghost" type="button" data-close-preview>Close</button>
+        </div>
+        <p class="preview-status" id="preview-status" aria-live="polite"></p>
+      </form>
+    </div>
+  </dialog>
+
+  <script>
+    const industryData = {
+      trades: {
+        intro: 'For trades teams, the friction is often intake, dispatch, approvals, and updates between the office and the field.',
+        stories: [
+          {
+            title: 'After-hours estimate requests become next-morning chaos',
+            person: 'Mara, office manager at a plumbing and HVAC shop',
+            problem: 'Voicemails, website forms, and text photos all describe the job differently, so the office spends the first hour sorting instead of scheduling.',
+            fix: 'One intake layer turns each request into the same internal brief, attaches the photos, and flags what still needs a human answer.'
+          },
+          {
+            title: 'Dispatch decisions depend on scattered notes',
+            person: 'Luis, dispatcher at an electrical contractor',
+            problem: 'Crew availability, site notes, and past job context live in separate places, so the person dispatching has to reconstruct the picture by hand.',
+            fix: 'A scheduling prep flow assembles the latest notes, service history, and constraints before the dispatcher assigns the next stop.'
+          },
+          {
+            title: 'Finished jobs still need office follow-up',
+            person: 'Asha, service coordinator at a landscaping company',
+            problem: 'The field crew wraps the job, but the update to the customer and the internal notes happen later, if they happen at all.',
+            fix: 'A handoff system drafts the customer-ready update and queues the office checklist while leaving final approval to the coordinator.'
+          }
+        ]
+      },
+      property: {
+        intro: 'For property teams, clarity often matters most around resident communication, work-order triage, and vendor coordination.',
+        stories: [
+          {
+            title: 'Resident issues arrive with half the needed context',
+            person: 'Nina, property coordinator for a midsize portfolio',
+            problem: 'Messages come by portal, email, and phone, and the maintenance request is missing access notes, urgency, or unit details.',
+            fix: 'A triage layer standardizes the request, fills the missing fields when possible, and separates routine issues from true escalations.'
+          },
+          {
+            title: 'Vendor follow-up gets lost between approvals',
+            person: 'Chris, maintenance manager',
+            problem: 'The vendor is waiting on access or authorization, but the approval note sits in an inbox thread and nobody notices until the resident asks again.',
+            fix: 'An internal summary flow prepares the approval context and next action for the manager instead of leaving the chain buried in email.'
+          },
+          {
+            title: 'Status updates are consistent only when someone has time',
+            person: 'Leah, resident services lead',
+            problem: 'Residents want a clear update, but the office keeps rewriting the same message from scratch during busy days.',
+            fix: 'A message-prep flow drafts the update with the job status and leaves the final send to the team member who owns the relationship.'
+          }
+        ]
+      },
+      marine: {
+        intro: 'For marine businesses, the friction often sits in seasonal service requests, dock-side logistics, and owner communication.',
+        stories: [
+          {
+            title: 'Seasonal service inquiries pile up fast',
+            person: 'Drew, service writer at a boatyard',
+            problem: 'Owners call, email, and stop by with overlapping requests, so the spring backlog starts with confusion instead of priorities.',
+            fix: 'A service intake flow converts those requests into one sortable list with vessel details, requested work, and missing information called out.'
+          },
+          {
+            title: 'Dock-side visits need the right context before anyone drives over',
+            person: 'Cam, marina operations coordinator',
+            problem: 'The team loses time confirming where the boat is, what was already checked, and who needs to approve the next step.',
+            fix: 'A pre-visit brief assembles location notes, prior service history, and owner contact context before the assignment is made.'
+          },
+          {
+            title: 'Owners want updates without chasing the office',
+            person: 'Jules, customer care lead at a repair shop',
+            problem: 'Work is moving, but updates are ad hoc, so the office fielding the calls feels reactive all day.',
+            fix: 'A status-summary flow prepares consistent update drafts from the live notes while leaving any estimate or approval discussion to the human team.'
+          }
+        ]
+      }
+    };
+
+    const navToggle = document.querySelector('[data-nav-toggle]');
+    const mobileNav = document.querySelector('[data-mobile-nav]');
+    const mobileQuery = window.matchMedia('(max-width: 860px)');
+
+    function syncNav(forceClose = false) {
+      if (!mobileNav || !navToggle) return;
+      if (mobileQuery.matches) {
+        const shouldOpen = forceClose ? false : navToggle.getAttribute('aria-expanded') === 'true';
+        mobileNav.hidden = !shouldOpen;
+      } else {
+        mobileNav.hidden = false;
+        navToggle.setAttribute('aria-expanded', 'false');
+      }
+    }
+
+    if (navToggle && mobileNav) {
+      navToggle.addEventListener('click', () => {
+        const open = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!open));
+        mobileNav.hidden = open;
+      });
+      mobileNav.querySelectorAll('a, button').forEach((item) => {
+        item.addEventListener('click', () => {
+          if (mobileQuery.matches) {
+            navToggle.setAttribute('aria-expanded', 'false');
+            mobileNav.hidden = true;
+          }
+        });
+      });
+      const handleQueryChange = () => syncNav(true);
+      if (typeof mobileQuery.addEventListener === 'function') {
+        mobileQuery.addEventListener('change', handleQueryChange);
+      } else {
+        mobileQuery.addListener(handleQueryChange);
+      }
+      syncNav(true);
+    }
+
+    const introNode = document.querySelector('[data-explorer-intro]');
+    const storyCards = Array.from(document.querySelectorAll('[data-story-card]'));
+    const industryButtons = Array.from(document.querySelectorAll('[data-industry]'));
+
+    function renderIndustry(key) {
+      const entry = industryData[key];
+      if (!entry) return;
+      introNode.textContent = entry.intro;
+      storyCards.forEach((card, index) => {
+        const story = entry.stories[index];
+        if (!story) return;
+        card.querySelector('[data-story-title]').textContent = story.title;
+        card.querySelector('[data-story-person]').textContent = story.person;
+        card.querySelector('[data-story-problem]').textContent = story.problem;
+        card.querySelector('[data-story-fix]').textContent = story.fix;
+      });
+      industryButtons.forEach((button) => {
+        const active = button.dataset.industry === key;
+        button.dataset.active = String(active);
+        button.setAttribute('aria-pressed', String(active));
+      });
+    }
+
+    industryButtons.forEach((button) => {
+      button.addEventListener('click', () => renderIndustry(button.dataset.industry));
+    });
+    renderIndustry('trades');
+
+    const faqButtons = Array.from(document.querySelectorAll('.faq-trigger'));
+    faqButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const panel = document.getElementById(button.getAttribute('aria-controls'));
+        const open = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!open));
+        button.querySelector('span:last-child').textContent = open ? '+' : '–';
+        panel.hidden = open;
+      });
+    });
+
+    const previewDialog = document.getElementById('preview-dialog');
+    const previewStatus = document.getElementById('preview-status');
+    const previewForm = document.getElementById('preview-form');
+    const openPreviewButtons = Array.from(document.querySelectorAll('[data-open-preview]'));
+    const closePreviewButtons = Array.from(document.querySelectorAll('[data-close-preview]'));
+
+    function openPreview() {
+      if (!previewDialog) return;
+      previewStatus.textContent = '';
+      previewDialog.showModal();
+      document.body.classList.add('dialog-open');
+      const firstField = previewDialog.querySelector('select, input, textarea, button');
+      if (firstField) firstField.focus();
+    }
+
+    function closePreview() {
+      if (!previewDialog) return;
+      previewDialog.close();
+      document.body.classList.remove('dialog-open');
+    }
+
+    openPreviewButtons.forEach((button) => button.addEventListener('click', openPreview));
+    closePreviewButtons.forEach((button) => button.addEventListener('click', closePreview));
+
+    if (previewDialog) {
+      previewDialog.addEventListener('close', () => {
+        document.body.classList.remove('dialog-open');
+      });
+      previewDialog.addEventListener('click', (event) => {
+        const rect = previewDialog.getBoundingClientRect();
+        const clickedBackdrop = event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom;
+        if (clickedBackdrop) closePreview();
+      });
+    }
+
+    if (previewForm) {
+      previewForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        previewStatus.textContent = 'Preview only — nothing was sent because this concept has no backend connection.';
+      });
+    }
+  </script>
+</body>
+</html>

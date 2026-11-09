@@ -1,0 +1,1265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Jax Systems — Clear Harbor concept</title>
+  <style>
+    :root {
+      --sand:#f7f1e6;
+      --sand-2:#fffaf2;
+      --foam:#fffdf8;
+      --teal:#1b7c80;
+      --teal-deep:#0f5f67;
+      --navy:#10263f;
+      --navy-2:#173554;
+      --terracotta:#c56f4d;
+      --terracotta-soft:#efd4c8;
+      --ink:#13253a;
+      --muted:#5b6d78;
+      --line:#d8cfc0;
+      --line-strong:#bda88d;
+      --card:#fffaf3;
+      --shadow:0 24px 56px rgba(16,38,63,.12);
+      --container:min(1240px, calc(100vw - 2rem));
+      --radius:28px;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+      color:var(--ink);
+      background:linear-gradient(180deg, var(--sand) 0%, #fbf6ee 25%, #f7f2e8 55%, #fffaf2 100%);
+    }
+    body.modal-open { overflow:hidden; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; cursor:pointer; }
+    img, svg { max-width:100%; display:block; }
+    :focus-visible { outline:3px solid var(--terracotta); outline-offset:4px; }
+    .shell { width:var(--container); margin:0 auto; }
+    .eyebrow {
+      display:inline-flex;
+      align-items:center;
+      gap:.65rem;
+      font-size:.76rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      font-weight:900;
+      color:var(--teal-deep);
+    }
+    .eyebrow::before {
+      content:"";
+      width:.72rem;
+      height:.72rem;
+      border-radius:999px;
+      background:linear-gradient(180deg, var(--terracotta), #dfa17f);
+      box-shadow:0 0 0 .38rem rgba(197,111,77,.13);
+      flex:0 0 auto;
+    }
+    .site-header {
+      position:sticky;
+      top:0;
+      z-index:30;
+      background:rgba(255,250,242,.88);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(189,168,141,.55);
+    }
+    .site-header__bar {
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+    }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:.9rem;
+      font-weight:900;
+      letter-spacing:-.04em;
+    }
+    .brand-mark {
+      width:2.7rem;
+      height:2.7rem;
+      border-radius:50%;
+      background:radial-gradient(circle at 50% 42%, #fff 0 26%, transparent 27%), linear-gradient(180deg, var(--teal) 0%, var(--teal-deep) 100%);
+      position:relative;
+      overflow:hidden;
+      box-shadow:inset 0 0 0 2px rgba(255,255,255,.36), 0 10px 24px rgba(16,38,63,.16);
+    }
+    .brand-mark::before {
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:48%;
+      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+    }
+    .brand-mark::after {
+      content:"";
+      position:absolute;
+      left:22%;
+      right:22%;
+      top:57%;
+      height:2px;
+      background:rgba(255,255,255,.75);
+      border-radius:999px;
+      box-shadow:0 7px 0 0 rgba(255,255,255,.42);
+    }
+    .brand small {
+      display:block;
+      font-size:.74rem;
+      letter-spacing:.08em;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .nav-toggle {
+      display:none;
+      border:1px solid var(--line-strong);
+      background:#fff;
+      color:var(--navy);
+      padding:.78rem 1rem;
+      border-radius:999px;
+      font-weight:800;
+    }
+    .main-nav {
+      display:flex;
+      align-items:center;
+      gap:1rem;
+    }
+    .main-nav a {
+      font-weight:800;
+      color:var(--muted);
+    }
+    .main-nav a:hover,
+    .main-nav a:focus-visible { color:var(--navy); }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.55rem;
+      padding:1rem 1.35rem;
+      border-radius:999px;
+      border:1px solid transparent;
+      font-weight:900;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+    }
+    .btn:hover { transform:translateY(-1px); }
+    .btn-primary {
+      background:var(--navy);
+      color:#fff;
+      box-shadow:0 16px 34px rgba(16,38,63,.22);
+    }
+    .btn-primary:hover,
+    .btn-primary:focus-visible { background:var(--navy-2); }
+    .btn-secondary {
+      background:#fff;
+      color:var(--navy);
+      border-color:var(--line-strong);
+    }
+    .btn-link {
+      padding:0;
+      border:0;
+      border-radius:0;
+      background:none;
+      color:var(--teal-deep);
+      font-weight:900;
+      box-shadow:none;
+    }
+    .btn-link:hover { transform:none; color:var(--navy); }
+
+    .hero {
+      padding:3.6rem 0 1.4rem;
+      text-align:center;
+    }
+    .hero .eyebrow { justify-content:center; }
+    .hero h1 {
+      margin:.95rem auto 1rem;
+      max-width:9.2ch;
+      font-size:clamp(4.4rem, 12vw, 8.5rem);
+      line-height:.84;
+      letter-spacing:-.1em;
+      color:var(--navy);
+      text-transform:uppercase;
+    }
+    .hero p {
+      max-width:52rem;
+      margin:0 auto;
+      font-size:1.12rem;
+      color:var(--muted);
+    }
+    .hero-actions {
+      display:flex;
+      justify-content:center;
+      gap:1rem;
+      flex-wrap:wrap;
+      margin:2rem 0 1.3rem;
+    }
+    .hero-trust {
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:.8rem;
+      margin-top:1.9rem;
+    }
+    .hero-trust article {
+      padding:1rem 1.05rem;
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:rgba(255,253,248,.82);
+      box-shadow:0 10px 24px rgba(16,38,63,.05);
+    }
+    .hero-trust strong {
+      display:block;
+      font-size:1.12rem;
+      line-height:1.1;
+      color:var(--navy);
+    }
+    .hero-trust span { color:var(--muted); }
+
+    .band { padding:1.1rem 0; }
+    .band-dark {
+      background:var(--navy);
+      color:#eef4fb;
+    }
+    .band-teal {
+      background:linear-gradient(180deg, #ebf6f5 0%, #dff0ed 100%);
+      border-top:1px solid rgba(15,95,103,.12);
+      border-bottom:1px solid rgba(15,95,103,.12);
+    }
+    .band-sand {
+      background:linear-gradient(180deg, #fffaf2 0%, #f8f1e6 100%);
+    }
+
+    .section {
+      padding:3.2rem 0;
+    }
+    .section-head {
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:1rem;
+      margin-bottom:1.4rem;
+    }
+    .section-head h2 {
+      margin:.55rem 0 0;
+      font-size:clamp(2.2rem, 4.7vw, 4.3rem);
+      line-height:.9;
+      letter-spacing:-.08em;
+      color:inherit;
+    }
+    .section-head p {
+      margin:0;
+      max-width:44ch;
+      color:inherit;
+      opacity:.88;
+    }
+
+    .compare {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:1.2rem;
+      align-items:stretch;
+    }
+    .compare-card {
+      min-height:100%;
+      border-radius:34px;
+      padding:1.5rem;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      box-shadow:var(--shadow);
+    }
+    .compare-card--light {
+      color:var(--ink);
+      background:var(--card);
+      border-color:var(--line);
+    }
+    .compare-card__label {
+      margin:0 0 .8rem;
+      font-size:.78rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:900;
+      color:var(--terracotta);
+    }
+    .compare-card h3 {
+      margin:0 0 .8rem;
+      font-size:clamp(2rem, 4vw, 3.8rem);
+      line-height:.88;
+      letter-spacing:-.08em;
+      text-transform:uppercase;
+      color:inherit;
+    }
+    .compare-card p,
+    .compare-card li { color:inherit; opacity:.93; }
+    .compare-list {
+      margin:1.1rem 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:.8rem;
+    }
+    .compare-list li {
+      padding:.9rem 0 0;
+      border-top:1px solid rgba(255,255,255,.18);
+    }
+    .compare-card--light .compare-list li { border-top-color:var(--line); }
+    .compare-list strong { display:block; color:inherit; }
+    .human-note {
+      margin-top:1.15rem;
+      padding:1rem 1.05rem;
+      border-radius:22px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.16);
+    }
+    .compare-card--light .human-note {
+      background:#fff;
+      border-color:var(--line);
+    }
+
+    .catalog-layout {
+      display:grid;
+      grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+      gap:1.1rem;
+      align-items:start;
+    }
+    .catalog-poster,
+    .catalog-table {
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:34px;
+      box-shadow:var(--shadow);
+    }
+    .catalog-poster {
+      padding:1.2rem;
+      overflow:hidden;
+    }
+    .catalog-poster svg {
+      width:100%;
+      height:auto;
+      border-radius:26px;
+      background:linear-gradient(180deg, #18456a 0%, #10263f 100%);
+    }
+    .poster-note {
+      margin:1rem 0 0;
+      color:#d1dfef;
+      max-width:32ch;
+    }
+    .catalog-table {
+      padding:1rem 1.1rem;
+      background:rgba(16,38,63,.52);
+      border-color:rgba(255,255,255,.18);
+    }
+    .catalog-row {
+      display:grid;
+      grid-template-columns:180px 1fr 220px;
+      gap:1rem;
+      padding:1rem 0;
+      border-top:1px solid rgba(255,255,255,.14);
+      align-items:start;
+    }
+    .catalog-row:first-child { border-top:0; padding-top:.2rem; }
+    .catalog-row strong {
+      font-size:1.02rem;
+      color:#fff;
+    }
+    .catalog-row p,
+    .catalog-row span {
+      margin:0;
+      color:#d2deea;
+    }
+    .catalog-row span { display:block; }
+
+    .switcher-wrap {
+      display:grid;
+      grid-template-columns:300px 1fr;
+      gap:1.15rem;
+      align-items:start;
+    }
+    .switcher-panel,
+    .story-grid {
+      background:rgba(255,255,255,.74);
+      border:1px solid rgba(189,168,141,.6);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+    }
+    .switcher-panel {
+      padding:1.2rem;
+      position:sticky;
+      top:98px;
+    }
+    .switcher-panel p { color:var(--muted); margin:.7rem 0 0; }
+    .chooser {
+      display:flex;
+      flex-direction:column;
+      gap:.75rem;
+      margin-top:1.2rem;
+    }
+    .chooser button {
+      text-align:left;
+      border:1px solid var(--line-strong);
+      border-radius:22px;
+      background:#fff;
+      color:var(--navy);
+      padding:1rem 1rem;
+      font-weight:900;
+      transition:transform .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+    }
+    .chooser button:hover { transform:translateX(2px); }
+    .chooser button[data-active="true"] {
+      background:var(--navy);
+      color:#fff;
+      border-color:var(--navy);
+      box-shadow:0 14px 24px rgba(16,38,63,.16);
+    }
+    .story-grid {
+      padding:1.05rem;
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:1rem;
+    }
+    .story-card {
+      border-radius:26px;
+      padding:1.2rem;
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, #fffdf8 0%, #f7f1e8 100%);
+      min-height:100%;
+    }
+    .story-card__tag {
+      margin:0 0 .65rem;
+      font-size:.75rem;
+      text-transform:uppercase;
+      letter-spacing:.15em;
+      font-weight:900;
+      color:var(--teal-deep);
+    }
+    .story-card h3 {
+      margin:0 0 .8rem;
+      font-size:1.28rem;
+      line-height:1.02;
+      letter-spacing:-.04em;
+      color:var(--navy);
+    }
+    .story-card p {
+      margin:.72rem 0 0;
+      color:var(--muted);
+    }
+    .story-card strong { color:var(--navy); }
+
+    .process-layout {
+      display:grid;
+      grid-template-columns:1fr .96fr;
+      gap:1.1rem;
+      align-items:start;
+    }
+    .process-card,
+    .price-card,
+    .faq-card {
+      border-radius:32px;
+      background:#fffdf8;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+    .process-card,
+    .price-card { padding:1.25rem; }
+    .timeline-item,
+    .price-item {
+      display:grid;
+      grid-template-columns:76px 1fr;
+      gap:1rem;
+      padding:1rem 0;
+      border-top:1px solid var(--line);
+    }
+    .timeline-item:first-child,
+    .price-item:first-child { border-top:0; padding-top:.2rem; }
+    .timeline-badge {
+      width:76px;
+      height:76px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(180deg, var(--terracotta-soft) 0%, #fff 100%);
+      border:1px solid var(--line-strong);
+      color:var(--navy);
+      font-size:1.2rem;
+      font-weight:900;
+    }
+    .timeline-item h3,
+    .price-item h3 {
+      margin:0 0 .25rem;
+      font-size:1.06rem;
+      color:var(--navy);
+    }
+    .timeline-item p,
+    .price-item p { margin:0; color:var(--muted); }
+    .price-item {
+      grid-template-columns:1fr auto;
+      align-items:start;
+    }
+    .price-item strong {
+      color:var(--teal-deep);
+      white-space:nowrap;
+      margin-left:.8rem;
+    }
+
+    .faq-layout {
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:1.1rem;
+      align-items:start;
+    }
+    .faq-aside {
+      padding:1.25rem;
+      color:#eef4fb;
+      background:linear-gradient(180deg, var(--navy) 0%, #153250 100%);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+    }
+    .faq-aside p { color:#d4e0ec; }
+    .source-link {
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      margin-top:1rem;
+      color:#fff;
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+    .faq-card { padding:.35rem 1rem; }
+    .faq-item {
+      border-top:1px solid var(--line);
+      padding:.2rem 0;
+    }
+    .faq-item:first-child { border-top:0; }
+    .faq-question {
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      text-align:left;
+      background:none;
+      border:0;
+      padding:1rem 0;
+      font-weight:900;
+      color:var(--navy);
+    }
+    .faq-question span:last-child {
+      font-size:1.5rem;
+      line-height:1;
+      color:var(--terracotta);
+    }
+    .faq-answer {
+      padding:0 0 1rem;
+      color:var(--muted);
+    }
+    .faq-answer p { margin:0; }
+
+    .site-footer {
+      padding:1rem 0 3rem;
+      color:var(--muted);
+    }
+    .site-footer .shell {
+      border-top:1px solid var(--line);
+      padding-top:1rem;
+      display:flex;
+      justify-content:space-between;
+      gap:1rem;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .fit-modal {
+      position:fixed;
+      inset:0;
+      display:grid;
+      place-items:center;
+      z-index:40;
+      padding:1rem;
+    }
+    .fit-modal[hidden] { display:none !important; }
+    .fit-modal__backdrop {
+      position:absolute;
+      inset:0;
+      background:rgba(16,38,63,.58);
+      backdrop-filter:blur(5px);
+    }
+    .fit-modal__card {
+      position:relative;
+      width:min(100%, 460px);
+      background:#fffdf8;
+      color:var(--ink);
+      border-radius:30px;
+      padding:1.45rem;
+      border:1px solid var(--line-strong);
+      box-shadow:0 30px 90px rgba(16,38,63,.26);
+    }
+    .fit-modal__eyebrow {
+      margin:0 0 .35rem;
+      font-size:.76rem;
+      text-transform:uppercase;
+      letter-spacing:.15em;
+      color:var(--teal-deep);
+      font-weight:900;
+    }
+    .fit-modal__card h2 {
+      margin:0 0 .6rem;
+      font-size:1.9rem;
+      line-height:.95;
+      letter-spacing:-.05em;
+      color:var(--navy);
+    }
+    .fit-modal__actions {
+      display:flex;
+      gap:.75rem;
+      flex-wrap:wrap;
+      margin-top:1rem;
+    }
+
+    @media (max-width: 1080px) {
+      .catalog-layout,
+      .switcher-wrap,
+      .process-layout,
+      .faq-layout,
+      .story-grid,
+      .compare { grid-template-columns:1fr; }
+      .switcher-panel { position:static; }
+      .catalog-row { grid-template-columns:1fr; }
+      .story-grid { grid-template-columns:1fr; }
+      .faq-aside { order:0; }
+    }
+    @media (max-width: 820px) {
+      .hero-trust { grid-template-columns:1fr; }
+      .section-head { flex-direction:column; align-items:flex-start; }
+      .site-header__bar { flex-wrap:wrap; padding:.9rem 0; }
+      .nav-toggle { display:inline-flex; }
+      .main-nav {
+        width:100%;
+        flex-direction:column;
+        align-items:stretch;
+        gap:.7rem;
+      }
+      .main-nav[hidden] { display:none; }
+      .main-nav a,
+      .main-nav .btn { width:100%; justify-content:center; }
+      .chooser button:hover { transform:none; }
+    }
+    @media (max-width: 640px) {
+      .hero { padding-top:2.7rem; }
+      .hero h1 { max-width:8.8ch; }
+      .compare-card,
+      .catalog-poster,
+      .catalog-table,
+      .process-card,
+      .price-card,
+      .faq-aside,
+      .faq-card,
+      .switcher-panel,
+      .story-grid { padding-left:1rem; padding-right:1rem; }
+      .timeline-item,
+      .price-item { grid-template-columns:1fr; }
+      .timeline-badge { width:60px; height:60px; }
+      .fit-modal__actions .btn { width:100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { animation:none !important; transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell site-header__bar">
+      <a class="brand" href="../../index.html" aria-label="Back to gallery">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Jax Systems<small>Clear Harbor concept</small></span>
+      </a>
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="harbor-nav">Menu</button>
+      <nav class="main-nav" id="harbor-nav" data-mobile-nav data-open="false">
+        <a href="#compare">Missed call</a>
+        <a href="#solutions">Solutions</a>
+        <a href="#industries">Industries</a>
+        <a href="#process">Process & pricing</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-secondary" href="../../index.html">Back to gallery</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell">
+        <span class="eyebrow">Design concept · examples are illustrative</span>
+        <h1>Catch the call. Keep the day moving.</h1>
+        <p>Jax helps local operators fix the specific moments where work slips away — missed calls, slow quote follow-up, intake gaps, status chasing, and handoffs nobody has time to clean up by hand.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button" data-open-fit-call>Book a fit call</button>
+          <a class="btn btn-secondary" href="#compare">See the missed-call fix</a>
+        </div>
+        <div class="hero-trust" aria-label="Offer highlights">
+          <article>
+            <strong>$999 discovery</strong>
+            <span>Credited once toward the first deployment.</span>
+          </article>
+          <article>
+            <strong>$2,499 total</strong>
+            <span>Typical first deployment total. $1,500 remains after discovery.</span>
+          </article>
+          <article>
+            <strong>From $499/month care</strong>
+            <span>Clear ownership, tuning, and support after launch.</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-dark section" id="compare">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Problem next to fix</span>
+            <h2>The call you missed. The clear next step.</h2>
+          </div>
+          <p>Here is one way a missed call could turn into a clear next step for the people who know the work.</p>
+        </div>
+        <div class="compare">
+          <article class="compare-card" aria-labelledby="missed-title">
+            <p class="compare-card__label">Before</p>
+            <h3 id="missed-title">The call you missed</h3>
+            <p>11:18 AM. A dockside service customer calls while you are with a crew lead, a resident walks into the office, or the truck is already backing out. The voicemail is short: “Need a quote. Boat is at Palm Cove. Call me back.”</p>
+            <ul class="compare-list">
+              <li><strong>What happens now</strong> The number lands in voicemail, a text thread, or a yellow pad note.</li>
+              <li><strong>What goes missing</strong> Job type, address, timing, photo request, and who owns the callback.</li>
+              <li><strong>What it costs</strong> The customer may call another shop before your day slows down enough to respond.</li>
+            </ul>
+            <div class="human-note">
+              <strong>Real-world constraint</strong>
+              <p>The person who knows the work is busy doing the work. That does not change.</p>
+            </div>
+          </article>
+
+          <article class="compare-card compare-card--light" aria-labelledby="fix-title">
+            <p class="compare-card__label">After</p>
+            <h3 id="fix-title">A clear next step</h3>
+            <p>The call gets answered or captured, the basics are collected in plain language, and one usable follow-up path shows up where the team already works.</p>
+            <ul class="compare-list">
+              <li><strong>Captured immediately</strong> Name, phone, service needed, marina or address, urgency, and whether photos are required.</li>
+              <li><strong>Routed cleanly</strong> One summary lands in the inbox, CRM, or shared channel the office already checks.</li>
+              <li><strong>Queued for action</strong> The callback owner, next step, and follow-up timing are visible instead of living in memory.</li>
+            </ul>
+            <div class="human-note">
+              <strong>What stays human</strong>
+              <p>Scope judgment, final pricing, schedule tradeoffs, and any customer call that needs experience or tact.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-teal section" id="solutions">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Function-first catalog</span>
+            <h2>Start with the work, not the buzzwords.</h2>
+          </div>
+          <p>From the first call to the finished job, choose the work that needs a clearer next step.</p>
+        </div>
+        <div class="catalog-layout">
+          <aside class="catalog-poster" aria-label="Harbor poster illustration and concept note">
+            <svg viewBox="0 0 580 700" role="img" aria-label="Poster illustration of shoreline, phone signal, and harbor markers">
+              <defs>
+                <linearGradient id="sky-harbor" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#1f5577"/>
+                  <stop offset="100%" stop-color="#10263f"/>
+                </linearGradient>
+                <linearGradient id="water-harbor" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#2aa1a4"/>
+                  <stop offset="100%" stop-color="#0f5f67"/>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="580" height="700" fill="url(#sky-harbor)"/>
+              <rect x="36" y="36" width="508" height="628" rx="30" fill="none" stroke="#f7f1e6" stroke-width="2.5" opacity=".55"/>
+              <circle cx="430" cy="126" r="54" fill="#f7f1e6" opacity=".94"/>
+              <path d="M0 382c75 15 162 24 244 24 112 0 181-18 273-18 73 0 131 10 225 36v276H0Z" fill="url(#water-harbor)"/>
+              <path d="M50,466c58-24,103-36,150-36,62,0,88,26,150,26,39,0,82-11,134-38,46-24,96-38,148-38" stroke="#f7f1e6" stroke-width="6" fill="none" stroke-linecap="round" opacity=".82"/>
+              <rect x="108" y="172" width="134" height="244" rx="26" fill="#f7f1e6"/>
+              <rect x="122" y="198" width="106" height="168" rx="18" fill="#173554"/>
+              <circle cx="175" cy="390" r="9" fill="#c56f4d"/>
+              <path d="M168 244c18-14 38-22 57-22 34 0 58 21 75 51" stroke="#c56f4d" stroke-width="8" stroke-linecap="round" fill="none" transform="translate(32 -18)"/>
+              <path d="M168 274c30-20 58-29 84-29 44 0 79 24 105 63" stroke="#efd4c8" stroke-width="6" stroke-linecap="round" fill="none" transform="translate(14 -12)" opacity=".9"/>
+              <path d="M410 470v112" stroke="#f7f1e6" stroke-width="8" stroke-linecap="round"/>
+              <path d="M364 520h92" stroke="#f7f1e6" stroke-width="8" stroke-linecap="round"/>
+              <path d="M387 582h46" stroke="#c56f4d" stroke-width="8" stroke-linecap="round"/>
+              <text x="74" y="584" fill="#f7f1e6" font-size="58" font-weight="900" letter-spacing="-3">CLEAR</text>
+              <text x="74" y="638" fill="#cfe7e6" font-size="58" font-weight="900" letter-spacing="-3">HARBOR</text>
+            </svg>
+            <p class="poster-note">Catch the enquiry, give your team the details, and make the next step easier to see.</p>
+          </aside>
+
+          <div class="catalog-table" role="list" aria-label="Broad solution catalog">
+            <div class="catalog-row" role="listitem">
+              <strong>Call capture</strong>
+              <p>Catch missed calls, collect the basics, and tee up the callback clearly.</p>
+              <span>The owner still handles judgment calls and pricing.</span>
+            </div>
+            <div class="catalog-row" role="listitem">
+              <strong>Quote follow-up</strong>
+              <p>Keep estimates from disappearing once the urgent job takes over the day.</p>
+              <span>Final numbers and exceptions stay with the team.</span>
+            </div>
+            <div class="catalog-row" role="listitem">
+              <strong>Service intake</strong>
+              <p>Get the missing address, unit, marina, photos, or problem detail before staff has to chase it.</p>
+              <span>Escalations still go through a human.</span>
+            </div>
+            <div class="catalog-row" role="listitem">
+              <strong>Dispatch handoff</strong>
+              <p>Turn scattered notes into one clean next-step brief for the office or field crew.</p>
+              <span>Schedule tradeoffs stay local and human.</span>
+            </div>
+            <div class="catalog-row" role="listitem">
+              <strong>Status updates</strong>
+              <p>Draft the routine customer or owner update before it becomes another loose end.</p>
+              <span>Anything sensitive still gets reviewed first.</span>
+            </div>
+            <div class="catalog-row" role="listitem">
+              <strong>Repeat scheduling</strong>
+              <p>Keep recurring cleans, inspections, or maintenance from slipping when the week gets busy.</p>
+              <span>The calendar rules stay under your control.</span>
+            </div>
+            <div class="catalog-row" role="listitem">
+              <strong>Vendor coordination</strong>
+              <p>Keep confirmations, notes, and next actions in one place instead of across texts and inboxes.</p>
+              <span>Relationship management still belongs to your staff.</span>
+            </div>
+            <div class="catalog-row" role="listitem">
+              <strong>Internal reporting</strong>
+              <p>Pull the routine facts together so the monthly recap is less manual.</p>
+              <span>You review before anything leaves the business.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-sand section" id="industries">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Industry switcher</span>
+            <h2>Same structure. Different field realities.</h2>
+          </div>
+          <p>Trades, property management, and marine services all need clarity fast. The examples change; the plain-language pattern stays the same.</p>
+        </div>
+        <div class="switcher-wrap">
+          <aside class="switcher-panel">
+            <strong>Choose an industry</strong>
+            <p data-story-intro>Concrete scenario notes will update here.</p>
+            <div class="chooser" role="group" aria-label="Choose an industry">
+              <button type="button" data-industry="trades" aria-pressed="true">Trades</button>
+              <button type="button" data-industry="property" aria-pressed="false">Property management</button>
+              <button type="button" data-industry="marine" aria-pressed="false">Marine services</button>
+            </div>
+          </aside>
+          <div class="story-grid">
+            <article class="story-card" data-story-card>
+              <p class="story-card__tag">Scenario 01</p>
+              <h3 data-story-title></h3>
+              <p><strong>What slips:</strong> <span data-story-problem></span></p>
+              <p><strong>Clear fix:</strong> <span data-story-fix></span></p>
+              <p><strong>Still human:</strong> <span data-story-boundary></span></p>
+            </article>
+            <article class="story-card" data-story-card>
+              <p class="story-card__tag">Scenario 02</p>
+              <h3 data-story-title></h3>
+              <p><strong>What slips:</strong> <span data-story-problem></span></p>
+              <p><strong>Clear fix:</strong> <span data-story-fix></span></p>
+              <p><strong>Still human:</strong> <span data-story-boundary></span></p>
+            </article>
+            <article class="story-card" data-story-card>
+              <p class="story-card__tag">Scenario 03</p>
+              <h3 data-story-title></h3>
+              <p><strong>What slips:</strong> <span data-story-problem></span></p>
+              <p><strong>Clear fix:</strong> <span data-story-fix></span></p>
+              <p><strong>Still human:</strong> <span data-story-boundary></span></p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Process and price</span>
+            <h2>One useful deployment first.</h2>
+          </div>
+          <p>Start with a focused improvement and an agreed price. There is room to address other needs as your business grows.</p>
+        </div>
+        <div class="process-layout">
+          <section class="process-card">
+            <div class="timeline-item">
+              <div class="timeline-badge">1</div>
+              <div>
+                <h3>Discovery</h3>
+                <p>$999 to inspect the real workflow, choose the best first fix, and map the handoffs that matter. That fee is credited once toward the first standard deployment.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">2</div>
+              <div>
+                <h3>First deployment</h3>
+                <p>The standard first deployment is $2,499 total, so $1,500 remains after discovery. For a larger first deployment, $4,999 total is an example price, subject to scope.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">3</div>
+              <div>
+                <h3>Care</h3>
+                <p>First care starts at $499/month for upkeep, small improvements, and continuity once the system is live.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-badge">4</div>
+              <div>
+                <h3>Further deployments</h3>
+                <p>After the first lane is working, further deployments start from $999 plus $249/month additional care, subject to scope.</p>
+              </div>
+            </div>
+          </section>
+
+          <aside class="price-card" aria-label="Pricing summary">
+            <div class="price-item">
+              <div>
+                <h3>Discovery</h3>
+                <p>Focused review of the work, the tools, and the best first fix.</p>
+              </div>
+              <strong>$999</strong>
+            </div>
+            <div class="price-item">
+              <div>
+                <h3>Standard first deployment</h3>
+                <p>Typical first build total, with discovery counted in.</p>
+              </div>
+              <strong>$2,499 total</strong>
+            </div>
+            <div class="price-item">
+              <div>
+                <h3>Larger first deployment</h3>
+                <p>For broader first scope.</p>
+              </div>
+              <strong>$4,999 total</strong>
+            </div>
+            <div class="price-item">
+              <div>
+                <h3>First care</h3>
+                <p>Support after launch.</p>
+              </div>
+              <strong>From $499/mo</strong>
+            </div>
+            <div class="price-item">
+              <div>
+                <h3>Additional deployments</h3>
+                <p>Keep adding useful fixes one lane at a time.</p>
+              </div>
+              <strong>From $999 + $249/mo</strong>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="band band-dark section" id="faq">
+      <div class="shell">
+        <div class="faq-layout">
+          <aside class="faq-aside">
+            <span class="eyebrow">Plain-language FAQ</span>
+            <h2>Answer the obvious questions up front.</h2>
+            <p>See how discovery, pricing, care and your existing tools fit together before deciding on a next step.</p>
+            <a class="source-link" href="https://www.youtube.com/watch?v=ENPN-KutYJc" target="_blank" rel="noreferrer">Source inspiration: Liam Ottley + Arthur discussion</a>
+          </aside>
+
+          <div class="faq-card">
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="true" aria-controls="faq-scope" id="faq-scope-button">
+                <span>What does scope usually mean here?</span>
+                <span aria-hidden="true">−</span>
+              </button>
+              <div class="faq-answer" id="faq-scope" role="region" aria-labelledby="faq-scope-button">
+                <p>Usually one real operational lane first: call capture, quote follow-up, intake cleanup, status updates, or another repeat bottleneck. The goal is a useful first deployment, not a giant replacement project on day one.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-credit" id="faq-credit-button">
+                <span>How does the discovery credit work?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer" id="faq-credit" role="region" aria-labelledby="faq-credit-button" hidden>
+                <p>The $999 discovery fee is credited once toward the first standard deployment. On a typical $2,499 first deployment, that leaves $1,500 remaining after discovery. It is there to make the first build clearer, not to create a vague strategy phase.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-care" id="faq-care-button">
+                <span>What is covered in care?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer" id="faq-care" role="region" aria-labelledby="faq-care-button" hidden>
+                <p>Care covers the practical after-launch work: monitoring, small fixes, prompt or routing adjustments, and keeping ownership clear when something changes. It is not a promise of miracle growth claims or invented ROI.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-tools" id="faq-tools-button">
+                <span>Do we have to replace our existing tools?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer" id="faq-tools" role="region" aria-labelledby="faq-tools-button" hidden>
+                <p>No. The preferred path is to work with the tools the business already relies on where possible, then make the handoff clearer. The point is less context switching, not more software for staff to babysit.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-portfolio" id="faq-portfolio-button">
+                <span>Do you only help businesses in one industry?</span>
+                <span aria-hidden="true">+</span>
+              </button>
+              <div class="faq-answer" id="faq-portfolio" role="region" aria-labelledby="faq-portfolio-button" hidden>
+                <p>No. Jax explores common operational problems across local service businesses. The right solution depends on the people, tools and work involved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell">
+      <p>Clear Harbor · beachside, plain-spoken, and built around real handoffs.</p>
+      <p>© <span data-year></span> Jax Systems concept study</p>
+    </div>
+  </footer>
+
+  <div class="fit-modal" data-fit-modal hidden>
+    <div class="fit-modal__backdrop" data-modal-backdrop></div>
+    <div class="fit-modal__card" role="dialog" aria-modal="true" aria-labelledby="fit-call-title">
+      <p class="fit-modal__eyebrow">Book a fit call</p>
+      <h2 id="fit-call-title">Preview only</h2>
+      <p>This concept does not connect to a scheduler. On a live version, this button would open a real booking flow.</p>
+      <div class="fit-modal__actions">
+        <button type="button" class="btn btn-primary" data-modal-primary data-close-fit-call>Got it</button>
+        <button type="button" class="btn btn-secondary" data-close-fit-call>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const storyData = {
+      trades: {
+        intro: 'For field crews and office managers: catch the enquiry, clean the callback, and keep the install day from eating tomorrow too.',
+        stories: [
+          {
+            title: 'The owner is on a ladder when the best lead calls',
+            problem: 'The voicemail has a phone number and almost nothing else. By the time someone checks it, the customer may have called another shop.',
+            fix: 'Catch the basics up front, label the job type and zip, and put the callback in one place before the truck leaves the driveway again.',
+            boundary: 'Final schedule tradeoffs and quote judgment stay with the owner or dispatcher.'
+          },
+          {
+            title: 'A quote goes out, then disappears behind live work',
+            problem: 'The rough estimate was sent quickly, but follow-up depends on memory because the same person is also dispatching and ordering parts.',
+            fix: 'Stage the next reminder, pull the job notes together, and tee up the follow-up without changing the team’s core tools.',
+            boundary: 'Price changes and scope exceptions still need a real person.'
+          },
+          {
+            title: 'Tomorrow’s crew handoff lives in texts and photos',
+            problem: 'The install notes are split across message threads, marked-up screenshots, and what one tech remembers in the truck.',
+            fix: 'Turn the scattered notes into one ready-for-morning handoff with site facts, photos, and next actions.',
+            boundary: 'Nobody is forced into a new workflow before the handoff itself proves useful.'
+          }
+        ]
+      },
+      property: {
+        intro: 'For property teams: less chasing for missing basics, cleaner vendor coordination, and less month-end assembly from scattered notes.',
+        stories: [
+          {
+            title: 'The maintenance request arrives half complete',
+            problem: '“Leak under sink” lands with no unit context, no photo, no urgency, and no clear next owner.',
+            fix: 'Prompt for the missing details, sort the request properly, and give staff a better first pass before the phone starts ringing again.',
+            boundary: 'Resident tone, habitability issues, and escalations still need human judgment.'
+          },
+          {
+            title: 'Vendor follow-up happens across three channels',
+            problem: 'One vendor is texting, another is emailing, and the office is still trying to confirm who said yes to tomorrow morning.',
+            fix: 'Keep the status trail in one visible thread so the next follow-up starts from facts instead of memory.',
+            boundary: 'Relationship management stays with the property manager who knows who can actually deliver.'
+          },
+          {
+            title: 'Owner reports get built from inbox archaeology',
+            problem: 'Updates exist, but they live in separate systems and message threads until month-end turns into manual assembly.',
+            fix: 'Pull the routine notes into one draft summary with the useful backup already attached.',
+            boundary: 'The PM still reviews the story before anything goes to an owner.'
+          }
+        ]
+      },
+      marine: {
+        intro: 'For detailers, service yards, and marina crews: less back-and-forth before the job, cleaner recurring work, and better weather pivots.',
+        stories: [
+          {
+            title: 'The quote request needs boat details and photos first',
+            problem: 'A caller wants a number, but nobody has the boat length, marina, current condition, or the photos needed to price it right.',
+            fix: 'Collect the basics right away and stage the request with the pictures attached before someone has to chase it manually.',
+            boundary: 'Odd boats, access issues, and final scope calls still go through someone who knows the dock reality.'
+          },
+          {
+            title: 'Recurring cleans slip behind one-off rush jobs',
+            problem: 'The schedule gets crowded, the weather shifts, and a reliable repeat customer quietly falls off the week.',
+            fix: 'Keep the repeat schedule visible and surface who is due before the crew board gets rebuilt again.',
+            boundary: 'Priority customers and weather make-up calls remain human.'
+          },
+          {
+            title: 'Storms scramble the day faster than updates go out',
+            problem: 'A route changes in minutes, but the office is still piecing together who needs a text, a call, or a reschedule note.',
+            fix: 'Draft the reschedule sequence fast so the team spends less time rebuilding the same message list from scratch.',
+            boundary: 'Go or no-go decisions on the water always stay with the operator.'
+          }
+        ]
+      }
+    };
+
+    function setupSharedInteractions() {
+      const buttons = [...document.querySelectorAll('[data-industry]')];
+      const cards = [...document.querySelectorAll('[data-story-card]')];
+      const intro = document.querySelector('[data-story-intro]');
+
+      function renderStories(key) {
+        const group = storyData[key];
+        if (!group) return;
+        buttons.forEach((button) => {
+          const active = button.dataset.industry === key;
+          button.dataset.active = String(active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+        if (intro) intro.textContent = group.intro;
+        cards.forEach((card, index) => {
+          const story = group.stories[index];
+          if (!story) return;
+          const title = card.querySelector('[data-story-title]');
+          const problem = card.querySelector('[data-story-problem]');
+          const fix = card.querySelector('[data-story-fix]');
+          const boundary = card.querySelector('[data-story-boundary]');
+          if (title) title.textContent = story.title;
+          if (problem) problem.textContent = story.problem;
+          if (fix) fix.textContent = story.fix;
+          if (boundary) boundary.textContent = story.boundary;
+        });
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => renderStories(button.dataset.industry));
+      });
+      renderStories('trades');
+
+      const navToggle = document.querySelector('[data-nav-toggle]');
+      const navMenu = document.querySelector('[data-mobile-nav]');
+      if (navToggle && navMenu) {
+        const mobileQuery = window.matchMedia('(max-width: 820px)');
+        const syncNav = () => {
+          const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+          navMenu.hidden = mobileQuery.matches ? !expanded : false;
+        };
+        syncNav();
+        if (typeof mobileQuery.addEventListener === 'function') {
+          mobileQuery.addEventListener('change', syncNav);
+        } else if (typeof mobileQuery.addListener === 'function') {
+          mobileQuery.addListener(syncNav);
+        }
+        navToggle.addEventListener('click', () => {
+          const open = navToggle.getAttribute('aria-expanded') === 'true';
+          navToggle.setAttribute('aria-expanded', String(!open));
+          navMenu.hidden = open;
+          navMenu.dataset.open = String(!open);
+        });
+        navMenu.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            navToggle.setAttribute('aria-expanded', 'false');
+            navMenu.hidden = true;
+            navMenu.dataset.open = 'false';
+          });
+        });
+      }
+
+      const faqButtons = [...document.querySelectorAll('.faq-question')];
+      faqButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const expanded = button.getAttribute('aria-expanded') === 'true';
+          const answer = document.getElementById(button.getAttribute('aria-controls'));
+          const symbol = button.querySelector('span:last-child');
+          button.setAttribute('aria-expanded', String(!expanded));
+          if (answer) answer.hidden = expanded;
+          if (symbol) symbol.textContent = expanded ? '+' : '−';
+        });
+      });
+
+      const modal = document.querySelector('[data-fit-modal]');
+      const openers = [...document.querySelectorAll('[data-open-fit-call]')];
+      const closers = [...document.querySelectorAll('[data-close-fit-call]')];
+      let lastFocus = null;
+
+      function trapTab(event) {
+        if (!modal || event.key !== 'Tab') return;
+        const focusable = [...modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')]
+          .filter((node) => !node.hasAttribute('disabled') && !node.getAttribute('aria-hidden'));
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+
+      function closeModal() {
+        if (!modal || modal.hidden) return;
+        modal.hidden = true;
+        document.body.classList.remove('modal-open');
+        document.removeEventListener('keydown', handleModalKeydown);
+        if (lastFocus) lastFocus.focus();
+      }
+
+      function handleModalKeydown(event) {
+        if (event.key === 'Escape') closeModal();
+        trapTab(event);
+      }
+
+      function openModal() {
+        if (!modal) return;
+        lastFocus = document.activeElement;
+        modal.hidden = false;
+        document.body.classList.add('modal-open');
+        document.addEventListener('keydown', handleModalKeydown);
+        const firstFocus = modal.querySelector('[data-modal-primary]') || modal.querySelector('button');
+        if (firstFocus) firstFocus.focus();
+      }
+
+      openers.forEach((button) => button.addEventListener('click', openModal));
+      closers.forEach((button) => button.addEventListener('click', closeModal));
+      if (modal) {
+        modal.addEventListener('click', (event) => {
+          const target = event.target;
+          if (target === modal || (target instanceof HTMLElement && target.hasAttribute('data-modal-backdrop'))) {
+            closeModal();
+          }
+        });
+      }
+
+      const yearNode = document.querySelector('[data-year]');
+      if (yearNode) yearNode.textContent = String(new Date().getFullYear());
+    }
+
+    document.addEventListener('DOMContentLoaded', setupSharedInteractions);
+  </script>
+</body>
+</html>

@@ -87,6 +87,20 @@ No claim here implies conversion performance; this is presentation and positioni
 
 These two primary case-study pages were additionally read by the parent agent. Neither validates conversion performance for the Jax concepts. All eight sketches use illustrative stories without borrowed customer proof.
 
+## Liam Ottley & Arthur video
+
+Source: [Why 95% of AI Agency Websites NEVER Generate Leads](https://www.youtube.com/watch?v=ENPN-KutYJc). The full 29-minute English auto-caption transcript was retrieved and reviewed; the title's 95% has no methodology in the interview. Arthur says he built over 100 agency sites; this is a self-report.
+
+### Ideas incorporated into concepts 09–11
+- [07:05](https://www.youtube.com/watch?v=ENPN-KutYJc&t=425s): make the audience, benefit and next step clear quickly. Use plain language, not generic AI claims.
+- [08:07](https://www.youtube.com/watch?v=ENPN-KutYJc&t=487s): show a problem and a specific proposed solution together, then describe the offer, benefits, process and FAQs. A customer still needs to know what stays with a person.
+- [10:52](https://www.youtube.com/watch?v=ENPN-KutYJc&t=652s): explain pricing where feasible. Jax's prices and care boundaries remain hypotheses, not validated market rates.
+- [11:49](https://www.youtube.com/watch?v=ENPN-KutYJc&t=709s): his example of an agency site described the problem and the process without making the actual solution clear. Jax's concepts demonstrate concrete possibilities rather than empty service labels.
+- [19:58](https://www.youtube.com/watch?v=ENPN-KutYJc&t=1198s): he advocates narrowing to a single offer/niche. This is an anecdotal claim; Jax retains its broader local portfolio and function-first library. A focused homepage example is an entry point, not a restriction.
+- [21:26](https://www.youtube.com/watch?v=ENPN-KutYJc&t=1286s): he reports 102 bookings in seven days and a $150,000 pipeline following a viral LinkedIn post. These are unverified speaker-reported figures, with no controlled comparison; traffic was material, and pipeline is not revenue. They do not prove Jax will convert.
+
+No invented client testimonials, stars, customer logos, generic “trusted by” claims or guaranteed results. Clarity and a defined process are not substitutes for client proof. Test conversion with real visitors and paid outcomes after launch.
+
 ## Sources
 
 [1] https://mainstreet-operator.com

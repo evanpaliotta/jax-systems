@@ -1,0 +1,1807 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light only">
+  <title>Jax Systems — First Coast concept</title>
+  <style>
+    :root {
+      --ivory: #f7f1e6;
+      --paper: #fffaf2;
+      --sand: #eadfca;
+      --navy: #103a57;
+      --navy-deep: #0b2a40;
+      --teal: #2c7b80;
+      --teal-deep: #1f666a;
+      --teal-soft: #dff0ee;
+      --orange: #de7a3c;
+      --orange-soft: #f7d8bf;
+      --ink: #173246;
+      --muted: #5f7281;
+      --line: #cdbda7;
+      --white: #ffffff;
+      --shadow: 0 22px 52px rgba(16, 58, 87, 0.12);
+      --shadow-soft: 0 10px 22px rgba(16, 58, 87, 0.08);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --container: min(1220px, calc(100vw - 2rem));
+      --display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+      --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font: 16px/1.6 var(--sans);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(44, 123, 128, 0.08), transparent 28%),
+        linear-gradient(180deg, #fbf6ee 0%, #f7f1e6 45%, #fffaf2 100%);
+    }
+    body.modal-open { overflow: hidden; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; }
+    img, svg { max-width: 100%; display: block; }
+    :focus-visible {
+      outline: 3px solid var(--orange);
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .shell { width: var(--container); margin: 0 auto; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .eyebrow::before {
+      content: "";
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--orange), #f29f65);
+      box-shadow: 0 0 0 0.35rem rgba(222, 122, 60, 0.15);
+      flex: 0 0 auto;
+    }
+    .section { padding: 4.6rem 0; }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-head h2 {
+      margin: 0.5rem 0 0;
+      font: 700 clamp(2rem, 4vw, 3.5rem)/0.96 var(--display);
+      letter-spacing: -0.05em;
+      color: var(--navy-deep);
+      max-width: 11ch;
+    }
+    .section-head p {
+      margin: 0;
+      max-width: 48ch;
+      color: var(--muted);
+    }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: rgba(255, 250, 242, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(205, 189, 167, 0.9);
+    }
+    .site-header__bar {
+      position: relative;
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      min-width: 0;
+    }
+    .brand-mark {
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 50%;
+      border: 2px solid var(--navy);
+      background: linear-gradient(180deg, #fff7ea 0%, #f5dcc5 46%, #77c3c4 46%, #2c7b80 100%);
+      position: relative;
+      box-shadow: inset 0 0 0 3px rgba(255,255,255,0.55);
+      flex: 0 0 auto;
+    }
+    .brand-mark::before {
+      content: "";
+      position: absolute;
+      left: 19%;
+      right: 19%;
+      top: 34%;
+      height: 2px;
+      background: var(--navy);
+      border-radius: 999px;
+      box-shadow: 0 8px 0 rgba(16, 58, 87, 0.28);
+    }
+    .brand-text {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--navy-deep);
+    }
+    .brand-text small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+      font-weight: 600;
+    }
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      gap: 0.45rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      color: var(--navy);
+      padding: 0.78rem 1rem;
+      font-weight: 800;
+    }
+    .nav-toggle__icon {
+      width: 1rem;
+      height: 0.72rem;
+      position: relative;
+      display: inline-block;
+    }
+    .nav-toggle__icon::before,
+    .nav-toggle__icon::after,
+    .nav-toggle__icon span {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: currentColor;
+      border-radius: 999px;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+    }
+    .nav-toggle__icon::before { top: 0; }
+    .nav-toggle__icon span { top: calc(50% - 1px); }
+    .nav-toggle__icon::after { bottom: 0; }
+    .nav-toggle[aria-expanded="true"] .nav-toggle__icon::before { transform: translateY(5px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .nav-toggle__icon span { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] .nav-toggle__icon::after { transform: translateY(-5px) rotate(-45deg); }
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .main-nav a {
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .main-nav a:hover,
+    .main-nav a[aria-current="page"] {
+      color: var(--navy);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      padding: 0.98rem 1.34rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 800;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--navy);
+      color: var(--white);
+      box-shadow: 0 14px 28px rgba(16, 58, 87, 0.18);
+    }
+    .btn-primary:hover { background: var(--navy-deep); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.85);
+      color: var(--navy);
+      border-color: var(--line);
+    }
+    .btn-link {
+      background: transparent;
+      color: var(--navy);
+      border-color: rgba(16,58,87,0.18);
+    }
+    .hero {
+      padding: 1.15rem 0 3rem;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+    .hero-copy,
+    .hero-visual {
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,0.72);
+      box-shadow: var(--shadow);
+      overflow: clip;
+    }
+    .hero-copy {
+      padding: clamp(1.4rem, 3vw, 2.4rem);
+      background:
+        radial-gradient(circle at top left, rgba(247, 216, 191, 0.48), transparent 32%),
+        linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,251,246,0.94));
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.4rem;
+    }
+    .hero-copy h1 {
+      margin: 0.8rem 0 1rem;
+      font: 700 clamp(3rem, 8vw, 6.6rem)/0.88 var(--display);
+      letter-spacing: -0.07em;
+      color: var(--navy-deep);
+      max-width: 10ch;
+    }
+    .hero-copy p {
+      margin: 0;
+      max-width: 56ch;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.6rem;
+    }
+    .truth-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+      margin-top: 1.6rem;
+    }
+    .truth-strip article {
+      padding: 1rem;
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      border-radius: var(--radius-md);
+      background: rgba(255,255,255,0.88);
+      box-shadow: var(--shadow-soft);
+    }
+    .truth-strip strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: var(--navy);
+      font-size: 1rem;
+    }
+    .truth-strip span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .hero-visual {
+      background: linear-gradient(180deg, #fff8ef 0%, #fffdfa 100%);
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+    .hero-illustration {
+      padding: 1rem 1rem 0;
+      border-bottom: 1px solid rgba(205, 189, 167, 0.9);
+    }
+    .hero-illustration svg {
+      width: 100%;
+      height: auto;
+      border-radius: 24px 24px 14px 14px;
+      background: linear-gradient(180deg, #fff4e6 0%, #fff9f0 52%, #dff0ee 52%, #b8e2de 100%);
+    }
+    .hero-flow {
+      padding: 1.15rem;
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+    .hero-flow__head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: start;
+    }
+    .hero-flow__head h2 {
+      margin: 0.2rem 0 0;
+      font: 700 clamp(1.55rem, 3vw, 2.15rem)/0.94 var(--display);
+      letter-spacing: -0.05em;
+      color: var(--navy-deep);
+    }
+    .hero-flow__tag {
+      padding: 0.55rem 0.75rem;
+      border-radius: 999px;
+      background: var(--orange-soft);
+      color: var(--navy-deep);
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .call-card,
+    .step-card,
+    .signoff-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      background: var(--white);
+      box-shadow: var(--shadow-soft);
+    }
+    .call-card {
+      padding: 1rem;
+      display: grid;
+      gap: 0.7rem;
+    }
+    .call-card__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .call-card__title {
+      font-weight: 800;
+      color: var(--navy);
+      font-size: 1.05rem;
+    }
+    .call-card__quote {
+      padding: 0.9rem;
+      border-radius: 18px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+    .step-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+    .step-card {
+      display: grid;
+      grid-template-columns: 3.1rem 1fr;
+      gap: 0.8rem;
+      padding: 0.95rem;
+      align-items: start;
+    }
+    .step-number {
+      width: 3.1rem;
+      height: 3.1rem;
+      border-radius: 18px;
+      background: linear-gradient(180deg, var(--teal-soft), #bee4e0);
+      color: var(--teal-deep);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 1.05rem;
+    }
+    .step-card h3 {
+      margin: 0 0 0.18rem;
+      color: var(--navy);
+      font-size: 1rem;
+      line-height: 1.15;
+    }
+    .step-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .signoff-card {
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      background: linear-gradient(180deg, #fffdf9 0%, #fff3e8 100%);
+    }
+    .signoff-card strong {
+      display: block;
+      margin-bottom: 0.22rem;
+      color: var(--navy);
+    }
+    .signoff-pill {
+      padding: 0.7rem 0.95rem;
+      border-radius: 999px;
+      background: var(--navy);
+      color: var(--white);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .compare-wrap {
+      border-radius: var(--radius-xl);
+      overflow: clip;
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      box-shadow: var(--shadow);
+    }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .compare-panel {
+      padding: clamp(1.4rem, 3vw, 2rem);
+      min-height: 100%;
+    }
+    .compare-panel--problem {
+      background: var(--navy-deep);
+      color: rgba(255,255,255,0.92);
+    }
+    .compare-panel--solution {
+      background: linear-gradient(180deg, #e8f6f4 0%, #d8efeb 100%);
+      color: var(--ink);
+    }
+    .compare-panel h3 {
+      margin: 0.3rem 0 1rem;
+      font: 700 clamp(1.7rem, 3vw, 2.3rem)/0.96 var(--display);
+      letter-spacing: -0.05em;
+    }
+    .compare-panel > p {
+      margin: 0 0 1.2rem;
+      max-width: 42ch;
+    }
+    .pair-list {
+      display: grid;
+      gap: 0.85rem;
+    }
+    .pair-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.8rem;
+      padding: 0.9rem 0;
+      border-top: 1px solid rgba(255,255,255,0.16);
+    }
+    .compare-panel--solution .pair-item {
+      border-top-color: rgba(16,58,87,0.14);
+    }
+    .pair-item:first-child { border-top: 0; padding-top: 0; }
+    .pair-badge {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 0.8rem;
+      font-weight: 900;
+      flex: 0 0 auto;
+    }
+    .compare-panel--problem .pair-badge {
+      background: rgba(255,255,255,0.12);
+      color: #ffd9bf;
+    }
+    .compare-panel--solution .pair-badge {
+      background: rgba(44,123,128,0.12);
+      color: var(--teal-deep);
+    }
+    .pair-item strong {
+      display: block;
+      margin-bottom: 0.15rem;
+      font-size: 1rem;
+    }
+    .pair-item p {
+      margin: 0;
+      opacity: 0.95;
+    }
+    .ways-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(min(220px, 100%), 1fr));
+      gap: 1rem;
+    }
+    .way-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      background: rgba(255,255,255,0.82);
+      box-shadow: var(--shadow-soft);
+      padding: 1.2rem;
+      display: grid;
+      gap: 0.75rem;
+      align-content: start;
+    }
+    .way-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff0e1, #f7d8bf);
+      display: grid;
+      place-items: center;
+      color: var(--orange);
+    }
+    .way-card h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 1.1rem;
+      line-height: 1.15;
+    }
+    .way-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .way-card ul {
+      margin: 0;
+      padding-left: 1.05rem;
+      color: var(--ink);
+    }
+    .way-card li + li { margin-top: 0.32rem; }
+    .explorer {
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(252,248,241,0.9));
+      box-shadow: var(--shadow);
+      padding: 1.2rem;
+    }
+    .explorer-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1.15rem;
+      align-items: start;
+    }
+    .explorer-sidebar,
+    .story-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      background: rgba(255,255,255,0.92);
+      box-shadow: var(--shadow-soft);
+    }
+    .explorer-sidebar {
+      padding: 1.2rem;
+      position: sticky;
+      top: 96px;
+    }
+    .explorer-sidebar h3 {
+      margin: 0.45rem 0 0.8rem;
+      font: 700 clamp(1.6rem, 3vw, 2rem)/0.96 var(--display);
+      color: var(--navy-deep);
+      letter-spacing: -0.04em;
+    }
+    .explorer-sidebar p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .industry-tabs {
+      display: grid;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+    .industry-tabs button {
+      text-align: left;
+      width: 100%;
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      border-radius: 16px;
+      background: var(--white);
+      color: var(--navy);
+      padding: 0.95rem 1rem;
+      font-weight: 800;
+      transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+    }
+    .industry-tabs button:hover { transform: translateX(2px); }
+    .industry-tabs button[data-active="true"] {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+      box-shadow: 0 12px 24px rgba(16,58,87,0.16);
+    }
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(min(240px, 100%), 1fr));
+      gap: 1rem;
+    }
+    .story-card {
+      padding: 1.15rem;
+      min-height: 100%;
+      display: grid;
+      gap: 0.8rem;
+      align-content: start;
+    }
+    .story-card__tag {
+      margin: 0;
+      color: var(--teal-deep);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 800;
+    }
+    .story-card h4 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 1.18rem;
+      line-height: 1.08;
+    }
+    .story-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .story-card p strong { color: var(--ink); }
+    .process-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1rem;
+    }
+    .process-card,
+    .pricing-card,
+    .faq-card,
+    .cta-panel {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      background: rgba(255,255,255,0.86);
+      box-shadow: var(--shadow);
+      overflow: clip;
+    }
+    .process-card,
+    .pricing-card { padding: 1.3rem; }
+    .step-row,
+    .price-row {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-top: 1px solid rgba(205, 189, 167, 0.9);
+    }
+    .step-row:first-child,
+    .price-row:first-child { border-top: 0; padding-top: 0; }
+    .step-badge {
+      width: 4.75rem;
+      height: 4.75rem;
+      border-radius: 22px;
+      background: linear-gradient(180deg, #fff0e1, #f7d8bf);
+      color: var(--orange);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+    .step-row h3,
+    .price-row h3 {
+      margin: 0 0 0.2rem;
+      color: var(--navy);
+      font-size: 1.08rem;
+    }
+    .step-row p,
+    .price-row p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .pricing-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,244,236,0.94));
+    }
+    .pricing-banner {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: var(--radius-lg);
+      background: var(--navy);
+      color: var(--white);
+    }
+    .pricing-banner strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 1.1rem;
+    }
+    .price-row {
+      grid-template-columns: 1fr auto;
+      align-items: start;
+    }
+    .price-amount {
+      color: var(--navy);
+      font-weight: 900;
+      text-align: right;
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+    .faq-layout {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 1rem;
+      align-items: start;
+    }
+    .faq-note {
+      padding: 1.3rem;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(223, 240, 238, 0.8), rgba(255,255,255,0.92));
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      box-shadow: var(--shadow);
+    }
+    .faq-note h3 {
+      margin: 0.45rem 0 0.8rem;
+      font: 700 clamp(1.8rem, 3vw, 2.35rem)/0.96 var(--display);
+      color: var(--navy-deep);
+      letter-spacing: -0.05em;
+    }
+    .faq-note p,
+    .faq-note li {
+      color: var(--ink);
+    }
+    .faq-note ul {
+      margin: 1rem 0 0;
+      padding-left: 1.1rem;
+    }
+    .faq-card { padding: 0.4rem 1rem; }
+    .faq-item {
+      border-top: 1px solid rgba(205, 189, 167, 0.9);
+      padding: 0.3rem 0;
+    }
+    .faq-item:first-child { border-top: 0; }
+    .faq-question {
+      width: 100%;
+      padding: 1rem 0;
+      border: 0;
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      text-align: left;
+      color: var(--navy-deep);
+      font-weight: 800;
+    }
+    .faq-question span:last-child {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 999px;
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      display: grid;
+      place-items: center;
+      color: var(--navy);
+      flex: 0 0 auto;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+    .faq-item[data-open="true"] .faq-question span:last-child {
+      transform: rotate(45deg);
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.22s ease;
+    }
+    .faq-answer p {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      padding-right: 2rem;
+    }
+    .cta-panel {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      background:
+        radial-gradient(circle at right top, rgba(222, 122, 60, 0.17), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,0.96), rgba(250,246,238,0.98));
+    }
+    .cta-copy,
+    .cta-side {
+      padding: 1.4rem;
+    }
+    .cta-copy {
+      border-right: 1px solid rgba(205, 189, 167, 0.95);
+    }
+    .cta-copy h2 {
+      margin: 0.55rem 0 0.8rem;
+      font: 700 clamp(2rem, 4vw, 3.4rem)/0.94 var(--display);
+      letter-spacing: -0.05em;
+      color: var(--navy-deep);
+      max-width: 10ch;
+    }
+    .cta-copy p,
+    .cta-side p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 50ch;
+    }
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.2rem;
+    }
+    .cta-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .cta-side ul {
+      margin: 0;
+      padding-left: 1rem;
+      color: var(--ink);
+    }
+    .site-footer {
+      padding: 1rem 0 3rem;
+      color: var(--muted);
+    }
+    .site-footer__inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: start;
+      border-top: 1px solid rgba(205, 189, 167, 0.95);
+      padding-top: 1rem;
+    }
+    .site-footer a {
+      color: var(--navy);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.18em;
+    }
+    .fit-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+    }
+    .fit-modal[hidden] { display: none !important; }
+    .fit-modal__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 42, 64, 0.52);
+      backdrop-filter: blur(4px);
+    }
+    .fit-modal__card {
+      position: relative;
+      width: min(100%, 480px);
+      border-radius: 30px;
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      background: linear-gradient(180deg, #fffdf9 0%, #fff7ed 100%);
+      box-shadow: 0 30px 80px rgba(11, 42, 64, 0.24);
+      padding: 1.35rem;
+    }
+    .fit-modal__eyebrow {
+      margin: 0 0 0.35rem;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal-deep);
+    }
+    .fit-modal__card h2 {
+      margin: 0 0 0.7rem;
+      font: 700 2rem/0.96 var(--display);
+      color: var(--navy-deep);
+      letter-spacing: -0.05em;
+    }
+    .fit-modal__card p {
+      margin: 0;
+      color: var(--ink);
+    }
+    .fit-modal__list {
+      margin: 1rem 0 0;
+      padding-left: 1rem;
+      color: var(--ink);
+    }
+    .fit-modal__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.1rem;
+    }
+    .fit-modal__close {
+      position: absolute;
+      top: 0.9rem;
+      right: 0.9rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(205, 189, 167, 0.95);
+      background: var(--white);
+      color: var(--navy);
+      font-size: 1.2rem;
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .explorer-grid,
+      .process-layout,
+      .faq-layout,
+      .cta-panel,
+      .compare-grid {
+        grid-template-columns: 1fr;
+      }
+      .explorer-sidebar {
+        position: static;
+      }
+      .cta-copy {
+        border-right: 0;
+        border-bottom: 1px solid rgba(205, 189, 167, 0.95);
+      }
+      .truth-strip,
+      .ways-grid,
+      .story-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 840px) {
+      .site-header__bar {
+        min-height: 72px;
+        padding: 0.8rem 0;
+      }
+      .nav-toggle { display: inline-flex; }
+      .main-nav {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(100% + 0.55rem);
+        display: grid;
+        gap: 0.65rem;
+        padding: 0.9rem;
+        background: rgba(255, 250, 242, 0.98);
+        border: 1px solid rgba(205, 189, 167, 0.95);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(-8px);
+        transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+      }
+      .main-nav[data-open="true"] {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+      .main-nav a,
+      .main-nav .btn-link {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        padding: 0.95rem 1rem;
+        border-radius: 16px;
+        background: var(--white);
+        border: 1px solid rgba(205, 189, 167, 0.95);
+      }
+      .main-nav .btn-link { background: var(--navy); color: var(--white); border-color: var(--navy); }
+      .truth-strip,
+      .ways-grid,
+      .story-grid {
+        grid-template-columns: 1fr;
+      }
+      .section-head { align-items: start; flex-direction: column; }
+      .step-row,
+      .price-row,
+      .step-card {
+        grid-template-columns: 1fr;
+      }
+      .step-badge,
+      .step-number { width: 3.6rem; height: 3.6rem; }
+      .hero-copy h1,
+      .cta-copy h2,
+      .section-head h2 { max-width: none; }
+      .signoff-card {
+        flex-direction: column;
+        align-items: start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero,
+      .section { padding-top: 1rem; }
+      .section { padding-bottom: 3.7rem; }
+      .hero-copy,
+      .hero-flow,
+      .process-card,
+      .pricing-card,
+      .faq-note,
+      .cta-copy,
+      .cta-side { padding: 1.05rem; }
+      .hero-illustration { padding: 0.7rem 0.7rem 0; }
+      .fit-modal__card { padding: 1.1rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell site-header__bar">
+      <a class="brand" href="../../index.html" aria-label="Back to gallery">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-text">Jax Systems<small>First Coast concept</small></span>
+      </a>
+
+      <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__icon" aria-hidden="true"><span></span></span>
+        Menu
+      </button>
+
+      <nav class="main-nav" id="site-nav" data-mobile-nav data-open="false" aria-label="Section navigation">
+        <a href="#story">Missed-call story</a>
+        <a href="#ways">Ways we help</a>
+        <a href="#industries">Industries</a>
+        <a href="#process">Process & pricing</a>
+        <a href="#faq">FAQs</a>
+        <a class="btn btn-link" href="../../index.html">Back to gallery</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <section class="hero-copy" aria-labelledby="hero-title">
+          <div>
+            <span class="eyebrow">Jacksonville-first systems for local service work</span>
+            <h1 id="hero-title">When you miss a call, the work should not disappear.</h1>
+            <p>Jax Systems helps Jacksonville businesses keep customer requests, quotes and updates moving. Start with the tools you already use, and keep the important decisions in your hands.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" type="button" data-open-fit-call>Book a fit call</button>
+              <a class="btn btn-secondary" href="#story">See the missed-call example</a>
+            </div>
+          </div>
+
+          <div class="truth-strip" aria-label="Grounded trust signals">
+            <article>
+              <strong>Real prices up front</strong>
+              <span>$999 discovery, clear first deployment totals, and ongoing care listed before anyone books.</span>
+            </article>
+            <article>
+              <strong>Broad on purpose</strong>
+              <span>Trades, property management, marine, and other owner-led service work can all start from one clear first fix.</span>
+            </article>
+            <article>
+              <strong>Human review stays in the loop</strong>
+              <span>Routing, summaries, and follow-through can be systemized. Final approvals, pricing, and judgment stay with your team.</span>
+            </article>
+          </div>
+        </section>
+
+        <aside class="hero-visual" aria-label="Illustrative missed-call recovery example">
+          <div class="hero-illustration">
+            <svg viewBox="0 0 560 260" role="img" aria-label="First Coast line illustration with bridge, shoreline, and water">
+              <defs>
+                <linearGradient id="fc-sky" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#fff3e3"></stop>
+                  <stop offset="100%" stop-color="#fffaf1"></stop>
+                </linearGradient>
+                <linearGradient id="fc-water" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#7ec6c5"></stop>
+                  <stop offset="100%" stop-color="#2c7b80"></stop>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="560" height="260" fill="url(#fc-sky)"></rect>
+              <circle cx="420" cy="62" r="28" fill="#f0ba8f"></circle>
+              <path d="M0 145c52-8 104-12 157-12 66 0 118 6 171 6 50 0 95-8 143-8 38 0 68 4 89 8v121H0Z" fill="url(#fc-water)"></path>
+              <path d="M0 152c54-7 107-10 162-10 64 0 117 5 168 5 52 0 95-7 144-7 34 0 63 3 86 7" fill="none" stroke="#bfe7e2" stroke-width="5" stroke-linecap="round"></path>
+              <path d="M34 119h492" stroke="#103a57" stroke-width="4" stroke-linecap="round" opacity="0.65"></path>
+              <path d="M188 118c18-44 34-73 50-73 16 0 30 29 48 73" stroke="#103a57" stroke-width="5" fill="none" stroke-linecap="round"></path>
+              <path d="M286 118c17-41 31-66 44-66 13 0 27 25 44 66" stroke="#103a57" stroke-width="5" fill="none" stroke-linecap="round"></path>
+              <path d="M106,168c22-16,42-25,60-25,12,0,27,4,44,13" stroke="#f7f1e6" stroke-width="4" fill="none" stroke-linecap="round"></path>
+              <path d="M298 184c27-16 52-25 77-25 16 0 34 4 56 13" stroke="#f7f1e6" stroke-width="4" fill="none" stroke-linecap="round"></path>
+              <path d="M442 151c13 10 24 24 31 41" stroke="#103a57" stroke-width="4" fill="none" stroke-linecap="round"></path>
+              <path d="M454 165c13-1 24 2 35 9" stroke="#103a57" stroke-width="4" fill="none" stroke-linecap="round"></path>
+            </svg>
+          </div>
+
+          <div class="hero-flow">
+            <div class="hero-flow__head">
+              <div>
+                <span class="eyebrow">Concrete story</span>
+                <h2>One missed plumbing call, handled more cleanly.</h2>
+              </div>
+              <span class="hero-flow__tag">Illustrative</span>
+            </div>
+
+            <article class="call-card">
+              <div class="call-card__meta">
+                <span class="call-card__title">Missed call · Riverside homeowner</span>
+                <span>2:14 PM</span>
+              </div>
+              <div class="call-card__quote">“Kitchen ceiling leak. Need someone to call me back before tonight.”</div>
+            </article>
+
+            <div class="step-list" aria-label="Illustrative what-happens-next steps">
+              <article class="step-card">
+                <div class="step-number">01</div>
+                <div>
+                  <h3>Capture the basics right away</h3>
+                  <p>A short follow-up message can ask for the address, the issue, and the best callback window instead of letting the voicemail sit alone.</p>
+                </div>
+              </article>
+              <article class="step-card">
+                <div class="step-number">02</div>
+                <div>
+                  <h3>Send the owner one usable summary</h3>
+                  <p>Name, job type, urgency, and contact details land in one place so the next move is clear in the morning.</p>
+                </div>
+              </article>
+              <article class="step-card">
+                <div class="step-number">03</div>
+                <div>
+                  <h3>Keep the decision with the team</h3>
+                  <p>The office still decides the callback, the slot, and the quote. The system only removes the scramble.</p>
+                </div>
+              </article>
+            </div>
+
+            <article class="signoff-card">
+              <div>
+                <strong>Human sign-off stays visible.</strong>
+                <span>The point is better follow-through, not pretending judgment can be automated away.</span>
+              </div>
+              <span class="signoff-pill">Owner approves next step</span>
+            </article>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Problem paired with fix</span>
+            <h2>Put the leak and the repair on the same page.</h2>
+          </div>
+          <p>Not a vague “we improve operations” claim. One concrete local-service problem, with the fix placed directly beside it before any talk about process.</p>
+        </div>
+
+        <div class="compare-wrap">
+          <div class="compare-grid">
+            <section class="compare-panel compare-panel--problem" aria-labelledby="problem-heading">
+              <span class="eyebrow" style="color:#f7d8bf;">What usually happens</span>
+              <h3 id="problem-heading">The owner is on-site. The phone rings. The trail breaks.</h3>
+              <p>A missed call is not just one missed call. It becomes a voicemail, a sticky note, a half-remembered callback, and a slower start tomorrow.</p>
+              <div class="pair-list">
+                <article class="pair-item">
+                  <div class="pair-badge">A</div>
+                  <div>
+                    <strong>The first detail gets lost.</strong>
+                    <p>No clean record of the address, urgency, or exact ask beyond a rushed message.</p>
+                  </div>
+                </article>
+                <article class="pair-item">
+                  <div class="pair-badge">B</div>
+                  <div>
+                    <strong>The office has to ask twice.</strong>
+                    <p>Customers repeat themselves because the handoff starts with gaps instead of context.</p>
+                  </div>
+                </article>
+                <article class="pair-item">
+                  <div class="pair-badge">C</div>
+                  <div>
+                    <strong>The next move depends on memory.</strong>
+                    <p>The job might still get booked, but only after another round of chasing and sorting.</p>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="compare-panel compare-panel--solution" aria-labelledby="solution-heading">
+              <span class="eyebrow">What changes next</span>
+              <h3 id="solution-heading">Capture the intake, send the summary, leave the real call to the team.</h3>
+              <p>The fix is specific and realistic: gather the missing basics fast, route them cleanly, and make the team’s judgment step easier instead of replacing it.</p>
+              <div class="pair-list">
+                <article class="pair-item">
+                  <div class="pair-badge">01</div>
+                  <div>
+                    <strong>Ask for the missing basics automatically.</strong>
+                    <p>Name, address, problem, and preferred callback window are gathered while the interest is still fresh.</p>
+                  </div>
+                </article>
+                <article class="pair-item">
+                  <div class="pair-badge">02</div>
+                  <div>
+                    <strong>Group the facts into one owner-friendly handoff.</strong>
+                    <p>The office sees one summary instead of scattered calls, texts, and notes.</p>
+                  </div>
+                </article>
+                <article class="pair-item">
+                  <div class="pair-badge">03</div>
+                  <div>
+                    <strong>Keep pricing, scheduling, and exceptions human.</strong>
+                    <p>The team still decides what to promise and when to send the truck.</p>
+                  </div>
+                </article>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ways">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Ways we help</span>
+            <h2>Built around work that owners already understand.</h2>
+          </div>
+          <p>From the first call to the final invoice, find the work that is hardest to keep up with and start there.</p>
+        </div>
+
+        <div class="ways-grid">
+          <article class="way-card">
+            <div class="way-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" width="24" height="24"><path d="M7 10a9 9 0 0 1 18 0v12H7Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M11 22h10" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Calls and intake</h3>
+            <p>Keep enquiries from dying in voicemail or text threads.</p>
+            <ul>
+              <li>Missed-call follow-up</li>
+              <li>Basic intake capture</li>
+              <li>Clean morning summary</li>
+            </ul>
+          </article>
+
+          <article class="way-card">
+            <div class="way-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" width="24" height="24"><path d="M7 6h18v20H7Z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M11 12h10M11 17h10M11 22h6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Quotes and approvals</h3>
+            <p>Turn field notes into something easier to review and send.</p>
+            <ul>
+              <li>Estimate follow-up drafts</li>
+              <li>Photo and note organization</li>
+              <li>Approval-ready handoffs</li>
+            </ul>
+          </article>
+
+          <article class="way-card">
+            <div class="way-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" width="24" height="24"><path d="M6 10h20v12H6Z" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M10 6h12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="16" r="1.6" fill="currentColor"/><path d="M16 16h6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Customer updates</h3>
+            <p>Send the update before the customer has to chase it.</p>
+            <ul>
+              <li>Delay and reschedule drafts</li>
+              <li>Status summaries</li>
+              <li>Owner-reviewed outbound messages</li>
+            </ul>
+          </article>
+
+          <article class="way-card">
+            <div class="way-icon" aria-hidden="true">
+              <svg viewBox="0 0 32 32" width="24" height="24"><path d="M9 24V8l14 8Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M6 26h20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Internal follow-through</h3>
+            <p>Keep open items moving across owner, office, and field teams.</p>
+            <ul>
+              <li>Checklist nudges</li>
+              <li>Weekly open-item digests</li>
+              <li>Clearer staff handoffs</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="industries">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Interactive industry explorer</span>
+            <h2>How could this help your business?</h2>
+          </div>
+          <p>Trades, property management, and marine each have different daily friction. The shape of the work changes. The need for a clean next step does not.</p>
+        </div>
+
+        <div class="explorer">
+          <div class="explorer-grid">
+            <aside class="explorer-sidebar">
+              <span class="eyebrow">Choose a lane</span>
+              <h3 data-story-heading>Trades</h3>
+              <p data-story-intro>Illustrative stories for owner-led service teams that lose time between the first call, the field visit, and the follow-up.</p>
+              <div class="industry-tabs" role="tablist" aria-label="Industry selector">
+                <button type="button" role="tab" id="tab-trades" aria-selected="true" aria-controls="industry-panel" tabindex="0" data-industry="trades" data-active="true">Trades</button>
+                <button type="button" role="tab" id="tab-property" aria-selected="false" aria-controls="industry-panel" tabindex="-1" data-industry="property" data-active="false">Property management</button>
+                <button type="button" role="tab" id="tab-marine" aria-selected="false" aria-controls="industry-panel" tabindex="-1" data-industry="marine" data-active="false">Marine</button>
+              </div>
+            </aside>
+
+            <div class="story-grid" id="industry-panel" role="tabpanel" aria-labelledby="tab-trades">
+              <article class="story-card" data-story-card>
+                <p class="story-card__tag">Illustrative story 01</p>
+                <h4 data-story-title></h4>
+                <p><strong>Situation:</strong> <span data-story-problem></span></p>
+                <p><strong>Specific fix:</strong> <span data-story-fix></span></p>
+                <p><strong>Human oversight:</strong> <span data-story-boundary></span></p>
+              </article>
+              <article class="story-card" data-story-card>
+                <p class="story-card__tag">Illustrative story 02</p>
+                <h4 data-story-title></h4>
+                <p><strong>Situation:</strong> <span data-story-problem></span></p>
+                <p><strong>Specific fix:</strong> <span data-story-fix></span></p>
+                <p><strong>Human oversight:</strong> <span data-story-boundary></span></p>
+              </article>
+              <article class="story-card" data-story-card>
+                <p class="story-card__tag">Illustrative story 03</p>
+                <h4 data-story-title></h4>
+                <p><strong>Situation:</strong> <span data-story-problem></span></p>
+                <p><strong>Specific fix:</strong> <span data-story-fix></span></p>
+                <p><strong>Human oversight:</strong> <span data-story-boundary></span></p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Discovery, build, care</span>
+            <h2>Easy to start. Clear to price. No mystery step in the middle.</h2>
+          </div>
+          <p>The first conversation does not need a giant transformation roadmap. It needs a believable first move, a fixed starting structure, and room to add more later.</p>
+        </div>
+
+        <div class="process-layout">
+          <section class="process-card" aria-labelledby="process-title">
+            <span class="eyebrow">3-step path</span>
+            <div class="section-head" style="margin-bottom:1rem;">
+              <div><h2 id="process-title">Find the bottleneck. Build the first fix. Keep it cared for.</h2></div>
+            </div>
+
+            <article class="step-row">
+              <div class="step-badge">01</div>
+              <div>
+                <h3>Discovery</h3>
+                <p>$999 for a focused look at how the work actually moves now. That fee is credited once toward the initial standard deployment, leaving $1,500 remaining after the credit in the standard $2,499 path.</p>
+              </div>
+            </article>
+            <article class="step-row">
+              <div class="step-badge">02</div>
+              <div>
+                <h3>Build</h3>
+                <p>The standard first deployment total is $2,499. For a larger first deployment, $4,999 total is an example price, subject to scope.</p>
+              </div>
+            </article>
+            <article class="step-row">
+              <div class="step-badge">03</div>
+              <div>
+                <h3>Care</h3>
+                <p>Ongoing care starts at $499/month once something is live. Additional deployments start from $999 plus $249/month additional care, subject to agreed scope.</p>
+              </div>
+            </article>
+          </section>
+
+          <aside class="pricing-card" id="pricing" aria-labelledby="pricing-title">
+            <div class="pricing-banner">
+              <strong>Know the price before you commit.</strong>
+              <span>Discovery is credited toward your first deployment. Scope and care are agreed before work begins.</span>
+            </div>
+            <span class="eyebrow">Pricing</span>
+            <div class="section-head" style="margin-bottom:1rem;">
+              <div><h2 id="pricing-title">What the first engagement can cost.</h2></div>
+            </div>
+
+            <article class="price-row">
+              <div>
+                <h3>Discovery</h3>
+                <p>Focused review of the workflow and the best first improvement.</p>
+              </div>
+              <div class="price-amount">$999</div>
+            </article>
+            <article class="price-row">
+              <div>
+                <h3>Standard first deployment total</h3>
+                <p>Total cost including the discovery credit; $1,500 remains after discovery in the standard path.</p>
+              </div>
+              <div class="price-amount">$2,499 total</div>
+            </article>
+            <article class="price-row">
+              <div>
+                <h3>Larger first deployment</h3>
+                <p>For broader first engagements when the initial scope is larger.</p>
+              </div>
+              <div class="price-amount">$4,999 total</div>
+            </article>
+            <article class="price-row">
+              <div>
+                <h3>Ongoing care</h3>
+                <p>Support, tuning, and continuity after launch.</p>
+              </div>
+              <div class="price-amount">$499/mo</div>
+            </article>
+            <article class="price-row">
+              <div>
+                <h3>Additional deployments</h3>
+                <p>Further improvements after the first one, subject to agreed scope.</p>
+              </div>
+              <div class="price-amount">From $999 + $249/mo</div>
+            </article>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="shell faq-layout">
+        <aside class="faq-note">
+          <span class="eyebrow">Before the call</span>
+          <h3>Know what to expect before we begin.</h3>
+          <p>We start by understanding the work, your tools, and the people involved. Then we propose a focused first improvement with a clear price and agreed boundaries.</p>
+          <ul>
+            <li>Illustrative examples are labeled as illustrative.</li>
+            <li>Final approvals stay with the business owner or team.</li>
+            <li>Start with one fix and add others when they are worthwhile.</li>
+          </ul>
+        </aside>
+
+        <section class="faq-card" aria-label="Frequently asked questions">
+          <div class="faq-item" data-open="true">
+            <button class="faq-question" type="button" aria-expanded="true" aria-controls="faq-panel-1" id="faq-button-1">
+              <span>What kinds of businesses can Jax help?</span>
+              <span aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-panel-1" role="region" aria-labelledby="faq-button-1">
+              <p>We are exploring useful ways to help local trades, property managers, marine businesses and other service teams. The right starting point depends on your business.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-panel-2" id="faq-button-2">
+              <span>What does the $999 discovery actually do?</span>
+              <span aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-panel-2" role="region" aria-labelledby="faq-button-2">
+              <p>It identifies the most useful first workflow to improve, maps what happens now, and turns that into a first deployment scope. That $999 is credited once toward the initial standard deployment.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-panel-3" id="faq-button-3">
+              <span>Are these examples guaranteed outcomes?</span>
+              <span aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-panel-3" role="region" aria-labelledby="faq-button-3">
+              <p>No. These are illustrative examples. We would agree on a useful way to measure improvement for your situation before building.</p>
+            </div>
+          </div>
+
+          <div class="faq-item" data-open="false">
+            <button class="faq-question" type="button" aria-expanded="false" aria-controls="faq-panel-4" id="faq-button-4">
+              <span>Who handles pricing, scheduling, and exceptions once something is live?</span>
+              <span aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-panel-4" role="region" aria-labelledby="faq-button-4">
+              <p>Your team does. The workflows shown here are meant to organize intake, follow-up, and communication. They do not replace business judgment on quotes, dispatch, or edge cases.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell cta-panel" id="fit-call">
+        <div class="cta-copy">
+          <span class="eyebrow">Fit call</span>
+          <h2>See whether one practical first fix is worth scoping.</h2>
+          <p>Best for owners who already know where the day gets messy and want a cleaner next step, not a vague transformation pitch.</p>
+          <div class="cta-actions">
+            <button class="btn btn-primary" type="button" data-open-fit-call>Book a fit call</button>
+            <a class="btn btn-secondary" href="#pricing">Review pricing first</a>
+          </div>
+        </div>
+        <aside class="cta-side">
+          <p><strong>Preview only.</strong> Booking is not connected in this design preview.</p>
+          <ul>
+            <li>Start with one real problem.</li>
+            <li>Agree the scope and price before work begins.</li>
+            <li>Keep a person responsible for decisions and exceptions.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell site-footer__inner">
+      <div>
+        <a href="../../index.html">Back to concept gallery</a>
+        <p style="margin:0.45rem 0 0;">First Coast is a disposable homepage concept for the design lab.</p>
+      </div>
+      <div>
+        <p style="margin:0;">Source reference for design learning context:</p>
+        <a href="https://www.youtube.com/watch?v=ENPN-KutYJc" target="_blank" rel="noreferrer">Liam Ottley interview with Arthur on AI agency websites</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="fit-modal" data-fit-modal hidden>
+    <div class="fit-modal__backdrop" data-close-fit-call></div>
+    <div class="fit-modal__card" role="dialog" aria-modal="true" aria-labelledby="fit-modal-title" aria-describedby="fit-modal-description" tabindex="-1">
+      <button class="fit-modal__close" type="button" aria-label="Close fit call preview" data-close-fit-call>×</button>
+      <p class="fit-modal__eyebrow">Fit call preview</p>
+      <h2 id="fit-modal-title">Booking is not connected.</h2>
+      <p id="fit-modal-description">This concept keeps the call-to-action honest. There is no calendar backend here, no fake confirmation, and no hidden form submission.</p>
+      <ul class="fit-modal__list">
+        <li>A real build could connect this space to scheduling after copy and scope are approved.</li>
+        <li>The example stays accessible and visible so the CTA can still be evaluated in context.</li>
+        <li>Close the dialog to keep reviewing the page.</li>
+      </ul>
+      <div class="fit-modal__actions">
+        <button class="btn btn-primary" type="button" data-close-fit-call>Close preview</button>
+        <a class="btn btn-secondary" href="#pricing">Review pricing</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const industries = {
+      trades: {
+        heading: 'Trades',
+        intro: 'Illustrative stories for owner-led service teams that lose time between the first call, the field visit, and the follow-up.',
+        stories: [
+          {
+            title: 'Missed estimate while the crew is on a roof',
+            problem: 'A homeowner calls during a site visit, leaves a partial voicemail, and nobody writes down the address or urgency clearly.',
+            fix: 'Send a short intake follow-up, collect the property details, and give the office one summary to work from the next morning.',
+            boundary: 'The owner or office still decides whether to book the estimate, what to promise, and who takes the callback.'
+          },
+          {
+            title: 'Parts delay update that should have gone out earlier',
+            problem: 'The job slips because a part is late, but the customer only learns that after calling the office twice.',
+            fix: 'Draft a status update as soon as the delay is logged so the team can review and send it before the customer chases.',
+            boundary: 'A human reviews the wording, confirms the revised plan, and handles exceptions.'
+          },
+          {
+            title: 'Field notes that never become a clean follow-up',
+            problem: 'Photos, measurements, and voice notes come back from the site in different places and sit too long before an estimate goes out.',
+            fix: 'Organize the visit details into one estimate-ready handoff so the office starts from structure instead of sorting.',
+            boundary: 'Pricing, exclusions, and final quote language stay with the estimator.'
+          }
+        ]
+      },
+      property: {
+        heading: 'Property management',
+        intro: 'Illustrative stories for teams balancing tenants, owners, vendors, and after-hours issues without letting the inbox set the pace.',
+        stories: [
+          {
+            title: 'After-hours maintenance request with missing context',
+            problem: 'A tenant reports an issue late at night, but the unit number, access notes, and urgency are incomplete by morning.',
+            fix: 'Capture the basic triage details in one place and prepare a morning handoff before the manager starts dispatching.',
+            boundary: 'The property manager still decides whether it is an emergency, who gets sent, and what gets approved.'
+          },
+          {
+            title: 'Turn coordination spread across vendors and threads',
+            problem: 'Cleaning, repairs, keys, and inspection timing move in different text threads, making it easy to miss a blocker.',
+            fix: 'Use a shared checklist and reminders so the next owner or vendor update starts from the same current view.',
+            boundary: 'Schedule changes and owner-facing commitments are still approved by the property team.'
+          },
+          {
+            title: 'Owner asks for status on several open items at once',
+            problem: 'The answer exists, but it lives across maintenance notes, vendor replies, and accounting comments.',
+            fix: 'Pull the open items into one owner-ready summary so the manager edits once instead of rebuilding the story from scratch.',
+            boundary: 'Budget context, tone, and anything sensitive still get checked by the manager before sending.'
+          }
+        ]
+      },
+      marine: {
+        heading: 'Marine',
+        intro: 'Illustrative stories for boat service, marina, and charter operators where weather, timing, and handoffs can change fast.',
+        stories: [
+          {
+            title: 'Weekend service enquiry from a boat owner',
+            problem: 'A prospect asks about detailing or storage over the weekend, but the slip, boat size, and requested service are missing from the message.',
+            fix: 'Collect the boat basics and queue a clean Monday callback summary instead of starting cold from voicemail.',
+            boundary: 'Staff still confirms pricing, capacity, and any weather-sensitive constraints.'
+          },
+          {
+            title: 'Weather shift forces a reschedule',
+            problem: 'A charter or service visit has to move, but the team is piecing together who needs to hear what and when.',
+            fix: 'Draft the affected-customer update and the internal reschedule list together so the dispatcher can review and send faster.',
+            boundary: 'The captain or dispatcher makes the final call on timing, safety, and messaging.'
+          },
+          {
+            title: 'Yard work estimate with photos and scope questions',
+            problem: 'Images, parts questions, and owner notes arrive in fragments, slowing the first estimate reply.',
+            fix: 'Group the request into one scope summary with the photos attached in order, ready for review.',
+            boundary: 'The estimator still confirms the work list, price, and any exclusions before anything goes out.'
+          }
+        ]
+      }
+    };
+
+    const navToggle = document.querySelector('[data-nav-toggle]');
+    const mobileNav = document.querySelector('[data-mobile-nav]');
+    const navLinks = mobileNav ? mobileNav.querySelectorAll('a') : [];
+    const isMobile = () => window.innerWidth <= 840;
+
+    const closeNav = () => {
+      if (!navToggle || !mobileNav) return;
+      navToggle.setAttribute('aria-expanded', 'false');
+      mobileNav.dataset.open = 'false';
+    };
+
+    if (navToggle && mobileNav) {
+      navToggle.addEventListener('click', () => {
+        const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!isOpen));
+        mobileNav.dataset.open = String(!isOpen);
+      });
+
+      navLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          if (isMobile()) closeNav();
+        });
+      });
+
+      window.addEventListener('resize', () => {
+        if (!isMobile()) closeNav();
+      });
+    }
+
+    const tabButtons = Array.from(document.querySelectorAll('[data-industry]'));
+    const storyHeading = document.querySelector('[data-story-heading]');
+    const storyIntro = document.querySelector('[data-story-intro]');
+    const storyCards = Array.from(document.querySelectorAll('[data-story-card]'));
+    const industryPanel = document.getElementById('industry-panel');
+
+    function renderIndustry(key) {
+      const group = industries[key];
+      if (!group) return;
+
+      if (storyHeading) storyHeading.textContent = group.heading;
+      if (storyIntro) storyIntro.textContent = group.intro;
+      if (industryPanel) industryPanel.setAttribute('aria-labelledby', `tab-${key}`);
+
+      storyCards.forEach((card, index) => {
+        const story = group.stories[index];
+        if (!story) return;
+        const title = card.querySelector('[data-story-title]');
+        const problem = card.querySelector('[data-story-problem]');
+        const fix = card.querySelector('[data-story-fix]');
+        const boundary = card.querySelector('[data-story-boundary]');
+        if (title) title.textContent = story.title;
+        if (problem) problem.textContent = story.problem;
+        if (fix) fix.textContent = story.fix;
+        if (boundary) boundary.textContent = story.boundary;
+      });
+
+      tabButtons.forEach((button) => {
+        const active = button.dataset.industry === key;
+        button.dataset.active = String(active);
+        button.setAttribute('aria-selected', String(active));
+        button.tabIndex = active ? 0 : -1;
+      });
+    }
+
+    tabButtons.forEach((button, index) => {
+      button.addEventListener('click', () => renderIndustry(button.dataset.industry));
+      button.addEventListener('keydown', (event) => {
+        const lastIndex = tabButtons.length - 1;
+        let nextIndex = null;
+
+        if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+          nextIndex = index === lastIndex ? 0 : index + 1;
+        }
+        if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+          nextIndex = index === 0 ? lastIndex : index - 1;
+        }
+        if (nextIndex !== null) {
+          event.preventDefault();
+          tabButtons[nextIndex].focus();
+          renderIndustry(tabButtons[nextIndex].dataset.industry);
+        }
+      });
+    });
+
+    renderIndustry('trades');
+
+    const faqItems = Array.from(document.querySelectorAll('.faq-item'));
+
+    function setFaqState(item, open) {
+      const button = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      item.dataset.open = String(open);
+      button?.setAttribute('aria-expanded', String(open));
+      if (answer) {
+        answer.style.maxHeight = open ? `${answer.scrollHeight}px` : '0px';
+      }
+    }
+
+    faqItems.forEach((item) => {
+      const button = item.querySelector('.faq-question');
+      setFaqState(item, item.dataset.open === 'true');
+      button?.addEventListener('click', () => {
+        const willOpen = item.dataset.open !== 'true';
+        faqItems.forEach((entry) => setFaqState(entry, false));
+        setFaqState(item, willOpen);
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      faqItems.forEach((item) => {
+        if (item.dataset.open === 'true') {
+          const answer = item.querySelector('.faq-answer');
+          if (answer) answer.style.maxHeight = `${answer.scrollHeight}px`;
+        }
+      });
+    });
+
+    const modal = document.querySelector('[data-fit-modal]');
+    const modalCard = modal?.querySelector('.fit-modal__card');
+    const openButtons = Array.from(document.querySelectorAll('[data-open-fit-call]'));
+    const closeButtons = Array.from(document.querySelectorAll('[data-close-fit-call]'));
+    let lastTrigger = null;
+
+    function getFocusable(container) {
+      return Array.from(container.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])'))
+        .filter((element) => !element.hasAttribute('disabled'));
+    }
+
+    function openModal(trigger) {
+      if (!modal || !modalCard) return;
+      lastTrigger = trigger || document.activeElement;
+      modal.hidden = false;
+      document.body.classList.add('modal-open');
+      modalCard.focus();
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.hidden = true;
+      document.body.classList.remove('modal-open');
+      if (lastTrigger && typeof lastTrigger.focus === 'function') {
+        lastTrigger.focus();
+      }
+    }
+
+    openButtons.forEach((button) => {
+      button.addEventListener('click', () => openModal(button));
+    });
+
+    closeButtons.forEach((button) => {
+      button.addEventListener('click', closeModal);
+    });
+
+    modal?.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeModal();
+        return;
+      }
+
+      if (event.key === 'Tab' && modalCard) {
+        const focusable = getFocusable(modalCard);
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
