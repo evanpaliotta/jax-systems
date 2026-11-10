@@ -44,6 +44,7 @@ button{font:inherit;cursor:pointer}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow)}
 .panel h3{font-size:1.05rem;margin-bottom:6px}
 .panel p{margin:.45em 0;color:var(--ink-2);font-size:.92rem}
+.workspace-directory{margin:0 0 38px}.workspace-directory h2{font-size:1.4rem;margin:0 0 12px}.workspace-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px}.workspace-tile{display:block;color:var(--ink);text-decoration:none;transition:border-color .15s,transform .15s}.workspace-tile:hover{border-color:var(--moss);transform:translateY(-2px)}.workspace-tile:focus-visible{outline:3px solid var(--clay);outline-offset:3px}.workspace-tile h3{font-size:1.15rem}.workspace-tile p{margin:.4em 0}.workspace-tile .visit{display:inline-block;margin-top:8px;font-size:.82rem;font-weight:700;color:var(--moss)}@media(prefers-reduced-motion:reduce){.workspace-tile{transition:none}.workspace-tile:hover{transform:none}}
 .mono{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
 .sechead{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:10px;margin:34px 0 18px;flex-wrap:wrap}
 .sechead h2{font-size:1.4rem}
@@ -127,6 +128,13 @@ table.cmp tr:last-child td{border-bottom:none}
 <!-- ============ MODEL ============ -->
 <main class="page active" id="page-model">
 <div class="wrap">
+  <section class="workspace-directory" aria-labelledby="directory-title">
+    <h2 id="directory-title">Creative labs</h2>
+    <nav class="workspace-links" aria-label="Creative labs">
+      <a class="panel workspace-tile" href="design-lab/"><h3>Design Lab</h3><p>Browse and compare website concepts.</p><span class="visit">Open Design Lab ↗</span></a>
+      <a class="panel workspace-tile" href="logo-lab/"><h3>Logo Lab</h3><p>Compare logo ideas and preview them on swag.</p><span class="visit">Open Logo Lab ↗</span></a>
+    </nav>
+  </section>
   <div class="kicker">The business model</div>
   <h1>Deploy systems for local businesses.<br>Get paid three times for the same relationship.</h1>
   <p class="lede">The internal job title is forward-deployed engineer: embed in the business, find the expensive repetitive work, ship a working system, stay on to run it. Externally it never gets called that — the customer just buys an assessment, a deployment, and a care plan.</p>
