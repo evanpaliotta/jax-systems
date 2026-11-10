@@ -1,0 +1,402 @@
+[
+  {
+    "id": "01",
+    "name": "Handoff Current",
+    "family": "Connection",
+    "meaning": "Two rounded, interlocking currents pass the center from one to the other; the open channel between them is the handoff, not a letterform.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path fill=\"currentColor\" d=\"M14 24h31c13 0 22 8 22 20 0 9-5 16-13 19l-7-9c4-2 6-5 6-10 0-6-4-10-10-10H14z\"/><path fill=\"currentColor\" d=\"M86 76H55c-13 0-22-8-22-20 0-9 5-16 13-19l7 9c-4 2-6 5-6 10 0 6 4 10 10 10h29z\"/><path fill=\"currentColor\" d=\"M45 36h10v28H45z\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "02",
+    "name": "Dovetail",
+    "family": "Connection",
+    "meaning": "Two unlike pieces seat together in a single dependable joint.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M14 22H42L54 36L42 50H14Z\" fill=\"currentColor\"/><path d=\"M86 50H58L46 64L58 78H86Z\" fill=\"currentColor\"/><path d=\"M50 22L66 36L50 50L34 36Z\" fill=\"currentColor\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "03",
+    "name": "Crosscurrent",
+    "family": "Connection",
+    "meaning": "Separate workflows cross cleanly and continue as one steady current.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M16 30H39C52 30 52 70 65 70H84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"12\" stroke-linecap=\"round\"/><path d=\"M16 70H39C52 70 52 30 65 30H84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"12\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "04",
+    "name": "Common Ground",
+    "family": "Connection",
+    "meaning": "Independent forms share one firm center without losing their character.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M14 18H48V48H14Z\" fill=\"currentColor\"/><path d=\"M52 52H86V82H52Z\" fill=\"currentColor\"/><path d=\"M52 18H86V48H66L52 34Z\" fill=\"currentColor\"/><path d=\"M14 52H34L48 66V82H14Z\" fill=\"currentColor\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "05",
+    "name": "Handoff",
+    "family": "Connection",
+    "meaning": "One open form passes work cleanly into the next.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M16 22H54L72 40L54 58H16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M84 78H46L28 60L46 42\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "06",
+    "name": "Keystone",
+    "family": "Connection",
+    "meaning": "Loose sides become stable when the right central piece is set.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M14 20H38V46L26 58L14 46Z\" fill=\"currentColor\"/><path d=\"M62 20H86V46L74 58L62 46Z\" fill=\"currentColor\"/><path d=\"M43 14H57L66 50L50 82L34 50Z\" fill=\"currentColor\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "07",
+    "name": "Threefold",
+    "family": "Connection",
+    "meaning": "People, tools and process fold into one balanced working whole.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M50 14L82 70H64L50 44L36 70H18Z\" fill=\"currentColor\"/><path d=\"M14 78H86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"12\" stroke-linecap=\"round\"/><path d=\"M50 58V78\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"12\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "08",
+    "name": "Open Weave",
+    "family": "Connection",
+    "meaning": "Existing tools interlace without hiding the human space between them.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M18 18H48V48H18Z M52 52H82V82H52Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linejoin=\"round\"/><path d=\"M52 18H82V48H52Z M18 52H48V82H18Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "09",
+    "name": "Open Harbor",
+    "family": "Connection",
+    "meaning": "A grounded basin and a separate rising beacon leave a broad, protected opening between them, forming a stable harbor without a horseshoe silhouette.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path fill=\"currentColor\" d=\"M12 48h12v15c0 14 10 24 26 24s26-10 26-24V48h12v15c0 22-16 37-38 37S12 85 12 63z\"/><path fill=\"currentColor\" d=\"M43 12h14v31H43z\"/><path fill=\"currentColor\" d=\"M34 12h32v10H34z\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "10",
+    "name": "Set Square",
+    "family": "Connection",
+    "meaning": "Offset responsibilities settle into one exact, usable system.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M16 16H50V50H16Z\" fill=\"currentColor\"/><path d=\"M56 56H84V84H56Z\" fill=\"currentColor\"/><path d=\"M62 16H84V38L62 50Z\" fill=\"currentColor\"/><path d=\"M16 62L38 50V84H16Z\" fill=\"currentColor\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "11",
+    "name": "Slack Tide",
+    "family": "Coastal Current",
+    "meaning": "A quiet pause between flows, for calm systems that let people think.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M18 30 H50 C66 30 66 50 50 50 H34 C18 50 18 70 34 70 H82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "12",
+    "name": "Clear Channel",
+    "family": "Coastal Current",
+    "meaning": "Two banks and one open route: practical work moving without obstruction.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M20 18 V44 C20 66 32 82 50 82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/><path d=\"M80 18 V44 C80 66 68 82 50 82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/><path d=\"M50 18 V58\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "13",
+    "name": "Ebb Step",
+    "family": "Coastal Current",
+    "meaning": "Measured, descending cadence for steady progress through everyday operations.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M16 26 H48 V50 H72 V74 H88\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M16 74 H40\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"12\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "14",
+    "name": "Confluence",
+    "family": "Coastal Current",
+    "meaning": "Separate tools meet in one useful stream while human judgment stays central.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M18 20 L50 52 L82 20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M50 52 V84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/><path d=\"M22 80 H38 M62 80 H78\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "15",
+    "name": "Tidal Latch",
+    "family": "Coastal Current",
+    "meaning": "A hooked current that catches loose ends and keeps the workflow connected.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M74 24 H44 C28 24 20 34 20 50 C20 66 28 76 44 76 H64 C76 76 82 68 82 58 C82 48 76 42 66 42 H50\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "16",
+    "name": "Cutbank",
+    "family": "Coastal Current",
+    "meaning": "An angular carved edge expresses decisive craft and a clear way through.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M18 18 H58 L82 42 L58 66 H38 L58 42 L38 18 Z\" fill=\"currentColor\"/><path d=\"M18 82 H58 L74 66\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "17",
+    "name": "Longshore Link",
+    "family": "Coastal Current",
+    "meaning": "Offset rounded runs connect neighboring tasks without forcing them identical.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M18 34 H54 C68 34 68 54 54 54 H34\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M82 66 H46 C32 66 32 46 46 46 H66\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "18",
+    "name": "Sounding",
+    "family": "Coastal Current",
+    "meaning": "A simple depth mark for local knowledge, careful diagnosis and dependable footing.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M50 16 V66\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/><path d=\"M26 38 L50 62 L74 38\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M22 82 H78\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "19",
+    "name": "Runout",
+    "family": "Coastal Current",
+    "meaning": "A broad current narrows into a purposeful exit: complexity resolved into action.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M16 22 C38 22 42 42 58 42 H84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/><path d=\"M16 78 C38 78 42 58 58 58 H84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/><path d=\"M16 50 H34\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "20",
+    "name": "Levee Fold",
+    "family": "Coastal Current",
+    "meaning": "A folded protective form suggests resilient structure with an approachable human edge.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M18 76 L42 22 H62 L84 76 H64 L52 46 L38 76 Z\" fill=\"currentColor\"/><path d=\"M28 84 H74\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "21",
+    "name": "Forward Hook",
+    "family": "Jax Letterforms",
+    "meaning": "A substantial hooked J carries a stepped forward rail through its counter, turning the letter into a practical advance rather than a plain initial.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path fill=\"currentColor\" d=\"M58 12h18v48c0 18-12 28-30 28-17 0-29-9-31-24l17-4c1 9 6 14 14 14 8 0 12-5 12-14z\"/><path fill=\"currentColor\" d=\"M14 34h42v12H26v12H14z\"/><path fill=\"currentColor\" d=\"M68 34l18 12-18 12z\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "22",
+    "name": "Joined Current",
+    "family": "Jax Letterforms",
+    "meaning": "Two linked strokes suggest JS connecting loose ends.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M 32 14 L 32 62 Q 32 84 14 84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"11\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 86 24 Q 86 14 72 14 L 58 14 Q 44 14 44 28 Q 44 40 58 44 L 72 48 Q 86 52 86 66 Q 86 84 68 84 L 52 84 Q 40 84 40 74\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"11\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "23",
+    "name": "North Hook",
+    "family": "Jax Letterforms",
+    "meaning": "An enclosed J becomes a steady mark of local trust.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M 24 14 L 76 14 Q 86 14 86 24 L 86 76 Q 86 86 76 86 L 24 86 Q 14 86 14 76 L 14 24 Q 14 14 24 14 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linejoin=\"round\"/><path d=\"M 62 28 L 62 58 Q 62 72 48 72 Q 34 72 34 58 L 34 52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "24",
+    "name": "Split Span",
+    "family": "Jax Letterforms",
+    "meaning": "A J and crossing X share one practical structural span.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M 28 14 L 28 58 Q 28 84 50 84 Q 70 84 70 62 L 70 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"11\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 48 18 L 86 82 M 86 18 L 48 82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "25",
+    "name": "Latchkey J",
+    "family": "Jax Letterforms",
+    "meaning": "A compact hooked form signals access without complexity.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M 18 20 L 82 20 L 82 62 Q 82 86 56 86 L 42 86 Q 18 86 18 62 L 18 52 L 42 52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "26",
+    "name": "Tidehook",
+    "family": "Jax Letterforms",
+    "meaning": "A hooked J with a separate cross-current through its open center suggests connected work with a clear human anchor.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path fill=\"currentColor\" d=\"M50 12H76V55C76 75 65 88 45 88C25 88 14 77 12 59H30C31 67 36 72 45 72C54 72 58 66 58 55V28H50Z\"/><path fill=\"currentColor\" d=\"M12 35H39L47 43H76V55H43L35 47H12Z\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "27",
+    "name": "Counterflow",
+    "family": "Jax Letterforms",
+    "meaning": "Opposing hooks form a balanced JS with human rhythm.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M 26 14 L 26 58 Q 26 84 48 84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"12\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 84 22 Q 76 14 62 14 Q 46 14 46 30 Q 46 42 62 46 Q 82 50 82 66 Q 82 86 60 86 L 48 86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"11\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "28",
+    "name": "Linked J Counter",
+    "family": "Jax Letterforms",
+    "meaning": "A solid architectural J is interrupted by one clean diagonal channel; the negative space reads as a connection passing through the stem and into the hook.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path fill=\"currentColor\" d=\"M58 12h20v49c0 18-12 27-31 27-18 0-30-9-32-25l18-4c1 10 6 15 14 15 8 0 12-5 12-14V39L43 55l-7-11 22-22z\"/><path fill=\"currentColor\" d=\"M58 12h20v12H58z\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "29",
+    "name": "Bridgework",
+    "family": "Jax Letterforms",
+    "meaning": "An open frame joins J and X like tools working together.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M 14 14 L 86 14 M 14 86 L 86 86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\"/><path d=\"M 34 14 L 34 56 Q 34 82 54 82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"11\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M 58 26 L 82 74 M 82 26 L 58 74\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "30",
+    "name": "Quiet Notch",
+    "family": "Jax Letterforms",
+    "meaning": "A restrained geometric JS uses negative space with purpose.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M 14 14 L 42 14 L 42 58 Q 42 72 54 72 L 62 72 L 62 86 L 50 86 Q 18 86 18 58 L 18 38 L 14 38 Z\" fill=\"currentColor\"/><path d=\"M 86 14 L 62 14 Q 50 14 50 28 Q 50 40 64 44 L 72 46 Q 86 50 86 66 Q 86 86 66 86 L 72 86 L 72 72 Q 74 70 74 64 Q 74 58 64 56 Q 50 52 50 38 L 50 32 L 62 32 L 62 26 L 86 26 Z\" fill=\"currentColor\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "31",
+    "name": "Switchback Step",
+    "family": "Direction & Momentum",
+    "meaning": "A practical turn that keeps work moving forward.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M20 76 H44 V52 H68 V28 H84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"20\" cy=\"76\" r=\"5\" fill=\"currentColor\"/><circle cx=\"84\" cy=\"28\" r=\"5\" fill=\"currentColor\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "32",
+    "name": "Coastal Range Mark",
+    "family": "Direction & Momentum",
+    "meaning": "A precise compass beam crosses an open tidal arc, creating a coastal navigation symbol with a clear sightline and no building silhouette.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path fill=\"currentColor\" d=\"M50 10l10 22-10 8-10-8z\"/><path fill=\"currentColor\" d=\"M45 34h10v39H45z\"/><path fill=\"currentColor\" d=\"M14 55c9 0 9 8 18 8s9-8 18-8 9 8 18 8 9-8 18-8v13c-9 0-9 8-18 8s-9-8-18-8-9 8-18 8-9-8-18-8z\"/><path fill=\"currentColor\" d=\"M25 82h50v8H25z\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "33",
+    "name": "Two-Span Wayfinder",
+    "family": "Direction & Momentum",
+    "meaning": "A directional pier and a separate arched span meet across an open waterway, making a bridge from two visibly different structural elements.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path fill=\"currentColor\" d=\"M12 22h16v56H12z\"/><path fill=\"currentColor\" d=\"M28 22h42L52 40H28z\"/><path fill=\"currentColor\" d=\"M40 78V61c0-17 10-27 25-27s25 10 25 27v17H76V61c0-10-4-15-11-15s-11 5-11 15v17z\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "34",
+    "name": "First Light",
+    "family": "Direction & Momentum",
+    "meaning": "A clear horizon and a confident start to better flow.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M18 68 H82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\"/><path d=\"M30 56 A20 20 0 0 1 70 56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\"/><path d=\"M50 18 V30 M25 31 L34 39 M75 31 L66 39\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "35",
+    "name": "Open Gate",
+    "family": "Direction & Momentum",
+    "meaning": "An inviting opening from loose ends into a workable system.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M24 82 V24 H48 M76 82 V24 H52\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M38 82 V54 H62 V82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "36",
+    "name": "True Bearing",
+    "family": "Direction & Momentum",
+    "meaning": "Human judgment sets the course while systems remove friction.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M50 14 L66 50 L50 86 L34 50 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linejoin=\"round\"/><path d=\"M50 30 V70 M34 50 H66\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "37",
+    "name": "Rising Notch",
+    "family": "Direction & Momentum",
+    "meaning": "Measured progress built one solid level at a time.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M18 78 H38 V58 H58 V38 H82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M18 42 V22 H38\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><circle cx=\"82\" cy=\"38\" r=\"6\" fill=\"currentColor\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "38",
+    "name": "Signal Post",
+    "family": "Direction & Momentum",
+    "meaning": "A simple, visible cue that helps people act with confidence.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M34 84 V20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\"/><path d=\"M42 26 H76 L64 42 H42\" fill=\"currentColor\"/><path d=\"M22 84 H58\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "39",
+    "name": "Passage",
+    "family": "Direction & Momentum",
+    "meaning": "A crafted route through complexity without taking control away.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M20 78 V42 C20 28 32 18 46 18 H80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\"/><path d=\"M38 78 V48 C38 40 44 34 52 34 H80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\"/><path d=\"M56 78 V52 H80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "40",
+    "name": "Summit Line",
+    "family": "Direction & Momentum",
+    "meaning": "A grounded rise toward clearer days and durable momentum.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M16 76 L42 30 L56 52 L66 38 L84 76 Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M28 76 L42 52 L50 64\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "41",
+    "name": "Bench Hook",
+    "family": "Human & Craft",
+    "meaning": "A hooked J resting on a workbench line, suggesting practical support and hands-on follow-through.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M62 14V52C62 67 54 74 42 74C30 74 24 67 24 57\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M14 84H86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/><path d=\"M74 14V30\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "42",
+    "name": "Working Joint",
+    "family": "Human & Craft",
+    "meaning": "Two offset members lock into one steady structure, expressing collaboration without a literal handshake.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M16 28H48V16H72V48H84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M84 72H52V84H28V52H16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M38 50H62\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "43",
+    "name": "Steady Span",
+    "family": "Human & Craft",
+    "meaning": "A grounded span with a lifted center conveys dependable systems that keep everyday work moving.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M14 76V58C14 40 28 28 50 28C72 28 86 40 86 58V76\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M28 76H72\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/><path d=\"M50 16V40\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "44",
+    "name": "Loose Ends",
+    "family": "Human & Craft",
+    "meaning": "Three open routes resolve into a single ordered edge, symbolizing connected tools and tidy operations.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M16 22H42C54 22 58 28 58 38V50\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M16 50H84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\"/><path d=\"M16 78H42C54 78 58 72 58 62V50\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M84 34V66\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "45",
+    "name": "Craft Corner",
+    "family": "Human & Craft",
+    "meaning": "A precise carpenter-like corner with an open joint stands for competence, judgment and useful restraint.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M22 14V78H86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"11\" stroke-linecap=\"square\" stroke-linejoin=\"round\"/><path d=\"M42 34H66V58\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M22 86V78H14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"11\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "46",
+    "name": "Common Thread",
+    "family": "Human & Craft",
+    "meaning": "One continuous line passes through separate blocks, making independent parts feel like a workable whole.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><rect x=\"14\" y=\"18\" width=\"24\" height=\"24\" rx=\"4\" fill=\"currentColor\"/><rect x=\"62\" y=\"58\" width=\"24\" height=\"24\" rx=\"4\" fill=\"currentColor\"/><path d=\"M14 70H34C46 70 50 64 50 52V42C50 30 56 26 68 26H86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"9\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "47",
+    "name": "Open Workshop",
+    "family": "Human & Craft",
+    "meaning": "An architectural frame with a clear working opening evokes a welcoming local partner and room to get things done.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M18 84V42L50 16L82 42V84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M38 84V56H62V84\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M12 84H32M68 84H88\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "48",
+    "name": "Measured Flow",
+    "family": "Human & Craft",
+    "meaning": "A calm stepped channel balances human pacing with the forward motion of a well-run system.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M14 28H38V50H62V72H86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"11\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M14 72H24C34 72 38 66 38 56\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\"/><path d=\"M62 44V34C62 24 68 20 78 20H86\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"8\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "49",
+    "name": "Stepped Join",
+    "family": "Human & Craft",
+    "meaning": "Two crafted uprights lock through a descending three-step negative joint, expressing systems fitted by hand while avoiding a plain H.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path fill=\"currentColor\" d=\"M12 12h20v25h12v12H32v39H12z\"/><path fill=\"currentColor\" d=\"M88 12H68v25H56v12h12v39h20z\"/><path fill=\"currentColor\" d=\"M32 37h12v12H32zm24 0h12v12H56z\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  },
+  {
+    "id": "50",
+    "name": "Local Anchor",
+    "family": "Human & Craft",
+    "meaning": "A compact structural knot with a J-shaped return suggests rooted reliability without nautical cliché.",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 100 100\" fill=\"currentColor\"><path d=\"M50 14V48C50 60 44 66 34 66C24 66 18 60 18 50\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M50 34H74C82 34 86 40 86 48V82\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M30 86H70\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"10\" stroke-linecap=\"round\"/></svg>",
+    "generator": "moonshotai/kimi-k3.1-pro"
+  }
+]
