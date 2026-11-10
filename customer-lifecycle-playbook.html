@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="color-scheme" content="light">
+<title>Customer Lifecycle Playbook — Jax Systems</title>
+<style>
+:root{--ink:#141715;--muted:#5f6c63;--paper:#f3f0e7;--card:#fffdf7;--line:#d9d7c9;--clay:#b8562f;--moss:#1d4a3f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.68 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--moss);text-underline-offset:3px}a:focus-visible,summary:focus-visible{outline:3px solid var(--clay);outline-offset:3px}
+.bar{border-bottom:1px solid var(--line);background:rgba(243,240,231,.96)}.bar-inner{max-width:1020px;margin:auto;padding:15px 25px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.brand{font-weight:700}.brand:before{content:"";display:inline-block;background:var(--clay);width:10px;height:10px;border-radius:50%;margin-right:10px;box-shadow:0 0 0 4px rgba(184,86,47,.14)}
+.label{color:var(--muted);font-size:.8rem;font-weight:500}.bar a{font-size:.9rem}
+main{max-width:1020px;margin:auto;padding:30px 25px 80px}.kicker{font-size:.7rem;font-family:monospace;letter-spacing:.13em;text-transform:uppercase;color:var(--clay);font-weight:700}
+article{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:30px 38px;box-shadow:0 18px 44px rgba(20,35,28,.07)}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:500;line-height:1.18;letter-spacing:-.02em}h1{font-size:clamp(2rem,4.7vw,3.2rem);margin:.3em 0 .45em}h2{font-size:clamp(1.45rem,3vw,1.8rem);border-top:1px solid var(--line);margin:2.2em 0 .6em;padding-top:1em;scroll-margin-top:20px}h3{font-size:1.15rem;margin:1.6em 0 .5em}p,li{max-width:78ch}p{margin:.8em 0}li{margin:.4em 0}ul,ol{padding-left:1.4em}blockquote{margin:1em 0;border-left:3px solid var(--moss);background:#e8ecd9;border-radius:4px;padding:.35em 1em}blockquote p{margin:.4em 0}
+.jump{margin:18px 0 22px;background:#e9e5d6;border:1px solid var(--line);border-radius:10px;padding:12px 16px}.jump summary{font-weight:700;cursor:pointer}.jump ol{columns:2;column-gap:30px;margin:.8em 0 .2em}.jump li{break-inside:avoid;font-size:.9rem}
+footer{color:var(--muted);font-size:.8rem;margin-top:22px}.status{color:var(--clay)}
+@media(max-width:620px){main{padding:22px 14px 50px}.bar-inner{padding:13px 15px}article{padding:23px 20px}.jump ol{columns:1}h1{font-size:2.1rem}body{font-size:16px}}
+@media print{body{background:#fff}.bar,.jump{display:none}main{padding:0}article{border:0;box-shadow:none;padding:0}h2{break-after:avoid}a{color:#111}}
+</style></head><body><header class="bar"><div class="bar-inner"><div class="brand">Jax Systems <span class="label">— working notes</span></div><a href="./">← Back to workspace</a></div></header>
+<main><div class="kicker">Internal planning · draft · publicly accessible</div>
+<details class="jump"><summary>Jump to a section</summary><ol><li><a href="#1-the-customer-journey-and-handoffs">1. The customer journey and handoffs</a></li><li><a href="#2-attract-the-right-conversations">2. Attract the right conversations</a></li><li><a href="#3-qualification-is-a-conversation-worthwhile">3. Qualification: is a conversation worthwhile?</a></li><li><a href="#4-the-first-owner-call-listen-before-pitching">4. The first owner call: listen before pitching</a></li><li><a href="#5-a-second-conversation-when-useful">5. A second conversation, when useful</a></li><li><a href="#6-discovery-and-the-business-case">6. Discovery and the business case</a></li><li><a href="#7-proposal-and-agreement">7. Proposal and agreement</a></li><li><a href="#8-onboard-build-and-test">8. Onboard, build and test</a></li><li><a href="#9-acceptance-and-handoff">9. Acceptance and handoff</a></li><li><a href="#10-care-learning-and-a-clean-exit">10. Care, learning and a clean exit</a></li><li><a href="#11-operating-records-metrics-and-decision-rights">11. Operating records, metrics and decision rights</a></li><li><a href="#12-reusable-scripts-and-checklists">12. Reusable scripts and checklists</a></li><li><a href="#13-source-notes-and-open-decisions">13. Source notes and open decisions</a></li></ol></details>
+<article><h1>Jax Systems: Customer Lifecycle Playbook</h1>
+<p><strong>Working draft · 9 November 2026 · Internal planning, not customer-facing copy.</strong> This is a first operating playbook, not evidence that any customer has been contacted, any offer has been validated or any system has been built. The published business workspace is publicly accessible; do not put prospect names, client data, notes, credentials or private results in this document.</p>
+<p><strong>Purpose:</strong> help a Northeast Florida business move from “I have a recurring operational problem” to a useful, supported system it can own. Understand the work first; sell one bounded intervention; transfer knowledge; measure actual results. AI is optional. The owner should never need to buy a second project to get value from the first.</p>
+<p><strong>Activation:</strong> this playbook does not authorize launch, paid tools, campaigns, outreach, account connections or access to customer data. Start marketing only when Evan explicitly chooses to do so; approve channels, claims and any budget. Drafts are not sends.</p>
+<h2 id="1-the-customer-journey-and-handoffs">1. The customer journey and handoffs</h2>
+<ol>
+<li><strong>Market and attract</strong> → a relevant owner understands the problem Jax can help investigate and has one clear next step.</li>
+<li><strong>Qualify</strong> → a real owner problem, decision process and possible fit are recorded; the owner is not pressured to buy.</li>
+<li><strong>Owner call</strong> → the owner describes the current workflow, its consequences, prior efforts and options. Agree whether a further conversation is useful.</li>
+<li><strong>Discovery / scoping</strong> → establish what is happening with appropriate permission, identify alternatives and produce a bounded recommendation. The free-versus-paid entry decision remains open.</li>
+<li><strong>Proposal and decision</strong> → agree on one workflow, deliverables, cost, acceptance, exclusions and ownership. A no or a pause is valid.</li>
+<li><strong>Onboard and build</strong> → make access and ownership safe; demonstrate progress and test normal, error and repeat cases.</li>
+<li><strong>Accept and hand over</strong> → the client validates the agreed result and can operate or safely stop the system.</li>
+<li><strong>Care and improvement</strong> → if separately agreed, support the running system, report actual results and quote new work separately.</li>
+<li><strong>Expand or exit</strong> → propose another workflow only when there is a reason and capacity; on exit, transfer what was agreed and close access cleanly.</li>
+</ol>
+<p>Each handoff records <strong>owner, next action, due date, decision, blockers and consent</strong>. A customer can pause or leave at any stage. This is a suggested sequence; a simple situation may require fewer calls, while a complex one may require more.</p>
+<h2 id="2-attract-the-right-conversations">2. Attract the right conversations</h2>
+<p><strong>Who:</strong> locally relevant small-business owner or operator with a repeated operational task, a person able to approve changes, and a plausible path to implementing them. Industries, pain, willingness to pay and budget remain hypotheses until checked. Existing customer tools may already solve the issue; Jax should be willing to say so.</p>
+<p><strong>Before launch:</strong> choose a real audience, one problem/offer, truthful proof or a clearly labeled illustrative demonstration, a simple inquiry path and who will respond. Start with the channels Evan approves; relationship-led local conversations and practical demonstrations are candidates, not assumed winners. No ad spend or paid tooling without explicit approval.</p>
+<p><strong>Future production loop:</strong> research owner language → choose a specific problem → create a few distinct concepts → check every claim and link → Evan approves distribution → connect source and creative ID to inquiry → learn from qualified conversations and paid work. Use real work and permissioned proof, not invented case studies, testimonials or synthetic customers. Static assets or Evan's own demonstration are sensible first formats; the full video/warehouse system is optional.</p>
+<p><strong>Handoff to sales:</strong> capture how they found Jax, what they asked about, permission to follow up, and their preferred contact method. A website form, CRM, automation or customer-data store is not created merely by writing this playbook.</p>
+<h2 id="3-qualification-is-a-conversation-worthwhile">3. Qualification: is a conversation worthwhile?</h2>
+<p>Ask just enough to decide whether to talk—not to conduct the paid assessment by stealth.</p>
+<ul>
+<li>What does the business do, and what kind of work is causing friction?</li>
+<li>Who experiences it, who would use a fix, and who makes the decision?</li>
+<li>What systems or people are involved? Is there an existing provider?</li>
+<li>Is the owner exploring, trying to solve something now, or unable to say yet? What is driving the timing?</li>
+<li>What would a useful outcome be? Are there known constraints, sensitivities or budget concerns?</li>
+</ul>
+<p><strong>Fit:</strong> repeated problem, owner willing to discuss it, a route to the relevant decision-maker and no unresolved access or risk barrier → arrange a call. <strong>Early / uncertain:</strong> answer appropriate questions, offer a short conversation or a later check-in if invited. <strong>Not a fit:</strong> say why, do not imply Jax can help, and suggest an alternative only if it is genuinely appropriate.</p>
+<p>If someone asks price early, answer with the current approved starting price or range and explain what is not yet known. Never hide pricing just to force a call. Do not collect sensitive customer records to qualify a lead.</p>
+<h2 id="4-the-first-owner-call-listen-before-pitching">4. The first owner call: listen before pitching</h2>
+<p><strong>Preparation:</strong> review only relevant public facts and any information the owner voluntarily provided. Choose 2–3 questions. Do not present industry research as a finding about this specific business. Plan roughly 30 minutes, but adapt to the owner; phone and in-person are both valid. If someone is driving, arrange a safer time.</p>
+<p><strong>1. Frame and permission.</strong> After normal human rapport:</p>
+<blockquote>
+<p>“I'd like to understand how this works today, what is getting in the way, and whether there's a useful next step. If it isn't a fit, I'll say so. May I ask a few questions?”</p>
+</blockquote>
+<p>Do not promise a referral, a diagnosis or expertise you cannot actually provide. If the owner is exploring, say that is fine: “Are you mainly gathering information, or is this something you're trying to solve now?” Both are legitimate.</p>
+<p><strong>2. Walk through real work.</strong> Use these as prompts, not a checklist to interrogate the owner:</p>
+<ul>
+<li>“Walk me through the last time this happened—from the first request to the final handoff.”</li>
+<li>“When you say it is slow or inefficient, what specifically happens?”</li>
+<li>“Who handles it, and what do they have to check or repeat?”</li>
+<li>“What's already working? What have you or your provider tried? What happened?”</li>
+<li>“How often does it happen, and what does it cost in time, missed opportunities or rework—if you know?”</li>
+<li>“If it worked better, what would be noticeably different for you and your team?”</li>
+</ul>
+<p><strong>3. Decision context and alternatives.</strong> “Who else should be involved? What are you comparing—your current process, an existing provider, a built-in feature, doing it yourselves, or outside help? What will matter most in deciding?” Ask what is good and bad about the incumbent. An existing vendor is not presumed to be failing.</p>
+<p><strong>4. Reflect, don't diagnose beyond the evidence.</strong> “It sounds like [their words], which happens [frequency if known] and affects [impact if known]. Did I get that right? What have I missed?” Separate owner statements, observed evidence and unknowns. If helpful, with permission give a brief relevant observation or alternative, without turning the qualification call into an unagreed full assessment.</p>
+<p><strong>5. Agree on a next step—or stop.</strong> “Would it be useful to map the work and the options in more detail, or would another path be better?” If they want information rather than a decision, offer an appropriate summary. If they need time, ask what information or people matter and whether a later check-in would be welcome. Set a date only by mutual agreement; don't require a verbal commitment to buy before continuing the conversation.</p>
+<h3>Handling common responses</h3>
+<ul>
+<li><strong>“I'm just looking.”</strong> “That's fine. What are you hoping to learn or compare?” Offer information appropriate to their stage; no forced urgency.</li>
+<li><strong>“We already have a provider.”</strong> “What's working with them, and what do you wish were different?” If they can solve it, that may be the best option.</li>
+<li><strong>“We can do it ourselves.”</strong> “Possibly. What would your team need to make that workable?” Consider native features or training; don't manufacture a dependency.</li>
+<li><strong>“What will it cost?”</strong> Share the latest approved starting context and what affects the quote. Do not present an estimate as a fixed commitment before scope is agreed.</li>
+<li><strong>“I need to think.”</strong> “Of course. What is still unclear, or who else needs to weigh in?” Send a concise recap only if useful; allow a no without chasing.</li>
+<li><strong>“Can you guarantee the result?”</strong> “I can define what we'll deliver and how we'll test it. I can't promise a business outcome we don't control.” Any warranty or remedy requires explicit agreed terms.</li>
+</ul>
+<h2 id="5-a-second-conversation-when-useful">5. A second conversation, when useful</h2>
+<p>Start with an accurate, neutral recap—not an attempt to make the owner feel bad again:</p>
+<blockquote>
+<p>“Last time you described [actual problem and consequence]. Has anything changed? Is this still worth discussing?”</p>
+</blockquote>
+<p>Confirm decision criteria, decision-makers, timing and whether they want to consider a next step. With permission, describe the <strong>bounded discovery or implementation option appropriate to what is actually known</strong>, its price context, what the owner would receive and what happens afterward. Offer a short written recap, a decision-support summary or a proposal if useful. Schedule a follow-up around a real event only if the owner agrees.</p>
+<p><strong>Do not</strong> assume they have already decided, insist on a second meeting, denigrate competitors, create artificial scarcity or claim every month of delay loses money. A legitimate decision can be “do nothing,” “use the current vendor,” “not yet,” or “no.”</p>
+<h2 id="6-discovery-and-the-business-case">6. Discovery and the business case</h2>
+<p><strong>Open offer decision:</strong> the 9 November direction calls for a clearly priced path and raises a still-unresolved choice between paid discovery and free scoping. Earlier business-model notes make paid assessment mandatory. Test and decide deliberately; this playbook does not settle that conflict. A training-led entry is another hypothesis, not an approved replacement.</p>
+<p><strong>Current example for discussion, not an automatic quote:</strong> $999 discovery, credited toward a $2,499 first scoped deployment; if that exact deal is approved and both fees are included, the remaining deployment balance is $1,500, not $2,499 again. The same 9 November note cites $499/month ongoing support and separate pricing for additional locations; all scope, dependencies and terms must be agreed before use. <strong>The existing Offer tab shows older ranges; reconcile it with current direction before customer-facing use.</strong> Never promise that every job fits the example price.</p>
+<p>For whichever entry is agreed, define what the customer receives and what is not included. With permission, map the current workflow, speak with actual users where relevant, review approved data and systems, identify native-tool/process alternatives, and rank candidate improvements by evidence, effort, risk and adoption. Recommend at most one first workflow for a specific proposal. The discovery deliverable remains useful even if they don't buy deployment.</p>
+<p><strong>Business-case worksheet:</strong></p>
+<ul>
+<li>Current work: example, frequency, people involved and how the figure was obtained.</li>
+<li>Consequence: observed or owner-estimated time, rework, delay or lost opportunities; identify unknowns.</li>
+<li>Options: keep current approach, improve existing tools/provider, internal change, or a scoped Jax project.</li>
+<li>Costs: implementation price, client effort, third-party fees, support, transition and any switching cost.</li>
+<li>Expected effect: a conservative scenario or range labeled as an assumption, not guaranteed savings. Avoid double-counting time and revenue, and never treat every missed inquiry as a sale.</li>
+<li>Decision: owner states whether expected benefit and risk justify action; doing nothing remains an option.</li>
+</ul>
+<h2 id="7-proposal-and-agreement">7. Proposal and agreement</h2>
+<p>The proposal is a decision document, not a list of AI buzzwords. It includes:</p>
+<ol>
+<li>The owner's problem, baseline and desired result in plain English; what is measured versus assumed.</li>
+<li>One workflow and the exact deliverables, prerequisites, integrations and exclusions.</li>
+<li>How acceptance will be tested: named scenarios, expected results, evidence, who reviews and how defects are handled.</li>
+<li>Fixed project price, credit treatment, payment milestones, third-party charges and any taxes or additional costs as applicable. The client can see the <strong>total</strong> and any remaining balance.</li>
+<li>Target timing with dependencies and what happens if access, decisions or inputs are delayed. No blanket speed guarantee.</li>
+<li>Data and account responsibilities, human approvals for consequential actions, security/privacy requirements and applicable vendor or regulatory constraints. Escalate if sensitive data or a regulated workflow exceeds capability.</li>
+<li>What the client owns, licenses or must keep paying for; training, documentation, handoff and an exit path.</li>
+<li>Optional support terms, scope of small changes, incident contact and any agreed response commitments. New capabilities require a separate written quote.</li>
+<li>Change-control, cancellation and any warranties/remedies agreed in the actual contract. Use appropriate legal review for live agreements; this draft is not legal advice.</li>
+</ol>
+<p><strong>Handoff:</strong> begin paid work only after the relevant agreement, permissions and payment milestone are confirmed. Do not treat a conversation, draft proposal or suggested fee as a signed deal.</p>
+<h2 id="8-onboard-build-and-test">8. Onboard, build and test</h2>
+<p><strong>Kickoff:</strong> restate the outcome, scope, schedule, assumptions and acceptance criteria. Identify the buyer, day-to-day workflow owner, technical access owner and approver. Agree a communication cadence and escalation path; no invented service-level promises. Confirm source-of-truth systems, data categories and retention/deletion expectations.</p>
+<p><strong>Access:</strong> prefer client-owned accounts, named access, least privilege, and read-only access until a specific write is needed and approved. Use a secure mechanism for secrets; never put passwords, verification codes, tokens or customer records in public notes, chat transcripts or an AI provider without authorization. Consent to a discovery call is not permission to access client systems. Stop and reassess if data sensitivity, contract terms or security controls are unclear.</p>
+<p><strong>Build:</strong> implement the smallest approved slice. Check the native tool or simple process option before adding software. Track actual founder/review time and vendor costs. Communicate material blockers and scope changes promptly; don't silently expand the job.</p>
+<p><strong>Test before launch:</strong> run agreed normal-path tests; missing/bad inputs; duplicates or repeats; permissions and integration failures; and rollback/manual fallback. Inspect generated output and any external messages. Use test or anonymized data where possible. Consequential writes, communications and production cutover require the agreed human approval; if a test fails, fix or document a decision, not a fabricated pass.</p>
+<h2 id="9-acceptance-and-handoff">9. Acceptance and handoff</h2>
+<p>Show the named client owner the real workflow. Run each agreed acceptance scenario, review exceptions, record results and resolve or explicitly agree on remaining issues. “Done” is the agreed acceptance decision—not a polished demo or an invented time-saving number.</p>
+<p>Deliver a plain-language operating guide: what the system does, where it runs, who owns each account, ordinary operation, exception handling, how to pause or roll back, support contact, dependencies and third-party charges. Train the actual users. The client receives the agreed materials and access even if it declines support; continued operation still depends on its own active accounts, licenses and integrations.</p>
+<p>Record the actual starting measurement and a feasible follow-up date if the owner agrees. Do not claim success before sufficient real use.</p>
+<h2 id="10-care-learning-and-a-clean-exit">10. Care, learning and a clean exit</h2>
+<p><strong>Care is optional and separately scoped.</strong> Define the supported system, monitoring if actually provided, communication channel, coverage/response expectations, included small fixes, excluded work, client dependencies, costs and cancellation. Support does not silently include an unlimited build backlog. A care plan exists only if the customer agrees to it.</p>
+<p><strong>Review:</strong> compare actual outcomes with the baseline when data supports it; show changes, issues, usage/adoption, costs and what remains unknown. Early before/after comparisons are not proof that Jax caused an improvement. Escalate outages and exceptions according to the agreement. Protect client information; request explicit permission before any case study, testimonial, logo, quote or referral.</p>
+<p><strong>Expansion:</strong> if an owner wants to address another workflow, revisit the diagnosis and offer a fresh, fixed-scope proposal. Do not pressure customers into another project or bundle new capabilities into care without agreement.</p>
+<p><strong>Exit:</strong> confirm requested end date and contractual obligations; hand over agreed documentation, client-owned assets, access inventory and export options; explain ongoing vendor dependencies; stop or transfer approved automations and billing responsibilities; revoke Jax access when no longer needed; and confirm retention/deletion per agreement and applicable obligations. A customer's system must not depend on a hidden lock-in mechanism.</p>
+<h2 id="11-operating-records-metrics-and-decision-rights">11. Operating records, metrics and decision rights</h2>
+<p>When an appropriately private system is chosen, record the minimum needed: source/consent, company and owner-approved contact, stage, the owner's words, decision-maker, next action/date, agreed commercial terms, delivery owner, acceptance evidence and support status. Keep customer records out of this public workspace. The exact CRM/tool is not chosen or configured by this document.</p>
+<p><strong>Suggested stages:</strong> new inquiry → qualifying → owner call → discovery decision → discovery underway → proposal → agreed / not proceeding / paused → onboarding → building → acceptance → live → optional care → completed / exited. Set clear dates, owners and reasons; do not treat a scheduled call, proposal or verbal interest as signed revenue.</p>
+<p><strong>Suggested measures:</strong> qualified inquiries, held owner calls, agreed discoveries, accepted deployments, delivered/accepted projects, optional care uptake, client-reported outcomes, founder time, actual delivery costs and support exceptions. Track numerators and denominators, date and source; show “not enough data” rather than a fabricated conversion rate. For acquisition, connect source/creative to qualified calls and paid work where possible; clicks and rendering volume are diagnostics, not the goal.</p>
+<p><strong>Human gates:</strong> Evan approves launch, channels, claims, spending, prospect communications, pricing and agreements. The client authorizes system access, production changes and acceptance. AI may help draft or summarize in an approved environment, but it does not independently commit terms, access data, contact people, publish, spend or ship a production change.</p>
+<p><strong>Proposed SMART review:</strong> after Evan explicitly activates marketing, for the first 30 calendar days record the source and outcome of every inquiry that comes through the approved channels, then conduct one dated review of qualified conversations, offers, costs and observed objections. Use the actual sample, even if zero; decide whether to continue or revise. No assumed lead volume or conversion rate.</p>
+<h2 id="12-reusable-scripts-and-checklists">12. Reusable scripts and checklists</h2>
+<h3>Owner-call note template</h3>
+<ul>
+<li>Context / source and permission to follow up:</li>
+<li>One recent workflow example, actors and current tools:</li>
+<li>Owner's words about friction; frequency and impact if known:</li>
+<li>What works and what has been tried:</li>
+<li>Alternatives and constraints, including current provider / native tools:</li>
+<li>Desired outcome and baseline; facts vs estimates vs unknowns:</li>
+<li>Decision-maker(s), criteria, timing and any budget context volunteered:</li>
+<li>Fit / not fit / uncertain, why; agreed next action, owner and date:</li>
+</ul>
+<h3>Follow-up draft — review before sending</h3>
+<blockquote>
+<p>Subject: Recap and next step</p>
+<p>Hi [name], thanks for walking me through [workflow]. As I understood it, [problem in their words] affects [known consequence]; [uncertainty or useful existing approach]. Please correct anything I missed. We discussed [specific next step, scope and approved price context if relevant]. [Agreed next action/date, or “No action needed unless you'd like to continue.”] Thanks, Evan.</p>
+</blockquote>
+<p>No message is sent merely because this template exists.</p>
+<h3>Delivery acceptance checklist</h3>
+<ul>
+<li>[ ] Scope and baseline agreed; account ownership and named client approver recorded.</li>
+<li>[ ] Normal, bad-input, repeat, permission-failure and rollback/manual-fallback tests run and evidenced.</li>
+<li>[ ] Actual client owner reviewed acceptance results and any exceptions.</li>
+<li>[ ] Users trained; documentation, access, ongoing costs and dependencies explained.</li>
+<li>[ ] Support is separately agreed or declined; exit/transfer expectations documented.</li>
+</ul>
+<h3>Small example — explicitly fictional</h3>
+<p>A local service owner says follow-up on quote requests is inconsistent. Ask for the last few examples, who owns follow-up, the current software's built-in capabilities and what “inconsistent” means. If the team's existing tool already supports the workflow, improving its settings or training may be preferable to a new build. If not, agree a limited discovery path; only then propose an appropriately scoped intervention, acceptance test and user training. No savings number or customer outcome is assumed.</p>
+<h2 id="13-source-notes-and-open-decisions">13. Source notes and open decisions</h2>
+<p><strong>Sales:</strong> <a href="https://x.com/human_drew/status/2119807477013234038">Drew Long's four-image sales framework</a> contributes the opening frame, buyer-readiness questions, pain-before-pitch, fair comparison, quantified business case, voluntary follow-up and next-call recap. Its sales/conversion claims are unverified; aggressive competitor attacks, manufactured urgency, guarantees and pressure are not Jax policy. <a href="https://x.com/thegeomethod/status/2115427109565005966">Geo's two-meeting framework</a> adds a useful recap and discipline about next steps, not a mandatory two-call or commitment-before-information rule.</p>
+<p><strong>Marketing:</strong> <a href="https://x.com/gregisenberg/status/2119865330210140339">Greg Isenberg and Cody Schneider's creative system</a> contributes source-grounded creative, human review and measurement; its cost/performance anecdotes are not independently verified, and no production system is activated. <a href="https://x.com/guillaumebardet/status/2118657239217041552">Evidence-led GTM research</a> informs hypotheses and disconfirmation, not a claim that demand is validated.</p>
+<p><strong>Delivery and operations:</strong> <a href="https://567-labs.github.io/consulting/">567 Labs' AI Consulting Playbook</a> informs discovery, proposals and engagement boundaries; <a href="https://www.youtube.com/watch?v=Xs16MSqhqi0">Michele Torti's delivery walkthrough</a> informs kickoff, testing and handoff, while its customer-lock-in suggestion is explicitly rejected. <a href="https://x.com/lukepierceops/status/2115189554785452224">Luke Pierce's training-led alternative</a> challenges the paid-audit entry and remains an option to test, not an approved pivot.</p>
+<p>The full indexed Jax source library and preserved source notes remain in Obsidian. This is a working synthesis of the most relevant reviewed sources—not a claim that every past resource has been re-audited or loaded automatically. Review and update it from actual customer feedback before using it as a live operating procedure.</p>
+<p><strong>Decisions still needed before launch:</strong> paid discovery vs free scoping vs another entry; reconcile the newer specific pricing with old site ranges; define the exact entry/deployment deliverables, credit and support terms; select first audience/channel and an approved budget; choose a private record system; finalize data handling, contracts and actual escalation contacts. No customers, results or conversion benchmarks are invented here.</p>
+</article><footer>Working draft · no marketing, outreach or customer access is activated by this page.</footer></main></body></html>
