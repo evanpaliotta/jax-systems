@@ -101,6 +101,10 @@ Source: [Why 95% of AI Agency Websites NEVER Generate Leads](https://www.youtube
 
 No invented client testimonials, stars, customer logos, generic “trusted by” claims or guaranteed results. Clarity and a defined process are not substitutes for client proof. Test conversion with real visitors and paid outcomes after launch.
 
+## Coastal Current — visual-led round, 2026-11-10
+
+Clay (https://clay.global/), Cohere (https://cohere.com/) and Treg (https://treg.to/) were read and visually inspected. The new concept borrows visual confidence, a concise opening and an interactive explanatory object, not their assets, identities or customer proof. Unlike their full homepages, Jax keeps this homepage short and moves examples, process and pricing to separate pages. REA (https://github.com/morluto/rea) README inspected; no installation needed for public layout/DOM inspection. These are visual references, not conversion evidence.
+
 ## Sources
 
 [1] https://mainstreet-operator.com
