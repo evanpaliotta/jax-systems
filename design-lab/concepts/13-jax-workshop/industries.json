@@ -1,0 +1,439 @@
+[
+  {
+    "id": "trades",
+    "name": "Trades & field services",
+    "audience": "HVAC, plumbing, electrical, roofing, landscaping",
+    "human": "Diagnosis, safety, pricing and crew assignments remain with your team.",
+    "examples": [
+      {
+        "title": "Catch the call",
+        "problem": "The phone rings while the crew is on site.",
+        "fix": "Collect the address, job type and callback window into one office handoff."
+      },
+      {
+        "title": "Follow up on estimates",
+        "problem": "Yesterday’s quote is buried beneath today’s urgent jobs.",
+        "fix": "Queue follow-up and stop automatically when the customer replies."
+      },
+      {
+        "title": "Prepare the next visit",
+        "problem": "Job details live across texts and a notebook.",
+        "fix": "Gather access notes, photos and approved scope into a crew brief."
+      }
+    ]
+  },
+  {
+    "id": "property",
+    "name": "Property management",
+    "audience": "Residential, multifamily and commercial property teams",
+    "human": "Emergencies, tenant matters, work authorization and spend stay human.",
+    "examples": [
+      {
+        "title": "Complete maintenance intake",
+        "problem": "A leak report arrives without the unit number.",
+        "fix": "Collect the property, unit, photos and urgency before routing the request."
+      },
+      {
+        "title": "Coordinate vendors",
+        "problem": "The appointment was confirmed in somebody else’s text thread.",
+        "fix": "Track the agreed visit, access details and next action in one shared view."
+      },
+      {
+        "title": "Prepare owner updates",
+        "problem": "Friday reporting starts by copying facts from five tabs.",
+        "fix": "Draft a source-linked status recap for the property manager to review."
+      }
+    ]
+  },
+  {
+    "id": "professional",
+    "name": "Professional services",
+    "audience": "Legal, accounting, consulting and technical practices",
+    "human": "Professional advice, privilege, client acceptance and final document review stay with qualified staff.",
+    "examples": [
+      {
+        "title": "Collect missing documents",
+        "problem": "An engagement waits on two files nobody has chased.",
+        "fix": "Track a document checklist and prepare reminders through approved secure tools."
+      },
+      {
+        "title": "Route new enquiries",
+        "problem": "The same intake details get entered into several systems.",
+        "fix": "Organize the initial request and route it to the responsible person."
+      },
+      {
+        "title": "Keep deadlines visible",
+        "problem": "A milestone lives in one partner’s inbox.",
+        "fix": "Surface approved dates, owners and outstanding tasks in a shared work queue."
+      }
+    ]
+  },
+  {
+    "id": "logistics",
+    "name": "Logistics & transport",
+    "audience": "Freight brokers, local carriers, dispatch and warehousing",
+    "human": "Dispatch, safety, carrier decisions and commercial approvals remain human.",
+    "examples": [
+      {
+        "title": "Get billing ready",
+        "problem": "The delivery is done but proof-of-delivery is missing.",
+        "fix": "Track required documents and flag the loads that need a follow-up."
+      },
+      {
+        "title": "Prepare a dispatch brief",
+        "problem": "A route change never reaches the next shift.",
+        "fix": "Compile the agreed address, timing and exception notes for dispatch review."
+      },
+      {
+        "title": "Draft shipment updates",
+        "problem": "Customers call because status is scattered.",
+        "fix": "Turn approved status events into customer-update drafts."
+      }
+    ]
+  },
+  {
+    "id": "marine",
+    "name": "Marine services",
+    "audience": "Marinas, boat service, repair and marine retailers",
+    "human": "Vessel safety, diagnosis, scope and final completion promises remain with the team.",
+    "examples": [
+      {
+        "title": "Capture vessel details",
+        "problem": "The service request names the boat but not its berth.",
+        "fix": "Gather location, vessel details and photos for the coordinator."
+      },
+      {
+        "title": "Track estimate approvals",
+        "problem": "Work waits on a reply buried in a message thread.",
+        "fix": "Make the estimate status and next follow-up visible."
+      },
+      {
+        "title": "Keep recurring work visible",
+        "problem": "The next service date sits on a notepad.",
+        "fix": "Queue reminders from the maintenance schedule your team approves."
+      }
+    ]
+  },
+  {
+    "id": "cleaning",
+    "name": "Cleaning & facilities",
+    "audience": "Commercial janitorial, residential cleaning and facility teams",
+    "human": "Staffing, site access, safety and client relationship decisions stay human.",
+    "examples": [
+      {
+        "title": "Prepare site instructions",
+        "problem": "A replacement cleaner cannot find the access notes.",
+        "fix": "Assemble the approved site checklist and handoff instructions."
+      },
+      {
+        "title": "Close inspection issues",
+        "problem": "A quality issue is photographed but never assigned.",
+        "fix": "Route the inspection note to a named owner with a follow-up date."
+      },
+      {
+        "title": "Keep renewals moving",
+        "problem": "A recurring contract is close to renewal with no reminder.",
+        "fix": "Surface upcoming reviews and prepare a client-check-in draft."
+      }
+    ]
+  },
+  {
+    "id": "retail",
+    "name": "Retail & consumer services",
+    "audience": "Independent stores, repair counters and consumer-service shops",
+    "human": "Refunds, purchasing and customer exceptions need staff approval.",
+    "examples": [
+      {
+        "title": "Answer routine questions",
+        "problem": "Stock and opening-hours questions interrupt the counter.",
+        "fix": "Prepare replies using approved information and escalate uncertainty."
+      },
+      {
+        "title": "Route repair intake",
+        "problem": "A dropped-off item lacks the fault description.",
+        "fix": "Capture the item, issue and contact preferences in a consistent intake."
+      },
+      {
+        "title": "Follow up after a visit",
+        "problem": "An opted-in customer never hears the useful next step.",
+        "fix": "Prepare consent-based reminders and service follow-ups in existing tools."
+      }
+    ]
+  },
+  {
+    "id": "food",
+    "name": "Food & hospitality",
+    "audience": "Restaurants, caterers, venues and hospitality operators",
+    "human": "Food safety, allergies, staffing and booking commitments stay with staff.",
+    "examples": [
+      {
+        "title": "Organize catering enquiries",
+        "problem": "The date, headcount and budget arrive in separate messages.",
+        "fix": "Collect the essentials and prepare one brief for the event coordinator."
+      },
+      {
+        "title": "Track reservation changes",
+        "problem": "A changed headcount never reaches the floor lead.",
+        "fix": "Route confirmed changes into the team’s approved planning view."
+      },
+      {
+        "title": "Collect supplier details",
+        "problem": "The next order depends on an unconfirmed delivery.",
+        "fix": "Flag missing confirmations and prepare a supplier follow-up."
+      }
+    ]
+  },
+  {
+    "id": "beauty",
+    "name": "Beauty & wellness",
+    "audience": "Salons, spas, studios and nonclinical wellness services",
+    "human": "Service suitability, sensitive conversations and health advice remain human.",
+    "examples": [
+      {
+        "title": "Prepare appointment reminders",
+        "problem": "An upcoming visit still needs confirmation.",
+        "fix": "Use approved scheduling tools to queue consent-based reminders."
+      },
+      {
+        "title": "Organize new-client intake",
+        "problem": "Preferences and service history sit in different places.",
+        "fix": "Gather permitted details before the appointment without collecting unnecessary data."
+      },
+      {
+        "title": "Follow up on packages",
+        "problem": "A repeat visit is due with no clear next step.",
+        "fix": "Prepare an opted-in rebooking reminder for staff review."
+      }
+    ]
+  },
+  {
+    "id": "lodging",
+    "name": "Lodging & travel",
+    "audience": "Independent lodging, tour operators and vacation-rental teams",
+    "human": "Guest disputes, refunds, safety and booking commitments remain human.",
+    "examples": [
+      {
+        "title": "Prepare arrival details",
+        "problem": "Guests ask the same check-in questions.",
+        "fix": "Draft consistent arrival instructions from approved property information."
+      },
+      {
+        "title": "Coordinate turnovers",
+        "problem": "The checkout update never reaches housekeeping.",
+        "fix": "Route confirmed status changes into the turnover checklist."
+      },
+      {
+        "title": "Route guest requests",
+        "problem": "A maintenance request arrives across multiple channels.",
+        "fix": "Create one issue summary with the responsible team and next step."
+      }
+    ]
+  },
+  {
+    "id": "automotive",
+    "name": "Automotive",
+    "audience": "Repair shops, detailers, tire and vehicle-service businesses",
+    "human": "Diagnosis, safety, estimates and work authorization stay with qualified staff.",
+    "examples": [
+      {
+        "title": "Capture service enquiries",
+        "problem": "The vehicle and requested work are missing from the voicemail.",
+        "fix": "Collect basic service details before the advisor calls back."
+      },
+      {
+        "title": "Track estimate decisions",
+        "problem": "A vehicle waits while an approval sits in an inbox.",
+        "fix": "Make pending approvals visible and prepare the next follow-up."
+      },
+      {
+        "title": "Draft progress updates",
+        "problem": "Advisors keep answering the same status calls.",
+        "fix": "Prepare updates from approved job milestones for the advisor to review."
+      }
+    ]
+  },
+  {
+    "id": "recreation",
+    "name": "Recreation & events",
+    "audience": "Gyms, clubs, activity operators and event businesses",
+    "human": "Safety, capacity, waivers and event commitments remain the operator’s responsibility.",
+    "examples": [
+      {
+        "title": "Organize event enquiries",
+        "problem": "Date, group size and requirements arrive piecemeal.",
+        "fix": "Collect a consistent event brief for the coordinator."
+      },
+      {
+        "title": "Keep booking details aligned",
+        "problem": "A changed time never reaches the instructor.",
+        "fix": "Route confirmed changes to the relevant staff and checklist."
+      },
+      {
+        "title": "Prepare member follow-ups",
+        "problem": "An opted-in enquiry goes quiet after the first visit.",
+        "fix": "Queue an approved check-in without inventing availability or offers."
+      }
+    ]
+  },
+  {
+    "id": "healthcare",
+    "name": "Healthcare practices",
+    "audience": "Administrative workflows for clinics and healthcare offices",
+    "human": "No clinical advice or decisions. Privacy, HIPAA suitability, access and vendor agreements must be checked before any patient data is used.",
+    "examples": [
+      {
+        "title": "Track administrative tasks",
+        "problem": "A nonclinical task is waiting with no named owner.",
+        "fix": "Build an approved queue for routine office administration."
+      },
+      {
+        "title": "Prepare appointment communications",
+        "problem": "Routine scheduling messages take staff away from the desk.",
+        "fix": "Draft approved administrative communications within suitable secure systems."
+      },
+      {
+        "title": "Track vendor paperwork",
+        "problem": "A supplier document is missing from a compliance checklist.",
+        "fix": "Monitor document status and prepare reminders without handling clinical decisions."
+      }
+    ]
+  },
+  {
+    "id": "finance",
+    "name": "Finance & insurance",
+    "audience": "Insurance agencies, financial offices and bookkeeping operations",
+    "human": "No financial advice, underwriting, credit or coverage decisions. Confidential data, compliance and vendor permissions require review.",
+    "examples": [
+      {
+        "title": "Collect administrative documents",
+        "problem": "The application checklist is incomplete.",
+        "fix": "Track approved required items and route missing-document reminders."
+      },
+      {
+        "title": "Keep renewals visible",
+        "problem": "An upcoming review date is buried in a spreadsheet.",
+        "fix": "Surface dates and prepare a licensed professional’s review queue."
+      },
+      {
+        "title": "Prepare meeting context",
+        "problem": "A staff member manually gathers the same records each time.",
+        "fix": "Compile permitted source links and a brief for human verification."
+      }
+    ]
+  },
+  {
+    "id": "education",
+    "name": "Education & childcare",
+    "audience": "Tutoring, training, childcare and learning businesses",
+    "human": "Safeguarding, child data, enrollment decisions and educational judgment stay with authorized staff.",
+    "examples": [
+      {
+        "title": "Organize adult enquiries",
+        "problem": "A parent or learner asks about a program in several channels.",
+        "fix": "Capture minimal permitted details and route the enquiry to staff."
+      },
+      {
+        "title": "Prepare routine reminders",
+        "problem": "A schedule change creates a long chain of manual messages.",
+        "fix": "Draft approved reminders through the organization’s authorized channels."
+      },
+      {
+        "title": "Track staff paperwork",
+        "problem": "A required staff document is due but not assigned.",
+        "fix": "Create an internal checklist and reminder queue, separate from child records."
+      }
+    ]
+  },
+  {
+    "id": "brokerage",
+    "name": "Real estate brokerage",
+    "audience": "Residential and commercial brokerage offices",
+    "human": "Agency relationships, legal disclosures, negotiations and transaction advice stay with licensed professionals.",
+    "examples": [
+      {
+        "title": "Route property enquiries",
+        "problem": "An enquiry waits while the agent is showing a property.",
+        "fix": "Capture the basics and assign the appropriate follow-up owner."
+      },
+      {
+        "title": "Prepare showing coordination",
+        "problem": "Availability and access notes are split across messages.",
+        "fix": "Compile confirmed scheduling details for the agent to approve."
+      },
+      {
+        "title": "Track transaction checklists",
+        "problem": "A deadline is visible only in one email thread.",
+        "fix": "Surface approved due dates, document status and the responsible person."
+      }
+    ]
+  },
+  {
+    "id": "manufacturing",
+    "name": "Manufacturing & industrial",
+    "audience": "Small manufacturers, fabricators and industrial suppliers",
+    "human": "Engineering, quality, safety, production and purchasing decisions stay with qualified staff.",
+    "examples": [
+      {
+        "title": "Organize quote requests",
+        "problem": "An RFQ is missing drawings or quantities.",
+        "fix": "Collect required documents and route one brief to estimating."
+      },
+      {
+        "title": "Prepare order-status updates",
+        "problem": "Staff manually reconcile progress before every reply.",
+        "fix": "Gather approved milestones into a draft for account-team review."
+      },
+      {
+        "title": "Track supplier confirmations",
+        "problem": "A missing confirmation delays the next planning step.",
+        "fix": "Surface outstanding vendor responses and prepare a follow-up."
+      }
+    ]
+  },
+  {
+    "id": "technology",
+    "name": "Technology & IT",
+    "audience": "IT providers, software businesses and technical service teams",
+    "human": "Security changes, privileged access, deployments and technical commitments require authorized review.",
+    "examples": [
+      {
+        "title": "Route service intake",
+        "problem": "A ticket reaches the wrong queue without enough context.",
+        "fix": "Collect the permitted basics and route to the appropriate team."
+      },
+      {
+        "title": "Prepare account handoffs",
+        "problem": "Implementation context is scattered across several tools.",
+        "fix": "Assemble approved notes, dependencies and outstanding decisions."
+      },
+      {
+        "title": "Draft routine reporting",
+        "problem": "The weekly status recap starts from a blank document.",
+        "fix": "Gather source-linked facts into a reviewable report draft."
+      }
+    ]
+  },
+  {
+    "id": "other",
+    "name": "Something else?",
+    "audience": "Other owner-led businesses and unusual workflows",
+    "human": "Fit, access, risk and expertise must be checked. A category label is not a promise of compatibility.",
+    "examples": [
+      {
+        "title": "Map the handoff",
+        "problem": "Work keeps stopping between two people or tools.",
+        "fix": "Walk through a real example and identify the smallest useful fix."
+      },
+      {
+        "title": "Reduce repeated entry",
+        "problem": "The same approved details are copied several times.",
+        "fix": "Check native options before proposing a new connection."
+      },
+      {
+        "title": "Make the next step clear",
+        "problem": "An outstanding task depends on somebody remembering.",
+        "fix": "Agree a named owner, trigger and visible follow-up point."
+      }
+    ]
+  }
+]

@@ -100,7 +100,8 @@ class CoastalCurrentTest(unittest.TestCase):
     def test_append_only_gallery_keeps_feedback_schema_and_old_ids(self):
         gallery = (ROOT / 'design-lab/index.html').read_text()
         ids = re.findall(r"\{id:'([^']+)'", gallery)
-        self.assertEqual(ids, OLD_IDS + ['12-coastal-current'])
+        self.assertEqual(ids[:12], OLD_IDS + ['12-coastal-current'])
+        self.assertEqual(len(ids), len(set(ids)))
         self.assertIn("const KEY='jax-design-lab-feedback-v1'", gallery)
         self.assertIn("schema:'jax-design-lab-feedback-v1'", gallery)
         for url in ['https://clay.global', 'https://cohere.com', 'https://treg.to']:
