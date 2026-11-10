@@ -49,4 +49,29 @@ footer{color:var(--muted);font-size:.8rem;margin-top:22px}.status{color:var(--cl
 <details class="jump"><summary>Jump to a section</summary><ol>''' + nav + '''</ol></details>
 <article>''' + body + '''</article><footer>Working draft · no marketing, outreach or customer access is activated by this page.</footer></main></body></html>'''
 (ROOT / 'customer-lifecycle-playbook.html').write_text(html, encoding='utf-8')
-print(f'Rendered {len(sections)} sections, {len(html)} characters')
+
+# Keep the complete playbook in the existing Playbooks tab as well. The index
+# markers define the only generated region; all other workspace content stays intact.
+starts = [i for i, t in enumerate(tokens) if t.type == 'heading_open' and t.tag == 'h2']
+intro = md.renderer.render(tokens[:starts[0]], md.options, {})
+# This is nested under the Playbooks page heading, so keep heading hierarchy.
+intro = intro.replace('<h1>', '<h3>', 1).replace('</h1>', '</h3>', 1)
+cards = []
+for n, start in enumerate(starts):
+    end = starts[n + 1] if n + 1 < len(starts) else len(tokens)
+    title = escape(tokens[start + 1].content)
+    content = md.renderer.render(tokens[start + 3:end], md.options, {})
+    cards.append(f'<details class="panel" style="margin:10px 0"><summary style="cursor:pointer"><b>{title}</b></summary><div style="overflow-wrap:anywhere">{content}</div></details>')
+embedded = ('\n  <div class="sechead"><h2>Jax Customer Lifecycle Playbook</h2><span class="note">complete working draft · expand sections</span></div>\n'
+            '  <p><a href="./customer-lifecycle-playbook.html">Open the separate reading view →</a></p>\n'
+            '  <section id="lifecycle-inline" aria-label="Full customer lifecycle playbook">\n'
+            '  <div class="panel lifecycle-intro">' + intro + '</div>\n  ' + '\n  '.join(cards) + '\n  </section>\n  ')
+index_path = ROOT / 'index.html'
+index_html = index_path.read_text(encoding='utf-8')
+start_marker, end_marker = '<!-- LIFECYCLE EMBED START -->', '<!-- LIFECYCLE EMBED END -->'
+if index_html.count(start_marker) != 1 or index_html.count(end_marker) != 1:
+    raise ValueError('Expected exactly one pair of lifecycle embed markers in index.html')
+prefix, rest = index_html.split(start_marker, 1)
+_, suffix = rest.split(end_marker, 1)
+index_path.write_text(prefix + start_marker + embedded + end_marker + suffix, encoding='utf-8')
+print(f'Rendered {len(sections)} sections into standalone page and workspace')
