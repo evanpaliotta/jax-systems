@@ -1,0 +1,93 @@
+{
+  "title": "Jax Systems — Agent Organization",
+  "status": "Working v1: on-demand internal analysis and drafts; not autonomous client operations",
+  "updated": "2026-11-10",
+  "front_door": "Ask Hermes in Telegram with Jax Chief of Staff or a Jax-specific request.",
+  "architecture": "One Chief of Staff, on-demand specialists, one governed skill library. Not six always-on autonomous businesses.",
+  "roles": [
+    {
+      "id": "growth",
+      "name": "Growth & Market Intelligence",
+      "purpose": "Find relevant owner problems and prepare evidence-backed positioning and marketing experiments.",
+      "skills": [
+        "customer-research",
+        "competitor-profiling",
+        "prospecting",
+        "content-strategy",
+        "copywriting",
+        "cold-email",
+        "analytics"
+      ]
+    },
+    {
+      "id": "sales",
+      "name": "Sales & Scoping",
+      "purpose": "Prepare owner meetings, truthful business cases and bounded proposal drafts.",
+      "skills": [
+        "sales-enablement",
+        "offers",
+        "pricing",
+        "grounded-citations"
+      ]
+    },
+    {
+      "id": "delivery",
+      "name": "Solutions & Delivery",
+      "purpose": "Prepare implementable designs, test plans and handoffs for bounded systems work.",
+      "skills": [
+        "brainstorming",
+        "writing-plans",
+        "codex",
+        "test-driven-development",
+        "systematic-debugging",
+        "verification-before-completion",
+        "live-app-verification"
+      ]
+    },
+    {
+      "id": "client_ops",
+      "name": "Client Operations & Success",
+      "purpose": "Prepare onboarding, delivery-status, support and adoption records.",
+      "skills": [
+        "sales-enablement",
+        "project-governance",
+        "grounded-citations"
+      ]
+    },
+    {
+      "id": "business_ops",
+      "name": "Business Operations",
+      "purpose": "Prepare internal work coordination and business administrative drafts.",
+      "skills": [
+        "project-governance",
+        "google-workspace",
+        "execution-reporting"
+      ]
+    },
+    {
+      "id": "quality",
+      "name": "Quality & Security",
+      "purpose": "Independently check other role outputs and source/permission boundaries.",
+      "skills": [
+        "grounded-citations",
+        "verification-before-completion",
+        "live-app-verification",
+        "agent-operating-discipline"
+      ]
+    }
+  ],
+  "proof": {
+    "automated_tests": "26 automated tests pass, including policy, source, recovery, privacy and idempotency checks.",
+    "live_pilots": "3 real internal tasks completed across all six functions; independent model QA on each. One initial route was rejected and one output-limit failure recovered within its task budget. Fresh Hermes skill invocation returned the actual task status.",
+    "models": "Planning/work: openai/gpt-5-mini; independent QA: openai/gpt-5.4-mini",
+    "cost": "Known provider charges exceed $0.05995; total unknown because a truncated call did not return usable accounting. No new subscriptions. This is not an account-wide spending limit."
+  },
+  "limits": [
+    "Internal research, analysis, checklists and local drafts only in v1.",
+    "No outreach, purchases, signatures, production execution or client-system access.",
+    "Workers have no shell, browser, email or banking tools; tool actions are not unlocked by a prompt.",
+    "Private task records and source context are never published here.",
+    "A separate reviewer and deterministic artifact checks are required; a second opinion is not an audit guarantee.",
+    "No Anthropic/Claude models, automatic router or silent model fallback."
+  ]
+}
