@@ -3,169 +3,585 @@
 <meta name="robots" content="noindex,nofollow"><meta name="color-scheme" content="light">
 <title>Customer Lifecycle Playbook — Jax Systems</title>
 <style>
-:root{--ink:#141715;--muted:#5f6c63;--paper:#f3f0e7;--card:#fffdf7;--line:#d9d7c9;--clay:#b8562f;--moss:#1d4a3f}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.68 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
-a{color:var(--moss);text-underline-offset:3px}a:focus-visible,summary:focus-visible{outline:3px solid var(--clay);outline-offset:3px}
-.bar{border-bottom:1px solid var(--line);background:rgba(243,240,231,.96)}.bar-inner{max-width:1020px;margin:auto;padding:15px 25px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
-.brand{font-weight:700}.brand:before{content:"";display:inline-block;background:var(--clay);width:10px;height:10px;border-radius:50%;margin-right:10px;box-shadow:0 0 0 4px rgba(184,86,47,.14)}
-.label{color:var(--muted);font-size:.8rem;font-weight:500}.bar a{font-size:.9rem}
-main{max-width:1020px;margin:auto;padding:30px 25px 80px}.kicker{font-size:.7rem;font-family:monospace;letter-spacing:.13em;text-transform:uppercase;color:var(--clay);font-weight:700}
-article{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:30px 38px;box-shadow:0 18px 44px rgba(20,35,28,.07)}
-h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:500;line-height:1.18;letter-spacing:-.02em}h1{font-size:clamp(2rem,4.7vw,3.2rem);margin:.3em 0 .45em}h2{font-size:clamp(1.45rem,3vw,1.8rem);border-top:1px solid var(--line);margin:2.2em 0 .6em;padding-top:1em;scroll-margin-top:20px}h3{font-size:1.15rem;margin:1.6em 0 .5em}p,li{max-width:78ch}p{margin:.8em 0}li{margin:.4em 0}ul,ol{padding-left:1.4em}blockquote{margin:1em 0;border-left:3px solid var(--moss);background:#e8ecd9;border-radius:4px;padding:.35em 1em}blockquote p{margin:.4em 0}
-.jump{margin:18px 0 22px;background:#e9e5d6;border:1px solid var(--line);border-radius:10px;padding:12px 16px}.jump summary{font-weight:700;cursor:pointer}.jump ol{columns:2;column-gap:30px;margin:.8em 0 .2em}.jump li{break-inside:avoid;font-size:.9rem}
-footer{color:var(--muted);font-size:.8rem;margin-top:22px}.status{color:var(--clay)}
-@media(max-width:620px){main{padding:22px 14px 50px}.bar-inner{padding:13px 15px}article{padding:23px 20px}.jump ol{columns:1}h1{font-size:2.1rem}body{font-size:16px}}
-@media print{body{background:#fff}.bar,.jump{display:none}main{padding:0}article{border:0;box-shadow:none;padding:0}h2{break-after:avoid}a{color:#111}}
-</style></head><body><header class="bar"><div class="bar-inner"><div class="brand">Jax Systems <span class="label">— working notes</span></div><a href="./">← Back to workspace</a></div></header>
-<main><div class="kicker">Internal planning · draft · publicly accessible</div>
-<details class="jump"><summary>Jump to a section</summary><ol><li><a href="#1-the-customer-journey-and-handoffs">1. The customer journey and handoffs</a></li><li><a href="#2-attract-the-right-conversations">2. Attract the right conversations</a></li><li><a href="#3-qualification-is-a-conversation-worthwhile">3. Qualification: is a conversation worthwhile?</a></li><li><a href="#4-the-first-owner-call-listen-before-pitching">4. The first owner call: listen before pitching</a></li><li><a href="#5-a-second-conversation-when-useful">5. A second conversation, when useful</a></li><li><a href="#6-discovery-and-the-business-case">6. Discovery and the business case</a></li><li><a href="#7-proposal-and-agreement">7. Proposal and agreement</a></li><li><a href="#8-onboard-build-and-test">8. Onboard, build and test</a></li><li><a href="#9-acceptance-and-handoff">9. Acceptance and handoff</a></li><li><a href="#10-care-learning-and-a-clean-exit">10. Care, learning and a clean exit</a></li><li><a href="#11-operating-records-metrics-and-decision-rights">11. Operating records, metrics and decision rights</a></li><li><a href="#12-reusable-scripts-and-checklists">12. Reusable scripts and checklists</a></li><li><a href="#13-source-notes-and-open-decisions">13. Source notes and open decisions</a></li></ol></details>
-<article><h1>Jax Systems: Customer Lifecycle Playbook</h1>
-<p><strong>Working draft · 9 November 2026 · Internal planning, not customer-facing copy.</strong> This is a first operating playbook, not evidence that any customer has been contacted, any offer has been validated or any system has been built. The published business workspace is publicly accessible; do not put prospect names, client data, notes, credentials or private results in this document.</p>
-<p><strong>Purpose:</strong> help a Northeast Florida business move from “I have a recurring operational problem” to a useful, supported system it can own. Understand the work first; sell one bounded intervention; transfer knowledge; measure actual results. AI is optional. The owner should never need to buy a second project to get value from the first.</p>
-<p><strong>Activation:</strong> this playbook does not authorize launch, paid tools, campaigns, outreach, account connections or access to customer data. Start marketing only when Evan explicitly chooses to do so; approve channels, claims and any budget. Drafts are not sends.</p>
-<h2 id="1-the-customer-journey-and-handoffs">1. The customer journey and handoffs</h2>
+:root{--ink:#17251f;--muted:#5f6c63;--paper:#f3f0e7;--card:#fffdf7;--line:#d9d7c9;--clay:#b8562f;--moss:#1d4a3f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--moss);text-underline-offset:3px}a:focus-visible,summary:focus-visible,.table-scroll:focus-visible,button:focus-visible{outline:3px solid var(--clay);outline-offset:3px}
+.skip{position:absolute;left:15px;top:-100px;background:var(--card);padding:12px;z-index:10}.skip:focus{top:12px}
+.bar{border-bottom:1px solid var(--line)}.bar-inner{max-width:1400px;margin:auto;padding:17px 24px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.bar-actions{display:flex;gap:18px;align-items:center;font-size:.84rem}
+.brand{font-weight:750}.brand:before{content:"";display:inline-block;background:var(--clay);width:10px;height:10px;border-radius:50%;margin-right:10px;box-shadow:0 0 0 4px rgba(184,86,47,.14)}
+.label{color:var(--muted);font-size:.8rem;font-weight:500}.bar button{font:inherit;color:var(--moss);background:transparent;border:1px solid var(--line);border-radius:5px;padding:7px 10px;cursor:pointer}
+main{max-width:1400px;margin:auto;padding:28px 24px 80px}.kicker{font-size:.7rem;font-family:monospace;letter-spacing:.11em;text-transform:uppercase;color:var(--clay);font-weight:700}.meta{color:var(--muted);font-size:.8rem;margin:8px 0 22px}
+.layout{display:grid;grid-template-columns:270px minmax(0,1fr);gap:26px;align-items:start}article{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:32px 42px;min-width:0;overflow-wrap:anywhere;box-shadow:0 18px 44px rgba(20,35,28,.04)}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:500;line-height:1.22;letter-spacing:-.02em}h1{font-size:clamp(2rem,4vw,3.1rem);margin:.1em 0 .6em}h2{font-size:clamp(1.45rem,3vw,1.85rem);border-top:1px solid var(--line);margin:2.2em 0 .75em;padding-top:1em;scroll-margin-top:20px}h3{font-size:1.23rem;margin:1.8em 0 .55em}p,li{max-width:81ch}p{margin:.85em 0}li{margin:.45em 0}ul,ol{padding-left:1.45em}strong{font-weight:650}blockquote{margin:1em 0;border-left:3px solid var(--moss);background:#e8ecd9;padding:.35em 1em}blockquote p{margin:.4em 0}
+.jump{position:sticky;top:20px;background:#e9e5d6;border:1px solid var(--line);border-radius:10px;padding:14px 16px;max-height:calc(100vh - 40px);overflow:auto}.jump summary{font-weight:700;cursor:pointer;font-size:.9rem}.jump ol{list-style:none;padding:0;margin:.9em 0 .2em}.jump li{font-size:.8rem;line-height:1.45;margin:.65em 0}.jump a{text-decoration:none}.jump a:hover{text-decoration:underline}
+.table-scroll{overflow-x:auto;max-width:100%;margin:1em 0;border:1px solid var(--line);border-radius:7px}table{border-collapse:collapse;font-size:.85rem;min-width:560px;width:100%;line-height:1.5}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}th{background:#e8ecd9}tr:last-child td{border-bottom:0}.citation{font-size:.78em;white-space:nowrap;text-decoration:none;margin-left:2px}footer{color:var(--muted);font-size:.8rem;margin-top:22px}
+@media(max-width:1000px){.layout{grid-template-columns:220px minmax(0,1fr);gap:18px}article{padding:25px}}
+@media(max-width:760px){main{padding:22px 14px 50px}.bar-inner{padding:14px}.label{display:none}.layout{display:block}.jump{position:static;max-height:none;margin-bottom:18px}.jump ol{columns:2;column-gap:18px}.jump li{break-inside:avoid}article{padding:24px 20px}h1{font-size:2.1rem}}
+@media(max-width:420px){.jump ol{columns:1}.bar-actions{gap:10px}.bar-actions a{max-width:115px;line-height:1.3}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:#fff;font-size:10pt}.bar,.jump,.kicker,.meta,.skip,footer{display:none}main{padding:0}.layout{display:block}article{border:0;box-shadow:none;padding:0}h2,h3{break-after:avoid}tr{break-inside:avoid}.table-scroll{overflow:visible;border:0}table{min-width:0;font-size:8pt}a{color:#111}}
+</style></head><body><a class="skip" href="#manual">Skip to manual</a><header class="bar"><div class="bar-inner"><div class="brand">Jax Systems <span class="label">— operations field manual</span></div><div class="bar-actions"><a href="./">← Workspace</a><button id="print-manual" type="button">Print / Save PDF</button></div></div></header>
+<main><div class="kicker">One client lifecycle · operating draft v2 · 14 November 2026</div>
+<div class="meta">9,949 words · 17 operating sections + sources · Blank templates only; this is not a private client portal.</div>
+<div class="layout"><details class="jump" open><summary>Contents / jump to a stage</summary><ol><li><a href="#1-how-to-use-this-manual">1. How to use this manual</a></li><li><a href="#2-the-lifecycle-and-its-advance-gates">2. The lifecycle and its advance gates</a></li><li><a href="#3-attract-and-qualify-website-buyer-list-and-email">3. Attract and qualify: website, buyer list and email</a></li><li><a href="#4-handle-the-enquiry-and-run-the-intro-call">4. Handle the enquiry and run the intro call</a></li><li><a href="#5-diagnose-conduct-the-business-improvement-plan">5. Diagnose: conduct the Business Improvement Plan</a></li><li><a href="#6-deliver-the-business-improvement-plan">6. Deliver the Business Improvement Plan</a></li><li><a href="#7-sell-and-scope-the-build">7. Sell and scope the build</a></li><li><a href="#8-onboard-accounts-data-and-responsibilities">8. Onboard: accounts, data and responsibilities</a></li><li><a href="#9-implement-observe-build-prove-prepare">9. Implement: observe, build, prove, prepare</a></li><li><a href="#10-accept-launch-and-hand-over">10. Accept, launch and hand over</a></li><li><a href="#11-operate-monitor-the-business-result-not-just-the-cron">11. Operate: monitor the business result, not just the cron</a></li><li><a href="#12-when-something-breaks-incident-response">12. When something breaks: incident response</a></li><li><a href="#13-care-maintenance-and-controlled-improvement">13. Care, maintenance and controlled improvement</a></li><li><a href="#14-manage-the-relationship-records-and-money">14. Manage the relationship, records and money</a></li><li><a href="#15-expand-renew-or-exit-cleanly">15. Expand, renew or exit cleanly</a></li><li><a href="#16-walk-one-fictional-engagement-through-the-whole-system">16. Walk one fictional engagement through the whole system</a></li><li><a href="#17-readiness-what-must-exist-before-selling-and-shipping">17. Readiness: what must exist before selling and shipping</a></li><li><a href="#sources">Sources</a></li></ol></details>
+<article id="manual"><h1>Jax Systems: Customer Lifecycle Playbook</h1>
+<p><strong>Operating draft v2 · 14 November 2026 · One manual, first enquiry through clean exit.</strong> For Evan to run the business, not customer-facing marketing copy. This reading copy is publicly accessible: blank templates and fictional examples only. Keep actual prospect lists, client records, agreements, incident logs and credentials in an access-controlled system, never here.</p>
+<p><strong>The objective:</strong> understand the business, deliver a useful Business Improvement Plan, sell only work that can be bounded and supported, launch safely, and know whether it keeps working. AI is optional. Prefer a simpler process or an existing product feature when it solves the problem.</p>
+<p><strong>What this is—and is not:</strong> a researched operating design with executable checklists and templates. It does not install a CRM, create email infrastructure, run monitoring, establish a support rota, authorize outreach, or prove any client result. The fictional rehearsal in section 16 tests the reasoning, not a production system. Read section 17 before selling or activating anything.</p>
+<h2 id="1-how-to-use-this-manual">1. How to use this manual</h2>
+<p>Use one private client record throughout the lifecycle. Each stage below states its trigger, inputs, responsible people, procedure, output, advance gate and failure path. Complete a gate with evidence, not a tick based on confidence. Mark a record <strong>ready</strong>, <strong>blocked</strong>, <strong>paused</strong>, <strong>not proceeding</strong> or <strong>complete</strong>; never quietly skip a failed gate.</p>
+<h3>Current offer: resolve the old-document conflict</h3>
+<p>The live pricing page was checked for this revision. It now specifies a free introductory conversation, a <strong>paid $999 Business Improvement Plan</strong>, a <strong>$2,499 first standard build including that plan</strong>, and <strong>optional $499/month support</strong>.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a> Paid versus free diagnostic is therefore not left undecided in this manual: free introduction; paid analysis and recommendations. A different entry offer would require an explicit commercial change, not an improvisation on a call.</p>
+<p>The plan is credited once: $2,499 total minus $999 already paid = <strong>$1,500 remaining</strong>, not $3,498 combined.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a> Broader or more complex work needs a separate quote; there is no universal maximum price or universal delivery duration.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a></p>
+<p>Eligible additional improvements start at $999, and eligible additional support is $249/month only when the existing setup and approach can be reused and the extra improvement is live; neither is an automatic price for every extra project.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a> Software/provider charges are separate, the client keeps the plan without buying a build, and build handoff is not conditional on buying care.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a></p>
+<p>Older “Ops X-ray,” pricing-range and free-scoping discussions in the workspace are historical. This manual supersedes their conflicting operating guidance; it does not rewrite past research or signed terms. Recheck the published offer and signed agreement before each quote. The contract governs that engagement; escalate any mismatch instead of silently changing either promise.</p>
+<h3>Who is accountable</h3>
+<ul>
+<li><strong>Evan / engagement owner:</strong> qualification, commercial decisions, delivery accountability, capacity, client communication and support coordination. One person may wear several hats; that does not create independent coverage.</li>
+<li><strong>Client sponsor:</strong> budget and business priorities; signs the agreement or identifies the authorized signatory.</li>
+<li><strong>Client workflow owner:</strong> supplies real examples, validates rules, runs acceptance checks and owns manual fallback.</li>
+<li><strong>Client system administrator:</strong> grants/revokes access and authorizes technical changes within their authority.</li>
+<li><strong>Named reviewer or specialist, where needed:</strong> verifies risky decisions or work beyond Evan's capability. Do not invent an available security team, subcontractor or backup responder.</li>
+<li><strong>AI assistance:</strong> drafts, analysis and bounded tests only within approved tools/data permissions. It cannot sign, spend, contact clients, expand scope or authorize production changes on its own.</li>
+</ul>
+<p><strong>Decision hierarchy:</strong> signed engagement terms → current approved commercial decisions → this manual → historical source ideas. Applicable law and binding provider rules still apply. Resolve contradictions before proceeding; a proposal, verbal interest or dashboard is not a contract.</p>
+<p><strong>Standard handoff line:</strong> client ID; stage; evidence links; decision and decision-maker; next action; owner; due date/time zone; blocker; permission status. Never store a password or token in that line.</p>
+<h2 id="2-the-lifecycle-and-its-advance-gates">2. The lifecycle and its advance gates</h2>
+<p>The journey is linear enough to run, but permits a no, a pause, a return to discovery or an exit. A second sales meeting is optional, not a mandatory persuasion ritual.</p>
+<div class="table-scroll" role="region" aria-label="Scrollable reference table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Main output</th>
+<th>Evidence needed to advance</th>
+<th>If not ready</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attract / qualify</td>
+<td>Verified prospect or enquiry record</td>
+<td>Relevant buyer/problem, legitimate contact basis, no suppression or unresolved compliance issue</td>
+<td>Research, correct, suppress or close</td>
+</tr>
+<tr>
+<td>Introductory call</td>
+<td>Fit decision and agreed next step</td>
+<td>Owner problem, decision route, manageable risk; agreement to consider paid plan</td>
+<td>Nurture only if welcome, refer or decline</td>
+</tr>
+<tr>
+<td>Paid Business Improvement Plan</td>
+<td>Current-state map, ranked recommendations, measurement and first-build quote</td>
+<td>Discovery authorized/paid as agreed; factual review; client receives plan and walkthrough</td>
+<td>Resolve missing evidence, narrow scope or recommend no build</td>
+</tr>
+<tr>
+<td>Sell the build</td>
+<td>Signed scope and commercial record</td>
+<td>Price, dependencies, acceptance, change terms and required payment milestone confirmed</td>
+<td>No build; clarify or pause</td>
+</tr>
+<tr>
+<td>Onboard / implement</td>
+<td>Tested release candidate and runbook</td>
+<td>Access, safe data path, versioned work, passed tests, client owner ready</td>
+<td>Fix defect or use change control</td>
+</tr>
+<tr>
+<td>Accept / launch</td>
+<td>Approved cutover and handover</td>
+<td>Client acceptance, rollback/fallback, actual destination verified, alerts proven</td>
+<td>Do not switch; keep manual process</td>
+</tr>
+<tr>
+<td>Operate / care</td>
+<td>Health evidence, incident record, value review</td>
+<td>Agreed coverage active; real outcome evidence; issues owned</td>
+<td>Triage, pause unsafe automation or rescope</td>
+</tr>
+<tr>
+<td>Expand / exit</td>
+<td>New bounded scope or closure certificate</td>
+<td>New approval, or completed export/access/billing closure</td>
+<td>Reconcile before marking closed</td>
+</tr>
+</tbody>
+</table></div>
+<p>A gate can only be waived by someone with authority, with the reason, risk, compensating control and expiry recorded. Do not waive unauthorized access, false claims, missing consent or an unsafe external action merely to preserve a deadline.</p>
+<h2 id="3-attract-and-qualify-website-buyer-list-and-email">3. Attract and qualify: website, buyer list and email</h2>
+<p><strong>Trigger:</strong> an enquiry arrives, a referral is offered, or Evan activates a specific acquisition experiment. <strong>Inputs:</strong> current offer, target hypotheses, public-source evidence, permitted channels, private record system and available response/delivery capacity. <strong>Owner:</strong> Evan. <strong>Output:</strong> a small, source-backed queue of conversations, not an indiscriminate contact dump.</p>
+<h3>Select a buyer without pretending demand is validated</h3>
+<p>Start in Jacksonville / Northeast Florida with an owner or operating decision-maker who has recurring work, a measurable consequence, and someone who can adopt a change. Keep a broad service portfolio, but test one buyer/problem combination in an individual outreach batch. Possible signals: the owner describes missed handoffs, repeated entry, ageing quotes or inconsistent follow-up. Public reviews, hiring and website gaps are research signals—not proof that a business is broken or wants help.</p>
+<p>Before a record becomes contact-ready, verify: still operating; actual business versus branch/location; plausible decision route; dated source for the contact channel; relevance; provider/legal eligibility; suppression status. Publicly listed contact information is not a consent record. Do not import personal addresses, sensitive records or unverified inferred emails just to fill a column.</p>
+<p><strong>Prospect-record template:</strong> prospect ID; business/location identity; geography; observed signal + source URL/date; problem hypothesis; buyer role and evidence; public business contact source/date; last verification; legitimate contact basis; jurisdiction/provider-policy check; suppression status; fit/risk; stage; next action/owner/date. Missing information stays unknown. Private research exports do not become outreach-ready automatically.</p>
+<p><strong>Disqualifiers or stop-and-review:</strong> no credible problem; unwilling sponsor; request for guaranteed revenue; need for round-the-clock critical coverage Jax cannot provide; unclear permission; regulated/high-consequence work beyond capability; prohibited provider use; no workable fallback; project economics that require hidden unpaid support. Declining a bad fit protects both sides.</p>
+<h3>Email infrastructure: a readiness gate, not a warm-up ritual</h3>
+<p>Do not buy inboxes or activate warming from this document. At activation:</p>
 <ol>
-<li><strong>Market and attract</strong> → a relevant owner understands the problem Jax can help investigate and has one clear next step.</li>
-<li><strong>Qualify</strong> → a real owner problem, decision process and possible fit are recorded; the owner is not pressured to buy.</li>
-<li><strong>Owner call</strong> → the owner describes the current workflow, its consequences, prior efforts and options. Agree whether a further conversation is useful.</li>
-<li><strong>Discovery / scoping</strong> → establish what is happening with appropriate permission, identify alternatives and produce a bounded recommendation. The free-versus-paid entry decision remains open.</li>
-<li><strong>Proposal and decision</strong> → agree on one workflow, deliverables, cost, acceptance, exclusions and ownership. A no or a pause is valid.</li>
-<li><strong>Onboard and build</strong> → make access and ownership safe; demonstrate progress and test normal, error and repeat cases.</li>
-<li><strong>Accept and hand over</strong> → the client validates the agreed result and can operate or safely stop the system.</li>
-<li><strong>Care and improvement</strong> → if separately agreed, support the running system, report actual results and quote new work separately.</li>
-<li><strong>Expand or exit</strong> → propose another workflow only when there is a reason and capacity; on exit, transfer what was agreed and close access cleanly.</li>
+<li>Select a provider whose acceptable-use terms permit the proposed activity. Establish the real sender identity, domain strategy, mailbox owner, reply handling and budget; do not use lookalike identities or rotate domains to evade filters.</li>
+<li>Configure and verify SPF, DKIM and DMARC as the Jax baseline, with forward/reverse DNS and TLS checked through the provider where applicable. Gmail's minimum authentication requirements distinguish all senders from bulk senders; do not mistake a bulk threshold for permission to send below it.<a class="citation" href="#source-3" aria-label="Source 3">[3]</a></li>
+<li>Verify a real test from the intended sending path to controlled Gmail and another provider: authentication results, readable content, received inbox/spam location, working Reply-To, actual reply receipt, bounce capture and opt-out handling. A provider's “sent” status is not a receipt.</li>
+<li>Confirm applicable commercial-email requirements and provider rules before a campaign, including truthful identity/subject, required advertising disclosure, a valid postal address, an easy opt-out and suppression. The FTC guide requires accurate routing information and non-deceptive subjects; commercial versus transactional classification depends on message purpose, not the sender's label.<a class="citation" href="#source-4" aria-label="Source 4">[4]</a> Obtain qualified legal advice for the actual audience/jurisdictions; this checklist is not a complete legal opinion.</li>
+<li>Test suppression across every sending tool before the first real batch. Jax's proposed operating policy is immediate suppression on opt-out, no further promotional follow-up; retain only the restricted suppression evidence needed to honor it. Never put an opted-out lead back into a fresh import.</li>
+<li>Start with an explicitly approved, small batch and a named person to read replies. Inspect delivery errors, complaints, negative replies and fit before expanding. Google advises against purchased lists and sudden volume spikes; warming is not proof of permission or guaranteed delivery.<a class="citation" href="#source-3" aria-label="Source 3">[3]</a></li>
 </ol>
-<p>Each handoff records <strong>owner, next action, due date, decision, blockers and consent</strong>. A customer can pause or leave at any stage. This is a suggested sequence; a simple situation may require fewer calls, while a complex one may require more.</p>
-<h2 id="2-attract-the-right-conversations">2. Attract the right conversations</h2>
-<p><strong>Who:</strong> locally relevant small-business owner or operator with a repeated operational task, a person able to approve changes, and a plausible path to implementing them. Industries, pain, willingness to pay and budget remain hypotheses until checked. Existing customer tools may already solve the issue; Jax should be willing to say so.</p>
-<p><strong>Before launch:</strong> choose a real audience, one problem/offer, truthful proof or a clearly labeled illustrative demonstration, a simple inquiry path and who will respond. Start with the channels Evan approves; relationship-led local conversations and practical demonstrations are candidates, not assumed winners. No ad spend or paid tooling without explicit approval.</p>
-<p><strong>Future production loop:</strong> research owner language → choose a specific problem → create a few distinct concepts → check every claim and link → Evan approves distribution → connect source and creative ID to inquiry → learn from qualified conversations and paid work. Use real work and permissioned proof, not invented case studies, testimonials or synthetic customers. Static assets or Evan's own demonstration are sensible first formats; the full video/warehouse system is optional.</p>
-<p><strong>Handoff to sales:</strong> capture how they found Jax, what they asked about, permission to follow up, and their preferred contact method. A website form, CRM, automation or customer-data store is not created merely by writing this playbook.</p>
-<h2 id="3-qualification-is-a-conversation-worthwhile">3. Qualification: is a conversation worthwhile?</h2>
-<p>Ask just enough to decide whether to talk—not to conduct the paid assessment by stealth.</p>
+<p>Keep business-critical enquiry/support delivery separate from acquisition activity where practical, without pretending subdomains provide perfect reputation isolation. After any MX/SPF/DKIM change, retest the existing website notification and reply path; do not break inbound enquiries while setting up outbound.</p>
+<h3>Outreach and follow-up policy—proposed, not activated</h3>
+<p>Lead with an observed fact, label the hypothesis and ask a low-pressure question. No fake case study, assumed loss calculation, disguised customer enquiry or invented familiarity. Example structure: “I noticed [verifiable fact]. Does [specific recurring handoff] cause extra work for your team, or have you already got that handled?” Add the required commercial footer and opt-out when applicable.</p>
+<p>For an activated first pilot, propose one initial message and at most two relevant follow-ups across roughly two working weeks, unless the person asks for a different timing. Stop on opt-out, hard bounce, complaint, a clear no, or evidence of wrong person; record the reason. An auto-reply is not interest. Route positive replies to a human and stop the sequence; respect an out-of-office return date rather than adding touches blindly. Silence is not consent to continue indefinitely.</p>
+<p><strong>Advance gate:</strong> sending path tested, compliance/provider check complete, suppression tested, list verified, claims and batch authorized, response owner available. <strong>Failure path:</strong> pause that channel, preserve diagnostics, correct the cause and retest. Do not compensate for poor delivery by sending more.</p>
+<h2 id="4-handle-the-enquiry-and-run-the-intro-call">4. Handle the enquiry and run the intro call</h2>
+<p><strong>Trigger:</strong> a real response, website enquiry or referral. <strong>Inputs:</strong> original message/source, current offer, minimal public context and scheduling capacity. <strong>Owner:</strong> Evan. <strong>Output:</strong> fit decision, concise notes and one mutually agreed next step. <strong>Proposed internal target:</strong> check the enquiry queue each working day and acknowledge within one working day when available; this is not a published SLA.</p>
+<p>Deduplicate without losing the source. Record when it arrived, what the person asked, who will reply and the next due date. Confirm the website notification actually reached the queue. Never treat form submission as a newsletter subscription. Ask permission before recording/transcribing; follow applicable recording law, explain tool/storage use, and use written notes if permission is absent or unclear.</p>
+<h3>Thirty-minute call outline</h3>
 <ul>
-<li>What does the business do, and what kind of work is causing friction?</li>
-<li>Who experiences it, who would use a fix, and who makes the decision?</li>
-<li>What systems or people are involved? Is there an existing provider?</li>
-<li>Is the owner exploring, trying to solve something now, or unable to say yet? What is driving the timing?</li>
-<li>What would a useful outcome be? Are there known constraints, sensitivities or budget concerns?</li>
+<li><strong>0–3 minutes: frame.</strong> “I'd like to understand what's happening, whether we could help, and a sensible next step. This introductory call is free; the detailed analysis and recommendations are a separate paid plan.”</li>
+<li><strong>3–15: one recent example.</strong> “Walk me through the last time this happened.” Who starts it? Where does information enter? Who checks it? Where does it wait or get repeated? What works well? What has already been tried?</li>
+<li><strong>15–22: consequence and decision.</strong> How often? What is known versus estimated about time, rework, customer experience or missed work? Who owns the process and decision? What is driving timing? Which alternatives—including the incumbent, a built-in feature and doing nothing—are being considered?</li>
+<li><strong>22–27: reflect and qualify.</strong> Play back their words, correct misunderstandings and name the unknowns. A short useful observation is fine; do not perform unbounded unpaid diagnosis or invent a build recommendation before evidence.</li>
+<li><strong>27–30: agree, pause or decline.</strong> Explain what the $999 Business Improvement Plan includes, that the client keeps it, and that building/care are separate decisions.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a> Offer a written discovery scope when there is fit. Otherwise give a respectful no or a permission-based check-in date.</li>
 </ul>
-<p><strong>Fit:</strong> repeated problem, owner willing to discuss it, a route to the relevant decision-maker and no unresolved access or risk barrier → arrange a call. <strong>Early / uncertain:</strong> answer appropriate questions, offer a short conversation or a later check-in if invited. <strong>Not a fit:</strong> say why, do not imply Jax can help, and suggest an alternative only if it is genuinely appropriate.</p>
-<p>If someone asks price early, answer with the current approved starting price or range and explain what is not yet known. Never hide pricing just to force a call. Do not collect sensitive customer records to qualify a lead.</p>
-<h2 id="4-the-first-owner-call-listen-before-pitching">4. The first owner call: listen before pitching</h2>
-<p><strong>Preparation:</strong> review only relevant public facts and any information the owner voluntarily provided. Choose 2–3 questions. Do not present industry research as a finding about this specific business. Plan roughly 30 minutes, but adapt to the owner; phone and in-person are both valid. If someone is driving, arrange a safer time.</p>
-<p><strong>1. Frame and permission.</strong> After normal human rapport:</p>
-<blockquote>
-<p>“I'd like to understand how this works today, what is getting in the way, and whether there's a useful next step. If it isn't a fit, I'll say so. May I ask a few questions?”</p>
-</blockquote>
-<p>Do not promise a referral, a diagnosis or expertise you cannot actually provide. If the owner is exploring, say that is fine: “Are you mainly gathering information, or is this something you're trying to solve now?” Both are legitimate.</p>
-<p><strong>2. Walk through real work.</strong> Use these as prompts, not a checklist to interrogate the owner:</p>
+<h3>Fit and note template</h3>
+<p>Record: source/contact permission; business goal; recent example and actors/tools; frequency; observed versus owner-estimated impact; what works/prior attempts; current provider/native alternatives; decision-maker and workflow owner; constraints/budget context if shared; sensitivities; fit / uncertain / not fit with reason; agreed next step, owner and date.</p>
+<p><strong>Fit:</strong> recurring meaningful issue, willing sponsor/workflow owner, plausible implementation route, acceptable risk and agreement to bounded paid discovery. <strong>Uncertain:</strong> one or two specific questions remain; ask for those, not a full document dump. <strong>Not fit:</strong> explain why without pressure. A prospect may legitimately want information or more time.</p>
+<p><strong>Common responses:</strong> “We already have a provider” → ask what works and whether they can solve this. “Can you guarantee savings?” → promise a defined deliverable and tests, not a business outcome outside your control. “What does it cost?” → answer with current published context and scope limits, not “book another call to find out.” “I need to think” → ask what remains unclear and whether a follow-up is wanted.</p>
+<p><strong>Recap draft:</strong> “Thanks for explaining [process]. I heard [problem] and [known consequence]; [unknown] still needs checking. We agreed [next step]. The paid plan would cover [bounded areas], deliver [outputs] and cost [approved fee]. No work starts until we agree that scope. Please correct anything I missed.” Review before sending.</p>
+<p><strong>Advance gate:</strong> the client wants the paid plan, receives its scope/terms, and authorizes it with the required payment milestone. <strong>Failure path:</strong> no free-plan-by-email workaround; clarify, pause or close. No answer is not an acceptance.</p>
+<h2 id="5-diagnose-conduct-the-business-improvement-plan">5. Diagnose: conduct the Business Improvement Plan</h2>
+<p><strong>Trigger:</strong> approved discovery scope and agreed payment milestone confirmed. <strong>Inputs:</strong> client goals, named participants, access/data permissions, agreed areas/timeframe and discovery acceptance criteria. <strong>Owner:</strong> Evan; client workflow owner validates facts. <strong>Output:</strong> an evidence pack feeding the written plan. This is not an unlimited audit of the entire company.</p>
+<h3>Agree the diagnostic boundary before starting</h3>
+<p>Complete: client ID; business goals; processes/locations in depth; people/interview count or other practical limit; observation/sample period; permitted systems/data; meetings and walkthrough; deliverable format; due date/dependencies; exclusions; fee/credit; review/correction process; cancellation/rescheduling terms. Name who can approve extra discovery. A business-wide opportunity screen can be broad; deep investigation remains bounded.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a></p>
+<h3>Discovery question bank</h3>
+<p>Use the relevant questions, not an interrogation script:</p>
 <ul>
-<li>“Walk me through the last time this happened—from the first request to the final handoff.”</li>
-<li>“When you say it is slow or inefficient, what specifically happens?”</li>
-<li>“Who handles it, and what do they have to check or repeat?”</li>
-<li>“What's already working? What have you or your provider tried? What happened?”</li>
-<li>“How often does it happen, and what does it cost in time, missed opportunities or rework—if you know?”</li>
-<li>“If it worked better, what would be noticeably different for you and your team?”</li>
+<li><strong>Goals and customers:</strong> What should be different in 30–90 days? Which customers or staff notice the issue? What must not change?</li>
+<li><strong>Work as done:</strong> Show one recent ordinary case, one difficult case and one failure. What starts work, what finishes it, who owns each handoff, and which rules require judgment?</li>
+<li><strong>Systems and data:</strong> What is the source of truth? Which fields are essential? Who owns access? Are APIs/export/import available under the current plan? What are the limits, renewal dates and vendor constraints? Verify rather than assume compatibility.</li>
+<li><strong>Volume and timing:</strong> Cases per period; peak periods; deadlines; queue age; working hours; seasonal differences; duplicate/retry behavior. What does a quiet day look like?</li>
+<li><strong>Cost and consequences:</strong> Hands-on minutes per case, rework, waiting, error frequency, missed commitments and customer complaints. Which numbers can be observed? Which are estimates?</li>
+<li><strong>People and adoption:</strong> Who will use a change? What will they stop doing? What training or approval is needed? Who covers absences? What would make them bypass it?</li>
+<li><strong>Risk and permissions:</strong> Personal/sensitive data? Financial, safety, health, employment or legal consequence? External messages or money movement? What must always be reviewed by a human? What happens if the result is wrong or absent?</li>
+<li><strong>Alternatives and economics:</strong> Can the existing tool, vendor, simpler policy or staff training solve it? What does each option cost in client effort, licenses, maintenance and switching—not just Jax fees?</li>
 </ul>
-<p><strong>3. Decision context and alternatives.</strong> “Who else should be involved? What are you comparing—your current process, an existing provider, a built-in feature, doing it yourselves, or outside help? What will matter most in deciding?” Ask what is good and bad about the incumbent. An existing vendor is not presumed to be failing.</p>
-<p><strong>4. Reflect, don't diagnose beyond the evidence.</strong> “It sounds like [their words], which happens [frequency if known] and affects [impact if known]. Did I get that right? What have I missed?” Separate owner statements, observed evidence and unknowns. If helpful, with permission give a brief relevant observation or alternative, without turning the qualification call into an unagreed full assessment.</p>
-<p><strong>5. Agree on a next step—or stop.</strong> “Would it be useful to map the work and the options in more detail, or would another path be better?” If they want information rather than a decision, offer an appropriate summary. If they need time, ask what information or people matter and whether a later check-in would be welcome. Set a date only by mutual agreement; don't require a verbal commitment to buy before continuing the conversation.</p>
-<h3>Handling common responses</h3>
-<ul>
-<li><strong>“I'm just looking.”</strong> “That's fine. What are you hoping to learn or compare?” Offer information appropriate to their stage; no forced urgency.</li>
-<li><strong>“We already have a provider.”</strong> “What's working with them, and what do you wish were different?” If they can solve it, that may be the best option.</li>
-<li><strong>“We can do it ourselves.”</strong> “Possibly. What would your team need to make that workable?” Consider native features or training; don't manufacture a dependency.</li>
-<li><strong>“What will it cost?”</strong> Share the latest approved starting context and what affects the quote. Do not present an estimate as a fixed commitment before scope is agreed.</li>
-<li><strong>“I need to think.”</strong> “Of course. What is still unclear, or who else needs to weigh in?” Send a concise recap only if useful; allow a no without chasing.</li>
-<li><strong>“Can you guarantee the result?”</strong> “I can define what we'll deliver and how we'll test it. I can't promise a business outcome we don't control.” Any warranty or remedy requires explicit agreed terms.</li>
-</ul>
-<h2 id="5-a-second-conversation-when-useful">5. A second conversation, when useful</h2>
-<p>Start with an accurate, neutral recap—not an attempt to make the owner feel bad again:</p>
-<blockquote>
-<p>“Last time you described [actual problem and consequence]. Has anything changed? Is this still worth discussing?”</p>
-</blockquote>
-<p>Confirm decision criteria, decision-makers, timing and whether they want to consider a next step. With permission, describe the <strong>bounded discovery or implementation option appropriate to what is actually known</strong>, its price context, what the owner would receive and what happens afterward. Offer a short written recap, a decision-support summary or a proposal if useful. Schedule a follow-up around a real event only if the owner agrees.</p>
-<p><strong>Do not</strong> assume they have already decided, insist on a second meeting, denigrate competitors, create artificial scarcity or claim every month of delay loses money. A legitimate decision can be “do nothing,” “use the current vendor,” “not yet,” or “no.”</p>
-<h2 id="6-discovery-and-the-business-case">6. Discovery and the business case</h2>
-<p><strong>Open offer decision:</strong> the 9 November direction calls for a clearly priced path and raises a still-unresolved choice between paid discovery and free scoping. Earlier business-model notes make paid assessment mandatory. Test and decide deliberately; this playbook does not settle that conflict. A training-led entry is another hypothesis, not an approved replacement.</p>
-<p><strong>Current example for discussion, not an automatic quote:</strong> $999 discovery, credited toward a $2,499 first scoped deployment; if that exact deal is approved and both fees are included, the remaining deployment balance is $1,500, not $2,499 again. The same 9 November note cites $499/month ongoing support and separate pricing for additional locations; all scope, dependencies and terms must be agreed before use. <strong>The existing Offer tab shows older ranges; reconcile it with current direction before customer-facing use.</strong> Never promise that every job fits the example price.</p>
-<p>For whichever entry is agreed, define what the customer receives and what is not included. With permission, map the current workflow, speak with actual users where relevant, review approved data and systems, identify native-tool/process alternatives, and rank candidate improvements by evidence, effort, risk and adoption. Recommend at most one first workflow for a specific proposal. The discovery deliverable remains useful even if they don't buy deployment.</p>
-<p><strong>Business-case worksheet:</strong></p>
-<ul>
-<li>Current work: example, frequency, people involved and how the figure was obtained.</li>
-<li>Consequence: observed or owner-estimated time, rework, delay or lost opportunities; identify unknowns.</li>
-<li>Options: keep current approach, improve existing tools/provider, internal change, or a scoped Jax project.</li>
-<li>Costs: implementation price, client effort, third-party fees, support, transition and any switching cost.</li>
-<li>Expected effect: a conservative scenario or range labeled as an assumption, not guaranteed savings. Avoid double-counting time and revenue, and never treat every missed inquiry as a sale.</li>
-<li>Decision: owner states whether expected benefit and risk justify action; doing nothing remains an option.</li>
-</ul>
-<h2 id="7-proposal-and-agreement">7. Proposal and agreement</h2>
-<p>The proposal is a decision document, not a list of AI buzzwords. It includes:</p>
+<h3>Evidence and baseline worksheet</h3>
+<p>For each finding record: finding ID; process step; evidence reference/date; source type (observed / client estimate / hypothesis); sample and period; affected owner; frequency; consequence; confidence; alternative explanation; unanswered question. Do not turn an estimate into a measured fact during summarization.</p>
+<p>Baseline record: metric name; business meaning; unit; numerator/denominator where relevant; eligible population/exclusions; time zone; sample/period; extraction method; source/owner; quality gaps. If absent, prescribe a collection method and first review date; do not invent a baseline or block a useful measurement-only first step.</p>
+<p><strong>Conservative benefit model:</strong> cases/month × minutes of hands-on work actually avoided ÷ 60 = potential capacity hours released. Subtract review, exceptions and upkeep. Multiply by an agreed loaded labor cost only to estimate capacity value—not automatic payroll savings. Separate additional bookings, revenue and contribution; avoid counting the same gain as both time savings and revenue. Show low/base/high assumptions, client effort, implementation/support/provider costs and what would falsify the case. The consulting source supports building the situation, objectives and accountability around client inputs; its enterprise prices and ROI examples are not Jax benchmarks.<a class="citation" href="#source-6" aria-label="Source 6">[6]</a></p>
+<p><strong>Advance gate:</strong> enough evidence to compare options and bound the first recommendation, with client factual corrections resolved or explicitly listed. <strong>Failure path:</strong> request missing evidence within scope, recommend a measurement period, or renegotiate scope/date before extra work. If there is no sensible build, deliver an honest plan recommending process/native-tool change or no build.</p>
+<h2 id="6-deliver-the-business-improvement-plan">6. Deliver the Business Improvement Plan</h2>
+<p><strong>Trigger:</strong> discovery evidence is ready for synthesis. <strong>Inputs:</strong> current-state evidence, options, baseline or collection plan, constraints and verified feasibility. <strong>Owner:</strong> Evan authors; client sponsor/workflow owner reviews facts and chooses what to do. <strong>Output:</strong> a client-owned written plan, walkthrough and fixed-price first-build quote where a suitable build is recommendable.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a></p>
+<h3>Reusable plan structure</h3>
 <ol>
-<li>The owner's problem, baseline and desired result in plain English; what is measured versus assumed.</li>
-<li>One workflow and the exact deliverables, prerequisites, integrations and exclusions.</li>
-<li>How acceptance will be tested: named scenarios, expected results, evidence, who reviews and how defects are handled.</li>
-<li>Fixed project price, credit treatment, payment milestones, third-party charges and any taxes or additional costs as applicable. The client can see the <strong>total</strong> and any remaining balance.</li>
-<li>Target timing with dependencies and what happens if access, decisions or inputs are delayed. No blanket speed guarantee.</li>
-<li>Data and account responsibilities, human approvals for consequential actions, security/privacy requirements and applicable vendor or regulatory constraints. Escalate if sensitive data or a regulated workflow exceeds capability.</li>
-<li>What the client owns, licenses or must keep paying for; training, documentation, handoff and an exit path.</li>
-<li>Optional support terms, scope of small changes, incident contact and any agreed response commitments. New capabilities require a separate written quote.</li>
-<li>Change-control, cancellation and any warranties/remedies agreed in the actual contract. Use appropriate legal review for live agreements; this draft is not legal advice.</li>
+<li><strong>Decision brief:</strong> goal, current problem, evidence strength, recommended starting point, expected benefit as a hypothesis, key risks and the decision requested. State if no build is justified.</li>
+<li><strong>Current-state map:</strong> trigger → actors/tools → steps/handoffs → end state; waiting, duplication, exceptions, judgment and source-of-truth systems. Show observed work, not an idealized process.</li>
+<li><strong>Prioritized opportunities:</strong> include do nothing, simplify policy/process, configure existing tools, training and a new build where appropriate. A list of AI tools is not a plan.</li>
+<li><strong>Recommendation detail:</strong> proposed future state, what stays human, boundaries, assumptions, dependencies, data/security/adoption controls, client effort and ownership.</li>
+<li><strong>Measurement:</strong> available baseline, missing-data collection plan, proposed target, observation period, method/owner and counter-metrics such as error rate or review burden. Targets are not guarantees.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a></li>
+<li><strong>Implementation sequence:</strong> now / next / later with dependencies, decision points, indicative effort/range and why one improvement comes first. No fabricated calendar certainty.</li>
+<li><strong>First-build scope and fixed-price quote:</strong> defined deliverables, exclusions, acceptance checks, prerequisites, price/credit arithmetic, provider costs, target timing, owners and proposal validity. If feasibility is unproven, close that question before issuing a fixed build commitment; tell the client why a responsible quote cannot yet be made.</li>
+<li><strong>Appendix:</strong> evidence index, assumptions, unresolved questions, alternative options and operating/support implications. Do not embed raw secrets or unnecessary personal records.</li>
 </ol>
-<p><strong>Handoff:</strong> begin paid work only after the relevant agreement, permissions and payment milestone are confirmed. Do not treat a conversation, draft proposal or suggested fee as a signed deal.</p>
-<h2 id="8-onboard-build-and-test">8. Onboard, build and test</h2>
-<p><strong>Kickoff:</strong> restate the outcome, scope, schedule, assumptions and acceptance criteria. Identify the buyer, day-to-day workflow owner, technical access owner and approver. Agree a communication cadence and escalation path; no invented service-level promises. Confirm source-of-truth systems, data categories and retention/deletion expectations.</p>
-<p><strong>Access:</strong> prefer client-owned accounts, named access, least privilege, and read-only access until a specific write is needed and approved. Use a secure mechanism for secrets; never put passwords, verification codes, tokens or customer records in public notes, chat transcripts or an AI provider without authorization. Consent to a discovery call is not permission to access client systems. Stop and reassess if data sensitivity, contract terms or security controls are unclear.</p>
-<p><strong>Build:</strong> implement the smallest approved slice. Check the native tool or simple process option before adding software. Track actual founder/review time and vendor costs. Communicate material blockers and scope changes promptly; don't silently expand the job.</p>
-<p><strong>Test before launch:</strong> run agreed normal-path tests; missing/bad inputs; duplicates or repeats; permissions and integration failures; and rollback/manual fallback. Inspect generated output and any external messages. Use test or anonymized data where possible. Consequential writes, communications and production cutover require the agreed human approval; if a test fails, fix or document a decision, not a fabricated pass.</p>
-<h2 id="9-acceptance-and-handoff">9. Acceptance and handoff</h2>
-<p>Show the named client owner the real workflow. Run each agreed acceptance scenario, review exceptions, record results and resolve or explicitly agree on remaining issues. “Done” is the agreed acceptance decision—not a polished demo or an invented time-saving number.</p>
-<p>Deliver a plain-language operating guide: what the system does, where it runs, who owns each account, ordinary operation, exception handling, how to pause or roll back, support contact, dependencies and third-party charges. Train the actual users. The client receives the agreed materials and access even if it declines support; continued operation still depends on its own active accounts, licenses and integrations.</p>
-<p>Record the actual starting measurement and a feasible follow-up date if the owner agrees. Do not claim success before sufficient real use.</p>
-<h2 id="10-care-learning-and-a-clean-exit">10. Care, learning and a clean exit</h2>
-<p><strong>Care is optional and separately scoped.</strong> Define the supported system, monitoring if actually provided, communication channel, coverage/response expectations, included small fixes, excluded work, client dependencies, costs and cancellation. Support does not silently include an unlimited build backlog. A care plan exists only if the customer agrees to it.</p>
-<p><strong>Review:</strong> compare actual outcomes with the baseline when data supports it; show changes, issues, usage/adoption, costs and what remains unknown. Early before/after comparisons are not proof that Jax caused an improvement. Escalate outages and exceptions according to the agreement. Protect client information; request explicit permission before any case study, testimonial, logo, quote or referral.</p>
-<p><strong>Expansion:</strong> if an owner wants to address another workflow, revisit the diagnosis and offer a fresh, fixed-scope proposal. Do not pressure customers into another project or bundle new capabilities into care without agreement.</p>
-<p><strong>Exit:</strong> confirm requested end date and contractual obligations; hand over agreed documentation, client-owned assets, access inventory and export options; explain ongoing vendor dependencies; stop or transfer approved automations and billing responsibilities; revoke Jax access when no longer needed; and confirm retention/deletion per agreement and applicable obligations. A customer's system must not depend on a hidden lock-in mechanism.</p>
-<h2 id="11-operating-records-metrics-and-decision-rights">11. Operating records, metrics and decision rights</h2>
-<p>When an appropriately private system is chosen, record the minimum needed: source/consent, company and owner-approved contact, stage, the owner's words, decision-maker, next action/date, agreed commercial terms, delivery owner, acceptance evidence and support status. Keep customer records out of this public workspace. The exact CRM/tool is not chosen or configured by this document.</p>
-<p><strong>Suggested stages:</strong> new inquiry → qualifying → owner call → discovery decision → discovery underway → proposal → agreed / not proceeding / paused → onboarding → building → acceptance → live → optional care → completed / exited. Set clear dates, owners and reasons; do not treat a scheduled call, proposal or verbal interest as signed revenue.</p>
-<p><strong>Suggested measures:</strong> qualified inquiries, held owner calls, agreed discoveries, accepted deployments, delivered/accepted projects, optional care uptake, client-reported outcomes, founder time, actual delivery costs and support exceptions. Track numerators and denominators, date and source; show “not enough data” rather than a fabricated conversion rate. For acquisition, connect source/creative to qualified calls and paid work where possible; clicks and rendering volume are diagnostics, not the goal.</p>
-<p><strong>Human gates:</strong> Evan approves launch, channels, claims, spending, prospect communications, pricing and agreements. The client authorizes system access, production changes and acceptance. AI may help draft or summarize in an approved environment, but it does not independently commit terms, access data, contact people, publish, spend or ship a production change.</p>
-<p><strong>Proposed SMART review:</strong> after Evan explicitly activates marketing, for the first 30 calendar days record the source and outcome of every inquiry that comes through the approved channels, then conduct one dated review of qualified conversations, offers, costs and observed objections. Use the actual sample, even if zero; decide whether to continue or revise. No assumed lead volume or conversion rate.</p>
-<h2 id="12-reusable-scripts-and-checklists">12. Reusable scripts and checklists</h2>
-<h3>Owner-call note template</h3>
+<p><strong>Opportunity-card template:</strong> opportunity ID; recognizable problem; evidence/confidence; baseline or collection plan; proposed change/native alternative; likely benefit and assumptions; effort/dependencies; risk; adoption owner; recurring costs/support burden; measure; priority/reason; next decision.</p>
+<p>Use <strong>high / medium / low</strong> judgments with a reason, not pseudo-precise ROI scores. First apply hard filters: permission, unacceptable harm, missing owner, no fallback, unsupported integration or inadequate coverage. Only then rank by credible benefit, frequency, feasibility, adoption and total cost. A potentially valuable high-risk idea can be “later—not suitable for a first build.”</p>
+<h3>Walkthrough and acceptance</h3>
+<p>Send the plan through the agreed private channel. Walk through facts first, alternatives next, recommendation and scope last. Ask the client to correct errors, state whether priorities match, and name unresolved decisions. Record version, delivery date, attendees, corrections and next action. Plan acceptance means the agreed diagnostic work was delivered; it does not mean the client agrees to build, agrees every assumption is true, or waives defects.</p>
+<p><strong>Advance gate:</strong> all agreed plan components delivered, factual feedback handled under agreed review terms, and client elects to consider a build. <strong>Failure path:</strong> correct missing/incorrect agreed work, record disputed evidence, or deliver the justified no-build conclusion. Do not withhold the plan as a sales lever or describe unused build credit as a refund entitlement unless the agreement says so.</p>
+<h2 id="7-sell-and-scope-the-build">7. Sell and scope the build</h2>
+<p><strong>Trigger:</strong> client wants a recommended improvement. <strong>Inputs:</strong> reviewed plan, feasibility evidence, delivery capacity and approved pricing. <strong>Owner:</strong> Evan for quote; authorized client signatory for purchase. <strong>Output:</strong> a bounded agreement, not “we'll automate your business.”</p>
+<h3>Scope card / statement-of-work inputs</h3>
 <ul>
-<li>Context / source and permission to follow up:</li>
-<li>One recent workflow example, actors and current tools:</li>
-<li>Owner's words about friction; frequency and impact if known:</li>
-<li>What works and what has been tried:</li>
-<li>Alternatives and constraints, including current provider / native tools:</li>
-<li>Desired outcome and baseline; facts vs estimates vs unknowns:</li>
-<li>Decision-maker(s), criteria, timing and any budget context volunteered:</li>
-<li>Fit / not fit / uncertain, why; agreed next action, owner and date:</li>
+<li>Business outcome and baseline, with measured facts separated from estimates.</li>
+<li>Named process, location(s), users/roles, tools/accounts and integration permissions.</li>
+<li>Trigger, input/schema, rules/branches, output/end state, volume/peak and timing assumptions.</li>
+<li>Exact deliverables: configuration/code, test evidence, documentation, training, handover and any stabilization period.</li>
+<li>Explicit exclusions: extra locations/tools/channels, data migration, historical cleanup, new capabilities, ongoing operations and regulated/high-risk decisions unless specifically agreed.</li>
+<li>Client responsibilities: access, sample data, decisions, user availability, content approval and manual fallback owner.</li>
+<li>Acceptance scenarios, expected results, named reviewer, review period, defect handling and sign-off method.</li>
+<li>Milestones/dependencies, target dates, delay/pause/restart process, change control and cancellation.</li>
+<li>Total fixed fee; plan credit once; remaining balance; payment milestones/due dates; provider charges/taxes where applicable; licensing/IP and account ownership.</li>
+<li>Warranty/defect-remedy boundary, optional care scope, liability/privacy/security terms and exit/handover. Have actual agreements reviewed by appropriate counsel. This manual is not a contract template certified for use.</li>
 </ul>
-<h3>Follow-up draft — review before sending</h3>
-<blockquote>
-<p>Subject: Recap and next step</p>
-<p>Hi [name], thanks for walking me through [workflow]. As I understood it, [problem in their words] affects [known consequence]; [uncertainty or useful existing approach]. Please correct anything I missed. We discussed [specific next step, scope and approved price context if relevant]. [Agreed next action/date, or “No action needed unless you'd like to continue.”] Thanks, Evan.</p>
-</blockquote>
-<p>No message is sent merely because this template exists.</p>
-<h3>Delivery acceptance checklist</h3>
+<h3>Pricing logic and commercial gate</h3>
+<p>Check the work against standard-build assumptions; do not price solely by tool count. Include discovery already performed, implementation, testing, project communication, training, launch/stabilization, likely exceptions and provider costs. Estimate internal effort for capacity/economics while retaining a fixed customer price. If it cannot be delivered responsibly at the standard price, narrow it or quote a different scope—not hidden future care charges.</p>
+<p>For the standard example: plan paid $999; total including plan $2,499; remaining $1,500; optional care $499/month; provider fees separate.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a> A proposed payment schedule must be written and accepted before work; this manual does not invent a deposit percentage, late fee, refund promise, credit expiry, defect warranty or deemed-acceptance rule. Resolve those in the live terms.</p>
+<p><strong>Quote register:</strong> version/date; scope ID; price; credit already applied; remaining balance; milestone amounts/dates; taxes/provider fees; validity; customer signatory; approval evidence; invoice/payment status. A sent invoice is not collected revenue.</p>
+<p><strong>Repeat-price eligibility record:</strong> Evan checks and records the existing connection/configuration IDs, reusable tested delivery pattern, unchanged security boundary, named extra outcome, volume/rule differences, integration/location/data-migration needs, new acceptance tests and estimated support load. The client confirms scope and price. New tools, locations, data movement or materially greater risk/complexity require a separate quote; do not presume eligibility. The $249 additional care rate needs its own reuse/support assessment and a live extra improvement. Record the rationale and approval in the quote register.</p>
+<h3>Change control—use it before doing the work</h3>
+<p>Classify a request against the signed scope: <strong>defect</strong> (fails agreed behavior), <strong>included adjustment</strong> (same outcome within written allowance), <strong>new scope</strong> (new outcome, integration, location, data movement or wider rules), or <strong>uncertain</strong> (needs review). Do not charge a new-build fee to hide an in-scope defect; do not treat every small-sounding request as free.</p>
+<p><strong>Change-request template:</strong> ID/date/requestor; current scope/version; requested change and reason; category with rationale; impact on cost/date/security/acceptance/support; options (defer / replace scope / separate quote); approval by both authorized parties; revised scope and baseline. Keep original work moving only if safe and independent; no new work or billing until the change is agreed.</p>
+<p><strong>Advance gate:</strong> signed agreement, client permissions, feasible delivery slot, commercial details settled and required payment milestone confirmed. <strong>Failure path:</strong> clarify, reduce scope, defer or decline; never start a build on enthusiasm alone.</p>
+<h2 id="8-onboard-accounts-data-and-responsibilities">8. Onboard: accounts, data and responsibilities</h2>
+<p><strong>Trigger:</strong> build gate passed. <strong>Inputs:</strong> agreement, approved scope/tests, client owners, permitted data and system inventory. <strong>Owner:</strong> Evan coordinates; client administrator grants access. <strong>Output:</strong> kickoff record, secure access inventory, delivery board, communication plan and approved data flow.</p>
+<h3>Kickoff agenda and access checklist</h3>
+<p>Confirm the goal, scope/exclusions, dates/dependencies, payment state, working participants, approvers, status cadence, support contact path and escalation. Check holidays, absence and the client's manual capacity; do not invent a backup human. Ask the actual users to demonstrate ordinary work before replacing it.</p>
 <ul>
-<li>[ ] Scope and baseline agreed; account ownership and named client approver recorded.</li>
-<li>[ ] Normal, bad-input, repeat, permission-failure and rollback/manual-fallback tests run and evidenced.</li>
-<li>[ ] Actual client owner reviewed acceptance results and any exceptions.</li>
-<li>[ ] Users trained; documentation, access, ongoing costs and dependencies explained.</li>
-<li>[ ] Support is separately agreed or declined; exit/transfer expectations documented.</li>
+<li>Use client-owned accounts/projects and named invitations or service identities, least privilege, MFA and read-only access until writes are needed and authorized. Separate client environments and credentials with actual access controls; a folder name is not tenant isolation.</li>
+<li>Put secrets in an approved vault/secrets manager, not notes, tickets, repositories, screenshots, prompts or this page. Record only a pointer, scope, owner and expiry/revocation process. OWASP recommends least-privilege access and centralized, auditable secret lifecycle management.<a class="citation" href="#source-9" aria-label="Source 9">[9]</a></li>
+<li>Prefer synthetic/anonymized test data. Before real data, document categories, purpose, authorized people, storage/region, approved vendors/subprocessors/model provider, retention, deletion, backups and incident contacts. “AI has access” is not a data-processing agreement.</li>
+<li>Check vendor terms, permitted API usage and client subscription limits. If protected health, payment-card, legal, employee or other sensitive/high-consequence data exceeds capability or contract coverage, stop and obtain appropriate specialist review.</li>
+<li>Confirm logging is useful but minimized/redacted; restrict access to logs and exports. Keep client data out of reusable shared examples and public artifacts.</li>
+<li>Establish who can pause, approve production writes, reconnect OAuth, rotate credentials, restore backups and authorize data deletion. Retest access after changes.</li>
 </ul>
-<h3>Small example — explicitly fictional</h3>
-<p>A local service owner says follow-up on quote requests is inconsistent. Ask for the last few examples, who owns follow-up, the current software's built-in capabilities and what “inconsistent” means. If the team's existing tool already supports the workflow, improving its settings or training may be preferable to a new build. If not, agree a limited discovery path; only then propose an appropriately scoped intervention, acceptance test and user training. No savings number or customer outcome is assumed.</p>
-<h2 id="13-source-notes-and-open-decisions">13. Source notes and open decisions</h2>
-<p><strong>Sales:</strong> <a href="https://x.com/human_drew/status/2119807477013234038">Drew Long's four-image sales framework</a> contributes the opening frame, buyer-readiness questions, pain-before-pitch, fair comparison, quantified business case, voluntary follow-up and next-call recap. Its sales/conversion claims are unverified; aggressive competitor attacks, manufactured urgency, guarantees and pressure are not Jax policy. <a href="https://x.com/thegeomethod/status/2115427109565005966">Geo's two-meeting framework</a> adds a useful recap and discipline about next steps, not a mandatory two-call or commitment-before-information rule.</p>
-<p><strong>Marketing:</strong> <a href="https://x.com/gregisenberg/status/2119865330210140339">Greg Isenberg and Cody Schneider's creative system</a> contributes source-grounded creative, human review and measurement; its cost/performance anecdotes are not independently verified, and no production system is activated. <a href="https://x.com/guillaumebardet/status/2118657239217041552">Evidence-led GTM research</a> informs hypotheses and disconfirmation, not a claim that demand is validated.</p>
-<p><strong>Delivery and operations:</strong> <a href="https://567-labs.github.io/consulting/">567 Labs' AI Consulting Playbook</a> informs discovery, proposals and engagement boundaries; <a href="https://www.youtube.com/watch?v=Xs16MSqhqi0">Michele Torti's delivery walkthrough</a> informs kickoff, testing and handoff, while its customer-lock-in suggestion is explicitly rejected. <a href="https://x.com/lukepierceops/status/2115189554785452224">Luke Pierce's training-led alternative</a> challenges the paid-audit entry and remains an option to test, not an approved pivot.</p>
-<p>The full indexed Jax source library and preserved source notes remain in Obsidian. This is a working synthesis of the most relevant reviewed sources—not a claim that every past resource has been re-audited or loaded automatically. Review and update it from actual customer feedback before using it as a live operating procedure.</p>
-<p><strong>Decisions still needed before launch:</strong> paid discovery vs free scoping vs another entry; reconcile the newer specific pricing with old site ranges; define the exact entry/deployment deliverables, credit and support terms; select first audience/channel and an approved budget; choose a private record system; finalize data handling, contracts and actual escalation contacts. No customers, results or conversion benchmarks are invented here.</p>
-</article><footer>Working draft · no marketing, outreach or customer access is activated by this page.</footer></main></body></html>
+<p><strong>Access-inventory template:</strong> system/project; business owner; administrator; identity/service account; permission scope; environment; credential vault pointer (not value); grant/expiry/review dates; data categories; renewal/provider billing owner; revocation/rotation steps; dependencies; export/backup location pointer.</p>
+<p><strong>Communication compact:</strong> primary private channel; who checks it; normal working coverage/time zone; status-update day; emergency reporting route; client's operational fallback contact; planned absences/backup arrangement; approval method. A messaging app being installed is not a staffed help desk.</p>
+<p><strong>Advance gate:</strong> least-privilege access verified, data path and responsibilities approved, acceptance reviewer available, fallback possible. <strong>Failure path:</strong> do not build around missing access with shared passwords or unauthorized scraping; adjust schedule, use sanitized examples or rescope.</p>
+<h2 id="9-implement-observe-build-prove-prepare">9. Implement: observe, build, prove, prepare</h2>
+<p><strong>Trigger:</strong> onboarding gate passed. <strong>Inputs:</strong> scope, representative permitted examples, acceptance plan, approved environment and rollback design. <strong>Owner:</strong> Evan; client workflow owner checks rules. <strong>Output:</strong> versioned release candidate with evidence and an operating guide.</p>
+<h3>Delivery sequence</h3>
+<ol>
+<li><strong>Observe and confirm:</strong> validate source-of-truth fields/rules, native alternatives and smallest useful slice. Reopen discovery for materially new uncertainty; do not silently grow the job.</li>
+<li><strong>Design the safe path:</strong> map input → validation → processing → human approval where required → output → reconciliation. Define idempotency, timeouts, bounded retries/backoff, cost/volume limits, queue and recovery. An uncertain external write must be reconciled before retrying; never send the same message twice because the acknowledgement was lost.</li>
+<li><strong>Build in staging/sandbox:</strong> version code/configuration/prompts and dependencies, separate secrets, keep a change log and pin the candidate release. Test permission boundaries and client separation. Avoid unreviewed model/tool auto-upgrades.</li>
+<li><strong>Prove behavior:</strong> run the test matrix below with preserved expected versus actual results. Independently inspect consequential outputs; use a reviewer where risk warrants. A second model's opinion is not proof of correctness.</li>
+<li><strong>Prepare operations:</strong> implement health checks, alert ownership, manual fallback, restore/rollback, client training and actual handover. Measure founder/reviewer time and vendor cost, not just model tokens.</li>
+</ol>
+<p><strong>If AI is used:</strong> source content is untrusted data, not instructions; validate outputs with deterministic rules where possible, constrain available actions and require human approval for high-risk operations. OWASP notes that RAG/fine-tuning do not fully mitigate prompt injection and recommends least privilege, external-content separation and human approval for high-risk actions.<a class="citation" href="#source-8" aria-label="Source 8">[8]</a> Test malicious instructions inside retrieved documents, unsupported claims, incorrect extraction, missing context, refusals and provider/model changes. “The prompt says don't” is not an access control.</p>
+<h3>Test matrix / evidence record</h3>
+<div class="table-scroll" role="region" aria-label="Scrollable reference table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Case</th>
+<th>Required behavior to define and test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ordinary work</td>
+<td>Correct end-to-end output reaches the real intended destination</td>
+</tr>
+<tr>
+<td>Missing/malformed input</td>
+<td>Reject or quarantine, explain, no unsafe write</td>
+</tr>
+<tr>
+<td>Duplicate/replayed trigger</td>
+<td>One intended business action, stable deduplication key</td>
+</tr>
+<tr>
+<td>Partial/uncertain success</td>
+<td>Check destination before replay; reconcile rather than guess</td>
+</tr>
+<tr>
+<td>Expired access / permission denied</td>
+<td>Stop affected action, alert the right owner, no token leakage</td>
+</tr>
+<tr>
+<td>Timeout / vendor outage / rate limit</td>
+<td>Bounded retry, durable pending state, fallback, no runaway cost</td>
+</tr>
+<tr>
+<td>Wrong output despite “success”</td>
+<td>Quality/business invariant detects mismatch or routes to review</td>
+</tr>
+<tr>
+<td>Wrong client/recipient</td>
+<td>Access/recipient boundary blocks; no cross-client disclosure</td>
+</tr>
+<tr>
+<td>Peak volume / backlog</td>
+<td>Known limit, queue ageing alarm, no silent discarded work</td>
+</tr>
+<tr>
+<td>Missed run / monitor failure</td>
+<td>Independent freshness/watchdog check signals missing evidence</td>
+</tr>
+<tr>
+<td>Pause / rollback / restore</td>
+<td>Named operator can stop; restore tested against agreed recovery needs</td>
+</tr>
+<tr>
+<td>Reconnect / resume</td>
+<td>Reauthorize safely, reconcile pending work, no duplicates</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Test-record template:</strong> test ID; requirement/risk; release/config version; permitted fixture; steps; expected result; actual result; destination evidence; pass/fail; reviewer/date; defect and retest link. No customer messaging or destructive production test without permission.</p>
+<p><strong>Weekly status draft:</strong> completed and evidenced; next; decisions needed and due dates; blockers/impact; scope changes; costs/capacity risks; next demonstration. Do not say “90% complete” when acceptance and failure cases remain unknown.</p>
+<p><strong>Advance gate:</strong> agreed tests passed, critical defects resolved, client can review, rollback/fallback and monitoring evidence ready. <strong>Failure path:</strong> isolate defect, record impact, fix/retest; if the discovered requirement changes scope, use section 7. Do not relabel a failed test as an accepted exception without authorized risk review.</p>
+<h2 id="10-accept-launch-and-hand-over">10. Accept, launch and hand over</h2>
+<p><strong>Trigger:</strong> tested candidate ready. <strong>Inputs:</strong> test evidence, client reviewer, release version, cutover/rollback plan, operating guide and support choice. <strong>Owner:</strong> client acceptance owner approves; Evan executes authorized cutover. <strong>Output:</strong> accepted live release, trained users and a receipt of handover.</p>
+<h3>Launch gate—read aloud before switching</h3>
+<ul>
+<li>[ ] Signed scope/tests still match the candidate; no unauthorized additions.</li>
+<li>[ ] Agreed normal/error/repeat/security tests have evidence; no unresolved critical defect.</li>
+<li>[ ] Baseline exists or the client accepts a specific collection plan; no fabricated savings claim.</li>
+<li>[ ] Backup/export and restore tested where applicable; recovery objectives and data-loss tolerance agreed for this workflow. A successful backup job is not a restore test.</li>
+<li>[ ] Client workflow owner can use the system, pause it and perform manual fallback.</li>
+<li>[ ] Alert delivery, named recipient, escalation and independent missing-evidence check tested.</li>
+<li>[ ] Client approves cutover window and any production write; rollback triggers and authority clear.</li>
+<li>[ ] Support is separately accepted or declined, with responsibility after handover explicit.</li>
+</ul>
+<p><strong>No-care minimum:</strong> every unattended build still needs a tested pause/manual route, failure visibility and an independent missing-outcome check proportionate to its risk. For a handoff-only project, transfer those controls and alert ownership to a named, trained client operator before stabilization ends; verify actual receipt and acknowledgement. Jax provides no continuing human monitoring after the agreed responsibility ends. If the client cannot operate the necessary controls and declines suitable support, redesign for supervised use or do not launch unattended.</p>
+<p><strong>Hard authority gate:</strong> before unattended production, document who may pause unsafe actions, invoke fallback, reauthorize access and approve replay/resumption, including outside Jax coverage. The client must authorize a safe stop mechanism in advance. No reachable authorized owner or safe stop path means no unattended launch; an incident is not the time to discover this.</p>
+<h3>Cutover and stabilization</h3>
+<p>Snapshot/export where appropriate; record old/new versions and start time; stop conflicting old schedules; release the approved version; run an authorized smoke transaction; inspect actual output/destination; reconcile pending work. Shadow or limited rollout when appropriate, with a written observation duration and success/rollback criteria—not an automatic two-week promise for every project.</p>
+<p>Rollback on unsafe output, data exposure, duplicated action, uncontrolled cost or failed agreed critical test. Pause writes, preserve evidence, invoke client fallback, restore the known-good version only when that is safe, and reconcile affected records. Restoring code does not undo messages already sent or corrupted data; plan compensation separately with authorization.</p>
+<p>Define stabilization start/end, owner, included defect fixes, check frequency and exit criteria in the scope. It is not free indefinite care. After final deployment, repeat critical smoke and alert checks on the actual production environment; a working preview is not proof of working production.</p>
+<p><strong>Acceptance receipt:</strong> scope/release; test-result links; client reviewer/date/decision; remaining noncritical issues with owner/date and explicit agreement; production verification; training/handover receipt; stabilization end; care choice/start; invoice milestone. No assumed acceptance from silence unless counsel-reviewed signed terms explicitly provide for it.</p>
+<p><strong>Handover pack:</strong> system purpose/limits; architecture/data flow; client account/admin inventory; source/configuration and license ownership; ordinary operation; approvals; errors/queue replay; pause/rollback/restore steps; monitor/alert definitions; dependency/renewal costs; support/exit route; known limitations. User demonstrates key tasks back to Evan. Ownership/licensing exceptions must already be agreed, not revealed at exit.</p>
+<p><strong>Advance gate:</strong> client acceptance recorded, actual production verified, handover complete and any active care arrangement confirmed. <strong>Failure path:</strong> keep or restore the safe/manual route, own defect remediation under the agreement, and do not declare “live and supported” from a demo alone.</p>
+<h2 id="11-operate-monitor-the-business-result-not-just-the-cron">11. Operate: monitor the business result, not just the cron</h2>
+<p><strong>Trigger:</strong> a system goes live under an agreed operating/support responsibility. <strong>Inputs:</strong> system inventory, expected work, outcome definitions, check cadence, privacy limits and responder coverage. <strong>Owner:</strong> named operator; Evan only where contracted. <strong>Output:</strong> timestamped health evidence, exception queue and actionable alerts. No monitoring is installed by this manual.</p>
+<p>Google SRE distinguishes symptoms from causes and notes that end-to-end tests are needed to detect a system serving the wrong content even when basic requests succeed.<a class="citation" href="#source-5" aria-label="Source 5">[5]</a> Jax's adaptation: <strong>a run can succeed while the customer's work fails.</strong> A green schedule is one piece of evidence, not the verdict.</p>
+<h3>Six layers of health</h3>
+<div class="table-scroll" role="region" aria-label="Scrollable reference table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>What to check</th>
+<th>Failure that a cron exit misses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Execution</td>
+<td>Expected start/finish, duration, last success; independent heartbeat</td>
+<td>Scheduler stopped, host asleep, monitor itself absent</td>
+</tr>
+<tr>
+<td>Inputs</td>
+<td>Source freshness, eligible work count, schema, credentials, vendor availability</td>
+<td>Empty extract, expired OAuth, renamed field</td>
+</tr>
+<tr>
+<td>Processing</td>
+<td>Validation failures, retries, queue age, duplicates, error rate</td>
+<td>Stuck item, repeated action, partial success</td>
+</tr>
+<tr>
+<td>Destination</td>
+<td>Read-back/receipt linked by correlation ID and correct tenant/recipient</td>
+<td>API accepted but record/message never arrived</td>
+</tr>
+<tr>
+<td>Business quality</td>
+<td>Completeness, timeliness, accuracy, rule invariants, human sample/review</td>
+<td>Wrong amount, missing case, irrelevant AI output</td>
+</tr>
+<tr>
+<td>Economics / dependencies</td>
+<td>Usage, spend, limits, expiring access/licenses, vendor/model change</td>
+<td>Retry loop cost, quota exhaustion, retired API/model</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use both internal telemetry and an external/synthetic check appropriate to the risk. Keep synthetics in controlled destinations so they cannot create fake customer activity or trigger billing. Every eligible item should have an auditable state: <strong>pending, succeeded with evidence, quarantined, explicitly excluded, or failed with an owner</strong>. Reconcile counts by business ID and time window, not just aggregate totals.</p>
+<h3>Monitoring-contract template—required per live system</h3>
+<p>System/client ID; business owner; operator; critical hours/time zone; expected trigger/cadence; eligible inputs; good outcome and deadline; metric source; detection method/independence; check interval; grace period; thresholds; excluded/planned-maintenance rules; alert destination; acknowledgement/escalation route; manual fallback; recovery/data-loss objectives; replay policy; retention/privacy; spend limits; who reviews changes; last tested/next review.</p>
+<ul>
+<li><strong>SLI:</strong> what actually happened, e.g. eligible cases with complete, correct output before deadline ÷ all eligible cases. Define exclusions before counting.</li>
+<li><strong>SLO:</strong> an internal or agreed target over a named window, not an unlimited guarantee.</li>
+<li><strong>SLA:</strong> only a specific contractual commitment and remedy, if offered. A dashboard target is not automatically an SLA.</li>
+<li><strong>Detection time, acknowledgement time and restoration time are different.</strong> A five-minute poll cannot promise a five-minute human fix. Include check interval, job/runtime, grace, notification path and coverage in the detection/response model.</li>
+</ul>
+<p>For sparse SMB workflows, inspect absolute missed/late counts, age and known expected activity alongside rates. Zero work can mean a quiet day or broken ingestion. Google discusses low-traffic sensitivity and the need for alert precision, recall and detection-time trade-offs; enterprise burn-rate defaults should not be copied blindly.<a class="citation" href="#source-7" aria-label="Source 7">[7]</a></p>
+<h3>Worked monitoring design—illustrative only</h3>
+<p>For a daily internal quote-follow-up task list: it is due by <strong>08:15 America/New_York on client working days</strong>. Independent check at 08:20 compares eligible source IDs with task IDs, correct owner/date and current completion status; zero expected cases is explicitly recorded. These are demonstration parameters, not Jax service promises.</p>
+<p>A run at 08:00 exiting zero is not success if a source case was omitted. Alert on any missing eligible case, unverified destination or stale source; suppress planned closed days using the agreed calendar. Include daylight-saving/time-zone tests. A human quality sample catches issues the deterministic reconciliation cannot. Decide sample size/frequency and reviewer in the engagement, based on risk.</p>
+<p><strong>Alert envelope:</strong> client/system; observed symptom and impact; severity; first/last seen and time zone; expected versus actual; correlation IDs; last good output/version; safe evidence link; current fallback; owner; next action; next update. Never include tokens or full sensitive records in a notification. Deduplicate repeated alerts into one incident; do not suppress new scope/impact just because one alert is open.</p>
+<p><strong>Advance gate:</strong> health is supported by fresh evidence, exceptions owned and alert path tested. <strong>Failure path:</strong> stale/missing evidence means <strong>unknown</strong>, not green. Trigger incident triage or a review ticket; use the fallback if safe completion cannot be established. If the required risk/coverage exceeds capacity, redesign or decline the workflow.</p>
+<h2 id="12-when-something-breaks-incident-response">12. When something breaks: incident response</h2>
+<p><strong>Trigger:</strong> alert, client report, missing outcome, unsafe output or suspected data/security issue. <strong>Inputs:</strong> symptom/evidence, system inventory, agreed support terms and client contacts. <strong>Owner:</strong> named incident lead; Evan only within actual authority/coverage. <strong>Output:</strong> contained impact, verified recovery, client communication and corrective action. NIST's current incident-response guidance integrates preparation, detection, response and recovery into ongoing risk management.<a class="citation" href="#source-10" aria-label="Source 10">[10]</a></p>
+<h3>Severity and coverage—proposal, not a signed SLA</h3>
+<div class="table-scroll" role="region" aria-label="Scrollable reference table" tabindex="0"><table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Example / decision</th>
+<th>Proposed handling during agreed coverage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SEV1 critical</td>
+<td>Suspected exposure, corrupt/unauthorized output, uncontrolled spend, or essential work stopped with no safe workaround</td>
+<td>Stop unsafe action under prior authority, urgently contact the designated client lead and incident lead; invoke specialist/legal/security route as appropriate</td>
+</tr>
+<tr>
+<td>SEV2 major</td>
+<td>Agreed business deadline at risk, partial outage or repeated wrong output; safe workaround exists</td>
+<td>Triage promptly, activate workaround, agree updates and recovery priority</td>
+</tr>
+<tr>
+<td>SEV3 routine</td>
+<td>Noncritical defect, isolated exception, cosmetic issue or improvement request</td>
+<td>Log, classify scope and schedule under ordinary support/change terms</td>
+</tr>
+</tbody>
+</table></div>
+<p>Do not sell a 24/7 SEV1 promise while Evan has employment, sleep, holidays and no staffed backup. Before care starts, fill exact coverage days/hours/time zone, acknowledgement targets by severity, outside-coverage behavior, update cadence, fallback/backup, escalation contacts and commercial remedies if any. Distinguish a response target from a resolution promise. If those fields are blank, support is not ready to sell. For a critical workflow needing faster recovery than available staffing, reduce autonomy, add qualified coverage with approval, or decline it.</p>
+<h3>Runbook: stabilize first, diagnose second</h3>
+<ol>
+<li><strong>Open and acknowledge:</strong> assign incident ID/lead, timestamp and severity from business impact, affected clients/processes and known versus unknown facts. Confirm who is actually responding; a notification is not acknowledgement.</li>
+<li><strong>Contain safely:</strong> pause affected writes/sends or bounded component under pre-agreed authority; use the client manual route. If authority is absent, contact the authorized owner. Preserve relevant redacted logs and state; do not erase evidence during a suspected security incident.</li>
+<li><strong>Assess scope:</strong> last known good, pending/sent/failed cases, impacted dates/recipients, recent changes, access failures, provider status and cost. Suspected data exposure goes to the client's security/legal/insurer contacts as appropriate; do not improvise breach-notification law or promise there was no exposure.</li>
+<li><strong>Diagnose:</strong> compare live release/configuration with intended version; check source and destination separately; inspect expired credentials, schema/model changes, permissions, rate limits, scheduling and silent bad outputs. Do not repeatedly rerun the entire job.</li>
+<li><strong>Recover:</strong> reauthorize through the secure process, repair or roll back, test with controlled data, read back real destinations, reconcile affected IDs and obtain approval for replay/compensation. Check duplicates before replay; cap retries/spend.</li>
+<li><strong>Verify and reopen:</strong> business outcome restored, affected backlog accounted for, client owner validates, monitors/alerts still work, and a defined observation period passes. Decide who may resume automation. “Service restarted” is not recovery evidence.</li>
+<li><strong>Close and learn:</strong> timeline, impact with evidence/unknowns, cause or current best explanation, action taken, recovery proof, client notice and prevention owner/date. Add a regression, monitor or runbook change; review recurrence and support economics.</li>
+</ol>
+<p><strong>Initial message draft:</strong> “We identified [observed issue] at [time/time zone]. [Known scope] is affected; [uncertainty] is still being checked. We have [paused action / activated workaround]. Please [specific client action if needed]. [Named owner] is investigating; our next update is [agreed time]. We are not yet able to confirm a restoration time.” No speculative blame or false reassurance.</p>
+<p><strong>Incident-record template:</strong> ID/system; reporter/detection; severity/impact; lead/client contact; timeline; evidence; scope/affected IDs; containment authority/action; workaround; last good version; hypotheses/tests; recovery/replay approvals; destination validation; communications; follow-up owner/date; billable/in-scope decision after containment. Do not negotiate a new project while an authorized safety action waits, but do not assume unlimited unpaid repair beyond agreed responsibilities.</p>
+<p><strong>Advance gate:</strong> outcome restored and reconciled, client informed, prevention owned. <strong>Failure path:</strong> continue safe fallback/escalation and honest updates; do not close from a green heartbeat or exhausted attention.</p>
+<h2 id="13-care-maintenance-and-controlled-improvement">13. Care, maintenance and controlled improvement</h2>
+<p><strong>Trigger:</strong> optional care agreement begins after launch, or a contracted review/maintenance date arrives. <strong>Inputs:</strong> supported-system register, scope/coverage, metrics, incident/change history, client dependencies and allowance. <strong>Owner:</strong> agreed care owner and client workflow owner. <strong>Output:</strong> reliable operations within a bounded service and an evidence-based review.</p>
+<p>The published starting point is $499/month for optional support of the first agreed improvement, with small-change allowance and support expectations agreed before care starts; it is not unlimited support or a new-build allowance.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a> Define: exact supported systems/versions; monitoring and check frequency; response coverage; included defect investigation; small-change examples and allowance (hours, count or another explicit bound); carry-over or expiry; third-party fees/usage caps; exclusions; renewal/cancellation; dependency obligations; access/exit; start/end of billing. Do not assume these terms from a price alone.</p>
+<h3>Proposed operating cadence—right-size it per system</h3>
+<ul>
+<li><strong>At each run / event:</strong> validation, bounded retries, outcome evidence and exception state where the design supports it.</li>
+<li><strong>Each working day:</strong> review unresolved alerts/queue age and expected outcomes for systems needing it. Low-risk batch systems may have a different agreed cadence; critical ones may need more coverage than Jax offers.</li>
+<li><strong>Weekly:</strong> inspect recurring failures, source/destination reconciliation and quality samples; review costs, access expiry, upcoming vendor changes and open client decisions.</li>
+<li><strong>Monthly:</strong> compare actual outcomes/cost/adoption with baseline, review incidents and allowance used, inspect dependency versions/permissions, and agree the next review. Revisit whether care remains useful.</li>
+<li><strong>Before a material change:</strong> impact analysis, client authorization as required, staging/regression, rollback and post-release check. Test backup restore, fallback and access revocation at an agreed risk-based interval and after material architecture changes—not just when an outage occurs.</li>
+</ul>
+<p><strong>Maintenance is not blind auto-update.</strong> Track vendor/model/API deprecations, credential expiry, subscription renewals, workflow rule changes and upstream schema changes. Pin where practical, schedule testing and plan migration or a fresh quote if necessary. A silent model swap can change outputs even if the transport still works.</p>
+<p><strong>Change classification:</strong> changing a wording/template within the same approved process may fit the allowance; a new channel, location, integration, data migration or business capability normally needs a new quote. A vendor breaking an existing connection requires investigation under the care terms; a major migration may be new scope depending on the agreement. Decide from the contract, not a blanket rule.</p>
+<p><strong>Advance gate:</strong> included work/cost is visible, outcomes measured honestly and new work separately agreed. <strong>Failure path:</strong> if repeated exceptions make the system unreliable or uneconomic, propose redesign/repricing, reduce risk or exit cleanly; do not conceal degraded service behind a monthly status page.</p>
+<h2 id="14-manage-the-relationship-records-and-money">14. Manage the relationship, records and money</h2>
+<p><strong>Trigger:</strong> any decision, meeting, delivery, incident, invoice or scheduled review. <strong>Inputs:</strong> primary evidence and actual agreements. <strong>Owner:</strong> Evan maintains one private client record; client approves its decisions. <strong>Output:</strong> a current source of truth with a next action and no orphaned commitments. The consulting playbook supplies a commercial lifecycle framework, not proof that Jax already has these operations connected.<a class="citation" href="#source-2" aria-label="Source 2">[2]</a></p>
+<h3>Private client record—minimum schema</h3>
+<p>Use stable client, engagement, system, change and incident IDs. Link, rather than duplicate, source documents. A restricted folder plus a small index can be the first implementation if access, backup and retrieval work; no CRM purchase is required by this manual. Real records do not belong on GitHub Pages, in unlisted gists or in browser-only state on a public page.</p>
+<ul>
+<li><strong>Relationship:</strong> approved contacts/roles, preferred channel, sponsor/workflow owner/admin, consent/recording preferences, enquiry source, stage, owner, next action/date.</li>
+<li><strong>Commercial:</strong> discovery/build/care agreements and versions, scope/acceptance, quote/credit, invoices/due dates/receipts, renewal/cancellation and ownership/licensing.</li>
+<li><strong>Delivery:</strong> plan/evidence, baseline/measurement design, dependencies, decisions, changes, tests/releases, training and signed acceptance.</li>
+<li><strong>Systems/access:</strong> client-owned accounts, administrator and credential pointers, approved data flow, vendor/renewal inventory, retention and exit dependencies.</li>
+<li><strong>Operations:</strong> monitoring contract, support terms, runbook, incidents/changes, cost/usage, outcome reviews and next review date.</li>
+<li><strong>Closure:</strong> access revocation, asset/data export receipt, remaining licenses/billing, deletion schedule/holds and final acceptance of handover.</li>
+</ul>
+<p>Every open item needs an owner, due date, risk and next action. Keep access limited, backups tested, retention intentional and history versioned. AI-generated summaries must be checked against originals before becoming commitments.</p>
+<h3>Minimum record procedure before the first engagement</h3>
+<p>Evan selects an access-controlled, client-approved storage service and creates one restricted client folder with an index and subfolders for agreements, discovery, delivery/tests, operations/incidents and closure. Use a separate approved secrets vault; store pointers only. In the index, create the stable IDs, role/contact register, stage/gate evidence, open-item table and next review date. Before use, test authorized access, denial for an unrelated identity, recovery from a versioned backup, and retrieval of a sample evidence link. Record actual locations and backup/retention owner privately.</p>
+<p>Update the index after each consequential event and before every handoff; preserve approved versions rather than overwriting history. On each working day with active work, review due/blocked items; weekly, check missing evidence, access and backup status. At closure, reconcile the exit checklist, record retention/deletion dates and restrict the archive. This is an implementation procedure, not a claim that a store was provisioned. Without a chosen, tested home, do not accept client data or sell paid discovery.</p>
+<h3>Invoice and overdue handling</h3>
+<p>Prepare invoices from the signed milestone and credit record; verify legal entity/payment instructions independently, especially any changed bank details. Reconcile payment receipt before marking collected or unlocking a payment gate. Track invoice number, engagement/milestone, total/credit/tax, issued/due/paid dates, outstanding amount and next follow-up. Do not collect card numbers in notes or messages; use the agreed secure payment mechanism.</p>
+<p>For overdue amounts: check for error or dispute, contact the authorized person privately, document the response and follow the agreed reminder/suspension process. Never invent a late fee, shut off a client system abruptly or withhold their agreed assets without contractual/legal grounds. Review safe continuity and access before any suspension.</p>
+<h3>Monthly value-review page / meeting</h3>
+<ol>
+<li>Reporting window and what the system is meant to achieve.</li>
+<li>Eligible work, completed/late/failed/excluded counts and data-quality gaps.</li>
+<li>Business metric versus baseline, with comparable periods and caveats; client usage/adoption and actual feedback.</li>
+<li>Incidents, manual exceptions, changes, cost/provider charges and allowance used.</li>
+<li>What improved, what did not, unknowns and action owners/dates.</li>
+<li>Continue as-is / simplify / stop / quote another bounded improvement; next review.</li>
+</ol>
+<p>Time released is capacity, not automatically cash saved; before/after movement is not proof Jax caused it. Ask for referral, logo, quote or case study only with separate explicit permission and an accurate account of results. No obligatory testimonial as a condition of routine support.</p>
+<p><strong>Advance gate:</strong> record reconciled, commitments owned, client understands results/cost and next step. <strong>Failure path:</strong> correct discrepancies, surface dissatisfaction, assign resolution and revisit value before proposing expansion.</p>
+<h2 id="15-expand-renew-or-exit-cleanly">15. Expand, renew or exit cleanly</h2>
+<p><strong>Trigger:</strong> new opportunity, renewal/review, cancellation, relationship end or unsafe/unsupported workflow. <strong>Inputs:</strong> agreements, actual results, open work, systems/access inventory and retention obligations. <strong>Owner:</strong> Evan and authorized client owner. <strong>Output:</strong> a new signed scope, explicit renewal/continuation, or a documented clean exit.</p>
+<p><strong>Expansion:</strong> return to diagnosis, verify that the next improvement is useful and capacity exists. Reuse patterns, not another client's data. Apply eligible repeat-build/support pricing only after verifying reuse and scope; do not bill $249/month for each internal technical step.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a> A client may choose a different vendor or take over operations.</p>
+<h3>Exit checklist / closure certificate</h3>
+<ul>
+<li>[ ] Confirm effective date, notice/cancellation terms, outstanding work, payment disputes and who will operate after exit.</li>
+<li>[ ] Inventory code/configuration, prompts, documentation, datasets, access, hosting, domains, licenses, schedules, alerts and third-party billing.</li>
+<li>[ ] Export/transfer agreed client-owned materials through a secure channel; verify the client can open/import them and access administrator accounts. Record receipt, not just “file sent.”</li>
+<li>[ ] Explain dependencies/costs that continue, licensed components and any agreed ownership exceptions. Transfer billing where agreed; do not cancel an account the client still needs.</li>
+<li>[ ] Transfer or safely stop schedules, webhooks, queues and notifications; reconcile pending work; prove there are no ghost jobs or duplicate triggers.</li>
+<li>[ ] Revoke Jax personnel/service identities and tokens; rotate shared secrets where unavoidable; check revocation at the actual provider. OWASP notes that restarting an application does not revoke stolen credentials; the backing service must expire or revoke them.<a class="citation" href="#source-9" aria-label="Source 9">[9]</a></li>
+<li>[ ] Apply the agreed retention/deletion schedule, legal/contractual holds and backup expiry; restrict retained records and document dates/exceptions. Do not promise deletion from immutable backups or vendor systems without verifying their capabilities.</li>
+<li>[ ] Final report: end date, handover receipt, stopped/transferred services, access revocation evidence, continuing owner/costs, open exceptions and deletion/retention obligations.</li>
+</ul>
+<p>Never use client-hosting dependency as lock-in. Canceling Jax care does not itself cancel the client's vendor accounts or guarantee software keeps working without maintenance. Make both facts clear.</p>
+<p><strong>Advance gate:</strong> handover, safe continuity/stop, access, billing and retention responsibilities reconciled with evidence. <strong>Failure path:</strong> keep closure open with named exceptions; do not claim “all deleted” or “fully transferred” from a checklist alone.</p>
+<h2 id="16-walk-one-fictional-engagement-through-the-whole-system">16. Walk one fictional engagement through the whole system</h2>
+<p><strong>Desk rehearsal only.</strong> The business, sample, timeline and numbers below are invented to test the process. No prospect was contacted, customer system connected, message sent, payment collected, monitor installed or production failure injected. The exercise exposes decisions; it is not evidence of delivery readiness.</p>
+<h3>Scenario: a local service office loses track of quote follow-up</h3>
+<p>The fictional owner wants a daily internal task list from an existing quoting tool. Customer messages remain human-sent. One office, one source account, one task destination; no payment processing, voice agent or autonomous external outreach. Native-tool configuration is considered first.</p>
+<ol>
+<li>
+<p><strong>Intro:</strong> confirm one real-style case, workflow owner, consequence and data sensitivity. Do not assert lost revenue. Fit decision: proceed to a scoped paid plan, not a free solution design.</p>
+</li>
+<li>
+<p><strong>Plan authorization:</strong> agree one process, approved examples, participants, deliverable/review date and fee. The fictional client pays $999 under agreed terms. The plan remains theirs even if the build is declined.</p>
+</li>
+<li>
+<p><strong>Diagnostic math:</strong> invented sample of 30 eligible quotes in a week shows 6 without an assigned follow-up; label it fictional. Proposed future metric: all eligible quotes accounted for by the daily deadline, with excluded cases explicitly classified. Measure hands-on review time separately; do not extrapolate 6 missed follow-ups into 6 lost sales.</p>
+</li>
+<li>
+<p><strong>Recommendation:</strong> compare native reporting, a manual checklist and a small integration. Before a fixed integration quote, confirm the actual source export/API and destination permissions. If native reporting suffices, recommend it instead.</p>
+</li>
+<li>
+<p><strong>Build agreement:</strong> one internal list; owner/date rules; deduplication by quote ID; eligible versus excluded cases; 08:15 local deadline; test/fallback/handover/stabilization scope. Illustrative standard-price arithmetic: $2,499 total including plan; $1,500 remains. Payment timing and care terms still need a real signed agreement.</p>
+</li>
+<li>
+<p><strong>Onboarding/build:</strong> named read-only source access, controlled test destination, approved data path. Test normal, missing field, duplicate, revoked access, source empty, wrong task owner and missed schedule. Client owner practices export-and-review fallback.</p>
+</li>
+<li>
+<p><strong>Scope-change inject:</strong> owner asks “Could it text customers too?” Category: new capability/channel and consent/risk requirements. Keep the internal-list scope unchanged; log request, explain cost/date/support impact and obtain separate approval before any SMS work. No free addition and no unapproved message.</p>
+</li>
+<li>
+<p><strong>Acceptance inject:</strong> test run says success but one quote is absent. Gate fails. Expected-ID versus destination-ID reconciliation finds the omission; fix and retest before launch. Scheduler success is explicitly rejected as acceptance evidence.</p>
+</li>
+<li>
+<p><strong>Production-failure inject:</strong> after hypothetical launch, source OAuth is revoked. The next expected result is missing. Under the illustrative design, the independent 08:20 check raises a SEV2 because a manual workaround exists; a security sign of compromise would escalate severity. Client uses the export checklist; no invented 24/7 responder appears.</p>
+</li>
+<li>
+<p><strong>Recovery:</strong> named administrator securely reconnects source; inspect affected quote IDs, check what was already created, replay only missing work with approval and bounded retries, verify destination owner/date/count, then obtain permission to resume. Add credential/freshness evidence and a regression case. Do not call a reconnection alone “fixed.”</p>
+</li>
+<li>
+<p><strong>Review:</strong> report eligible versus accounted-for work, late cases, review burden, cost and adoption. Care is optional; no automatic attachment or fabricated savings. An expansion returns to scope control.</p>
+</li>
+<li>
+<p><strong>Exit inject:</strong> the owner takes over. Export and open the runbook/configuration, transfer job/alert ownership, verify provider-level access revocation and document retained records/backups. Existing vendor charges are the client's separate decision.</p>
+</li>
+<li>
+<p><strong>Unavailable-founder / broken-alert inject:</strong> assume the primary notification fails and Evan is outside agreed coverage. The independent watchdog uses the agreed secondary route to the client operator; if no acknowledgement arrives within the workflow’s agreed safe window, the pre-authorized design pauses consequential actions and exposes pending work for manual handling. No fictional backup employee appears. If neither a reachable client operator nor a safe automatic stop exists, this unattended design fails the launch gate. Test alert receipt and acknowledgement failure separately; a successful send is insufficient.</p>
+</li>
+</ol>
+<h3>What this rehearsal reveals</h3>
+<p>The process has a response for scope growth, silent missing output, expired access, safe fallback and exit. It still needs a chosen private record store; actual APIs/permissions; signed commercial and care terms; real contacts/coverage; working monitoring/alert destinations; real test fixtures; and a measured staging/production drill before a live engagement. Those are operational gates, not reasons to invent tooling or promises in a document.</p>
+<h2 id="17-readiness-what-must-exist-before-selling-and-shipping">17. Readiness: what must exist before selling and shipping</h2>
+<p>One manual does not mean building every automation first. Start manually where it is safe and verifiable; automate only a process that already works and has an exception owner.</p>
+<h3>Before outbound or paid discovery</h3>
+<ul>
+<li>[ ] Current offer/credit and paid-plan boundary consistent in actual sales materials; named person handles enquiries/replies.</li>
+<li>[ ] Private record home selected with access control, backup/retrieval and next-action tracking. No live client data in this reading copy.</li>
+<li>[ ] Intro-call notes, discovery scope, plan structure and factual review process ready.</li>
+<li>[ ] Actual discovery terms, payment mechanism, cancellation/review/credit rules settled with appropriate legal/accounting input.</li>
+<li>[ ] Data-permission/recording/retention and capability-risk screening ready.</li>
+<li>[ ] If outbound is used: provider/legal review, legitimate sender, authentication/reply/delivery tests, verified small list, opt-out/suppression and explicit campaign/budget approval. No need to delay an authorized warm conversation for a mass-mail stack.</li>
+</ul>
+<h3>Before signing a build</h3>
+<ul>
+<li>[ ] First recommendation feasible and economically bounded; native alternatives assessed.</li>
+<li>[ ] Scope, exclusions, client responsibilities, fixed price, credit, milestones, acceptance, defect/change/cancellation and ownership terms resolved.</li>
+<li>[ ] Delivery slot, data/security requirements, safe fallback and required specialist capacity actually available.</li>
+<li>[ ] Support choice explicit. If care is sold, fill the coverage, response/update targets, allowance, costs, escalation, cancellation and exit schedule before commitment—not after a failure.</li>
+</ul>
+<h3>Before production</h3>
+<ul>
+<li>[ ] Client access/data authorizations verified; release/test record complete.</li>
+<li>[ ] Real destination, duplicates, incorrect outputs, credential failure, missed runs, cost controls and client separation tested.</li>
+<li>[ ] Monitoring contract implemented where promised; independent missing-evidence check and alert acknowledgement/escalation exercised.</li>
+<li>[ ] Client trains back the pause/manual/restore route; realistic recovery needs and coverage match.</li>
+<li>[ ] Approved cutover, client acceptance, handover and post-deploy verification recorded.</li>
+</ul>
+<h3>Proposed hardening sprint—activation-relative SMART goal</h3>
+<p>Within <strong>10 working days of Evan approving a readiness sprint</strong>, walk one fictional case through every gate, complete one staging-only technical drill covering a duplicate trigger, silent omitted output, expired credential, missed run, unavailable responder/failed notification and restored backlog, and close or explicitly block every launch-critical defect. Produce scope/plan/acceptance/incident/exit records and evidence of actual alert receipt, fallback and reconciliation. Evan reviews on day 10 and decides whether a low-risk real engagement is supportable. This goal is proposed; no sprint, customer deadline, bot or scheduled job is activated here.</p>
+<p>For each future recurring automation, record its purpose, owner, input/output, permissions, schedule/time zone, measurable success/failure, alert recipient, cost/time bounds, review date and stop rule before scheduling it. Review the manual after the first engagement and first material incident; promote only sanitized lessons into reusable templates.</p>
+<h3>Remaining owner decisions—not silently selected</h3>
+<p>The paid-plan choice and published starting prices are verified above. Still resolve actual contract/credit/refund/defect/payment details, discovery bounds per engagement, private record/tool choice, support coverage and backup, acknowledgement/update targets, small-change allowance, vendor/usage budgets and launch/drill date. Nothing here authorizes subscriptions, prospect contact, access to client data or production action. Publishing this manual updates the internal workspace only, not the customer website or any active support service.</p>
+<h3>Research basis and limits</h3>
+<p>Sources were checked on 14 November 2026. The live Jax pricing page supplies current customer promises.<a class="citation" href="#source-1" aria-label="Source 1">[1]</a></p>
+<p>The 567 Labs guide and situational-assessment chapter inform commercial structure and client-accountable recommendations, not its enterprise prices, conversion claims or rapid-response guarantees.<a class="citation" href="#source-2" aria-label="Source 2">[2]</a><a class="citation" href="#source-6" aria-label="Source 6">[6]</a></p>
+<p>Google sender documentation and FTC guidance inform the email gate; successful authentication is not guaranteed delivery or blanket legal permission.<a class="citation" href="#source-3" aria-label="Source 3">[3]</a><a class="citation" href="#source-4" aria-label="Source 4">[4]</a></p>
+<p>Google SRE informs outcome-oriented checks and alert design, adapted down for sparse local-business workflows rather than copied as enterprise SLOs.<a class="citation" href="#source-5" aria-label="Source 5">[5]</a><a class="citation" href="#source-7" aria-label="Source 7">[7]</a></p>
+<p>OWASP informs secret lifecycle and AI authority boundaries, not a claim of complete security or compliance.<a class="citation" href="#source-8" aria-label="Source 8">[8]</a><a class="citation" href="#source-9" aria-label="Source 9">[9]</a></p>
+<p>NIST's publication overview supports integrating incident preparation, detection, response and recovery; this manual does not claim certification or full framework implementation.<a class="citation" href="#source-10" aria-label="Source 10">[10]</a></p>
+<p>Earlier Jax research—respectful call structure, embedded observation/build/training/handover, client-owned accounts, evidence-led marketing and the rejection of customer lock-in—remains preserved in the workspace/vault. Not every historical article/video was re-audited for this revision. Research is guidance; buyer demand, actual delivery effort, support cost and outcomes still require real evidence.</p>
+<h2 id="sources">Sources</h2>
+<ul>
+<li id="source-1"><a class="citation" href="#source-1" aria-label="Source 1">[1]</a> <a href="https://jaxsystems.ai/pricing">Jax Systems — current pricing</a></li>
+<li id="source-2"><a class="citation" href="#source-2" aria-label="Source 2">[2]</a> <a href="https://567-labs.github.io/consulting">567 Labs — AI Consulting Playbook</a></li>
+<li id="source-3"><a class="citation" href="#source-3" aria-label="Source 3">[3]</a> <a href="https://support.google.com/a/answer/81126?hl=en">Google — Email sender guidelines</a></li>
+<li id="source-4"><a class="citation" href="#source-4" aria-label="Source 4">[4]</a> <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business">FTC — CAN-SPAM compliance guide</a></li>
+<li id="source-5"><a class="citation" href="#source-5" aria-label="Source 5">[5]</a> <a href="https://sre.google/sre-book/monitoring-distributed-systems">Google SRE — Monitoring Distributed Systems</a></li>
+<li id="source-6"><a class="citation" href="#source-6" aria-label="Source 6">[6]</a> <a href="https://567-labs.github.io/consulting/guide/13-situational-assessment">567 Labs — The Situational Assessment</a></li>
+<li id="source-7"><a class="citation" href="#source-7" aria-label="Source 7">[7]</a> <a href="https://sre.google/workbook/alerting-on-slos">Google SRE Workbook — Alerting on SLOs</a></li>
+<li id="source-8"><a class="citation" href="#source-8" aria-label="Source 8">[8]</a> <a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection">OWASP — LLM01:2025 Prompt Injection</a></li>
+<li id="source-9"><a class="citation" href="#source-9" aria-label="Source 9">[9]</a> <a href="https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html">OWASP — Secrets Management Cheat Sheet</a></li>
+<li id="source-10"><a class="citation" href="#source-10" aria-label="Source 10">[10]</a> <a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final">NIST SP 800-61 Rev. 3 — Incident Response</a></li>
+</ul>
+</article></div><footer>Internal operating design, publicly accessible. No outreach, monitoring, customer access or support service is activated by this manual.</footer></main>
+<script>if(window.matchMedia('(max-width:760px)').matches)document.querySelector('.jump').open=false;document.getElementById('print-manual').addEventListener('click',()=>window.print());</script></body></html>

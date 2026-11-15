@@ -16,7 +16,7 @@ class LifecycleWorkspaceTests(unittest.TestCase):
     def test_full_playbook_exists_inside_playbooks_tab(self):
         inline = self.index.select_one('#page-playbooks #lifecycle-inline')
         self.assertIsNotNone(inline, 'Full playbook must be embedded inside the Playbooks tab')
-        self.assertEqual(len(inline.select('details')), 13)
+        self.assertEqual(len(inline.select('details')), 18)
         expected = self.standalone.select_one('article').get_text(' ', strip=True)
         self.assertEqual(inline.get_text(' ', strip=True), expected)
 
