@@ -12,11 +12,11 @@ Use one private client record throughout the lifecycle. Each stage below states 
 
 ### Current offer: resolve the old-document conflict
 
-The live pricing page was checked for this revision. It now specifies a free introductory conversation, a **paid $999 Business Improvement Plan**, a **$2,499 first standard build including that plan**, and **optional $499/month support**.[1] Paid versus free diagnostic is therefore not left undecided in this manual: free introduction; paid analysis and recommendations. A different entry offer would require an explicit commercial change, not an improvisation on a call.
+The live pricing page was checked for this revision. It now specifies a **free working session** on one of seven business areas, for one specific question, up to 60 minutes, with the owner or decision-maker present. The session uses client-owned tools, stays read-only unless a change is approved, may include one small safe reversible fix, ends with a short written summary, and does not include customer sends or recording without consent.[1]
 
-The plan is credited once: $2,499 total minus $999 already paid = **$1,500 remaining**, not $3,498 combined.[1] Broader or more complex work needs a separate quote; there is no universal maximum price or universal delivery duration.[1]
+The paid paths are now explicit. **Path A** is a **$2,499 first standard build** for one agreed improvement, and it starts only after a signed scope card covering the trigger, end state, tools, rules, exclusions, tests, owner and price.[1] **Path B** is a **$999 Business Improvement Plan** that reviews all seven areas at a high level, ranks opportunities, sets measurement, and delivers one implementation blueprint the client owns.[1]
 
-Eligible additional improvements start at $999, and eligible additional support is $249/month only when the existing setup and approach can be reused and the extra improvement is live; neither is an automatic price for every extra project.[1] Software/provider charges are separate, the client keeps the plan without buying a build, and build handoff is not conditional on buying care.[1]
+The plan is credited once: $2,499 total minus $999 already paid = **$1,500 remaining**, not $3,498 combined.[1] Eligible additional improvements are **$1,500** when they reuse the approved setup and access, and eligible additional support is **$250/month** only when the extra improvement is live and genuinely reuses the approved setup and access.[1] Optional support for the first agreed improvement remains **$499/month**.[1] Software/provider charges are separate, the client keeps the plan without buying a build, and build handoff is not conditional on buying care.[1]
 
 Older “Ops X-ray,” pricing-range and free-scoping discussions in the workspace are historical. This manual supersedes their conflicting operating guidance; it does not rewrite past research or signed terms. Recheck the published offer and signed agreement before each quote. The contract governs that engagement; escalate any mismatch instead of silently changing either promise.
 
@@ -40,9 +40,9 @@ The journey is linear enough to run, but permits a no, a pause, a return to disc
 | Stage | Main output | Evidence needed to advance | If not ready |
 |---|---|---|---|
 | Attract / qualify | Verified prospect or enquiry record | Relevant buyer/problem, legitimate contact basis, no suppression or unresolved compliance issue | Research, correct, suppress or close |
-| Introductory call | Fit decision and agreed next step | Owner problem, decision route, manageable risk; agreement to consider paid plan | Nurture only if welcome, refer or decline |
-| Paid Business Improvement Plan | Current-state map, ranked recommendations, measurement and first-build quote | Discovery authorized/paid as agreed; factual review; client receives plan and walkthrough | Resolve missing evidence, narrow scope or recommend no build |
-| Sell the build | Signed scope and commercial record | Price, dependencies, acceptance, change terms and required payment milestone confirmed | No build; clarify or pause |
+| Free working session | Fit decision, useful summary and route to Path A or Path B | One area, one question, owner present, practical boundary respected, written summary delivered, and next step agreed | Nurture only if welcome, refer or decline |
+| Paid Business Improvement Plan | Seven-area high-level review, ranked opportunities, measurement plan and one client-owned implementation blueprint | Discovery authorized/paid as agreed; seven areas reviewed at a practical level; measures taken only from existing records or gaps logged; blueprint and walkthrough delivered | Resolve missing evidence, narrow scope or recommend no build |
+| Sell the build | Signed scope card or build agreement from Path A or Path B | Path A summary or approved blueprint, required scope fields complete, price/payment milestone confirmed, client signatory approves | No build; clarify or pause |
 | Onboard / implement | Tested release candidate and runbook | Access, safe data path, versioned work, passed tests, client owner ready | Fix defect or use change control |
 | Accept / launch | Approved cutover and handover | Client acceptance, rollback/fallback, actual destination verified, alerts proven | Do not switch; keep manual process |
 | Operate / care | Health evidence, incident record, value review | Agreed coverage active; real outcome evidence; issues owned | Triage, pause unsafe automation or rescope |
@@ -85,31 +85,31 @@ For an activated first pilot, propose one initial message and at most two releva
 
 **Advance gate:** sending path tested, compliance/provider check complete, suppression tested, list verified, claims and batch authorized, response owner available. **Failure path:** pause that channel, preserve diagnostics, correct the cause and retest. Do not compensate for poor delivery by sending more.
 
-## 4. Handle the enquiry and run the intro call
+## 4. Handle the enquiry and run the free working session
 
-**Trigger:** a real response, website enquiry or referral. **Inputs:** original message/source, current offer, minimal public context and scheduling capacity. **Owner:** Evan. **Output:** fit decision, concise notes and one mutually agreed next step. **Proposed internal target:** check the enquiry queue each working day and acknowledge within one working day when available; this is not a published SLA.
+**Trigger:** a real response, website enquiry or referral. **Inputs:** original message/source, current offer, minimal public context and scheduling capacity. **Owner:** Evan. **Output:** fit decision, concise notes, a short written summary and one mutually agreed next step. **Proposed internal target:** check the enquiry queue each working day and acknowledge within one working day when available; this is not a published SLA.
 
 Deduplicate without losing the source. Record when it arrived, what the person asked, who will reply and the next due date. Confirm the website notification actually reached the queue. Never treat form submission as a newsletter subscription. Ask permission before recording/transcribing; follow applicable recording law, explain tool/storage use, and use written notes if permission is absent or unclear.
 
-### Thirty-minute call outline
+### Free-session outline (up to 60 minutes)
 
-- **0–3 minutes: frame.** “I'd like to understand what's happening, whether we could help, and a sensible next step. This introductory call is free; the detailed analysis and recommendations are a separate paid plan.”
-- **3–15: one recent example.** “Walk me through the last time this happened.” Who starts it? Where does information enter? Who checks it? Where does it wait or get repeated? What works well? What has already been tried?
-- **15–22: consequence and decision.** How often? What is known versus estimated about time, rework, customer experience or missed work? Who owns the process and decision? What is driving timing? Which alternatives—including the incumbent, a built-in feature and doing nothing—are being considered?
-- **22–27: reflect and qualify.** Play back their words, correct misunderstandings and name the unknowns. A short useful observation is fine; do not perform unbounded unpaid diagnosis or invent a build recommendation before evidence.
-- **27–30: agree, pause or decline.** Explain what the $999 Business Improvement Plan includes, that the client keeps it, and that building/care are separate decisions.[1] Offer a written discovery scope when there is fit. Otherwise give a respectful no or a permission-based check-in date.
+- **0–5 minutes: frame the boundary.** “We’ll stay with one question in one business area, use your own tools, keep access read-only unless you approve a change, and finish with a short written summary. If one safe next step is clear, we’ll say so. If the scope is still unclear, I’ll recommend the Business Improvement Plan.”
+- **5–20: walk one recent example.** “Show me the last time this happened.” What starts it? Where does information enter? Who checks it? Where does it wait or get repeated? What already works?
+- **20–35: inspect the bottleneck.** Confirm owners, rules, exceptions, records and risk. Keep the session at the current-state and practical-next-step level; do not drift into a free business-wide diagnostic.
+- **35–50: test the next step.** If a small change is safe, reversible and approved, make it together in the client-owned tool. Do not send customer messages, spend money or widen scope without explicit authority.
+- **50–60: summarize and route.** Record what was reviewed, what was observed or measured, what changed if anything, the next recommendation, and whether the right next step is Path A or Path B.
 
 ### Fit and note template
 
-Record: source/contact permission; business goal; recent example and actors/tools; frequency; observed versus owner-estimated impact; what works/prior attempts; current provider/native alternatives; decision-maker and workflow owner; constraints/budget context if shared; sensitivities; fit / uncertain / not fit with reason; agreed next step, owner and date.
+Record: source/contact permission; business area and question; recent example and actors/tools; frequency; observed versus owner-estimated impact; what works/prior attempts; current provider/native alternatives; decision-maker and workflow owner; sensitivities; what stayed read-only versus what changed; fit / uncertain / not fit with reason; written summary delivered; agreed next step, owner and date.
 
-**Fit:** recurring meaningful issue, willing sponsor/workflow owner, plausible implementation route, acceptable risk and agreement to bounded paid discovery. **Uncertain:** one or two specific questions remain; ask for those, not a full document dump. **Not fit:** explain why without pressure. A prospect may legitimately want information or more time.
+**Fit for Path A:** recurring meaningful issue, willing sponsor/workflow owner, one improvement can be bounded responsibly, and the tools/access/rules/tests can be confirmed. **Fit for Path B:** the problem is real, but a responsible one-improvement scope is still unclear or the owner wants a broader review across all seven areas. **Not fit:** explain why without pressure. A prospect may legitimately want information or more time.
 
-**Common responses:** “We already have a provider” → ask what works and whether they can solve this. “Can you guarantee savings?” → promise a defined deliverable and tests, not a business outcome outside your control. “What does it cost?” → answer with current published context and scope limits, not “book another call to find out.” “I need to think” → ask what remains unclear and whether a follow-up is wanted.
+**Common responses:** “We already have a provider” → ask what works and whether they can solve this. “Can you guarantee savings?” → promise a defined deliverable and tests, not a business outcome outside your control. “What does it cost?” → answer with the current public options: a free working session, Path A at $2,499 when one improvement is clear, or Path B at $999 when broader review is needed. “I need to think” → ask what remains unclear and whether a follow-up is wanted.
 
-**Recap draft:** “Thanks for explaining [process]. I heard [problem] and [known consequence]; [unknown] still needs checking. We agreed [next step]. The paid plan would cover [bounded areas], deliver [outputs] and cost [approved fee]. No work starts until we agree that scope. Please correct anything I missed.” Review before sending.
+**Recap draft:** “Thanks for walking through [process]. We focused on [area] and your question about [problem]. I observed [facts], [small fix] [was/was not] made, and [unknown] still needs checking. The next best route is [Path A / Path B / no build] because [reason]. Please correct anything I missed.” Review before sending.
 
-**Advance gate:** the client wants the paid plan, receives its scope/terms, and authorizes it with the required payment milestone. **Failure path:** no free-plan-by-email workaround; clarify, pause or close. No answer is not an acceptance.
+**Advance gate:** the owner has the summary, understands the next route, and either (a) approves a build scope conversation, or (b) wants the paid Business Improvement Plan. **Failure path:** no free-plan-by-email workaround; clarify, pause or close. No answer is not an acceptance.
 
 ## 5. Diagnose: conduct the Business Improvement Plan
 
@@ -118,6 +118,18 @@ Record: source/contact permission; business goal; recent example and actors/tool
 ### Agree the diagnostic boundary before starting
 
 Complete: client ID; business goals; processes/locations in depth; people/interview count or other practical limit; observation/sample period; permitted systems/data; meetings and walkthrough; deliverable format; due date/dependencies; exclusions; fee/credit; review/correction process; cancellation/rescheduling terms. Name who can approve extra discovery. A business-wide opportunity screen can be broad; deep investigation remains bounded.[1]
+
+### Seven-area review worksheet
+
+Review all seven areas at a high level before choosing the one improvement that deserves a full blueprint. Measure only from records that already exist. When a measure is missing, record the gap and the lightest credible way to collect it.
+
+- **Offer review:** what is sold, to whom, and how pricing/packaging is decided. Measure sales by service, average job value and where prices are set only if those records already exist.
+- **Marketing review:** how people find the business and what prompts an enquiry. Measure enquiries by source and time to first reply only where the source and timing records already exist.
+- **Sales review:** how enquiries become quotes, bookings or signed work. Measure quote turnaround, quotes awaiting reply and enquiry-to-booking rate only where those records already exist.
+- **Delivery and customer experience review:** how the work is fulfilled and how customers are updated. Measure time to first contact, missed updates and repeat problems only where those records already exist.
+- **Retention review:** how customers come back, refer others and leave reviews. Measure repeat-customer rate, review requests sent and referrals only where those records already exist.
+- **Operations and people review:** schedules, tools, information and handoffs between people. Measure re-keyed entries, admin hours and handoff delays only where those records already exist.
+- **Finance review:** invoicing, collecting payment and seeing costs clearly. Measure days to invoice, days to collect and overdue balances only where those records already exist.
 
 ### Discovery question bank
 
@@ -144,18 +156,17 @@ Baseline record: metric name; business meaning; unit; numerator/denominator wher
 
 ## 6. Deliver the Business Improvement Plan
 
-**Trigger:** discovery evidence is ready for synthesis. **Inputs:** current-state evidence, options, baseline or collection plan, constraints and verified feasibility. **Owner:** Evan authors; client sponsor/workflow owner reviews facts and chooses what to do. **Output:** a client-owned written plan, walkthrough and fixed-price first-build quote where a suitable build is recommendable.[1]
+**Trigger:** discovery evidence is ready for synthesis. **Inputs:** current-state evidence, options, baseline or collection plan, constraints and verified feasibility. **Owner:** Evan authors; client sponsor/workflow owner reviews facts and chooses what to do. **Output:** a client-owned seven-area review, ranked opportunities, measurement plan and one detailed implementation blueprint, with an optional fixed-price quote only when the client wants Jax Systems to build and feasibility is proven.[1]
 
 ### Reusable plan structure
 
 1. **Decision brief:** goal, current problem, evidence strength, recommended starting point, expected benefit as a hypothesis, key risks and the decision requested. State if no build is justified.
-2. **Current-state map:** trigger → actors/tools → steps/handoffs → end state; waiting, duplication, exceptions, judgment and source-of-truth systems. Show observed work, not an idealized process.
-3. **Prioritized opportunities:** include do nothing, simplify policy/process, configure existing tools, training and a new build where appropriate. A list of AI tools is not a plan.
-4. **Recommendation detail:** proposed future state, what stays human, boundaries, assumptions, dependencies, data/security/adoption controls, client effort and ownership.
-5. **Measurement:** available baseline, missing-data collection plan, proposed target, observation period, method/owner and counter-metrics such as error rate or review burden. Targets are not guarantees.[1]
-6. **Implementation sequence:** now / next / later with dependencies, decision points, indicative effort/range and why one improvement comes first. No fabricated calendar certainty.
-7. **First-build scope and fixed-price quote:** defined deliverables, exclusions, acceptance checks, prerequisites, price/credit arithmetic, provider costs, target timing, owners and proposal validity. If feasibility is unproven, close that question before issuing a fixed build commitment; tell the client why a responsible quote cannot yet be made.
-8. **Appendix:** evidence index, assumptions, unresolved questions, alternative options and operating/support implications. Do not embed raw secrets or unnecessary personal records.
+2. **Seven-area high-level review:** offer, marketing, sales, delivery and customer experience, retention, operations and people, and finance. For each area, record what was observed, what records exist, what is still unknown and what can be measured now without inventing numbers.
+3. **Ranked opportunities:** include do nothing, simplify policy/process, configure existing tools, training and a new build where appropriate. Name why one improvement should come first and why others are later, optional or not recommended.
+4. **Measurement plan:** available baseline, missing-data collection plan, proposed target, observation period, method/owner and counter-metrics such as error rate or review burden. Targets are not guarantees.[1]
+5. **One detailed implementation blueprint:** the single recommended improvement in enough detail for the client to execute or hand off. Cover the outcome/end state, native-tool alternative checked first, tools/accounts, steps, rules, dependencies, data/security/adoption controls, tests, failure handling, maintenance expectation, client effort and ownership.
+6. **Optional fixed-price quote:** include this only if the client wants Jax Systems to build and feasibility is proven. State deliverables, exclusions, acceptance checks, prerequisites, price/credit arithmetic, provider costs, target timing, owners and proposal validity. If feasibility is still unproven, say what must be verified before quoting.
+7. **Appendix:** evidence index, assumptions, unresolved questions, alternative options and operating/support implications. Do not embed raw secrets or unnecessary personal records.
 
 **Opportunity-card template:** opportunity ID; recognizable problem; evidence/confidence; baseline or collection plan; proposed change/native alternative; likely benefit and assumptions; effort/dependencies; risk; adoption owner; recurring costs/support burden; measure; priority/reason; next decision.
 
@@ -165,34 +176,36 @@ Use **high / medium / low** judgments with a reason, not pseudo-precise ROI scor
 
 Send the plan through the agreed private channel. Walk through facts first, alternatives next, recommendation and scope last. Ask the client to correct errors, state whether priorities match, and name unresolved decisions. Record version, delivery date, attendees, corrections and next action. Plan acceptance means the agreed diagnostic work was delivered; it does not mean the client agrees to build, agrees every assumption is true, or waives defects.
 
-**Advance gate:** all agreed plan components delivered, factual feedback handled under agreed review terms, and client elects to consider a build. **Failure path:** correct missing/incorrect agreed work, record disputed evidence, or deliver the justified no-build conclusion. Do not withhold the plan as a sales lever or describe unused build credit as a refund entitlement unless the agreement says so.
+The client can use the blueprint internally without Jax Systems or hand it to another provider. Do not hold it back to force a build decision.
+
+**Advance gate:** all agreed plan components delivered, factual feedback handled under agreed review terms, and client elects to consider a build or keep the blueprint for internal use. **Failure path:** correct missing/incorrect agreed work, record disputed evidence, or deliver the justified no-build conclusion. Do not withhold the plan as a sales lever or describe unused build credit as a refund entitlement unless the agreement says so.
 
 ## 7. Sell and scope the build
 
-**Trigger:** client wants a recommended improvement. **Inputs:** reviewed plan, feasibility evidence, delivery capacity and approved pricing. **Owner:** Evan for quote; authorized client signatory for purchase. **Output:** a bounded agreement, not “we'll automate your business.”
+**Trigger:** client wants a recommended improvement. **Inputs:** free-session summary and direct-scope evidence, or approved plan blueprint and feasibility evidence, plus delivery capacity and approved pricing. **Owner:** Evan for quote; authorized client signatory for purchase. **Output:** a bounded Path A scope card or build agreement from Path A or Path B, not “we'll automate your business.”
 
 ### Scope card / statement-of-work inputs
 
-- Business outcome and baseline, with measured facts separated from estimates.
+- Trigger, current pain and measured baseline, with observed facts separated from estimates.
+- End state and exact deliverables: configuration/code, test evidence, documentation, training, handover and any stabilization period.
 - Named process, location(s), users/roles, tools/accounts and integration permissions.
-- Trigger, input/schema, rules/branches, output/end state, volume/peak and timing assumptions.
-- Exact deliverables: configuration/code, test evidence, documentation, training, handover and any stabilization period.
+- Rules/branches, input/schema, output, volume/peak and timing assumptions.
 - Explicit exclusions: extra locations/tools/channels, data migration, historical cleanup, new capabilities, ongoing operations and regulated/high-risk decisions unless specifically agreed.
-- Client responsibilities: access, sample data, decisions, user availability, content approval and manual fallback owner.
-- Acceptance scenarios, expected results, named reviewer, review period, defect handling and sign-off method.
+- Acceptance tests, expected results, named reviewer, review period, defect handling and sign-off method.
+- Workflow owner plus client responsibilities for access, sample data, decisions, user availability, content approval and manual fallback.
 - Milestones/dependencies, target dates, delay/pause/restart process, change control and cancellation.
-- Total fixed fee; plan credit once; remaining balance; payment milestones/due dates; provider charges/taxes where applicable; licensing/IP and account ownership.
+- Fixed price; plan credit once where applicable; remaining balance; payment milestones/due dates; provider charges/taxes where applicable; licensing/IP and account ownership.
 - Warranty/defect-remedy boundary, optional care scope, liability/privacy/security terms and exit/handover. Have actual agreements reviewed by appropriate counsel. This manual is not a contract template certified for use.
 
 ### Pricing logic and commercial gate
 
 Check the work against standard-build assumptions; do not price solely by tool count. Include discovery already performed, implementation, testing, project communication, training, launch/stabilization, likely exceptions and provider costs. Estimate internal effort for capacity/economics while retaining a fixed customer price. If it cannot be delivered responsibly at the standard price, narrow it or quote a different scope—not hidden future care charges.
 
-For the standard example: plan paid $999; total including plan $2,499; remaining $1,500; optional care $499/month; provider fees separate.[1] A proposed payment schedule must be written and accepted before work; this manual does not invent a deposit percentage, late fee, refund promise, credit expiry, defect warranty or deemed-acceptance rule. Resolve those in the live terms.
+For the standard example: if one improvement is already clear from the free working session, Path A is $2,499 with no plan fee paid first. If Path B happened first, the plan paid is $999; total including plan stays $2,499; remaining build balance is $1,500; optional care is $499/month; provider fees stay separate.[1] A proposed payment schedule must be written and accepted before work; this manual does not invent a deposit percentage, late fee, refund promise, credit expiry, defect warranty or deemed-acceptance rule. Resolve those in the live terms.
 
 **Quote register:** version/date; scope ID; price; credit already applied; remaining balance; milestone amounts/dates; taxes/provider fees; validity; customer signatory; approval evidence; invoice/payment status. A sent invoice is not collected revenue.
 
-**Repeat-price eligibility record:** Evan checks and records the existing connection/configuration IDs, reusable tested delivery pattern, unchanged security boundary, named extra outcome, volume/rule differences, integration/location/data-migration needs, new acceptance tests and estimated support load. The client confirms scope and price. New tools, locations, data movement or materially greater risk/complexity require a separate quote; do not presume eligibility. The $249 additional care rate needs its own reuse/support assessment and a live extra improvement. Record the rationale and approval in the quote register.
+**Repeat-price eligibility record:** Evan checks and records the existing connection/configuration IDs, reusable tested delivery pattern, unchanged security boundary, named extra outcome, volume/rule differences, integration/location/data-migration needs, new acceptance tests and estimated support load. The client confirms scope and price. New tools, locations, data movement or materially greater risk/complexity require a separate quote; do not presume eligibility. The $250 additional care rate needs its own reuse/support assessment and a live extra improvement. Record the rationale and approval in the quote register.
 
 ### Change control—use it before doing the work
 
@@ -429,7 +442,7 @@ Time released is capacity, not automatically cash saved; before/after movement i
 
 **Trigger:** new opportunity, renewal/review, cancellation, relationship end or unsafe/unsupported workflow. **Inputs:** agreements, actual results, open work, systems/access inventory and retention obligations. **Owner:** Evan and authorized client owner. **Output:** a new signed scope, explicit renewal/continuation, or a documented clean exit.
 
-**Expansion:** return to diagnosis, verify that the next improvement is useful and capacity exists. Reuse patterns, not another client's data. Apply eligible repeat-build/support pricing only after verifying reuse and scope; do not bill $249/month for each internal technical step.[1] A client may choose a different vendor or take over operations.
+**Expansion:** return to diagnosis, verify that the next improvement is useful and capacity exists. Reuse patterns, not another client's data. Apply eligible repeat-build/support pricing only after verifying reuse and scope; do not bill $250/month for each internal technical step.[1] A client may choose a different vendor or take over operations.
 
 ### Exit checklist / closure certificate
 
@@ -454,20 +467,20 @@ Never use client-hosting dependency as lock-in. Canceling Jax care does not itse
 
 The fictional owner wants a daily internal task list from an existing quoting tool. Customer messages remain human-sent. One office, one source account, one task destination; no payment processing, voice agent or autonomous external outreach. Native-tool configuration is considered first.
 
-1. **Intro:** confirm one real-style case, workflow owner, consequence and data sensitivity. Do not assert lost revenue. Fit decision: proceed to a scoped paid plan, not a free solution design.
-2. **Plan authorization:** agree one process, approved examples, participants, deliverable/review date and fee. The fictional client pays $999 under agreed terms. The plan remains theirs even if the build is declined.
-3. **Diagnostic math:** invented sample of 30 eligible quotes in a week shows 6 without an assigned follow-up; label it fictional. Proposed future metric: all eligible quotes accounted for by the daily deadline, with excluded cases explicitly classified. Measure hands-on review time separately; do not extrapolate 6 missed follow-ups into 6 lost sales.
-4. **Recommendation:** compare native reporting, a manual checklist and a small integration. Before a fixed integration quote, confirm the actual source export/API and destination permissions. If native reporting suffices, recommend it instead.
-5. **Build agreement:** one internal list; owner/date rules; deduplication by quote ID; eligible versus excluded cases; 08:15 local deadline; test/fallback/handover/stabilization scope. Illustrative standard-price arithmetic: $2,499 total including plan; $1,500 remains. Payment timing and care terms still need a real signed agreement.
-6. **Onboarding/build:** named read-only source access, controlled test destination, approved data path. Test normal, missing field, duplicate, revoked access, source empty, wrong task owner and missed schedule. Client owner practices export-and-review fallback.
-7. **Scope-change inject:** owner asks “Could it text customers too?” Category: new capability/channel and consent/risk requirements. Keep the internal-list scope unchanged; log request, explain cost/date/support impact and obtain separate approval before any SMS work. No free addition and no unapproved message.
-8. **Acceptance inject:** test run says success but one quote is absent. Gate fails. Expected-ID versus destination-ID reconciliation finds the omission; fix and retest before launch. Scheduler success is explicitly rejected as acceptance evidence.
-9. **Production-failure inject:** after hypothetical launch, source OAuth is revoked. The next expected result is missing. Under the illustrative design, the independent 08:20 check raises a SEV2 because a manual workaround exists; a security sign of compromise would escalate severity. Client uses the export checklist; no invented 24/7 responder appears.
-10. **Recovery:** named administrator securely reconnects source; inspect affected quote IDs, check what was already created, replay only missing work with approval and bounded retries, verify destination owner/date/count, then obtain permission to resume. Add credential/freshness evidence and a regression case. Do not call a reconnection alone “fixed.”
-11. **Review:** report eligible versus accounted-for work, late cases, review burden, cost and adoption. Care is optional; no automatic attachment or fabricated savings. An expansion returns to scope control.
-12. **Exit inject:** the owner takes over. Export and open the runbook/configuration, transfer job/alert ownership, verify provider-level access revocation and document retained records/backups. Existing vendor charges are the client's separate decision.
-
-13. **Unavailable-founder / broken-alert inject:** assume the primary notification fails and Evan is outside agreed coverage. The independent watchdog uses the agreed secondary route to the client operator; if no acknowledgement arrives within the workflow’s agreed safe window, the pre-authorized design pauses consequential actions and exposes pending work for manual handling. No fictional backup employee appears. If neither a reachable client operator nor a safe automatic stop exists, this unattended design fails the launch gate. Test alert receipt and acknowledgement failure separately; a successful send is insufficient.
+1. **Free working session:** confirm one real-style case, one question, the workflow owner, the business consequence and the data sensitivity. The owner is present. The session stays in client-owned tools and read-only until a specific change is approved. Fit decision: either the next step is clear enough for Path A, or the broader business context still points to Path B.
+2. **Route A — direct build is clear:** in the session, the team confirms that the problem is one internal quote-follow-up handoff, the current tool exposes the needed export/API, and one improvement can be bounded responsibly. A safe, reversible small fix may be demonstrated, but no customer message is sent. The written summary recommends Path A, not a mandatory plan-first step.
+3. **Route B — broader review is needed:** if the office cannot yet confirm the actual source export, destination permissions, owner responsibilities or whether a native report already solves the issue, the recommendation is Path B. The fictional client then pays $999 under agreed terms for the Business Improvement Plan, which remains theirs even if the build is declined.
+4. **Diagnostic math (inside Path B):** invented sample of 30 eligible quotes in a week shows 6 without an assigned follow-up; label it fictional. Proposed future metric: all eligible quotes accounted for by the daily deadline, with excluded cases explicitly classified. Measure hands-on review time separately; do not extrapolate 6 missed follow-ups into 6 lost sales.
+5. **Recommendation:** compare native reporting, a manual checklist and a small integration. Before a fixed integration quote, confirm the actual source export/API and destination permissions. If native reporting suffices, recommend it instead. If the integration is still the best option, the plan ranks it and documents the implementation blueprint the client owns.
+6. **Build agreement:** one internal list; owner/date rules; deduplication by quote ID; eligible versus excluded cases; 08:15 local deadline; test/fallback/handover/stabilization scope. Illustrative arithmetic: direct Path A is $2,499 if it was already clear in the free session; if Path B happened first, $999 has already been paid and $1,500 remains. Payment timing and care terms still need a real signed agreement.
+7. **Onboarding/build:** named read-only source access, controlled test destination, approved data path. Test normal, missing field, duplicate, revoked access, source empty, wrong task owner and missed schedule. Client owner practices export-and-review fallback.
+8. **Scope-change inject:** owner asks “Could it text customers too?” Category: new capability/channel and consent/risk requirements. Keep the internal-list scope unchanged; log request, explain cost/date/support impact and obtain separate approval before any SMS work. No free addition and no unapproved message.
+9. **Acceptance inject:** test run says success but one quote is absent. Gate fails. Expected-ID versus destination-ID reconciliation finds the omission; fix and retest before launch. Scheduler success is explicitly rejected as acceptance evidence.
+10. **Production-failure inject:** after hypothetical launch, source OAuth is revoked. The next expected result is missing. Under the illustrative design, the independent 08:20 check raises a SEV2 because a manual workaround exists; a security sign of compromise would escalate severity. Client uses the export checklist; no invented 24/7 responder appears.
+11. **Recovery:** named administrator securely reconnects source; inspect affected quote IDs, check what was already created, replay only missing work with approval and bounded retries, verify destination owner/date/count, then obtain permission to resume. Add credential/freshness evidence and a regression case. Do not call a reconnection alone “fixed.”
+12. **Review:** report eligible versus accounted-for work, late cases, review burden, cost and adoption. Care is optional; no automatic attachment or fabricated savings. An expansion returns to scope control.
+13. **Exit inject:** the owner takes over. Export and open the runbook/configuration, transfer job/alert ownership, verify provider-level access revocation and document retained records/backups. Existing vendor charges are the client's separate decision.
+14. **Unavailable-founder / broken-alert inject:** assume the primary notification fails and Evan is outside agreed coverage. The independent watchdog uses the agreed secondary route to the client operator; if no acknowledgement arrives within the workflow’s agreed safe window, the pre-authorized design pauses consequential actions and exposes pending work for manual handling. No fictional backup employee appears. If neither a reachable client operator nor a safe automatic stop exists, this unattended design fails the launch gate. Test alert receipt and acknowledgement failure separately; a successful send is insufficient.
 
 ### What this rehearsal reveals
 
@@ -479,9 +492,9 @@ One manual does not mean building every automation first. Start manually where i
 
 ### Before outbound or paid discovery
 
-- [ ] Current offer/credit and paid-plan boundary consistent in actual sales materials; named person handles enquiries/replies.
+- [ ] Current offer/credit and free-session boundary consistent in actual sales materials; named person handles enquiries/replies.
 - [ ] Private record home selected with access control, backup/retrieval and next-action tracking. No live client data in this reading copy.
-- [ ] Intro-call notes, discovery scope, plan structure and factual review process ready.
+- [ ] Free-session notes, discovery scope, plan structure and factual review process ready.
 - [ ] Actual discovery terms, payment mechanism, cancellation/review/credit rules settled with appropriate legal/accounting input.
 - [ ] Data-permission/recording/retention and capability-risk screening ready.
 - [ ] If outbound is used: provider/legal review, legitimate sender, authentication/reply/delivery tests, verified small list, opt-out/suppression and explicit campaign/budget approval. No need to delay an authorized warm conversation for a mass-mail stack.
