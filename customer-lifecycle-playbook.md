@@ -10,15 +10,15 @@
 
 Use one private client record throughout the lifecycle. Each stage below states its trigger, inputs, responsible people, procedure, output, advance gate and failure path. Complete a gate with evidence, not a tick based on confidence. Mark a record **ready**, **blocked**, **paused**, **not proceeding** or **complete**; never quietly skip a failed gate.
 
-### Current offer: resolve the old-document conflict
+### Current offer
 
-The live pricing page was checked for this revision. It now specifies a **free working session** on one of seven business areas, for one specific question, up to 60 minutes, with the owner or decision-maker present. The session uses client-owned tools, stays read-only unless a change is approved, may include one small safe reversible fix, ends with a short written summary, and does not include customer sends or recording without consent.[1]
+The current pricing page specifies a **free working session** on one of seven business areas, for one specific question, up to 60 minutes, with the owner or decision-maker present. The session uses client-owned tools, stays read-only unless a change is approved, may include one small safe reversible fix, ends with a short written summary, and does not include customer sends or recording without consent.[1]
 
 The paid paths are now explicit. **Path A** is a **$2,499 first standard build** for one agreed improvement, and it starts only after a signed scope card covering the trigger, end state, tools, rules, exclusions, tests, owner and price.[1] **Path B** is a **$999 Business Improvement Plan** that reviews all seven areas at a high level, ranks opportunities, sets measurement, and delivers one implementation blueprint the client owns.[1]
 
 The plan is credited once: $2,499 total minus $999 already paid = **$1,500 remaining**, not $3,498 combined.[1] Eligible additional improvements are **$1,500** when they reuse the approved setup and access, and eligible additional support is **$250/month** only when the extra improvement is live and genuinely reuses the approved setup and access.[1] Optional support for the first agreed improvement remains **$499/month**.[1] Software/provider charges are separate, the client keeps the plan without buying a build, and build handoff is not conditional on buying care.[1]
 
-Older “Ops X-ray,” pricing-range and free-scoping discussions in the workspace are historical. This manual supersedes their conflicting operating guidance; it does not rewrite past research or signed terms. Recheck the published offer and signed agreement before each quote. The contract governs that engagement; escalate any mismatch instead of silently changing either promise.
+Recheck the published offer and signed agreement before each quote. The contract governs that engagement; escalate any mismatch instead of silently changing either promise.
 
 ### Who is accountable
 
@@ -29,7 +29,7 @@ Older “Ops X-ray,” pricing-range and free-scoping discussions in the workspa
 - **Named reviewer or specialist, where needed:** verifies risky decisions or work beyond Evan's capability. Do not invent an available security team, subcontractor or backup responder.
 - **AI assistance:** drafts, analysis and bounded tests only within approved tools/data permissions. It cannot sign, spend, contact clients, expand scope or authorize production changes on its own.
 
-**Decision hierarchy:** signed engagement terms → current approved commercial decisions → this manual → historical source ideas. Applicable law and binding provider rules still apply. Resolve contradictions before proceeding; a proposal, verbal interest or dashboard is not a contract.
+**Decision hierarchy:** signed engagement terms → current approved commercial decisions → this manual → supporting source material. Applicable law and binding provider rules still apply. Resolve contradictions before proceeding; a proposal, verbal interest or dashboard is not a contract.
 
 **Standard handoff line:** client ID; stage; evidence links; decision and decision-maker; next action; owner; due date/time zone; blocker; permission status. Never store a password or token in that line.
 
@@ -538,7 +538,7 @@ OWASP informs secret lifecycle and AI authority boundaries, not a claim of compl
 
 NIST's publication overview supports integrating incident preparation, detection, response and recovery; this manual does not claim certification or full framework implementation.[10]
 
-Earlier Jax research—respectful call structure, embedded observation/build/training/handover, client-owned accounts, evidence-led marketing and the rejection of customer lock-in—remains preserved in the workspace/vault. Not every historical article/video was re-audited for this revision. Research is guidance; buyer demand, actual delivery effort, support cost and outcomes still require real evidence.
+Jax research in the workspace/vault also informed the call structure, embedded observation/build/training/handover, client-owned accounts, evidence-led marketing and the rejection of customer lock-in. Research is guidance; buyer demand, actual delivery effort, support cost and outcomes still require real evidence.
 
 ## Sources
 
