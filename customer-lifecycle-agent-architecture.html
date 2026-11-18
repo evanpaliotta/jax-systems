@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="color-scheme" content="light">
+  <title>Customer Lifecycle Agent Architecture — Jax Systems</title>
+  <style>
+    :root{--ink:#17251f;--muted:#5f6c63;--paper:#f3f0e7;--card:#fffdf7;--line:#d9d7c9;--clay:#b8562f;--moss:#1d4a3f}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:var(--moss);text-underline-offset:3px}
+    a:focus-visible{outline:3px solid var(--clay);outline-offset:3px}
+    .skip{position:absolute;left:15px;top:-100px;background:var(--card);padding:12px;z-index:10}
+    .skip:focus{top:12px}
+    .bar{border-bottom:1px solid var(--line)}
+    .bar-inner{max-width:1200px;margin:auto;padding:17px 24px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+    .brand{font-weight:750}
+    .brand:before{content:"";display:inline-block;background:var(--clay);width:10px;height:10px;border-radius:50%;margin-right:10px;box-shadow:0 0 0 4px rgba(184,86,47,.14)}
+    .label{color:var(--muted);font-size:.8rem;font-weight:500}
+    main{max-width:1200px;margin:auto;padding:28px 24px 80px}
+    article{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:32px 42px;min-width:0;overflow-wrap:anywhere;box-shadow:0 18px 44px rgba(20,35,28,.04)}
+    h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;font-weight:500;line-height:1.22;letter-spacing:-.02em}
+    h1{font-size:clamp(2rem,4vw,3rem);margin:.1em 0 .6em}
+    h2{font-size:clamp(1.45rem,3vw,1.85rem);border-top:1px solid var(--line);margin:2.2em 0 .75em;padding-top:1em;scroll-margin-top:20px}
+    h3{font-size:1.2rem;margin:1.8em 0 .55em}
+    h4{font-size:1.05rem;margin:1.4em 0 .45em}
+    p,li{max-width:84ch}
+    p{margin:.85em 0}
+    li{margin:.45em 0}
+    ul,ol{padding-left:1.45em}
+    strong{font-weight:650}
+    code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+    code{background:#f2eee3;border:1px solid #e6e1d1;padding:.08em .35em;border-radius:6px;font-size:.92em}
+    pre{background:#f2eee3;border:1px solid #e6e1d1;border-radius:10px;padding:16px;overflow:auto;line-height:1.55}
+    pre code{background:none;border:0;padding:0}
+    blockquote{margin:1em 0;border-left:3px solid var(--moss);background:#e8ecd9;padding:.35em 1em}
+    table{border-collapse:collapse;width:100%;font-size:.9rem;margin:1.1em 0}
+    th,td{padding:12px 14px;text-align:left;vertical-align:top;border:1px solid var(--line)}
+    th{background:#e8ecd9}
+    footer{color:var(--muted);font-size:.8rem;margin-top:22px}
+    @media(max-width:760px){main{padding:22px 14px 50px}.bar-inner{padding:14px}.label{display:none}article{padding:24px 20px}h1{font-size:2.1rem}}
+    @media print{body{background:#fff;font-size:10pt}.bar,.skip,footer{display:none}main{padding:0}article{border:0;box-shadow:none;padding:0}a{color:#111}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#manual">Skip to document</a>
+  <header class="bar"><div class="bar-inner"><div class="brand">Jax Systems <span class="label">— agent architecture</span></div><div><a href="./">← Workspace</a></div></div></header>
+  <main>
+    <article id="manual"><h1>Jax Systems: Customer Lifecycle Agent Architecture</h1>
+<p><strong>Working design · 18 November 2026 · internal operating architecture, not customer-facing copy.</strong></p>
+<h2>Verdict</h2>
+<p>Do not turn the full playbook into one giant bot. The right shape is a <strong>document-backed state machine</strong>: one canonical playbook, a small set of derived policy files, stage-specific Hermes skills, deterministic gate and pricing checks, and one private operations ledger for live work.</p>
+<p>The playbook remains the source of truth for policy and procedure. The agent prepares drafts, checks gates, surfaces missing evidence, and routes work. Humans still approve commercial, legal, access, launch, and external communication decisions.</p>
+<h2>Recommended pattern</h2>
+<p>Use five layers:</p>
+<ol>
+<li><strong>Source-of-truth documents</strong> for policy, reasoning, and approved commercial decisions.</li>
+<li><strong>Derived structured policy</strong> for gates, action classes, prices, and retrieval units.</li>
+<li><strong>Stage-specific Hermes skills</strong> for bounded work like intake, diagnosis, scoping, launch prep, incident handling, and exit.</li>
+<li><strong>Deterministic orchestration code</strong> for routing, validation, pricing arithmetic, and state transitions.</li>
+<li><strong>Private live state</strong> for engagements, evidence, approvals, deliverables, incidents, and open work.</li>
+</ol>
+<p>That gives four things a single mega-prompt cannot reliably provide:</p>
+<ul>
+<li>explicit authority boundaries</li>
+<li>auditability</li>
+<li>repeatable gates</li>
+<li>separation between policy and live client state</li>
+</ul>
+<h2>Why not one whole-bot prompt</h2>
+<ul>
+<li>A giant prompt cannot enforce stage transitions, signed-term precedence, or non-waivable gates.</li>
+<li>Conversation history is not a private operational ledger.</li>
+<li>A model summary is not evidence that a gate is passed.</li>
+<li>The same document mixes active rules, proposed rules, templates, examples, and research context; a whole-bot prompt will blur them.</li>
+<li>The playbook still leaves some owner decisions open. A bot should not silently resolve them.</li>
+<li>One-operator businesses do not benefit from a fake org chart of autonomous agents.</li>
+</ul>
+<h2>Operating principle</h2>
+<p>Treat the playbook as <strong>policy</strong>, not as the system itself.</p>
+<p>Translate it into:</p>
+<ul>
+<li>reusable retrieval chunks</li>
+<li>deterministic gate rules</li>
+<li>typed records</li>
+<li>stage skills</li>
+<li>explicit approvals</li>
+</ul>
+<p>Do <strong>not</strong> translate every paragraph into a skill.</p>
+<h2>Architecture</h2>
+<h3>1. Source-of-truth layer</h3>
+<p>Keep prose where prose is the right format:</p>
+<ul>
+<li>policy</li>
+<li>decision rationale</li>
+<li>interview prompts</li>
+<li>template language</li>
+<li>failure explanations</li>
+<li>commercial caveats</li>
+<li>examples and teaching material</li>
+</ul>
+<p>Artifacts:</p>
+<ul>
+<li><code>customer-lifecycle-playbook.md</code></li>
+<li><code>agent/policy/policy-manifest.yaml</code></li>
+<li><code>agent/policy/offer-register.yaml</code></li>
+<li>approved agreement and scope references kept in the private operations area, not in public Pages content</li>
+</ul>
+<h3>2. Derived policy and retrieval layer</h3>
+<p>Generate small, versioned, provenance-bearing artifacts from the playbook.</p>
+<p>Artifacts:</p>
+<ul>
+<li><code>agent/policy/core-invariants.yaml</code></li>
+<li><code>agent/policy/stage-gates.yaml</code></li>
+<li><code>agent/policy/action-policy.yaml</code></li>
+<li><code>agent/retrieval/section-map.yaml</code></li>
+<li><code>agent/retrieval/chunks.jsonl</code></li>
+<li><code>scripts/build_jax_policy.py</code></li>
+</ul>
+<p>This layer should be regenerated whenever the playbook hash changes.</p>
+<h3>3. Skill layer</h3>
+<p>Create skills only where the agent must perform repeatable work.</p>
+<p>Recommended skills:</p>
+<ul>
+<li><code>jax-router</code></li>
+<li><code>jax-intake</code></li>
+<li><code>jax-diagnose</code></li>
+<li><code>jax-plan</code></li>
+<li><code>jax-scope</code></li>
+<li><code>jax-onboard</code></li>
+<li><code>jax-release</code></li>
+<li><code>jax-launch</code></li>
+<li><code>jax-operate</code></li>
+<li><code>jax-incident</code></li>
+<li><code>jax-review-exit</code></li>
+</ul>
+<p>Each skill should define:</p>
+<ul>
+<li>trigger</li>
+<li>required inputs</li>
+<li>artifacts it may read</li>
+<li>artifact it must produce</li>
+<li>stop conditions</li>
+<li>approval boundary</li>
+<li>what it must never do autonomously</li>
+</ul>
+<h3>4. Orchestration layer</h3>
+<p>The router should be thin.</p>
+<p>Its job is not to be smart about everything. Its job is to:</p>
+<ul>
+<li>read the current engagement state</li>
+<li>resolve authority and current approved offer terms</li>
+<li>choose the correct stage skill</li>
+<li>load only the needed chunks</li>
+<li>validate the skill output against schema</li>
+<li>run deterministic gate and pricing checks</li>
+<li>create a proposal when human approval is required</li>
+<li>append an audit record</li>
+</ul>
+<p>Artifacts:</p>
+<ul>
+<li><code>scripts/jax_ops.py</code></li>
+<li><code>agent/lib/gate_evaluator.py</code></li>
+<li><code>agent/lib/commercial.py</code></li>
+<li><code>agent/schemas/action-result.schema.json</code></li>
+<li><code>agent/schemas/approval.schema.json</code></li>
+</ul>
+<h3>5. Private live-state layer</h3>
+<p>Do not store live operations in the playbook, Hermes memory, Pages, or reusable skills.</p>
+<p>Keep a private ledger for:</p>
+<ul>
+<li>clients</li>
+<li>engagements</li>
+<li>evidence</li>
+<li>approvals</li>
+<li>quotes</li>
+<li>scope cards</li>
+<li>release evidence</li>
+<li>incidents</li>
+<li>open work</li>
+<li>closure records</li>
+</ul>
+<p>Artifacts:</p>
+<ul>
+<li><code>agent/state/001_init.sql</code></li>
+<li>private SQLite database outside the public repo</li>
+<li>private per-client evidence folders outside the public repo</li>
+<li>backup/restore process for that private store</li>
+</ul>
+<h2>Router logic</h2>
+<p>The router should follow this order:</p>
+<ol>
+<li>Require explicit <code>client_id</code> and <code>engagement_id</code> for live work.</li>
+<li>Read current stage, status, blockers, next action, approved scope, and agreement version.</li>
+<li>Resolve precedence in this order:
+<ul>
+<li>signed engagement terms</li>
+<li>current approved commercial decisions</li>
+<li>playbook rules</li>
+<li>supporting source material</li>
+</ul>
+</li>
+<li>Load <code>core-invariants</code>, the current stage gate, and the current action policy.</li>
+<li>Retrieve only the procedure and templates needed for the specific task.</li>
+<li>Run one primary skill.</li>
+<li>Validate the result against a shared schema.</li>
+<li>Run deterministic checks for gate completeness, pricing math, and forbidden actions.</li>
+<li>If an external effect is needed, stop at an exact proposal.</li>
+<li>Record the outcome in the audit trail.</li>
+</ol>
+<h2>Approval boundaries</h2>
+<p>The agent may:</p>
+<ul>
+<li>read approved internal materials</li>
+<li>draft notes, plans, scope cards, checklists, incident updates, and reviews</li>
+<li>classify stage readiness recommendations</li>
+<li>surface missing evidence</li>
+<li>calculate deterministic pricing and balance math</li>
+</ul>
+<p>The agent may not autonomously:</p>
+<ul>
+<li>contact prospects or clients</li>
+<li>send recaps, invoices, notices, or plans</li>
+<li>buy tools or subscriptions</li>
+<li>approve pricing, refunds, credits, or scope changes</li>
+<li>grant or expand access</li>
+<li>execute launch or cutover</li>
+<li>replay or restore production processes</li>
+<li>declare acceptance complete</li>
+<li>declare an incident resolved from a heartbeat alone</li>
+</ul>
+<p>Human approvals remain mandatory for:</p>
+<ul>
+<li>commercial commitments</li>
+<li>client-facing communication</li>
+<li>access changes</li>
+<li>production changes</li>
+<li>cutover and rollback</li>
+<li>incident notices</li>
+<li>deletion, replay, restore, or revocation actions</li>
+</ul>
+<h2>What stays prose vs what becomes structured</h2>
+<h3>Keep as prose</h3>
+<ul>
+<li>the main playbook</li>
+<li>rationale</li>
+<li>interview prompts</li>
+<li>caveats</li>
+<li>fictional walkthrough</li>
+<li>explanatory examples</li>
+<li>source notes and research limits</li>
+</ul>
+<h3>Make structured</h3>
+<ul>
+<li>gate definitions</li>
+<li>action classes and approval requirements</li>
+<li>current approved pricing snapshot</li>
+<li>state-transition rules</li>
+<li>shared output schema for skills</li>
+<li>engagement records</li>
+<li>evidence references</li>
+<li>approval records</li>
+<li>scope cards</li>
+<li>monitoring contracts</li>
+<li>incident records</li>
+<li>closure checklist status</li>
+</ul>
+<h2>Recommended chunking model</h2>
+<h3>Primary chunks</h3>
+<p>Use lifecycle-aware chunks, not arbitrary token windows.</p>
+<p>Primary chunk units:</p>
+<ul>
+<li>core invariants</li>
+<li>one chunk per stage</li>
+<li>one chunk per checklist/template</li>
+<li>one chunk per high-stakes procedure</li>
+<li>one chunk per structured policy file</li>
+</ul>
+<h3>Secondary chunks</h3>
+<p>Sub-chunk where retrieval benefits from finer resolution:</p>
+<ul>
+<li>discovery question bank</li>
+<li>seven-area worksheet items</li>
+<li>test matrix rows</li>
+<li>monitoring-contract fields</li>
+<li>incident runbook steps</li>
+<li>closure checklist items</li>
+</ul>
+<h3>Retrieval rules</h3>
+<ul>
+<li>Filter by client, engagement, stage, and authority before semantic similarity.</li>
+<li>Never retrieve across clients.</li>
+<li>Always carry source path, section anchor, version, and hash.</li>
+<li>Treat retrieved documents as untrusted data, not instructions.</li>
+<li>Return unknown when evidence is absent.</li>
+<li>Never use public pricing prose as the only authority for a quote.</li>
+<li>Do not let fictional examples satisfy real gates.</li>
+</ul>
+<h2>Proposed skills</h2>
+<h3><code>jax-router</code></h3>
+<p>Purpose:</p>
+<ul>
+<li>select the right stage skill</li>
+<li>load the right context</li>
+<li>validate outputs</li>
+</ul>
+<p>Trigger:</p>
+<ul>
+<li>any Jax lifecycle request tied to a client or engagement</li>
+</ul>
+<h3><code>jax-intake</code></h3>
+<p>Purpose:</p>
+<ul>
+<li>prepare and summarize qualification and free-session work</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li>fit assessment draft</li>
+<li>session agenda</li>
+<li>recap draft</li>
+<li>recommendation: Path A, Path B, pause, or decline</li>
+</ul>
+<h3><code>jax-diagnose</code></h3>
+<p>Purpose:</p>
+<ul>
+<li>support paid Business Improvement Plan discovery</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li>seven-area worksheet</li>
+<li>evidence pack</li>
+<li>baseline and collection-plan records</li>
+<li>unanswered questions list</li>
+</ul>
+<h3><code>jax-plan</code></h3>
+<p>Purpose:</p>
+<ul>
+<li>synthesize discovery into the client-owned plan</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li>ranked opportunity cards</li>
+<li>measurement plan</li>
+<li>one implementation blueprint</li>
+<li>optional quote-readiness assessment</li>
+</ul>
+<h3><code>jax-scope</code></h3>
+<p>Purpose:</p>
+<ul>
+<li>create bounded Path A scope or process change requests</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li>scope-card draft</li>
+<li>acceptance-test draft</li>
+<li>quote summary</li>
+<li>change classification draft</li>
+</ul>
+<h3><code>jax-onboard</code></h3>
+<p>Purpose:</p>
+<ul>
+<li>prepare kickoff, least-privilege access, communication plan, and data flow</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li>kickoff record</li>
+<li>access inventory</li>
+<li>communication compact</li>
+<li>onboarding blockers</li>
+</ul>
+<h3><code>jax-release</code></h3>
+<p>Purpose:</p>
+<ul>
+<li>synthesize testing and release evidence</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li>test records</li>
+<li>missing test coverage list</li>
+<li>release readiness recommendation</li>
+<li>operating-guide draft</li>
+</ul>
+<h3><code>jax-launch</code></h3>
+<p>Purpose:</p>
+<ul>
+<li>prepare cutover, acceptance, and handover artifacts</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li>launch-gate report</li>
+<li>cutover checklist</li>
+<li>acceptance receipt draft</li>
+<li>handover pack</li>
+</ul>
+<h3><code>jax-operate</code></h3>
+<p>Purpose:</p>
+<ul>
+<li>support monitoring review, care review, and value review</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li>health report</li>
+<li>exception queue</li>
+<li>monitoring-contract draft</li>
+<li>review summary</li>
+</ul>
+<h3><code>jax-incident</code></h3>
+<p>Purpose:</p>
+<ul>
+<li>prepare incident handling artifacts</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li>incident record</li>
+<li>containment checklist</li>
+<li>client-update draft</li>
+<li>recovery evidence requirements</li>
+</ul>
+<h3><code>jax-review-exit</code></h3>
+<p>Purpose:</p>
+<ul>
+<li>support expansion, renewal, and clean exit</li>
+</ul>
+<p>Outputs:</p>
+<ul>
+<li>expansion brief</li>
+<li>exit checklist</li>
+<li>closure certificate draft</li>
+<li>open exceptions register</li>
+</ul>
+<h2>State model</h2>
+<p>The minimum private state model should include these entities.</p>
+<h3>Client and Engagement</h3>
+<p>Fields:</p>
+<ul>
+<li><code>client_id</code></li>
+<li><code>engagement_id</code></li>
+<li><code>stage</code></li>
+<li><code>status</code></li>
+<li><code>agreement_version_ref</code></li>
+<li><code>scope_version_ref</code></li>
+<li><code>next_action</code></li>
+<li><code>owner</code></li>
+<li><code>due_at</code></li>
+<li><code>time_zone</code></li>
+<li><code>blocker</code></li>
+</ul>
+<h3>EvidenceItem</h3>
+<p>Fields:</p>
+<ul>
+<li><code>evidence_id</code></li>
+<li><code>engagement_id</code></li>
+<li><code>uri</code></li>
+<li><code>sha256</code></li>
+<li><code>source_type</code></li>
+<li><code>observed_at</code></li>
+<li><code>verification_status</code></li>
+<li><code>verified_by</code></li>
+<li><code>limitations</code></li>
+</ul>
+<h3>GateDecision</h3>
+<p>Fields:</p>
+<ul>
+<li><code>gate_decision_id</code></li>
+<li><code>engagement_id</code></li>
+<li><code>stage</code></li>
+<li><code>gate_version</code></li>
+<li><code>check_results</code></li>
+<li><code>evidence_ids</code></li>
+<li><code>decision</code></li>
+<li><code>decided_by</code></li>
+<li><code>decided_at</code></li>
+<li><code>waiver_reason</code></li>
+<li><code>waiver_expiry</code></li>
+</ul>
+<h3>ArtifactVersion</h3>
+<p>Fields:</p>
+<ul>
+<li><code>artifact_id</code></li>
+<li><code>engagement_id</code></li>
+<li><code>artifact_type</code></li>
+<li><code>version</code></li>
+<li><code>uri</code></li>
+<li><code>sha256</code></li>
+<li><code>policy_version</code></li>
+<li><code>review_status</code></li>
+<li><code>approved_at</code></li>
+</ul>
+<h3>Approval</h3>
+<p>Fields:</p>
+<ul>
+<li><code>approval_id</code></li>
+<li><code>engagement_id</code></li>
+<li><code>proposal_hash</code></li>
+<li><code>action_class</code></li>
+<li><code>approver_identity</code></li>
+<li><code>decision</code></li>
+<li><code>approved_at</code></li>
+<li><code>expires_at</code></li>
+<li><code>consumed_at</code></li>
+</ul>
+<h3>WorkItem / ExternalAction</h3>
+<p>Fields:</p>
+<ul>
+<li><code>work_item_id</code></li>
+<li><code>engagement_id</code></li>
+<li><code>kind</code></li>
+<li><code>state</code></li>
+<li><code>owner</code></li>
+<li><code>due_at</code></li>
+<li><code>proposal_hash</code></li>
+<li><code>approval_id</code></li>
+<li><code>idempotency_key</code></li>
+<li><code>destination</code></li>
+<li><code>readback_evidence_id</code></li>
+</ul>
+<h3>Release / TestResult</h3>
+<p>Fields:</p>
+<ul>
+<li><code>release_id</code></li>
+<li><code>engagement_id</code></li>
+<li><code>version</code></li>
+<li><code>configuration_hash</code></li>
+<li><code>test_id</code></li>
+<li><code>expected_result</code></li>
+<li><code>actual_result</code></li>
+<li><code>result</code></li>
+<li><code>reviewer</code></li>
+<li><code>tested_at</code></li>
+</ul>
+<h3>SystemAccess / MonitoringContract</h3>
+<p>Fields:</p>
+<ul>
+<li><code>system_id</code></li>
+<li><code>client_id</code></li>
+<li><code>business_owner</code></li>
+<li><code>operator</code></li>
+<li><code>vault_pointer</code></li>
+<li><code>access_scope</code></li>
+<li><code>expected_cadence</code></li>
+<li><code>good_outcome</code></li>
+<li><code>freshness_threshold</code></li>
+<li><code>alert_route</code></li>
+<li><code>fallback</code></li>
+</ul>
+<h3>Incident / ChangeRequest</h3>
+<p>Fields:</p>
+<ul>
+<li><code>record_id</code></li>
+<li><code>engagement_id</code></li>
+<li><code>type</code></li>
+<li><code>state</code></li>
+<li><code>severity_or_category</code></li>
+<li><code>impact</code></li>
+<li><code>lead</code></li>
+<li><code>timeline_ref</code></li>
+<li><code>approval_ids</code></li>
+<li><code>recovery_evidence_ids</code></li>
+</ul>
+<h3>Invoice / Closure</h3>
+<p>Fields:</p>
+<ul>
+<li><code>record_id</code></li>
+<li><code>engagement_id</code></li>
+<li><code>milestone</code></li>
+<li><code>total</code></li>
+<li><code>credit_applied</code></li>
+<li><code>balance</code></li>
+<li><code>issued_at</code></li>
+<li><code>paid_at</code></li>
+<li><code>closure_state</code></li>
+<li><code>export_receipt_ref</code></li>
+<li><code>open_exceptions</code></li>
+</ul>
+<h3>AuditEvent</h3>
+<p>Fields:</p>
+<ul>
+<li><code>event_id</code></li>
+<li><code>occurred_at</code></li>
+<li><code>actor</code></li>
+<li><code>actor_type</code></li>
+<li><code>engagement_id</code></li>
+<li><code>event_type</code></li>
+<li><code>object_id</code></li>
+<li><code>input_hash</code></li>
+<li><code>output_hash</code></li>
+<li><code>policy_version</code></li>
+<li><code>skill_version</code></li>
+<li><code>result</code></li>
+</ul>
+<h2>File layout</h2>
+<p>Recommended v1 layout:</p>
+<pre><code class="language-text">agent/
+  policy/
+    policy-manifest.yaml
+    offer-register.yaml
+    core-invariants.yaml
+    stage-gates.yaml
+    action-policy.yaml
+  retrieval/
+    section-map.yaml
+    chunks.jsonl
+  schemas/
+    action-result.schema.json
+    approval.schema.json
+    monitoring-contract.schema.json
+    scope-card.schema.json
+    incident-record.schema.json
+  skills/
+    jax-router/SKILL.md
+    jax-intake/SKILL.md
+    jax-diagnose/SKILL.md
+    jax-plan/SKILL.md
+    jax-scope/SKILL.md
+    jax-onboard/SKILL.md
+    jax-release/SKILL.md
+    jax-launch/SKILL.md
+    jax-operate/SKILL.md
+    jax-incident/SKILL.md
+    jax-review-exit/SKILL.md
+  state/
+    001_init.sql
+  lib/
+    gate_evaluator.py
+    commercial.py
+    state_store.py
+  jobs/
+    due_items.py
+    backup_freshness.py
+scripts/
+  build_jax_policy.py
+  build_customer_lifecycle_agent_architecture.py
+  jax_ops.py
+</code></pre>
+<h2>Orchestrator contract</h2>
+<p>The router should require every skill to return one shared result shape.</p>
+<p>Minimum result contract:</p>
+<ul>
+<li><code>client_id</code></li>
+<li><code>engagement_id</code></li>
+<li><code>stage</code></li>
+<li><code>policy_version</code></li>
+<li><code>skill_version</code></li>
+<li><code>source_refs</code></li>
+<li><code>observed_facts</code></li>
+<li><code>client_estimates</code></li>
+<li><code>hypotheses</code></li>
+<li><code>unknowns</code></li>
+<li><code>artifact_refs</code></li>
+<li><code>proposed_next_action</code></li>
+<li><code>required_approvals</code></li>
+<li><code>external_actions</code></li>
+</ul>
+<p>That schema is what makes audit and validation possible.</p>
+<h2>Implementation order</h2>
+<ol>
+<li>Create the architecture files and shared schemas.</li>
+<li>Extract deterministic policy files from the playbook.</li>
+<li>Stand up the private SQLite ledger and backup flow.</li>
+<li>Build the gate evaluator and pricing logic.</li>
+<li>Implement retrieval generation with provenance.</li>
+<li>Create <code>jax-router</code>, <code>jax-intake</code>, <code>jax-diagnose</code>, <code>jax-plan</code>, and <code>jax-scope</code> first.</li>
+<li>Rehearse the fictional scenario end-to-end on fixtures only.</li>
+<li>Add onboarding, release, launch, operate, incident, and exit skills.</li>
+<li>Add deterministic scheduled checks only after owners, routes, and stop rules exist.</li>
+<li>Add any future write-side integrations one at a time, behind exact approvals and read-back verification.</li>
+</ol>
+<h2>First-version scope</h2>
+<p>v1 should include:</p>
+<ul>
+<li>the architecture and policy files</li>
+<li>private state ledger</li>
+<li>retrieval generator</li>
+<li>shared schemas</li>
+<li>routing and validation code</li>
+<li>draft-only stage skills</li>
+<li>fictional engagement rehearsal</li>
+<li>deterministic pricing and gate checks</li>
+</ul>
+<p>v1 should not include:</p>
+<ul>
+<li>autonomous outreach</li>
+<li>autonomous client messaging</li>
+<li>autonomous launch</li>
+<li>unattended production writes</li>
+<li>real credential handling beyond vault pointers</li>
+<li>real-time monitoring claims the business cannot yet support</li>
+</ul>
+<h2>Risks</h2>
+<ul>
+<li>policy drift between the playbook and structured files</li>
+<li>confusing proposed policy with active capability</li>
+<li>using summaries as evidence</li>
+<li>cross-client leakage in retrieval or logs</li>
+<li>treating approvals in chat as sufficient without payload binding</li>
+<li>false-green monitoring from shallow checks</li>
+<li>premature complexity before a private ledger and deterministic validators exist</li>
+</ul>
+<h2>Avoid</h2>
+<ul>
+<li>one mega-agent prompt</li>
+<li>one skill per paragraph</li>
+<li>fake departmental bot org charts</li>
+<li>putting live client state in the public repo or public Pages</li>
+<li>letting the model mark its own evidence verified</li>
+<li>letting pricing prose outrank signed terms or approved commercial snapshots</li>
+<li>building a vector-database or workflow platform before SQLite and scripts prove insufficient</li>
+</ul>
+<h2>Practical recommendation</h2>
+<p>If this were the next build step, I would do it in this order:</p>
+<ol>
+<li>keep the playbook intact</li>
+<li>extract the policy and gate files</li>
+<li>build the private ledger</li>
+<li>create five initial draft-only skills</li>
+<li>rehearse the fictional engagement end to end</li>
+<li>only then consider any live connector or execution path</li>
+</ol>
+<p>That gets Jax an operator it can trust before it gets an agent it can brag about.</p>
+</article>
+    <footer>Internal architecture note, publicly accessible. No live client data, automation, outreach, monitoring, or support coverage is activated by this document.</footer>
+  </main>
+</body>
+</html>
